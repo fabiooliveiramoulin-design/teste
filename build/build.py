@@ -157,9 +157,9 @@ def home():
    </div>
    <div class="hv-media">
     <video autoplay muted loop playsinline preload="auto" poster="video/helpcure-anel-poster.jpg" aria-label="Animação Help Cure: anel inteligente monitora o coração e mãos digitais amparam quando o sinal sai do padrão">
-     <source src="video/helpcure-anel-loop.webm" type="video/webm">
-     <source src="video/helpcure-anel-loop-720.mp4" type="video/mp4" media="(max-width: 900px)">
-     <source src="video/helpcure-anel-loop.mp4" type="video/mp4">
+     <source src="video/helpcure-anel-pulso.webm" type="video/webm">
+     <source src="video/helpcure-anel-pulso-720.mp4" type="video/mp4" media="(max-width: 900px)">
+     <source src="video/helpcure-anel-pulso.mp4" type="video/mp4">
     </video>
    </div>
   </div>
