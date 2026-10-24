@@ -61,15 +61,15 @@ def shell(pg, path, title, body, desc):
 <meta property="og:title" content="{html.escape(title)}">
 <meta property="og:description" content="{html.escape(desc)}">
 <meta property="og:image" content="{p}img/hero.webp">
-<link rel="icon" href="{p}img/icone.svg">
+<link rel="icon" href="{p}img/icone.svg" type="image/svg+xml"><link rel="icon" href="{p}img/logo/favicon-32.png" sizes="32x32"><link rel="apple-touch-icon" href="{p}img/logo/helpcure-icone-app-180.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Lexend:wght@300;400;500;600&display=swap">
-<link rel="stylesheet" href="{p}assets/site.css?v=2">
+<link rel="stylesheet" href="{p}assets/site.css?v=3">
 </head>
 <body>
 <header class="top">
   <div class="wrap nav">
-    <a class="logo" href="{p}"><img src="{p}img/icone.svg" alt="" aria-hidden="true">Help<b>Cure</b></a>
+    <a class="logo" href="{p}" aria-label="Help Cure"><img src="{p}img/logo/helpcure-simbolo-animado-fundo-escuro.svg" alt="" aria-hidden="true"><span style="letter-spacing:-.02em">Help<b>Cure</b></span></a>
     <button class="burger" type="button" aria-label="Menu" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
     <nav class="menu" aria-label="Menu">{"".join(links)}</nav>
     <div class="lang" role="group" aria-label="Idioma / Language">
@@ -82,7 +82,7 @@ def shell(pg, path, title, body, desc):
     foot = f'''</main>
 <footer>
   <div class="wrap">
-    <div><a class="logo" href="{p}" style="color:#E9F3F0;display:flex"><img src="{p}img/icone.svg" alt="" aria-hidden="true">Help<b>Cure</b></a>
+    <div><a class="logo" href="{p}" style="color:#E9F3F0;display:flex"><img src="{p}img/logo/helpcure-simbolo-animado-fundo-escuro.svg" alt="" aria-hidden="true"><span style="letter-spacing:-.02em">Help<b>Cure</b></span></a>
       {pg.t("Monitoramento contínuo de saúde: cada paciente comparado com ele mesmo.", "Monitoreo continuo de salud: cada paciente comparado consigo mismo.", "Continuous health monitoring: every patient compared with themselves.", "p", attrs=' style="margin-top:10px;max-width:40ch"')}
       <p style="margin-top:12px">{pg.t("Contato", "Contacto", "Contact")}: <a href="mailto:contato@helpcure.com.py" style="display:inline">contato@helpcure.com.py</a></p></div>
     <div><h4>{pg.t("Soluções", "Soluciones", "Solutions")}</h4>{foot_sol}</div>
@@ -95,7 +95,7 @@ def shell(pg, path, title, body, desc):
   </div>
 </footer>
 <script>window.HC_T={json.dumps({"es": pg.es, "en": pg.en}, ensure_ascii=False)};</script>
-<script src="{p}assets/site.js?v=2"></script>
+<script src="{p}assets/site.js?v=3"></script>
 </body>
 </html>
 '''

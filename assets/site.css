@@ -28,7 +28,7 @@ header.top{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--b
 .nav{display:flex;align-items:center;gap:20px;height:64px}
 .logo{display:flex;align-items:center;gap:10px;font:700 20px var(--f-d);text-decoration:none}
 .logo b{color:var(--led)}
-.logo img{width:30px;height:30px}
+.logo img{height:34px;width:auto}
 .menu{display:flex;gap:22px;margin-left:auto;font-size:15px}
 .menu a{text-decoration:none;opacity:.85}
 .menu a:hover,.menu a[aria-current="page"]{opacity:1;color:var(--led)}
