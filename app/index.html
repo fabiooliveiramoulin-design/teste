@@ -1,0 +1,731 @@
+<!doctype html><html><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Help Cure Paciente</title>
+<link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#0B3B36"><link rel="icon" href="static/icone.svg"><link rel="apple-touch-icon" href="static/capa.jpg"><meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Lexend:wght@300;400;500;600&display=swap">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<style>
+/* Layout: app de uma coluna (telefone), cartão-herói verde-cirúrgico com contorno LED, barra de navegação inferior fixa */
+:root{
+  --bg:#F2F6F5; --surface:#FFFFFF; --surface-2:#E6EEEC; --line:#D3DFDB;
+  --ink:#0E1F1C; --ink-2:#4A5F5A; --ink-3:#7C8E89;
+  --brand:#0B3B36; --brand-ink:#E9F3F0; --led:#17B877; --led-soft:#D5F5E6;
+  --warn:#B86A00; --warn-soft:#FFF1DA; --bad:#C0352B; --bad-soft:#FDE5E2; --info:#2A62C9; --info-soft:#E3ECFC;
+  --f-display:"Sora", "Segoe UI", system-ui, sans-serif;
+  --f-body:"Lexend", "Segoe UI", system-ui, sans-serif;
+  --r:18px; --shadow:0 1px 2px rgba(11,59,54,.06),0 8px 24px rgba(11,59,54,.07);
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#081513; --surface:#0F211E; --surface-2:#163430; --line:#21433E;
+  --ink:#E8F1EE; --ink-2:#A9BDB8; --ink-3:#7A918C;
+  --brand:#0E4A43; --brand-ink:#E9F3F0; --led:#3EE39A; --led-soft:#103A2C;
+  --warn:#F2B04B; --warn-soft:#3A2A10; --bad:#FF7B6E; --bad-soft:#3D1814; --info:#86AEFF; --info-soft:#15264A;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.25); color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#081513; --surface:#0F211E; --surface-2:#163430; --line:#21433E;
+  --ink:#E8F1EE; --ink-2:#A9BDB8; --ink-3:#7A918C;
+  --brand:#0E4A43; --brand-ink:#E9F3F0; --led:#3EE39A; --led-soft:#103A2C;
+  --warn:#F2B04B; --warn-soft:#3A2A10; --bad:#FF7B6E; --bad-soft:#3D1814; --info:#86AEFF; --info-soft:#15264A;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.25); color-scheme:dark}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}
+button,input,select,textarea{font:inherit;color:inherit}
+h1,h2,h3{font-family:var(--f-display);margin:0;text-wrap:balance;letter-spacing:-.01em}
+.wrap{max-width:560px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:12px 112px}
+.eyebrow{font-size:12px;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3);font-weight:500}
+.muted{color:var(--ink-2)} .small{font-size:14px}
+.stack{display:flex;flex-direction:column;gap:12px} .row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.btn{border:0;border-radius:14px;padding:14px 18px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:52px;transition:transform .08s ease, background .2s}
+.btn:active{transform:scale(.98)}
+.btn:focus-visible,.navbtn:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:3px solid var(--led);outline-offset:2px}
+.btn-primary{background:var(--brand);color:var(--brand-ink)}
+.btn-led{background:var(--led);color:#062019}
+.btn-ghost{background:var(--surface-2);color:var(--ink)}
+.btn-line{background:transparent;border:1.5px solid var(--line);color:var(--ink)}
+.btn-sm{min-height:40px;padding:8px 14px;font-size:14px;border-radius:12px}
+.btn-block{width:100%}
+.btn[disabled]{opacity:.5;cursor:not-allowed}
+.card{background:var(--surface);border-radius:var(--r);padding:16px;box-shadow:var(--shadow)}
+.chip{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:4px 10px;font-size:13px;font-weight:500;background:var(--surface-2);color:var(--ink-2);white-space:nowrap}
+.chip.ok{background:var(--led-soft);color:var(--led)} .chip.warn{background:var(--warn-soft);color:var(--warn)}
+.chip.bad{background:var(--bad-soft);color:var(--bad)} .chip.info{background:var(--info-soft);color:var(--info)}
+.dot{width:8px;height:8px;border-radius:50%;background:currentColor;display:inline-block}
+label.f{display:flex;flex-direction:column;gap:6px;font-size:14px;color:var(--ink-2);font-weight:500}
+input.i,textarea.i,select.i{background:var(--surface);border:1.5px solid var(--line);border-radius:12px;padding:13px 14px;font-size:16px;color:var(--ink);width:100%}
+textarea.i{min-height:76px;resize:vertical}
+.tnum{font-variant-numeric:tabular-nums}
+
+/* barra superior */
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-block:8px 16px}
+.brandmark{display:flex;align-items:center;gap:10px;font-family:var(--f-display);font-weight:700;font-size:18px}
+.brandmark svg{width:34px;height:34px}
+.demo-flag{font-size:12px;border-radius:999px;padding:4px 10px;background:var(--warn-soft);color:var(--warn);font-weight:600}
+
+/* herói */
+.hero{position:relative;background:var(--brand);color:var(--brand-ink);border-radius:24px;padding:20px;overflow:hidden;box-shadow:var(--shadow)}
+.hero::after{content:"";position:absolute;inset:0;border-radius:24px;border:2px solid var(--led);opacity:.55;pointer-events:none}
+.hero .eyebrow{color:rgba(233,243,240,.7)}
+.hero-time{font-family:var(--f-display);font-size:44px;font-weight:700;line-height:1;margin-top:6px}
+.hero-med{font-size:19px;font-weight:500;margin-top:10px}
+.hero-sub{color:rgba(233,243,240,.75);font-size:14px;margin-top:2px}
+.hero-actions{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap}
+.hero-actions .btn{flex:1 1 120px}
+.hero .ring{position:absolute;right:18px;top:18px;width:68px;height:68px}
+.ring text{font-family:var(--f-display);font-weight:700}
+
+/* linha do tempo */
+.tl{display:flex;flex-direction:column}
+.tl-item{display:grid;grid-template-columns:56px 18px 1fr;gap:10px;align-items:start;padding-block:10px}
+.tl-time{font-family:var(--f-display);font-weight:600;font-size:16px;padding-top:2px}
+.tl-rail{position:relative;align-self:stretch;display:flex;justify-content:center}
+.tl-rail::before{content:"";position:absolute;top:0;bottom:-20px;width:2px;background:var(--line)}
+.tl-item:last-child .tl-rail::before{display:none}
+.tl-node{position:relative;width:14px;height:14px;border-radius:50%;background:var(--surface);border:3px solid var(--line);margin-top:5px}
+.tl-node.tomada{background:var(--led);border-color:var(--led)} .tl-node.enviada{border-color:var(--warn);background:var(--warn)}
+.tl-node.nao_tomada,.tl-node.sem_resposta,.tl-node.perdida{border-color:var(--bad);background:var(--bad)}
+.tl-body{min-width:0}
+.tl-name{font-weight:600} .tl-meta{font-size:14px;color:var(--ink-2)}
+
+/* banners de ação */
+.action{display:flex;gap:12px;align-items:center;border-radius:16px;padding:14px;background:var(--surface);box-shadow:var(--shadow);border-left:6px solid var(--warn)}
+.action.info{border-left-color:var(--info)}
+.action-ico{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;background:var(--warn-soft);color:var(--warn);flex:0 0 40px}
+.action.info .action-ico{background:var(--info-soft);color:var(--info)}
+.action-txt{flex:1;min-width:0}
+.action-txt b{display:block}
+
+/* remédios */
+.med{display:flex;flex-direction:column;gap:10px}
+.med-head{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+.med-name{font-family:var(--f-display);font-weight:600;font-size:18px}
+.times{display:flex;gap:6px;flex-wrap:wrap}
+.time{font-family:var(--f-display);font-weight:600;font-size:14px;border-radius:10px;padding:6px 10px;background:var(--surface-2)}
+.bar{height:6px;border-radius:6px;background:var(--surface-2);overflow:hidden}
+.bar>i{display:block;height:100%;background:var(--led);border-radius:6px}
+
+/* envio / leitura */
+.pick{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.pick button{background:var(--surface);border:2px solid var(--line);border-radius:18px;padding:18px 14px;text-align:left;cursor:pointer;display:flex;flex-direction:column;gap:8px;min-height:128px}
+.pick button[aria-pressed="true"]{border-color:var(--led);background:var(--led-soft)}
+.pick b{font-family:var(--f-display);font-size:17px}
+.shot{position:relative;border-radius:18px;overflow:hidden;background:var(--surface-2);aspect-ratio:3/4;max-width:100%;display:grid;place-items:center;border:2px dashed var(--line)}
+.shot img{width:100%;height:100%;object-fit:cover}
+.scan{position:absolute;left:0;right:0;height:3px;background:var(--led);box-shadow:0 0 18px 4px var(--led);animation:scan 1.6s ease-in-out infinite alternate;top:0}
+@keyframes scan{to{top:calc(100% - 3px)}}
+@media (prefers-reduced-motion:reduce){.scan{animation:none;top:50%}}
+.read-med{border:1.5px solid var(--line);border-radius:16px;padding:14px;display:flex;flex-direction:column;gap:10px;background:var(--surface)}
+.read-med.low{border-color:var(--warn);background:var(--warn-soft)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.timeedit{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.timeedit input{width:96px;padding:8px 10px}
+.x{border:0;background:transparent;color:var(--ink-3);cursor:pointer;font-size:18px;padding:4px 8px}
+
+/* conversa */
+.chat{display:flex;flex-direction:column;gap:8px;padding-bottom:84px}
+.msg{max-width:86%;padding:10px 14px;border-radius:18px;white-space:pre-wrap;word-wrap:break-word;font-size:15px}
+.msg.out{align-self:flex-start;background:var(--surface);box-shadow:var(--shadow);border-bottom-left-radius:6px}
+.msg.out.central{border:1.5px solid var(--info)}
+.msg.in{align-self:flex-end;background:var(--brand);color:var(--brand-ink);border-bottom-right-radius:6px}
+.msg small{display:block;font-size:11px;opacity:.65;margin-top:4px}
+.msg .mbtns{display:flex;flex-direction:column;gap:6px;margin-top:10px}
+.msg .mbtns .btn{min-height:42px;font-size:14px}
+.composer{position:fixed;left:0;right:0;bottom:calc(72px + env(safe-area-inset-bottom,0px));background:var(--bg);padding-top:8px;padding-bottom:8px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.composer .in{max-width:528px;margin:0 auto;display:flex;gap:8px}
+
+/* navegação */
+nav.tabs{position:fixed;left:0;right:0;bottom:0;background:var(--surface);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom,0px);padding-left:env(safe-area-inset-left,0px);padding-right:env(safe-area-inset-right,0px);z-index:20}
+nav.tabs .in{max-width:560px;margin:0 auto;display:grid;grid-template-columns:repeat(5,1fr)}
+.navbtn{background:transparent;border:0;display:flex;flex-direction:column;align-items:center;gap:2px;padding:10px 0 8px;font-size:11.5px;color:var(--ink-3);cursor:pointer;min-height:64px;position:relative}
+.navbtn svg{width:24px;height:24px}
+.navbtn[aria-current="page"]{color:var(--brand)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .navbtn[aria-current="page"]{color:var(--led)}}
+:root[data-theme="dark"] .navbtn[aria-current="page"]{color:var(--led)}
+.navbtn.plus .bubble{width:52px;height:52px;border-radius:18px;background:var(--led);color:#062019;display:grid;place-items:center;margin-top:-22px;box-shadow:0 6px 18px rgba(23,184,119,.4)}
+.badge{position:absolute;top:6px;right:calc(50% - 20px);min-width:18px;height:18px;border-radius:9px;background:var(--bad);color:#fff;font-size:11px;display:grid;place-items:center;padding:0 5px}
+
+/* onboarding */
+.onb{min-height:100%;display:flex;flex-direction:column;gap:20px;padding-block:24px 40px}
+.onb-hero{background:var(--brand);color:var(--brand-ink);border-radius:28px;padding:28px 22px;position:relative;overflow:hidden}
+.onb-hero::after{content:"";position:absolute;inset:0;border-radius:28px;border:2px solid var(--led);opacity:.6}
+.onb-hero h1{font-size:30px;line-height:1.15;margin-top:14px}
+.onb-hero p{color:rgba(233,243,240,.8);margin:10px 0 0}
+.steps{display:flex;flex-direction:column;gap:10px}
+.step{display:grid;grid-template-columns:44px 1fr;gap:12px;align-items:center}
+.step i{font-style:normal;width:44px;height:44px;border-radius:14px;background:var(--led-soft);color:var(--led);display:grid;place-items:center;font-family:var(--f-display);font-weight:700}
+.consent{display:flex;gap:10px;align-items:flex-start;font-size:14px;color:var(--ink-2);background:var(--surface-2);padding:12px;border-radius:14px}
+.consent input{width:22px;height:22px;flex:0 0 22px;accent-color:var(--led);margin-top:2px}
+.toggle{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.switch{appearance:none;width:52px;height:30px;border-radius:15px;background:var(--line);position:relative;cursor:pointer;flex:0 0 52px;transition:background .2s}
+.switch::after{content:"";position:absolute;width:24px;height:24px;border-radius:50%;background:#fff;top:3px;left:3px;transition:left .2s}
+.switch:checked{background:var(--led)} .switch:checked::after{left:25px}
+.err{background:var(--bad-soft);color:var(--bad);border-radius:12px;padding:10px 12px;font-size:14px}
+
+/* emergência */
+.sos{background:var(--bad);color:#fff;border-radius:22px;padding:18px;display:grid;grid-template-columns:1fr auto;gap:14px;align-items:center}
+.sos .qr{background:#fff;padding:8px;border-radius:12px;width:128px;height:128px}
+.sos .qr img,.sos .qr canvas{width:112px!important;height:112px!important}
+
+/* capa de entrada (visual único escuro, igual ao vídeo Help Cure) */
+.capa{position:fixed;inset:0;background:#050F0E;color:#F0F8F5;overflow:hidden;z-index:30;display:flex;flex-direction:column;justify-content:space-between}
+.capa img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 43%;animation:kb 14s ease-out both}
+@keyframes kb{from{transform:scale(1.08)}to{transform:scale(1)}}
+.capa-top,.capa-bottom{position:relative;text-align:center;padding-left:max(24px,env(safe-area-inset-left,0px));padding-right:max(24px,env(safe-area-inset-right,0px))}
+.capa-top{padding-top:calc(env(safe-area-inset-top,0px) + 9vh)}
+.capa-top h1{font-family:var(--f-display);font-weight:700;font-size:clamp(44px,13vw,64px);line-height:1;letter-spacing:-.02em;color:#F0F8F5;text-shadow:0 0 28px rgba(62,227,154,.55),0 0 2px rgba(62,227,154,.6);animation:up .9s .2s ease-out both}
+.capa-top p{margin:14px auto 0;max-width:22ch;font-size:18px;line-height:1.4;color:#CDE2DC;animation:up .9s .45s ease-out both}
+.capa-bottom{padding-bottom:calc(env(safe-area-inset-bottom,0px) + 7vh);display:flex;flex-direction:column;align-items:center;gap:14px;animation:up .9s .8s ease-out both}
+.capa-btn{border:1.5px solid rgba(62,227,154,.9);background:rgba(8,40,34,.55);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);color:#F0F8F5;font-family:var(--f-display);font-weight:600;font-size:19px;border-radius:999px;padding:16px 34px;min-height:60px;min-width:220px;display:inline-flex;align-items:center;justify-content:center;gap:12px;cursor:pointer;box-shadow:0 0 0 0 rgba(62,227,154,.5),0 0 26px rgba(62,227,154,.35);animation:glow 2.6s 1.8s ease-in-out infinite}
+.capa-btn svg{width:22px;height:22px}
+.capa-btn:focus-visible{outline:3px solid #3EE39A;outline-offset:4px}
+.capa-note{font-size:13px;color:#A9C4BD;letter-spacing:.04em}
+@keyframes up{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes glow{50%{box-shadow:0 0 0 10px rgba(62,227,154,0),0 0 36px rgba(62,227,154,.55)}}
+@media (prefers-reduced-motion:reduce){.capa img,.capa-top h1,.capa-top p,.capa-bottom,.capa-btn{animation:none}}
+
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(92px + env(safe-area-inset-bottom,0px));background:var(--ink);color:var(--bg);padding:12px 16px;border-radius:14px;font-size:14px;z-index:50;max-width:calc(100% - 32px);box-shadow:var(--shadow)}
+.sheet-bg{position:fixed;inset:0;background:rgba(5,15,13,.45);z-index:40;display:flex;align-items:flex-end;justify-content:center}
+.sheet{background:var(--bg);width:100%;max-width:560px;border-radius:24px 24px 0 0;padding:20px;padding-bottom:calc(20px + env(safe-area-inset-bottom,0px));max-height:88%;overflow:auto}
+.empty{text-align:center;padding:28px 16px;color:var(--ink-2)}
+.empty svg{width:56px;height:56px;color:var(--led)}
+.sec-title{display:flex;justify-content:space-between;align-items:baseline;margin-top:8px}
+.sec-title h2{font-size:18px}
+hr.s{border:0;border-top:1px solid var(--line);margin:4px 0}
+</style>
+
+<div id="root"></div>
+<div id="toast" class="toast" hidden></div>
+
+<script>
+/* =========================================================================
+   Help Cure — App do Paciente (piloto)
+   Modo "servidor": usa a API do Help Cure (mesmo endereço).
+   Modo "demonstracao": tudo roda no aparelho, com leitura de exemplo.
+   ========================================================================= */
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const store = {
+  get(k){ try{ return JSON.parse(localStorage.getItem("hc_"+k)); }catch(e){ return null; } },
+  set(k,v){ try{ localStorage.setItem("hc_"+k, JSON.stringify(v)); }catch(e){} },
+  del(k){ try{ localStorage.removeItem("hc_"+k); }catch(e){} }
+};
+function toast(t, ms=2600){ const el=$("#toast"); el.textContent=t; el.hidden=false; clearTimeout(toast._t); toast._t=setTimeout(()=>el.hidden=true, ms); }
+const ICON = {
+  logo:'<svg viewBox="0 0 512 512" aria-hidden="true"><rect width="512" height="512" rx="112" fill="#0B3B36"/><path d="M256 392s-132-78-132-170c0-44 34-78 76-78 26 0 46 12 56 30 10-18 30-30 56-30 42 0 76 34 76 78 0 92-132 170-132 170z" fill="none" stroke="#3EE39A" stroke-width="28" stroke-linejoin="round"/><path d="M196 236h40v-40h40v40h40v40h-40v40h-40v-40h-40z" fill="#E9F3F0"/></svg>',
+  home:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>',
+  pill:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="8" width="19" height="8" rx="4" transform="rotate(-35 12 12)"/><path d="M9.2 7.9l5.6 8.2" /></svg>',
+  cam:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg>',
+  chat:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg>',
+  user:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>',
+  doc:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8z"/><path d="M14 3v5h5M8 13h8M8 17h5"/></svg>',
+  cart:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h2l2.4 11h10.2L20 7H6.2"/><circle cx="9" cy="19" r="1.6"/><circle cx="17" cy="19" r="1.6"/></svg>',
+  steth:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3v6a5 5 0 0 0 10 0V3"/><path d="M11 14v2a5 5 0 0 0 10 0v-2"/><circle cx="21" cy="12" r="1.8"/></svg>',
+};
+
+/* ------------------------------------------------------------------ API */
+const MODE = { v: window.HC_MODE || null };
+const API = {
+  token: store.get("token"),
+  async call(method, path, body, isForm){
+    if (MODE.v === "demonstracao") return Demo.call(method, path, body);
+    const h = {}; if (this.token) h.Authorization = "Bearer " + this.token;
+    if (body && !isForm) h["Content-Type"] = "application/json";
+    const r = await fetch(path, {method, headers:h, body: body ? (isForm ? body : JSON.stringify(body)) : undefined});
+    let data = null; try{ data = await r.json(); }catch(e){}
+    if (!r.ok) throw new Error((data && data.detail) || "Não foi possível completar. Verifique a conexão.");
+    return data;
+  }
+};
+async function detectMode(){
+  if (MODE.v) return;
+  try{
+    const ctl = new AbortController(); setTimeout(()=>ctl.abort(), 2500);
+    const r = await fetch("/api/info", {signal: ctl.signal});
+    const j = await r.json(); MODE.v = j && j.vagas_total ? "servidor" : "demonstracao";
+  }catch(e){ MODE.v = "demonstracao"; }
+}
+
+/* ------------------------------------------------------------------ Modo demonstração */
+const Demo = (() => {
+  let S = store.get("demo") || null;
+  const save = () => store.set("demo", S);
+  const nowIso = () => new Date().toISOString();
+  const pad = n => String(n).padStart(2,"0");
+  const hhmm = d => pad(d.getHours())+":"+pad(d.getMinutes());
+  const LEITURA = () => ({tipo:"receita_e_diagnostico", legivel:true, medico:"Dra. Exemplo", estabelecimento:"Hospital Exemplo",
+    diagnosticos:[{descricao:"Infecção de vias aéreas superiores (exemplo)", cid:"J06.9"}],
+    medicamentos:[
+      {nome:"Amoxicilina", concentracao:"500 mg", dose:"1 cápsula", frequencia_horas:8, duracao_dias:7, se_necessario:false, instrucoes:"1 cápsula de 8 em 8 horas por 7 dias", confianca:.93, horarios:["06:00","14:00","22:00"]},
+      {nome:"Ibuprofeno", concentracao:"400 mg", dose:"1 comprimido", frequencia_horas:12, duracao_dias:5, se_necessario:false, instrucoes:"1 comprimido de 12 em 12 horas após as refeições, por 5 dias", confianca:.66, horarios:["08:00","20:00"]},
+      {nome:"Dipirona", concentracao:"500 mg", dose:"1 comprimido", frequencia_horas:6, duracao_dias:null, se_necessario:true, instrucoes:"Se dor ou febre, até de 6 em 6 horas", confianca:.88, horarios:[]}],
+    observacoes:"Leitura de exemplo (modo demonstração).", campos_duvidosos:["Ibuprofeno: concentração pouco legível"]});
+  const msg = (texto, botoes=[], autor="help_cure", dir="saida") => { S.msgs.push({id:++S.seq, direcao:dir, autor, canal:"app", texto, botoes, criado_em:nowIso()}); };
+  const todayDoses = () => {
+    const t = new Date(); const key = t.toDateString();
+    S.meds.filter(m=>m.comprado && m.ativo && !m.se_necessario).forEach(m=>{
+      m.horarios.forEach(h=>{
+        const [H,M] = h.split(":").map(Number); const d = new Date(); d.setHours(H,M,0,0);
+        if (d < new Date(m.comprado_em) && !m._incluirPassado) return;
+        const id = m.id+"-"+key+"-"+h;
+        if (!S.doses.find(x=>x.id===id)) S.doses.push({id, mid:m.id, previsto_em:d.toISOString(), status: d < new Date() ? "tomada" : "agendada"});
+      });
+    });
+  };
+  const painel = () => {
+    todayDoses();
+    const t = new Date(); const ini = new Date(t); ini.setHours(0,0,0,0); const fim = new Date(ini); fim.setDate(fim.getDate()+1);
+    const hoje = S.doses.filter(d=>new Date(d.previsto_em)>=ini && new Date(d.previsto_em)<fim).map(d=>{
+      const m = S.meds.find(x=>x.id===d.mid); return {...d, hora:hhmm(new Date(d.previsto_em)), nome:m.nome, concentracao:m.concentracao, dose:m.dose, instrucoes:m.instrucoes};
+    }).sort((a,b)=>a.previsto_em.localeCompare(b.previsto_em));
+    const resp = S.doses.filter(d=>["tomada","nao_tomada","sem_resposta"].includes(d.status));
+    const meds = S.meds.map(m=>({...m, dias_restantes: m.fim ? Math.max(0, Math.ceil((new Date(m.fim)-new Date())/864e5)) : undefined}));
+    return {paciente:S.p, hoje, medicamentos:meds, adesao_7d: resp.length ? Math.round(100*resp.filter(d=>d.status==="tomada").length/resp.length) : null,
+      documentos_pendentes: S.docs.filter(d=>d.status==="aguardando_confirmacao"), diagnosticos:S.diags};
+  };
+  async function call(method, path, body){
+    await new Promise(r=>setTimeout(r, 180));
+    if (path==="/api/info") return {vagas_total:20, vagas_usadas: S?1:0, whatsapp:false, leitura_ia:false, convite_obrigatorio:false};
+    if (path==="/api/app/cadastro"){
+      if (!body.consentimento) throw new Error("É preciso aceitar o termo de uso dos dados de saúde para participar.");
+      if (!body.nome?.trim()) throw new Error("Informe seu nome.");
+      S = {seq:0, p:{id:1, nome:body.nome.trim(), telefone:body.telefone, nascimento:body.nascimento, cidade:body.cidade||"", canal_app:1,
+            canal_whatsapp: body.canal_whatsapp?1:0, alergias:"", condicoes:"", contato_emergencia:"", url_emergencia:"https://helpcure.app/emergencia/exemplo",
+            whatsapp_ligado:false, leitura_ia:false}, meds:[], doses:[], docs:[], diags:[], msgs:[]};
+      msg(`Olá, ${S.p.nome.split(" ")[0]}! Bem-vindo(a) ao Help Cure. 💚\nEnvie a foto da sua receita ou do diagnóstico e eu organizo seus remédios e horários.`);
+      save(); return {token:"demo", novo:true, paciente:S.p};
+    }
+    if (!S) throw new Error("Sessão expirada. Faça o cadastro novamente.");
+    let out;
+    if (path==="/api/app/eu") out = S.p;
+    else if (path==="/api/app/perfil"){ Object.assign(S.p, body); out = S.p; }
+    else if (path==="/api/app/painel") out = painel();
+    else if (path==="/api/app/documento"){
+      await new Promise(r=>setTimeout(r, 2200));
+      const d = {id:++S.seq, tipo:"receita", status:"aguardando_confirmacao", leitura:LEITURA(), modo_leitura:"demonstracao", criado_em:nowIso()};
+      S.docs.push(d); msg("📷 Enviou foto (receita)", [], "paciente", "entrada");
+      out = {documento_id:d.id, leitura:d.leitura, modo:"demonstracao"};
+    }
+    else if (/\/api\/app\/documento\/\d+\/confirmar/.test(path)){
+      const id = +path.split("/")[4]; const d = S.docs.find(x=>x.id===id); d.status="confirmado";
+      (body.diagnosticos||d.leitura.diagnosticos).forEach(g=>S.diags.unshift({...g, medico:d.leitura.medico, estabelecimento:d.leitura.estabelecimento, criado_em:nowIso()}));
+      (body.medicamentos||d.leitura.medicamentos).forEach(m=>S.meds.push({...m, id:++S.seq, comprado:0, ativo:1, se_necessario: m.se_necessario?1:0}));
+      msg('Pronto! Registrei seu diagnóstico e sua receita. Quando comprar os remédios, toque em "Já comprei" para eu começar os lembretes.');
+      out = {ok:true};
+    }
+    else if (path==="/api/app/compra"){
+      let n=0; S.meds.filter(m=>!m.comprado && m.ativo && (!body.medicamentos || body.medicamentos.includes(m.id))).forEach(m=>{
+        m.comprado=1; m.comprado_em=nowIso(); n++; if (m.duracao_dias) m.fim = new Date(Date.now()+m.duracao_dias*864e5).toISOString(); });
+      if (n) msg(`Ótimo! ${n} remédio(s) marcados como comprados. Vou lembrar você em cada horário. ⏰`);
+      out = {ok:true, marcados:n};
+    }
+    else if (/\/api\/app\/medicamento\/\d+/.test(path)){
+      const m = S.meds.find(x=>x.id===+path.split("/").pop());
+      if (body.horarios){ m.horarios = [...new Set(body.horarios)].sort(); S.doses = S.doses.filter(d=>!(d.mid===m.id && d.status==="agendada")); }
+      if (body.encerrar){ m.ativo=0; S.doses = S.doses.filter(d=>!(d.mid===m.id && d.status==="agendada")); }
+      out = {ok:true};
+    }
+    else if (/\/api\/app\/dose\//.test(path)){
+      const id = decodeURIComponent(path.split("/").pop()); out = {mensagem: answer(id, body.acao)};
+    }
+    else if (path.startsWith("/api/app/mensagens") && method==="GET"){
+      const desde = +(path.split("desde=")[1]||0); out = S.msgs.filter(m=>m.id>desde);
+    }
+    else if (path==="/api/app/mensagens"){
+      msg(body.texto, [], "paciente", "entrada");
+      setTimeout(()=>{ msg("Central Help Cure: recebemos sua mensagem e respondemos em breve. (demonstração)", [], "central"); save(); }, 1500);
+      out = {ok:true};
+    }
+    else if (path==="/api/app/botao"){
+      const [k, ref] = body.id.split(":"); out = {mensagem: k.startsWith("dose_") ? answer(ref, k.replace("dose_","")) : "Ok."};
+    }
+    else if (path==="/demo/lembrete"){
+      const m = S.meds.find(x=>x.comprado && x.ativo && !x.se_necessario) || S.meds.find(x=>!x.se_necessario);
+      if (!m) throw new Error("Envie e confirme uma receita primeiro.");
+      if (!m.comprado){ m.comprado=1; m.comprado_em=nowIso(); }
+      const id = "sim-"+(++S.seq); S.doses.push({id, mid:m.id, previsto_em:nowIso(), status:"enviada"});
+      msg(`⏰ ${S.p.nome.split(" ")[0]}, hora do remédio (${hhmm(new Date())}):\n💊 ${m.nome} ${m.concentracao||""} — ${m.dose||""}\n${m.instrucoes||""}`,
+          [["dose_tomei:"+id,"✅ Tomei"],["dose_adiar:"+id,"⏰ Adiar 15 min"],["dose_nao:"+id,"❌ Não vou tomar"]]);
+      out = {ok:true};
+    }
+    else if (path==="/demo/reset"){ S=null; store.del("demo"); return {ok:true}; }
+    save(); return JSON.parse(JSON.stringify(out));
+  }
+  function answer(id, acao){
+    const d = S.doses.find(x=>x.id===id); if (!d) return "Não encontrei essa dose.";
+    const m = S.meds.find(x=>x.id===d.mid);
+    msg({tomei:"✅ Tomei", adiar:"⏰ Adiar", nao:"❌ Não vou tomar"}[acao], [], "paciente", "entrada");
+    if (acao==="tomei"){ d.status="tomada"; return `Registrado: ${m.nome} tomado. Obrigado! ✅`; }
+    if (acao==="adiar"){ d.status="agendada"; d.previsto_em = new Date(Date.now()+15*6e4).toISOString(); return "Combinado, lembro de novo em 15 minutos. ⏰"; }
+    d.status="nao_tomada"; return "Registrado. Se tiver dúvida sobre a próxima dose, fale com seu médico ou farmacêutico. A Central Help Cure foi avisada.";
+  }
+  return {call};
+})();
+
+/* ------------------------------------------------------------------ Estado e navegação */
+const St = { tab: "hoje", painel:null, msgs:[], lastMsg:0, unread:0, upload:null };
+function setTab(t){ St.tab = t; if (t==="conversa"){ St.unread=0; } render(); window.scrollTo(0,0); }
+
+function nav(){
+  const b = (id, label, ico, extra="") => `<button class="navbtn ${extra}" data-tab="${id}" ${St.tab===id?'aria-current="page"':''}>${extra==="plus"?`<span class="bubble">${ico}</span>`:ico}<span>${label}</span>${id==="conversa"&&St.unread?`<span class="badge">${St.unread}</span>`:""}</button>`;
+  return `<nav class="tabs"><div class="in">${b("hoje","Hoje",ICON.home)}${b("remedios","Remédios",ICON.pill)}${b("enviar","Enviar foto",ICON.cam,"plus")}${b("conversa","Conversa",ICON.chat)}${b("perfil","Perfil",ICON.user)}</div></nav>`;
+}
+function topbar(){
+  const demo = MODE.v==="demonstracao" ? `<span class="demo-flag">Demonstração</span>` : "";
+  return `<div class="top"><div class="brandmark">${ICON.logo}<span>Help Cure</span></div>${demo}</div>`;
+}
+
+/* ------------------------------------------------------------------ Capa (marketing) */
+function viewCapa(){
+  return `<div class="capa">
+    <img src="static/capa.jpg" alt="Mão humana e mão digital tocando um anel inteligente Help Cure" fetchpriority="high">
+    <div class="capa-top"><h1>Help Cure</h1><p>Cuidado que conecta você ao seu tratamento.</p></div>
+    <div class="capa-bottom"><button class="capa-btn" id="capaGo">Continuar <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+    <span class="capa-note">Piloto 2026 · Brasil e Paraguai</span></div>
+  </div>`;
+}
+
+/* ------------------------------------------------------------------ Onboarding / cadastro */
+function viewOnboarding(){
+  return `<div class="wrap onb">
+    <div class="onb-hero">
+      <div class="brandmark" style="color:var(--brand-ink)">${ICON.logo}<span>Help Cure</span></div>
+      <h1>Seus remédios na hora certa, sem papel perdido.</h1>
+      <p>Fotografe a receita. O Help Cure lê, organiza os horários e lembra você, aqui no app e no WhatsApp.</p>
+    </div>
+    <div class="steps">
+      <div class="step"><i>1</i><div><b>Tire a foto</b><div class="muted small">da receita e do diagnóstico que você recebeu</div></div></div>
+      <div class="step"><i>2</i><div><b>Confira a leitura</b><div class="muted small">você confirma os remédios e os horários</div></div></div>
+      <div class="step"><i>3</i><div><b>Receba os lembretes</b><div class="muted small">depois de comprar, avisamos em cada dose</div></div></div>
+    </div>
+    <button class="btn btn-primary btn-block" id="goReg">Participar do piloto</button>
+    <p class="muted small" style="text-align:center;margin:0">Piloto com 20 participantes. O Help Cure não substitui seu médico.</p>
+  </div>`;
+}
+function viewCadastro(err=""){
+  const needInvite = MODE.v==="servidor";
+  return `<div class="wrap onb">
+    <div class="brandmark">${ICON.logo}<span>Help Cure</span></div>
+    <div><h1 style="font-size:26px">Crie seu cadastro</h1><p class="muted" style="margin:6px 0 0">Leva um minuto. Usamos seu número para enviar os lembretes.</p></div>
+    <form id="fReg" class="stack" novalidate>
+      <label class="f">Nome completo<input class="i" id="rNome" autocomplete="name" required placeholder="Ex.: Maria da Silva"></label>
+      <label class="f">WhatsApp com DDD<input class="i" id="rTel" inputmode="tel" autocomplete="tel" required placeholder="Ex.: (21) 99999-0000"></label>
+      <div class="grid2">
+        <label class="f">Nascimento<input class="i" id="rNasc" type="date"></label>
+        <label class="f">Cidade<input class="i" id="rCid" autocomplete="address-level2" placeholder="Cidade"></label>
+      </div>
+      ${needInvite?`<label class="f">Código de convite do piloto<input class="i" id="rConv" autocapitalize="characters" placeholder="Fornecido pela equipe Help Cure"></label>`:""}
+      <div class="card toggle"><div><b>Lembretes também no WhatsApp</b><div class="muted small">Recomendado: chegam mesmo com o app fechado</div></div><input type="checkbox" class="switch" id="rWa" checked aria-label="Lembretes no WhatsApp"></div>
+      <label class="consent"><input type="checkbox" id="rCons"><span>Autorizo o Help Cure a guardar minhas receitas, diagnósticos e horários de medicamentos somente para este acompanhamento, conforme a LGPD. Posso sair quando quiser.</span></label>
+      ${err?`<div class="err">${esc(err)}</div>`:""}
+      <button class="btn btn-primary btn-block" type="submit" id="rBtn">Criar cadastro</button>
+    </form>
+  </div>`;
+}
+
+/* ------------------------------------------------------------------ Hoje */
+function ring(pct){
+  const v = pct==null ? 0 : pct; const C = 2*Math.PI*28;
+  return `<svg class="ring" viewBox="0 0 68 68" role="img" aria-label="Adesão em 7 dias: ${pct==null?'sem dados':pct+'%'}">
+    <circle cx="34" cy="34" r="28" fill="none" stroke="rgba(233,243,240,.18)" stroke-width="7"/>
+    <circle cx="34" cy="34" r="28" fill="none" stroke="var(--led)" stroke-width="7" stroke-linecap="round" stroke-dasharray="${C*v/100} ${C}" transform="rotate(-90 34 34)"/>
+    <text x="34" y="34" text-anchor="middle" dominant-baseline="central" font-size="15" fill="#E9F3F0">${pct==null?'–':pct+'%'}</text></svg>`;
+}
+const STATUS = {tomada:["ok","Tomado"], agendada:["","Agendado"], enviada:["warn","Aguardando você"], nao_tomada:["bad","Não tomado"], sem_resposta:["bad","Sem resposta"], perdida:["bad","Perdido"]};
+function saudacao(){ const h=new Date().getHours(); return h<12?"Bom dia":h<18?"Boa tarde":"Boa noite"; }
+function viewHoje(){
+  const P = St.painel; if (!P) return `<div class="wrap">${topbar()}<div class="empty">Carregando…</div></div>`;
+  const nome = (P.paciente.nome||"").split(" ")[0];
+  const pend = P.hoje.filter(d=>["enviada"].includes(d.status));
+  const prox = pend[0] || P.hoje.find(d=>d.status==="agendada");
+  const naoComp = P.medicamentos.filter(m=>m.ativo && !m.comprado && !m.se_necessario);
+  const dataTxt = new Date().toLocaleDateString("pt-BR",{weekday:"long", day:"numeric", month:"long"});
+  let hero;
+  if (prox){
+    const atrasado = prox.status==="enviada";
+    hero = `<div class="hero">${ring(P.adesao_7d)}
+      <div class="eyebrow">${atrasado?"Agora":"Próximo remédio"}</div>
+      <div class="hero-time tnum">${esc(prox.hora)}</div>
+      <div class="hero-med">${esc(prox.nome)} ${esc(prox.concentracao||"")}</div>
+      <div class="hero-sub">${esc(prox.dose||"")}${prox.instrucoes?" · "+esc(prox.instrucoes):""}</div>
+      ${atrasado?`<div class="hero-actions"><button class="btn btn-led" data-dose="${esc(prox.id)}" data-acao="tomei">✅ Tomei</button><button class="btn btn-ghost" data-dose="${esc(prox.id)}" data-acao="adiar" style="background:rgba(233,243,240,.14);color:var(--brand-ink)">Adiar 15 min</button></div>`:""}
+    </div>`;
+  } else {
+    hero = `<div class="hero">${ring(P.adesao_7d)}<div class="eyebrow">Hoje</div>
+      <div class="hero-med" style="font-family:var(--f-display);font-size:22px;max-width:75%">${P.medicamentos.length?"Nenhuma dose pendente agora":"Comece enviando a foto da sua receita"}</div>
+      <div class="hero-sub">${P.medicamentos.length?"Avisamos no próximo horário.":"Leva menos de um minuto."}</div>
+      ${P.medicamentos.length?"":`<div class="hero-actions"><button class="btn btn-led" data-go="enviar">${ICON.cam.replace('<svg','<svg width="20" height="20"')} Enviar foto</button></div>`}</div>`;
+  }
+  const acoes = [];
+  P.documentos_pendentes.forEach(d=> acoes.push(`<div class="action info"><div class="action-ico">${ICON.doc}</div><div class="action-txt"><b>Confira a leitura da receita</b><span class="muted small">Confirme os remédios antes de ativar.</span></div><button class="btn btn-sm btn-primary" data-review="${d.id}">Conferir</button></div>`));
+  if (naoComp.length) acoes.push(`<div class="action"><div class="action-ico">${ICON.cart}</div><div class="action-txt"><b>Já comprou os remédios?</b><span class="muted small">${naoComp.map(m=>esc(m.nome)).join(", ")}</span></div><button class="btn btn-sm btn-primary" data-buyall>Já comprei</button></div>`);
+  const tl = P.hoje.length ? `<div class="card"><div class="tl">${P.hoje.map(d=>{
+      const [cls,lab] = STATUS[d.status]||["",d.status];
+      const btns = d.status==="enviada" ? `<div class="row" style="margin-top:8px"><button class="btn btn-sm btn-led" data-dose="${esc(d.id)}" data-acao="tomei">Tomei</button><button class="btn btn-sm btn-ghost" data-dose="${esc(d.id)}" data-acao="nao">Não vou tomar</button></div>`:"";
+      return `<div class="tl-item"><div class="tl-time tnum">${esc(d.hora)}</div><div class="tl-rail"><span class="tl-node ${d.status}"></span></div>
+        <div class="tl-body"><div class="row" style="justify-content:space-between"><span class="tl-name">${esc(d.nome)} <span class="muted" style="font-weight:400">${esc(d.concentracao||"")}</span></span><span class="chip ${cls}">${lab}</span></div>
+        <div class="tl-meta">${esc(d.dose||"")}</div>${btns}</div></div>`;}).join("")}</div></div>`
+    : `<div class="card empty">${ICON.pill.replace('<svg','<svg style="width:40px;height:40px"')}<p style="margin:8px 0 0">${P.medicamentos.length?"Os horários aparecem aqui depois que você confirmar a compra.":"Nenhum remédio ainda. Toque em “Enviar foto”."}</p></div>`;
+  const demoBox = MODE.v==="demonstracao" && P.medicamentos.length ? `<button class="btn btn-line btn-block" id="simRem">Simular um lembrete agora</button>` : "";
+  return `<div class="wrap">${topbar()}
+    <div class="stack">
+      <div><div class="eyebrow">${esc(dataTxt)}</div><h1 style="font-size:26px;margin-top:2px">${saudacao()}, ${esc(nome)}</h1></div>
+      ${hero}
+      ${acoes.join("")}
+      <div class="sec-title"><h2>Doses de hoje</h2><span class="muted small tnum">${P.hoje.filter(d=>d.status==="tomada").length}/${P.hoje.length} tomadas</span></div>
+      ${tl}
+      ${demoBox}
+    </div></div>`;
+}
+
+/* ------------------------------------------------------------------ Remédios */
+function viewRemedios(){
+  const P = St.painel; if (!P) return `<div class="wrap">${topbar()}</div>`;
+  const ms = P.medicamentos;
+  const card = m => {
+    let chip;
+    if (!m.ativo) chip = `<span class="chip">Encerrado</span>`;
+    else if (m.se_necessario) chip = `<span class="chip info">Se necessário</span>`;
+    else if (!m.comprado) chip = `<span class="chip warn"><span class="dot"></span>Aguardando compra</span>`;
+    else chip = `<span class="chip ok"><span class="dot"></span>Em uso</span>`;
+    const prog = m.duracao_dias && m.comprado && m.dias_restantes!=null ? `<div><div class="row small muted" style="justify-content:space-between"><span>${m.duracao_dias} dias de tratamento</span><span class="tnum">${m.dias_restantes} restantes</span></div><div class="bar"><i style="width:${Math.min(100,100*(m.duracao_dias-m.dias_restantes)/m.duracao_dias)}%"></i></div></div>`
+      : (m.duracao_dias ? `<div class="small muted">${m.duracao_dias} dias de tratamento · começa quando você comprar</div>` : (m.uso_continuo?`<div class="small muted">Uso contínuo</div>`:""));
+    return `<div class="card med">
+      <div class="med-head"><div style="min-width:0"><div class="med-name">${esc(m.nome)} <span class="muted" style="font-weight:500;font-size:15px">${esc(m.concentracao||"")}</span></div><div class="muted small">${esc(m.dose||"")}</div></div>${chip}</div>
+      ${m.horarios && m.horarios.length ? `<div class="times">${m.horarios.map(h=>`<span class="time tnum">${esc(h)}</span>`).join("")}</div>` : ""}
+      ${m.instrucoes?`<div class="small muted">“${esc(m.instrucoes)}”</div>`:""}
+      ${prog}
+      ${m.ativo?`<div class="row">${!m.comprado && !m.se_necessario?`<button class="btn btn-sm btn-primary" data-buy="${m.id}">Já comprei</button>`:""}${!m.se_necessario?`<button class="btn btn-sm btn-ghost" data-edit="${m.id}">Ajustar horários</button>`:""}<button class="btn btn-sm btn-line" data-end="${m.id}">Encerrar</button></div>`:""}
+    </div>`;
+  };
+  const diag = P.diagnosticos.length ? `<div class="sec-title"><h2>Diagnósticos registrados</h2></div>${P.diagnosticos.map(d=>`<div class="card row" style="align-items:flex-start;flex-wrap:nowrap"><span style="color:var(--led);width:28px;flex:0 0 28px">${ICON.steth}</span><div style="min-width:0"><b>${esc(d.descricao)}</b>${d.cid?` <span class="chip">CID ${esc(d.cid)}</span>`:""}<div class="small muted">${esc([d.medico,d.estabelecimento].filter(Boolean).join(" · "))}</div></div></div>`).join("")}` : "";
+  return `<div class="wrap">${topbar()}<div class="stack">
+    <h1 style="font-size:26px">Meus remédios</h1>
+    ${ms.length ? ms.map(card).join("") : `<div class="card empty">${ICON.pill.replace('<svg','<svg style="width:40px;height:40px"')}<p>Nenhum remédio registrado.</p><button class="btn btn-primary" data-go="enviar">Enviar foto da receita</button></div>`}
+    ${diag}
+    <p class="small muted">Nunca altere doses por conta própria. Em caso de dúvida, fale com seu médico ou farmacêutico.</p>
+  </div></div>`;
+}
+
+/* ------------------------------------------------------------------ Enviar foto + conferência */
+function viewEnviar(){
+  const U = St.upload || (St.upload = {tipo:"receita", file:null, preview:null, phase:"pick"});
+  if (U.phase==="review") return viewReview();
+  const reading = U.phase==="reading";
+  return `<div class="wrap">${topbar()}<div class="stack">
+    <h1 style="font-size:26px">Enviar documento</h1>
+    <div class="pick" role="group" aria-label="Tipo de documento">
+      <button type="button" data-tipo="receita" aria-pressed="${U.tipo==="receita"}">${ICON.pill.replace('<svg','<svg style="width:28px;height:28px;color:var(--led)"')}<b>Receita</b><span class="muted small">Remédios, doses e horários</span></button>
+      <button type="button" data-tipo="diagnostico" aria-pressed="${U.tipo==="diagnostico"}">${ICON.steth.replace('<svg','<svg style="width:28px;height:28px;color:var(--led)"')}<b>Diagnóstico</b><span class="muted small">Laudo ou resumo do atendimento</span></button>
+    </div>
+    <label class="shot" for="fFoto" style="cursor:pointer">
+      ${U.preview ? `<img src="${U.preview}" alt="Foto do documento">` : `<div class="empty">${ICON.cam.replace('<svg','<svg style="width:48px;height:48px;color:var(--led)"')}<p style="margin:8px 0 0"><b>Tocar para tirar a foto</b><br><span class="small">ou escolher da galeria</span></p></div>`}
+      ${reading?'<span class="scan"></span>':""}
+    </label>
+    <input id="fFoto" type="file" accept="image/*" capture="environment" hidden>
+    ${reading ? `<div class="card row"><b>Lendo o documento…</b><span class="muted small">Isso leva alguns segundos.</span></div>` : `
+    <div class="card small muted"><b style="color:var(--ink)">Dicas para uma boa leitura</b><br>Papel reto sobre a mesa · boa luz, sem sombra · documento inteiro na foto</div>
+    <button class="btn btn-primary btn-block" id="send" ${U.file?"":"disabled"}>Enviar para o Help Cure</button>`}
+  </div></div>`;
+}
+function viewReview(){
+  const U = St.upload; const L = U.leitura;
+  const meds = L.medicamentos||[]; const diags = L.diagnosticos||[];
+  return `<div class="wrap">${topbar()}<div class="stack">
+    <div><div class="eyebrow">Passo 2 de 3</div><h1 style="font-size:26px">Confira a leitura</h1><p class="muted" style="margin:6px 0 0">Compare com o papel. Corrija o que estiver diferente.</p></div>
+    ${U.modo==="demonstracao"?`<div class="action info"><div class="action-ico">${ICON.doc}</div><div class="action-txt"><b>Leitura de exemplo</b><span class="muted small">No modo demonstração a foto não é lida de verdade.</span></div></div>`:""}
+    ${!L.legivel?`<div class="err">Não consegui ler bem a foto. Tente outra com mais luz e o papel reto.</div>`:""}
+    ${diags.length?`<div class="sec-title"><h2>Diagnóstico</h2></div>${diags.map((d,i)=>`<div class="read-med"><label class="f">Descrição<input class="i" data-dg="${i}" data-k="descricao" value="${esc(d.descricao)}"></label><label class="f">CID<input class="i" data-dg="${i}" data-k="cid" value="${esc(d.cid||"")}"></label></div>`).join("")}`:""}
+    <div class="sec-title"><h2>Remédios (${meds.length})</h2></div>
+    ${meds.map((m,i)=>{ const low=(m.confianca??1)<.7; return `<div class="read-med ${low?"low":""}" id="rm${i}">
+      <div class="row" style="justify-content:space-between"><b class="med-name">${esc(m.nome)}</b>${low?`<span class="chip warn">Confira</span>`:`<span class="chip ok">Leitura clara</span>`}</div>
+      <div class="small muted">“${esc(m.instrucoes||"")}”</div>
+      <div class="grid2"><label class="f">Nome<input class="i" data-m="${i}" data-k="nome" value="${esc(m.nome)}"></label><label class="f">Concentração<input class="i" data-m="${i}" data-k="concentracao" value="${esc(m.concentracao||"")}"></label></div>
+      <div class="grid2"><label class="f">Dose<input class="i" data-m="${i}" data-k="dose" value="${esc(m.dose||"")}"></label><label class="f">Duração (dias)<input class="i" data-m="${i}" data-k="duracao_dias" inputmode="numeric" value="${esc(m.duracao_dias??"")}" placeholder="contínuo"></label></div>
+      <div class="toggle"><span class="small"><b>Só se necessário</b> (dor, febre…)</span><input type="checkbox" class="switch" data-m="${i}" data-k="se_necessario" ${m.se_necessario?"checked":""} aria-label="Só se necessário"></div>
+      ${m.se_necessario?"":`<div><div class="small muted" style="margin-bottom:6px">Horários dos lembretes</div><div class="timeedit">${(m.horarios||[]).map((h,j)=>`<span class="row" style="gap:2px"><input class="i tnum" type="time" data-h="${i}" data-j="${j}" value="${esc(h)}" aria-label="Horário ${j+1}"><button class="x" data-hdel="${i}:${j}" aria-label="Remover horário">×</button></span>`).join("")}<button class="btn btn-sm btn-ghost" data-hadd="${i}">+ horário</button></div></div>`}
+      <button class="btn btn-sm btn-line" data-mdel="${i}" style="align-self:flex-start">Remover este remédio</button>
+    </div>`;}).join("")}
+    <label class="consent"><input type="checkbox" id="chkOk"><span>Conferi com o papel e as informações estão corretas.</span></label>
+    <button class="btn btn-primary btn-block" id="confirmDoc">Confirmar e registrar</button>
+    <button class="btn btn-ghost btn-block" id="redo">Tirar outra foto</button>
+  </div></div>`;
+}
+
+/* ------------------------------------------------------------------ Conversa */
+function viewConversa(){
+  return `<div class="wrap">${topbar()}<h1 style="font-size:26px;margin-bottom:4px">Conversa</h1><p class="muted small" style="margin:0 0 12px">Lembretes do Help Cure e mensagens da Central de Monitoramento.</p>
+    <div class="chat" id="chat">${St.msgs.map(m=>{
+      const cls = m.direcao==="entrada"?"in":("out"+(m.autor==="central"?" central":""));
+      const who = m.autor==="central"?"Central Help Cure · ":"";
+      const t = new Date(m.criado_em).toLocaleString("pt-BR",{hour:"2-digit",minute:"2-digit",day:"2-digit",month:"2-digit"});
+      const btns = (m.botoes||[]).length ? `<div class="mbtns">${m.botoes.map(b=>`<button class="btn btn-ghost" data-mbtn="${esc(b[0])}">${esc(b[1])}</button>`).join("")}</div>`:"";
+      return `<div class="msg ${cls}">${esc(m.texto)}${btns}<small>${who}${t}</small></div>`;}).join("") || `<div class="empty">Nenhuma mensagem ainda.</div>`}</div>
+    <form class="composer" id="fMsg"><div class="in"><input class="i" id="mTxt" placeholder="Escreva para a Central…" autocomplete="off"><button class="btn btn-primary" aria-label="Enviar mensagem">Enviar</button></div></form></div>`;
+}
+
+/* ------------------------------------------------------------------ Perfil + emergência */
+function viewPerfil(){
+  const P = St.painel?.paciente; if (!P) return `<div class="wrap">${topbar()}</div>`;
+  return `<div class="wrap">${topbar()}<div class="stack">
+    <h1 style="font-size:26px">Perfil</h1>
+    <div class="sos"><div><div class="eyebrow" style="color:rgba(255,255,255,.8)">Emergência</div><b style="font-family:var(--f-display);font-size:20px;display:block;margin-top:4px">Resumo para a equipe médica</b><span class="small" style="opacity:.9">Mostre este código em atendimento de emergência: alergias, remédios em uso e últimos diagnósticos.</span></div><div class="qr" id="qr" aria-label="Código QR do resumo de emergência"></div></div>
+    <form id="fPerf" class="card stack">
+      <label class="f">Nome<input class="i" id="pNome" value="${esc(P.nome)}"></label>
+      <label class="f">Telefone<input class="i" value="${esc(P.telefone)}" disabled></label>
+      <label class="f">Alergias a medicamentos<textarea class="i" id="pAler" placeholder="Ex.: dipirona, penicilina. Escreva “nenhuma” se não tiver.">${esc(P.alergias)}</textarea></label>
+      <label class="f">Doenças / condições<textarea class="i" id="pCond" placeholder="Ex.: hipertensão, diabetes">${esc(P.condicoes)}</textarea></label>
+      <label class="f">Contato de emergência<input class="i" id="pCont" value="${esc(P.contato_emergencia)}" placeholder="Nome e telefone"></label>
+      <div class="toggle"><div><b>Lembretes no WhatsApp</b><div class="muted small">${P.whatsapp_ligado?"Número oficial Help Cure ativo":"Ativo assim que o número oficial for aprovado"}</div></div><input type="checkbox" class="switch" id="pWa" ${P.canal_whatsapp?"checked":""} aria-label="Lembretes no WhatsApp"></div>
+      <div class="toggle"><div><b>Notificações neste aparelho</b><div class="muted small">Funcionam com o app aberto ou em segundo plano</div></div><button type="button" class="btn btn-sm btn-ghost" id="pNotif">${("Notification" in window && Notification.permission==="granted")?"Ativas":"Ativar"}</button></div>
+      <button class="btn btn-primary" type="submit">Salvar</button>
+    </form>
+    <button class="btn btn-line btn-block" id="logout">${MODE.v==="demonstracao"?"Recomeçar demonstração":"Sair deste aparelho"}</button>
+    <p class="small muted">Help Cure · piloto. Suas informações são usadas apenas para o seu acompanhamento.</p>
+  </div></div>`;
+}
+
+/* ------------------------------------------------------------------ Render */
+function render(){
+  const root = $("#root");
+  if (!API.token && !St.capaOk){ root.innerHTML = viewCapa(); $("#capaGo").onclick = ()=>{ St.capaOk=true; render(); window.scrollTo(0,0); }; return; }
+  if (!API.token){ root.innerHTML = St.reg ? viewCadastro(St.regErr) : viewOnboarding(); bindOnb(); return; }
+  const v = {hoje:viewHoje, remedios:viewRemedios, enviar:viewEnviar, conversa:viewConversa, perfil:viewPerfil}[St.tab]();
+  root.innerHTML = v + nav();
+  bindMain();
+  if (St.tab==="conversa"){ const c=$("#chat"); if (c) window.scrollTo(0, document.body.scrollHeight); }
+  if (St.tab==="perfil" && window.QRCode && St.painel){ try{ new QRCode($("#qr"), {text:St.painel.paciente.url_emergencia, width:112, height:112, colorDark:"#0E1F1C", colorLight:"#ffffff"}); }catch(e){} }
+}
+
+function bindOnb(){
+  $("#goReg") && ($("#goReg").onclick = ()=>{ St.reg=true; render(); });
+  const f = $("#fReg"); if (!f) return;
+  f.onsubmit = async e => {
+    e.preventDefault(); const btn=$("#rBtn"); btn.disabled=true; btn.textContent="Criando…";
+    try{
+      const r = await API.call("POST","/api/app/cadastro",{nome:$("#rNome").value, telefone:$("#rTel").value, nascimento:$("#rNasc").value,
+        cidade:$("#rCid").value, convite: $("#rConv")?.value||"", canal_whatsapp:$("#rWa").checked, consentimento:$("#rCons").checked,
+        fuso: Intl.DateTimeFormat().resolvedOptions().timeZone});
+      API.token = r.token; store.set("token", r.token); St.reg=false; St.regErr="";
+      await refresh(); St.tab="hoje"; render(); toast(r.novo?"Cadastro criado. Bem-vindo(a)!":"Bem-vindo(a) de volta!");
+    }catch(err){ St.regErr = err.message; const vals = ["rNome","rTel","rNasc","rCid","rConv"].map(i=>$("#"+i)?.value); render(); ["rNome","rTel","rNasc","rCid","rConv"].forEach((i,k)=>{ if($("#"+i)) $("#"+i).value=vals[k]||""; }); }
+  };
+}
+
+function bindMain(){
+  document.querySelectorAll("[data-tab]").forEach(b=>b.onclick=()=>setTab(b.dataset.tab));
+  document.querySelectorAll("[data-go]").forEach(b=>b.onclick=()=>setTab(b.dataset.go));
+  document.querySelectorAll("[data-dose]").forEach(b=>b.onclick=async()=>{ b.disabled=true;
+    try{ const r = await API.call("POST","/api/app/dose/"+encodeURIComponent(b.dataset.dose),{acao:b.dataset.acao}); toast(r.mensagem); await refresh(); render(); }catch(e){ toast(e.message); b.disabled=false; } });
+  document.querySelectorAll("[data-buyall]").forEach(b=>b.onclick=()=>buy(null));
+  document.querySelectorAll("[data-buy]").forEach(b=>b.onclick=()=>buy([+b.dataset.buy]));
+  document.querySelectorAll("[data-review]").forEach(b=>b.onclick=()=>{
+    const d = St.painel.documentos_pendentes.find(x=>x.id==b.dataset.review);
+    St.upload = {tipo:d.tipo, phase:"review", docId:d.id, leitura:d.leitura, modo:d.modo_leitura}; setTab("enviar"); });
+  document.querySelectorAll("[data-edit]").forEach(b=>b.onclick=()=>editTimes(+b.dataset.edit));
+  document.querySelectorAll("[data-end]").forEach(b=>b.onclick=()=>confirmSheet("Encerrar este remédio?","Os lembretes dele vão parar. Faça isso só com orientação médica ou se o tratamento terminou.","Encerrar", async()=>{
+    await API.call("PUT","/api/app/medicamento/"+b.dataset.end,{encerrar:true}); await refresh(); render(); toast("Remédio encerrado."); }));
+  $("#simRem") && ($("#simRem").onclick = async()=>{ try{ await API.call("POST","/demo/lembrete",{}); await pollMsgs(true); await refresh(); render(); }catch(e){ toast(e.message); } });
+  // envio
+  document.querySelectorAll("[data-tipo]").forEach(b=>b.onclick=()=>{ St.upload.tipo=b.dataset.tipo; render(); });
+  const ff = $("#fFoto"); if (ff) ff.onchange = () => { const f = ff.files[0]; if (!f) return;
+    St.upload.file = f; const rd = new FileReader(); rd.onload = () => { St.upload.preview = rd.result; render(); }; rd.readAsDataURL(f); };
+  $("#send") && ($("#send").onclick = sendDoc);
+  // conferência
+  if (St.upload && St.upload.phase==="review") bindReview();
+  // conversa
+  document.querySelectorAll("[data-mbtn]").forEach(b=>b.onclick=async()=>{ b.disabled=true;
+    try{ const r = await API.call("POST","/api/app/botao",{id:b.dataset.mbtn}); toast(r.mensagem); await pollMsgs(true); await refresh(); render(); }catch(e){ toast(e.message); } });
+  $("#fMsg") && ($("#fMsg").onsubmit = async e => { e.preventDefault(); const t=$("#mTxt").value.trim(); if(!t) return; $("#mTxt").value="";
+    await API.call("POST","/api/app/mensagens",{texto:t}); await pollMsgs(true); render(); setTimeout(async()=>{ await pollMsgs(true); if(St.tab==="conversa") render(); }, 1800); });
+  // perfil
+  $("#fPerf") && ($("#fPerf").onsubmit = async e => { e.preventDefault();
+    await API.call("PUT","/api/app/perfil",{nome:$("#pNome").value, alergias:$("#pAler").value, condicoes:$("#pCond").value, contato_emergencia:$("#pCont").value, canal_whatsapp:$("#pWa").checked?1:0});
+    await refresh(); render(); toast("Perfil salvo."); });
+  $("#pNotif") && ($("#pNotif").onclick = async()=>{ try{ const p = await Notification.requestPermission(); toast(p==="granted"?"Notificações ativadas.":"Notificações não permitidas neste aparelho."); render(); }catch(e){ toast("Este aparelho não permite notificações aqui. Use o WhatsApp para os lembretes."); } });
+  $("#logout") && ($("#logout").onclick = ()=>confirmSheet(MODE.v==="demonstracao"?"Recomeçar a demonstração?":"Sair deste aparelho?", MODE.v==="demonstracao"?"Os dados de exemplo serão apagados.":"Seus dados continuam guardados. Para entrar de novo, cadastre o mesmo número.", "Confirmar", async()=>{
+    if (MODE.v==="demonstracao") await API.call("POST","/demo/reset",{}); API.token=null; store.del("token"); St.painel=null; St.msgs=[]; St.lastMsg=0; St.upload=null; render(); }));
+}
+
+async function buy(ids){
+  try{ const r = await API.call("POST","/api/app/compra", ids?{medicamentos:ids}:{}); toast(r.marcados?"Lembretes ativados. ⏰":"Nada para ativar."); await pollMsgs(true); await refresh(); render(); }catch(e){ toast(e.message); }
+}
+async function sendDoc(){
+  const U = St.upload; if (!U.file) return; U.phase="reading"; render();
+  try{
+    let r;
+    if (MODE.v==="servidor"){ const fd = new FormData(); fd.append("foto", await shrink(U.file)); fd.append("tipo", U.tipo); r = await API.call("POST","/api/app/documento", fd, true); }
+    else r = await API.call("POST","/api/app/documento",{tipo:U.tipo});
+    Object.assign(U, {phase:"review", docId:r.documento_id, leitura:r.leitura, modo:r.modo}); render();
+  }catch(e){ U.phase="pick"; render(); toast(e.message, 4000); }
+}
+function shrink(file){ // reduz a foto para ~2000px antes de enviar
+  return new Promise(res=>{ const img=new Image(); img.onload=()=>{ const s=Math.min(1, 2000/Math.max(img.width,img.height));
+    const c=document.createElement("canvas"); c.width=img.width*s; c.height=img.height*s; c.getContext("2d").drawImage(img,0,0,c.width,c.height);
+    c.toBlob(b=>res(new File([b], "documento.jpg", {type:"image/jpeg"})), "image/jpeg", .88); }; img.onerror=()=>res(file); img.src=URL.createObjectURL(file); });
+}
+function bindReview(){
+  const L = St.upload.leitura;
+  document.querySelectorAll("[data-m]").forEach(el=>el.onchange=()=>{ const m=L.medicamentos[+el.dataset.m]; const k=el.dataset.k;
+    if (k==="se_necessario"){ m.se_necessario = el.checked; if (el.checked) m.horarios=[]; else if(!m.horarios?.length) m.horarios=["08:00"]; render(); return; }
+    m[k] = k==="duracao_dias" ? (el.value?+el.value:null) : el.value; });
+  document.querySelectorAll("[data-dg]").forEach(el=>el.onchange=()=>{ L.diagnosticos[+el.dataset.dg][el.dataset.k]=el.value; });
+  document.querySelectorAll("[data-h]").forEach(el=>el.onchange=()=>{ L.medicamentos[+el.dataset.h].horarios[+el.dataset.j]=el.value; });
+  document.querySelectorAll("[data-hdel]").forEach(b=>b.onclick=()=>{ const [i,j]=b.dataset.hdel.split(":").map(Number); L.medicamentos[i].horarios.splice(j,1); render(); });
+  document.querySelectorAll("[data-hadd]").forEach(b=>b.onclick=()=>{ const m=L.medicamentos[+b.dataset.hadd]; (m.horarios=m.horarios||[]).push("12:00"); render(); });
+  document.querySelectorAll("[data-mdel]").forEach(b=>b.onclick=()=>{ L.medicamentos.splice(+b.dataset.mdel,1); render(); });
+  $("#redo").onclick = ()=>{ St.upload={tipo:St.upload.tipo, phase:"pick"}; render(); };
+  $("#confirmDoc").onclick = async()=>{
+    if (!$("#chkOk").checked){ toast("Marque que você conferiu com o papel."); return; }
+    try{
+      await API.call("POST",`/api/app/documento/${St.upload.docId}/confirmar`,{medicamentos:L.medicamentos.map(m=>({...m, horarios:(m.horarios||[]).filter(Boolean).sort()})), diagnosticos:L.diagnosticos});
+      St.upload=null; await refresh(); await pollMsgs(true); setTab("hoje"); toast("Receita registrada. Falta confirmar a compra.");
+    }catch(e){ toast(e.message); }
+  };
+}
+function editTimes(id){
+  const m = St.painel.medicamentos.find(x=>x.id===id); let hs=[...(m.horarios||[])];
+  const draw = () => sheet(`<h2>Horários · ${esc(m.nome)}</h2><p class="muted small">Ajuste para a sua rotina, mantendo o intervalo da receita (“${esc(m.instrucoes||"")}”).</p>
+    <div class="timeedit" style="margin:12px 0">${hs.map((h,j)=>`<span class="row" style="gap:2px"><input class="i tnum" type="time" data-sh="${j}" value="${h}"><button class="x" data-sdel="${j}" aria-label="Remover">×</button></span>`).join("")}<button class="btn btn-sm btn-ghost" id="sAdd">+ horário</button></div>
+    <div class="row"><button class="btn btn-primary" id="sSave">Salvar horários</button><button class="btn btn-ghost" data-close>Cancelar</button></div>`, el=>{
+      el.querySelectorAll("[data-sh]").forEach(i=>i.onchange=()=>hs[+i.dataset.sh]=i.value);
+      el.querySelectorAll("[data-sdel]").forEach(b=>b.onclick=()=>{ hs.splice(+b.dataset.sdel,1); draw(); });
+      el.querySelector("#sAdd").onclick=()=>{ hs.push("12:00"); draw(); };
+      el.querySelector("#sSave").onclick=async()=>{ await API.call("PUT","/api/app/medicamento/"+id,{horarios:hs.filter(Boolean)}); closeSheet(); await refresh(); render(); toast("Horários atualizados."); };
+    });
+  draw();
+}
+function sheet(html, bind){ closeSheet(); const bg=document.createElement("div"); bg.className="sheet-bg"; bg.id="sheet";
+  bg.innerHTML=`<div class="sheet" role="dialog" aria-modal="true">${html}</div>`; bg.onclick=e=>{ if(e.target===bg) closeSheet(); };
+  document.body.appendChild(bg); bg.querySelectorAll("[data-close]").forEach(b=>b.onclick=closeSheet); bind&&bind(bg); }
+function closeSheet(){ $("#sheet")?.remove(); }
+function confirmSheet(t, txt, ok, fn){ sheet(`<h2>${esc(t)}</h2><p class="muted">${esc(txt)}</p><div class="row"><button class="btn btn-primary" id="cOk">${esc(ok)}</button><button class="btn btn-ghost" data-close>Cancelar</button></div>`,
+  el=>el.querySelector("#cOk").onclick=async()=>{ closeSheet(); try{ await fn(); }catch(e){ toast(e.message); } }); }
+
+/* ------------------------------------------------------------------ Dados */
+async function refresh(){ try{ St.painel = await API.call("GET","/api/app/painel"); }catch(e){ if (/Sessão/.test(e.message)){ API.token=null; store.del("token"); } } }
+async function pollMsgs(silent){
+  try{
+    const novas = await API.call("GET","/api/app/mensagens?desde="+St.lastMsg);
+    if (!novas.length) return false;
+    St.msgs = St.msgs.concat(novas); St.lastMsg = novas[novas.length-1].id;
+    const lembretes = novas.filter(m=>m.direcao==="saida");
+    if (!silent && lembretes.length){
+      if (St.tab!=="conversa") St.unread += lembretes.length;
+      const t = lembretes[lembretes.length-1].texto; toast(t.split("\n")[0], 4000);
+      try{ if ("Notification" in window && Notification.permission==="granted" && document.hidden) new Notification("Help Cure", {body:t, icon:"/static/icone.svg"}); }catch(e){}
+    }
+    return true;
+  }catch(e){ return false; }
+}
+(async function boot(){
+  await detectMode();
+  if (MODE.v==="demonstracao" && API.token && API.token!=="demo"){ API.token=null; }
+  if (MODE.v==="servidor" && "serviceWorker" in navigator){ try{ navigator.serviceWorker.register("/sw.js"); }catch(e){} }
+  if (API.token){ await refresh(); await pollMsgs(true); }
+  render();
+  setInterval(async()=>{ if (!API.token) return; const changed = await pollMsgs(false); if (changed){ await refresh(); if(!document.querySelector("input:focus,textarea:focus")) render(); } }, 10000);
+})();
+</script>
+
+</body></html>
