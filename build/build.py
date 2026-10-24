@@ -147,13 +147,21 @@ def home():
     T = pg.t
     title = pg.title("Help Cure — Ajuda a cuidar da sua saúde", "Help Cure — Ayuda a cuidar tu salud", "Help Cure — Helps you take care of your health")
     b = f'''
-<div class="hero">
-  <img src="img/hero.webp" alt="">
+<div class="hero hv">
   <div class="wrap">
+   <div class="hv-txt">
     {T("Saúde monitorada, todos os dias", "Salud monitoreada, todos los días", "Health monitored, every day", "span", "eyebrow")}
     {T("Cada paciente comparado <em>com ele mesmo</em>.", "Cada paciente comparado <em>consigo mismo</em>.", "Every patient compared <em>with themselves</em>.", "h1", raw=True)}
     {T("O Help Cure acompanha sinais vitais, medicamentos e histórico de cada pessoa e avisa quem cuida quando algo foge do padrão dela — não de uma média.", "Help Cure acompaña signos vitales, medicamentos e historial de cada persona y avisa a quien cuida cuando algo se aleja de su propio patrón — no de un promedio.", "Help Cure tracks each person’s vital signs, medication and history, and alerts caregivers when something drifts from that person’s own pattern — not from an average.", "p", "lead")}
     <div class="cta"><a class="btn primary" href="#video">{T("Assistir ao vídeo", "Ver el video", "Watch the video")}</a><a class="btn ghost" href="solucoes/">{T("Conhecer as soluções", "Conocer las soluciones", "Explore the solutions")}</a></div>
+   </div>
+   <div class="hv-media">
+    <video autoplay muted loop playsinline preload="auto" poster="video/helpcure-anel-poster.jpg" aria-label="Animação Help Cure: anel inteligente monitora o coração e mãos digitais amparam quando o sinal sai do padrão">
+     <source src="video/helpcure-anel-loop.webm" type="video/webm">
+     <source src="video/helpcure-anel-loop-720.mp4" type="video/mp4" media="(max-width: 900px)">
+     <source src="video/helpcure-anel-loop.mp4" type="video/mp4">
+    </video>
+   </div>
   </div>
 </div>
 

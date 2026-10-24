@@ -47,6 +47,13 @@ header.top{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--b
 }
 
 /* hero */
+.hero.hv{background:radial-gradient(120% 90% at 75% 50%,#0B3B36 0%,#06201C 60%)}
+.hero.hv::after{display:none}
+.hero.hv .wrap{display:grid;grid-template-columns:1fr 1.15fr;gap:40px;align-items:center;padding-top:clamp(48px,7vw,96px);padding-bottom:clamp(48px,7vw,96px)}
+.hv-media{border-radius:22px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.45),0 0 0 1px rgba(62,227,154,.12);aspect-ratio:16/9;background:#06201C}
+.hv-media video{width:100%;height:100%;object-fit:cover;display:block}
+@media (max-width:900px){.hero.hv .wrap{grid-template-columns:1fr;gap:28px}}
+@media (prefers-reduced-motion:reduce){.hv-media video{display:none}.hv-media{background:url(../video/helpcure-anel-poster.jpg) center/cover}}
 .hero{position:relative;color:#fff;background:var(--deep);overflow:hidden}
 .hero>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.6}
 .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(4,24,21,.94) 0%,rgba(4,24,21,.6) 55%,rgba(4,24,21,.2) 100%)}
