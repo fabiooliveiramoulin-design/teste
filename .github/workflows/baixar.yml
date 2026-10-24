@@ -1,0 +1,23 @@
+name: baixar-arquivo
+on:
+  workflow_dispatch:
+    inputs:
+      url: {required: true}
+      destino: {required: true}
+permissions:
+  contents: write
+jobs:
+  get:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          mkdir -p "$(dirname '${{ inputs.destino }}')"
+          if echo "${{ inputs.url }}" | grep -q youtu; then
+            pip install -q yt-dlp && yt-dlp -f "bv*[height<=1080][ext=mp4]+ba[ext=m4a]/b[ext=mp4]" --merge-output-format mp4 -o "${{ inputs.destino }}" "${{ inputs.url }}"
+          else
+            curl -sSL -o "${{ inputs.destino }}" "${{ inputs.url }}"
+          fi
+          ls -la "${{ inputs.destino }}"
+          git config user.name "github-actions" && git config user.email "actions@github.com"
+          git add -f "${{ inputs.destino }}" && git commit -m "Arquivo: ${{ inputs.destino }}" && git push
