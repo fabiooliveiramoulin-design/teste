@@ -11,6 +11,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: |
-          for p in ${{ inputs.pares }}; do u="${p%%|*}"; d="${p##*|}"; mkdir -p "$(dirname "$d")"; curl -sSL -o "$d" "$u"; ls -la "$d"; done
+          for p in ${{ inputs.pares }}; do u="${p%%,*}"; d="${p##*,}"; mkdir -p "$(dirname "$d")"; curl -sSL -o "$d" "$u"; ls -la "$d"; done
           git config user.name "github-actions" && git config user.email "actions@github.com"
           git add -A midia && git commit -m "Lote de arquivos" && git push
