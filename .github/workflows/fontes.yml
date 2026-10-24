@@ -1,0 +1,18 @@
+name: baixar-fontes
+on:
+  workflow_dispatch:
+    inputs:
+      urls: {required: true}
+permissions:
+  contents: write
+jobs:
+  get:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          mkdir -p video/src && i=1
+          for u in ${{ inputs.urls }}; do curl -sSL -o video/src/c$i.mp4 "$u"; i=$((i+1)); done
+          ls -la video/src
+          git config user.name "github-actions" && git config user.email "actions@github.com"
+          git add video/src && git commit -m "Clipes originais" && git push
