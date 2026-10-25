@@ -19,6 +19,11 @@
     document.querySelectorAll("a[data-inv]").forEach(function (a) { a.href = a.dataset.inv + "?lang=" + l; });
     try { localStorage.setItem("hc_lang", l); } catch (e) {}
     document.querySelectorAll(".video[data-ids]").forEach(function (v) { initVideo(v, l); });
+    document.querySelectorAll("video[data-vbase]").forEach(function (v) {
+      var b = v.dataset.vbase + "-" + l, src = b + ".mp4";
+      if (v.dataset.cur === src) return;
+      v.dataset.cur = src; v.poster = b + "-poster.jpg"; v.src = src; v.load();
+    });
   }
   PT._title = document.title;
 
