@@ -5,7 +5,7 @@ import json, html, os, re
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 FULL = {"pt": "tWPiFOwbaNw", "es": "pTT-sQGMW0U", "en": "2fYAVUm0ziI"}
 SHORT = {
-    "paciente": {"pt": "CR9zwnwG_Lg"},
+    "paciente": {"pt": "CR9zwnwG_Lg", "es": "2hfLJ0W2Y1s"},
     "hospital": {"pt": "DGMd9nJyOEg", "es": "zBIRuKMUgQo"},
     "celula": {"pt": "PGypaX2jzqk", "es": "SfoPAlmMvAk"},
     "movel": {"pt": "u_Oz8Sv924g", "es": "Jut4FUUfuO4", "en": "9X3sDuNgOQ0"},
