@@ -8,7 +8,7 @@ SHORT = {
     "paciente": {"pt": "CR9zwnwG_Lg"},
     "hospital": {"pt": "DGMd9nJyOEg", "es": "zBIRuKMUgQo"},
     "celula": {"pt": "PGypaX2jzqk", "es": "SfoPAlmMvAk"},
-    "movel": {"pt": "__HsnXBze2A"},
+    "movel": {"pt": "u_Oz8Sv924g", "es": "Jut4FUUfuO4", "en": "9X3sDuNgOQ0"},
 }
 
 
