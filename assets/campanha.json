@@ -1,5 +1,5 @@
 {
-  "_leia": "Edite só os valores. null = 'a definir'. Valores em USD.",
+  "_leia": "Edite só os valores. null = 'a definir'. Valores em USD. Em 'equipamentos': atualize 'arrecadado' de cada célula/unidade; para abrir a próxima, copie um bloco e mude id, numero e local.",
   "moeda": "USD",
   "status": "preparacao",
   "arrecadado": null,
@@ -16,5 +16,33 @@
     "solidario": 1000,
     "celula": 50000,
     "movel": 260000
-  }
+  },
+  "equipamentos": [
+    {
+      "id": "celula1",
+      "tipo": "celula",
+      "numero": 1,
+      "local": {
+        "pt": "local a definir",
+        "es": "lugar a definir",
+        "en": "location to be defined"
+      },
+      "meta": 50000,
+      "arrecadado": 0,
+      "patrocinadores": []
+    },
+    {
+      "id": "movel1",
+      "tipo": "movel",
+      "numero": 1,
+      "local": {
+        "pt": "Paraguai",
+        "es": "Paraguay",
+        "en": "Paraguay"
+      },
+      "meta": 260000,
+      "arrecadado": 0,
+      "patrocinadores": []
+    }
+  ]
 }

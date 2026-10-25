@@ -20,9 +20,34 @@
       bar.style.width = pct + "%";
     });
   }
+
+  // Marcadores por equipamento (célula / unidade móvel) — valores manuais em assets/campanha.json
+  var EQ = { pt: { celula: "Célula", movel: "Unidade móvel", de: "de", ok: "Financiada ✓", pat: "Patrocinadores" },
+             es: { celula: "Célula", movel: "Unidad móvil", de: "de", ok: "Financiada ✓", pat: "Patrocinadores" },
+             en: { celula: "Care cell", movel: "Mobile unit", de: "of", ok: "Funded ✓", pat: "Sponsors" } };
+  function paintEq() {
+    var box = document.getElementById("equip"); if (!box || !C || !C.equipamentos) return;
+    var l = (document.documentElement.lang || "pt").slice(0, 2); var t = EQ[l] || EQ.pt;
+    box.innerHTML = "";
+    C.equipamentos.forEach(function (e) {
+      var a = e.arrecadado || 0, pct = e.meta ? Math.min(100, Math.round(a / e.meta * 100)) : 0, done = e.meta && a >= e.meta;
+      var c = document.createElement("div"); c.className = "card meta eq" + (done ? " done" : "");
+      var loc = (e.local && (e.local[l] || e.local.pt)) || "";
+      var pats = (e.patrocinadores || []).filter(Boolean);
+      c.innerHTML = '<div class="in"><h3></h3><p class="muted"></p><div class="mrow"><span></span><b></b></div><div class="bar" aria-hidden="true"><i></i></div>' + (pats.length ? '<p class="pats"></p>' : "") + "</div>";
+      c.querySelector("h3").textContent = t[e.tipo] + " nº " + e.numero + (done ? " — " + t.ok : "");
+      c.querySelector("p.muted").textContent = loc;
+      c.querySelector(".mrow span").textContent = fmt(a, C.moeda) + " " + t.de + " " + fmt(e.meta, C.moeda);
+      c.querySelector(".mrow b").textContent = pct + "%";
+      if (pats.length) c.querySelector(".pats").textContent = t.pat + ": " + pats.join(", ");
+      c.setAttribute("role", "group"); c.setAttribute("aria-label", c.querySelector("h3").textContent + ", " + pct + "%");
+      box.appendChild(c);
+      requestAnimationFrame(function () { c.querySelector(".bar i").style.width = pct + "%"; });
+    });
+  }
   document.querySelectorAll("[data-camp]").forEach(function (el) { el.classList.add("tbd"); });
-  fetch("assets/campanha.json?t=" + Date.now()).then(function (r) { return r.json(); }).then(function (j) { C = j; paint(); }).catch(function () {});
-  document.querySelectorAll(".lang button").forEach(function (b) { b.addEventListener("click", function () { setTimeout(paint, 0); }); });
+  fetch("assets/campanha.json?t=" + Date.now()).then(function (r) { return r.json(); }).then(function (j) { C = j; paint(); paintEq(); }).catch(function () {});
+  document.querySelectorAll(".lang button").forEach(function (b) { b.addEventListener("click", function () { setTimeout(function () { paint(); paintEq(); }, 0); }); });
 
   document.querySelectorAll("a[data-tipo]").forEach(function (a) { a.addEventListener("click", function () { var s = document.querySelector('#fcamp select[name="tipo"]'); if (s) s.value = a.dataset.tipo; }); });
 
