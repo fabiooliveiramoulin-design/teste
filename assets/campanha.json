@@ -11,8 +11,10 @@
   "niveis": {
     "apoiador": 25,
     "padrinho": 50,
+    "conectado": 300,
     "guardiao": 500,
     "solidario": 1000,
-    "institucional": 10000
+    "celula": 50000,
+    "movel": 260000
   }
 }
