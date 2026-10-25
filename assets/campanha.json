@@ -1,0 +1,8 @@
+{
+  "_leia": "Edite só os valores. null = 'a definir'. Valores em USD.",
+  "moeda": "USD",
+  "status": "preparacao",
+  "arrecadado": null,
+  "metas": { "piloto": null, "movel1": null, "expansao": null },
+  "niveis": { "apoiador": null, "padrinho": null, "guardiao": null, "solidario": null, "institucional": null }
+}

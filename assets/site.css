@@ -156,3 +156,34 @@ footer a{color:#BFD3CD;text-decoration:none;display:block;padding:3px 0}
 footer a:hover{color:#fff}
 footer .legal{grid-column:1/-1;border-top:1px solid rgba(233,243,240,.12);padding-top:18px;font-size:13px;color:#7FA39B}
 @media (max-width:760px){footer .wrap{grid-template-columns:1fr}}
+
+/* campanha Help Cure Solidário */
+.hero .status{margin-top:22px;display:inline-block;background:rgba(23,184,119,.16);border:1px solid rgba(62,227,154,.35);color:#D7F5E8;border-radius:999px;padding:8px 16px;font-size:14px}
+.g5{grid-template-columns:repeat(5,1fr)}
+@media (max-width:1100px){.g5{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:760px){.g5{grid-template-columns:1fr 1fr}}
+@media (max-width:520px){.g5{grid-template-columns:1fr}}
+.total{margin-top:18px;font:500 17px var(--f-b);color:var(--ink-2)}
+.cv{font-family:var(--f-d);color:var(--ink)}
+.cv.tbd{color:var(--ink-3);font-weight:500;font-style:italic}
+.meta .mrow{display:flex;justify-content:space-between;align-items:baseline;margin-top:auto;padding-top:12px;font-size:14px;color:var(--ink-3)}
+.meta .bar{height:8px;border-radius:99px;background:var(--soft);overflow:hidden;margin-top:8px}
+.meta .bar i{display:block;height:100%;width:0;background:var(--led);border-radius:99px;transition:width .6s ease}
+.tier .price{font:700 24px var(--f-d);margin:2px 0 4px}
+.tier .price .cv.tbd{font-size:16px}
+.tier.hl{border:2px solid var(--led)}
+.camp-form{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:clamp(20px,3vw,32px);display:grid;gap:14px}
+.camp-form label{display:grid;gap:6px;font-size:14px;font-weight:500;color:var(--ink)}
+.camp-form input,.camp-form select{min-height:46px;border-radius:12px;border:1px solid var(--line);background:var(--bg);color:var(--ink);font:400 16px var(--f-b);padding:0 12px;width:100%}
+.camp-form input:focus,.camp-form select:focus{outline:2px solid var(--led);outline-offset:1px}
+.camp-form .two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media (max-width:480px){.camp-form .two{grid-template-columns:1fr}}
+.camp-form .chk{display:flex;gap:10px;align-items:flex-start;font-weight:400;color:var(--ink-2)}
+.camp-form .chk input{width:20px;min-height:20px;height:20px;margin-top:2px;flex:none;accent-color:var(--led)}
+.camp-form .btn{justify-content:center}
+.camp-form .msg{font-size:15px;min-height:1.4em}
+.camp-form .msg.ok{color:var(--led-ink)}.camp-form .msg.bad{color:#C0392B}
+.faq{margin-top:28px;display:grid;gap:10px;max-width:820px}
+.faq details{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 20px}
+.faq summary{cursor:pointer;font:600 16px var(--f-d)}
+.faq details p{margin-top:10px;color:var(--ink-2)}

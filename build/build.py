@@ -40,7 +40,8 @@ class Page:
 NAV = [("index.html", "Início", "Inicio", "Home"),
        ("solucoes/index.html", "Soluções", "Soluciones", "Solutions"),
        ("para-quem.html", "Para quem", "Para quién", "Who it’s for"),
-       ("tecnologia.html", "Tecnologia", "Tecnología", "Technology")]
+       ("tecnologia.html", "Tecnologia", "Tecnología", "Technology"),
+       ("solidario.html", "Solidário", "Solidario", "Solidarity")]
 
 
 def shell(pg, path, title, body, desc):
@@ -89,6 +90,7 @@ def shell(pg, path, title, body, desc):
     <div><h4>{pg.t("Help Cure", "Help Cure", "Help Cure")}</h4>
       <a href="{p}para-quem.html">{pg.t("Para quem é", "Para quién es", "Who it’s for")}</a>
       <a href="{p}tecnologia.html">{pg.t("Tecnologia e segurança", "Tecnología y seguridad", "Technology and security")}</a>
+      <a href="{p}solidario.html">{pg.t("Help Cure Solidário", "Help Cure Solidario", "Help Cure Solidarity")}</a>
       <a href="{p}app/">{pg.t("App do paciente", "App del paciente", "Patient app")}</a>
       <a href="/investidores/" data-inv="/investidores/">{pg.t("Área do investidor", "Área del inversionista", "Investor area")}</a></div>
     <div class="legal">© 2026 Help Cure · {pg.t("Plataforma em fase de piloto. Imagens dos vídeos são simulações com personagens fictícios.", "Plataforma en fase piloto. Las imágenes de los videos son simulaciones con personajes ficticios.", "Platform in pilot stage. Video images are simulations with fictional characters.")}</div>
@@ -238,6 +240,20 @@ def home():
       <div class="card"><div class="in">{T("Governos e planos de saúde", "Gobiernos y planes de salud", "Governments and health plans", "h3")}{T("Prevenção no lugar de urgência: a população acompanhada todos os dias, com dados para decidir.", "Prevención en lugar de urgencia: la población acompañada todos los días, con datos para decidir.", "Prevention instead of emergencies: the population followed every day, with data to decide.", "p")}</div></div>
     </div>
     <div class="nextnav"><a class="btn line" href="para-quem.html">{T("Ver todos os públicos →", "Ver todos los públicos →", "See everyone it serves →")}</a></div>
+  </div>
+</section>
+
+<section class="tight">
+  <div class="wrap">
+    <div class="pilot camp">
+      <img src="img/movel_fila.webp" alt="" loading="lazy">
+      <div>
+        {T("Help Cure Solidário", "Help Cure Solidario", "Help Cure Solidarity", "span", "eyebrow")}
+        {T("Ajude a levar cuidado a quem mais precisa.", "Ayude a llevar cuidado a quien más lo necesita.", "Help bring care to those who need it most.", "h2")}
+        {T("Nossa campanha financia unidades móveis com atendimento gratuito em comunidades carentes do Paraguai e do Brasil, e o desenvolvimento da plataforma. Quem apoia acompanha cada atendimento e pode receber o kit Help Cure em casa.", "Nuestra campaña financia unidades móviles con atención gratuita en comunidades vulnerables de Paraguay y Brasil, y el desarrollo de la plataforma. Quien apoya sigue cada atención y puede recibir el kit Help Cure en casa.", "Our campaign funds mobile units offering free care in underserved communities in Paraguay and Brazil, and the platform’s development. Supporters follow every visit and can receive the Help Cure kit at home.", "p")}
+        <div class="cta"><a class="btn primary" href="solidario.html">{T("Conhecer a campanha", "Conocer la campaña", "See the campaign")}</a><a class="btn ghost" href="solidario.html#apoiar">{T("Quero apoiar", "Quiero apoyar", "I want to support")}</a></div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -579,8 +595,157 @@ def tecnologia():
     shell(pg, "tecnologia.html", title, b, "A tecnologia do Help Cure: motor RAPP, captura de sinais, resumo de emergência, interoperabilidade, assinatura digital e privacidade.")
 
 
+# ------------------------------------------------------------------ SOLIDÁRIO (campanha)
+def solidario():
+    pg = Page(0)
+    T = pg.t
+    title = pg.title("Help Cure Solidário — Campanha", "Help Cure Solidario — Campaña", "Help Cure Solidarity — Campaign")
+    TBD = ("a definir", "a definir", "to be defined")
+
+    def val(key):
+        return '<b class="cv" data-camp="%s">%s</b>' % (key, T(*TBD))
+
+    metas = [
+        ("piloto", S("Etapa 1 — Piloto", "Etapa 1 — Piloto", "Stage 1 — Pilot"),
+         S("Piloto com pacientes reais no ar, kits de teste e número oficial de WhatsApp.", "Piloto con pacientes reales en marcha, kits de prueba y número oficial de WhatsApp.", "Pilot with real patients running, test kits and an official WhatsApp number.")),
+        ("movel1", S("Etapa 2 — Primeira unidade móvel", "Etapa 2 — Primera unidad móvil", "Stage 2 — First mobile unit"),
+         S("Uma unidade móvel atendendo gratuitamente uma comunidade no Paraguai.", "Una unidad móvil atendiendo gratuitamente a una comunidad en Paraguay.", "One mobile unit providing free care to a community in Paraguay.")),
+        ("expansao", S("Etapa 3 — Expansão", "Etapa 3 — Expansión", "Stage 3 — Expansion"),
+         S("Segunda unidade no Brasil e pulseiras de monitoramento para os pacientes atendidos.", "Segunda unidad en Brasil y pulseras de monitoreo para los pacientes atendidos.", "A second unit in Brazil and monitoring bands for the patients served.")),
+    ]
+    metas_html = "".join(f'''<div class="card meta" data-meta="{k}"><div class="in">{T(*h, tag="h3")}{T(*d, tag="p")}
+      <div class="mrow"><span>{T("Meta", "Meta", "Goal")}</span>{val("metas." + k)}</div>
+      <div class="bar" aria-hidden="true"><i></i></div></div></div>''' for k, h, d in metas)
+
+    niveis = [
+        ("apoiador", S("Apoiador", "Apoyador", "Supporter"), S("Seu nome no mural de apoiadores e o relatório de impacto.", "Su nombre en el mural de apoyadores y el informe de impacto.", "Your name on the supporters’ wall and the impact report.")),
+        ("padrinho", S("Padrinho", "Padrino", "Sponsor"), S("Tudo do Apoiador e você apadrinha um atendimento na unidade móvel.", "Todo lo del Apoyador y usted apadrina una atención en la unidad móvil.", "Everything in Supporter, plus you sponsor one visit at the mobile unit.")),
+        ("guardiao", S("Guardião", "Guardián", "Guardian"), S("Kit Help Cure para casa com smartwatch e 12 meses de monitoramento gratuito.", "Kit Help Cure para casa con smartwatch y 12 meses de monitoreo gratuito.", "Help Cure home kit with smartwatch and 12 months of free monitoring.")),
+        ("solidario", S("Guardião Solidário", "Guardián Solidario", "Solidarity Guardian"), S("Um kit para você e outro doado a uma família atendida pela campanha.", "Un kit para usted y otro donado a una familia atendida por la campaña.", "One kit for you and another donated to a family served by the campaign.")),
+        ("institucional", S("Patrocinador institucional", "Patrocinador institucional", "Institutional sponsor"), S("Sua marca na unidade móvel e um relatório de impacto dedicado.", "Su marca en la unidad móvil y un informe de impacto dedicado.", "Your brand on the mobile unit and a dedicated impact report.")),
+    ]
+    niv_html = "".join(f'''<div class="card tier{' hl' if k == 'guardiao' else ''}"><div class="in">{T(*h, tag="h3")}<div class="price">{val("niveis." + k)}</div>{T(*d, tag="p")}</div></div>''' for k, h, d in niveis)
+
+    b = f'''
+<div class="hero sub">
+  <img src="img/movel_triagem.webp" alt="">
+  <div class="wrap">
+    {T("Help Cure Solidário", "Help Cure Solidario", "Help Cure Solidarity", "span", "eyebrow")}
+    {T("O cuidado que acompanha você — também para quem mais precisa.", "El cuidado que te acompaña — también para quien más lo necesita.", "Care that stays with you — also for those who need it most.", "h1")}
+    {T("Uma campanha para levar unidades móveis com atendimento gratuito a comunidades carentes do Paraguai e do Brasil, e concluir o desenvolvimento da plataforma Help Cure.", "Una campaña para llevar unidades móviles con atención gratuita a comunidades vulnerables de Paraguay y Brasil, y completar el desarrollo de la plataforma Help Cure.", "A campaign to bring mobile units with free care to underserved communities in Paraguay and Brazil, and to complete the Help Cure platform.", "p", "lead")}
+    <div class="cta"><a class="btn primary" href="#apoiar">{T("Quero apoiar", "Quiero apoyar", "I want to support")}</a><a class="btn ghost" href="#niveis">{T("Ver as recompensas", "Ver las recompensas", "See the rewards")}</a></div>
+    <p class="status" data-camp-status>{T("Campanha em preparação: cadastre-se para ser avisado no lançamento.", "Campaña en preparación: regístrese para recibir aviso en el lanzamiento.", "Campaign in preparation: sign up to be notified at launch.")}</p>
+  </div>
+</div>
+
+<section>
+  <div class="wrap">
+    <div class="head">
+      {T("Dois objetivos", "Dos objetivos", "Two goals", "span", "eyebrow")}
+      {T("Cada contribuição gera cuidado hoje e uma plataforma melhor amanhã.", "Cada aporte genera cuidado hoy y una plataforma mejor mañana.", "Every contribution creates care today and a better platform tomorrow.", "h2")}
+    </div>
+    <div class="g g2">
+      <div class="card"><img src="img/movel_fila.webp" alt="" loading="lazy"><div class="in">{T("Atendimento gratuito", "Atención gratuita", "Free care", "h3")}{T("Unidades móveis com triagem e teleconsulta visitam comunidades sem acesso à saúde. Cada pessoa atendida segue acompanhada à distância depois da visita.", "Unidades móviles con triaje y teleconsulta visitan comunidades sin acceso a la salud. Cada persona atendida sigue acompañada a distancia después de la visita.", "Mobile units with triage and teleconsultation visit communities without access to care. Everyone seen is followed remotely after the visit.", "p")}</div></div>
+      <div class="card"><img src="img/central.webp" alt="" loading="lazy"><div class="in">{T("Desenvolvimento da plataforma", "Desarrollo de la plataforma", "Platform development", "h3")}{T("O atendimento real mostra o que funciona. Esses resultados aceleram o motor RAPP, o app do paciente e a central de monitoramento.", "La atención real muestra lo que funciona. Esos resultados aceleran el motor RAPP, la app del paciente y la central de monitoreo.", "Real-world care shows what works. Those results speed up the RAPP engine, the patient app and the monitoring center.", "p")}</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="soft">
+  <div class="wrap">
+    <div class="head">
+      {T("Metas", "Metas", "Goals", "span", "eyebrow")}
+      {T("Metas por etapa: cada valor já vira um resultado visível.", "Metas por etapa: cada monto ya se convierte en un resultado visible.", "Stage goals: every amount turns into a visible result.", "h2")}
+      <div class="total">{T("Arrecadado até agora", "Recaudado hasta ahora", "Raised so far")}: {val("arrecadado")}</div>
+    </div>
+    <div class="g g3">{metas_html}</div>
+  </div>
+</section>
+
+<section id="niveis">
+  <div class="wrap">
+    <div class="head">
+      {T("Recompensas", "Recompensas", "Rewards", "span", "eyebrow")}
+      {T("Escolha como apoiar.", "Elija cómo apoyar.", "Choose how to support.", "h2")}
+      {T("Os valores de cada nível serão publicados no lançamento. O monitoramento gratuito vale por 12 meses e segue os termos de uso e o consentimento do paciente.", "Los montos de cada nivel se publicarán en el lanzamiento. El monitoreo gratuito vale por 12 meses y sigue los términos de uso y el consentimiento del paciente.", "Each tier’s amount will be published at launch. Free monitoring lasts 12 months and follows the terms of use and patient consent.", "p", "muted")}
+    </div>
+    <div class="g g5">{niv_html}</div>
+  </div>
+</section>
+
+<section class="dark">
+  <div class="wrap">
+    <div class="head">
+      {T("Transparência", "Transparencia", "Transparency", "span", "eyebrow")}
+      {T("Você acompanha cada real e cada atendimento.", "Usted sigue cada peso y cada atención.", "You can follow every dollar and every visit.", "h2")}
+    </div>
+    <div class="g g3 steps">
+      <div class="step">{T("Fundação Help Cure", "Fundación Help Cure", "Help Cure Foundation", "h3")}{T("Entidade sem fins lucrativos no Paraguai que recebe as doações e opera as unidades móveis, com prestação de contas semestral.", "Entidad sin fines de lucro en Paraguay que recibe las donaciones y opera las unidades móviles, con rendición de cuentas semestral.", "A non-profit in Paraguay that receives donations and runs the mobile units, reporting every six months.", "p")}</div>
+      <div class="step">{T("Painel público", "Panel público", "Public dashboard", "h3")}{T("Nesta página: valor arrecadado, gasto por destino e número de atendimentos, atualizados todo mês.", "En esta página: monto recaudado, gasto por destino y número de atenciones, actualizados cada mes.", "On this page: amount raised, spending by use and number of visits, updated monthly.", "p")}</div>
+      <div class="step">{T("Cuidado com as pessoas", "Cuidado con las personas", "Care for people", "h3")}{T("Médico responsável em cada país, consentimento informado e proteção de dados. Ninguém é atendido sem saber como seus dados são usados.", "Médico responsable en cada país, consentimiento informado y protección de datos. Nadie es atendido sin saber cómo se usan sus datos.", "A responsible physician in each country, informed consent and data protection. No one is seen without knowing how their data is used.", "p")}</div>
+    </div>
+  </div>
+</section>
+
+<section class="soft">
+  <div class="wrap split">
+    <div>
+      {T("Empresas e instituições", "Empresas e instituciones", "Companies and institutions", "span", "eyebrow")}
+      {T("Patrocine uma unidade móvel.", "Patrocine una unidad móvil.", "Sponsor a mobile unit.", "h2")}
+      {T("Indústrias, cooperativas, laboratórios, farmácias, igrejas e universidades podem levar a unidade a uma comunidade escolhida, com a marca na unidade e um relatório de impacto próprio.", "Industrias, cooperativas, laboratorios, farmacias, iglesias y universidades pueden llevar la unidad a una comunidad elegida, con su marca en la unidad y un informe de impacto propio.", "Industries, cooperatives, labs, pharmacies, churches and universities can bring the unit to a community of their choice, with their brand on the unit and a dedicated impact report.", "p", "muted", attrs=' style="margin-top:16px;font-size:18px"')}
+      <div class="cta"><a class="btn dark" href="#apoiar" data-tipo="empresa">{T("Falar sobre patrocínio", "Hablar sobre patrocinio", "Talk about sponsorship")}</a></div>
+    </div>
+    <img src="img/movel_toldo.webp" alt="" loading="lazy">
+  </div>
+</section>
+
+<section id="apoiar">
+  <div class="wrap split">
+    <div>
+      {T("Quero apoiar", "Quiero apoyar", "I want to support", "span", "eyebrow")}
+      {T("Cadastre-se e seja avisado no lançamento.", "Regístrese y reciba aviso en el lanzamiento.", "Sign up and be notified at launch.", "h2")}
+      {T("Ainda não recebemos pagamentos. Assim que a fundação e a plataforma de doação estiverem prontas, você recebe o link e os valores de cada nível.", "Todavía no recibimos pagos. Cuando la fundación y la plataforma de donación estén listas, usted recibe el enlace y los montos de cada nivel.", "We are not taking payments yet. Once the foundation and donation platform are ready, you’ll get the link and each tier’s amount.", "p", "muted", attrs=' style="margin-top:16px;font-size:18px"')}
+    </div>
+    <form class="camp-form" id="fcamp" novalidate>
+      <label>{T("Nome", "Nombre", "Name")}<input name="nome" required autocomplete="name"></label>
+      <label>{T("E-mail", "Correo electrónico", "Email")}<input name="email" type="email" autocomplete="email"></label>
+      <label>{T("WhatsApp (com código do país)", "WhatsApp (con código de país)", "WhatsApp (with country code)")}<input name="whatsapp" type="tel" autocomplete="tel" placeholder="+595 …"></label>
+      <div class="two">
+        <label>{T("País", "País", "Country")}<select name="pais"><option value="PY">Paraguay</option><option value="BR">Brasil</option><option value="OUTRO">{T("Outro", "Otro", "Other")}</option></select></label>
+        <label>{T("Eu sou", "Soy", "I am")}<select name="tipo"><option value="cidadao">{T("Pessoa física", "Persona", "Individual")}</option><option value="empresa">{T("Empresa", "Empresa", "Company")}</option><option value="instituicao">{T("Instituição / ONG / igreja", "Institución / ONG / iglesia", "Institution / NGO / church")}</option><option value="voluntario">{T("Voluntário da saúde", "Voluntario de salud", "Health volunteer")}</option></select></label>
+      </div>
+      <label>{T("Nível de interesse", "Nivel de interés", "Tier of interest")}<select name="nivel"><option value="">—</option><option value="apoiador">{T("Apoiador", "Apoyador", "Supporter")}</option><option value="padrinho">{T("Padrinho", "Padrino", "Sponsor")}</option><option value="guardiao">{T("Guardião", "Guardián", "Guardian")}</option><option value="solidario">{T("Guardião Solidário", "Guardián Solidario", "Solidarity Guardian")}</option><option value="institucional">{T("Patrocinador institucional", "Patrocinador institucional", "Institutional sponsor")}</option></select></label>
+      <label class="chk"><input type="checkbox" name="consent" required> {T("Aceito receber notícias da campanha por e-mail ou WhatsApp e posso cancelar a qualquer momento.", "Acepto recibir noticias de la campaña por correo o WhatsApp y puedo cancelar en cualquier momento.", "I agree to receive campaign news by email or WhatsApp and can opt out at any time.")}</label>
+      <button class="btn primary" type="submit">{T("Quero ser avisado", "Quiero recibir aviso", "Notify me")}</button>
+      <p class="msg" role="status" aria-live="polite"></p>
+      <span hidden data-m="ok">{T("Obrigado! Você será avisado no lançamento.", "¡Gracias! Recibirá aviso en el lanzamiento.", "Thank you! We’ll let you know at launch.")}</span>
+      <span hidden data-m="bad">{T("Preencha o nome, um contato (e-mail ou WhatsApp) e aceite receber notícias.", "Complete el nombre, un contacto (correo o WhatsApp) y acepte recibir noticias.", "Please fill in your name, a contact (email or WhatsApp) and accept updates.")}</span>
+      <span hidden data-m="err">{T("Não foi possível enviar agora. Tente de novo em instantes.", "No fue posible enviar ahora. Intente de nuevo en unos instantes.", "Couldn’t send right now. Please try again shortly.")}</span>
+    </form>
+  </div>
+</section>
+
+<section class="soft">
+  <div class="wrap">
+    <div class="head">
+      {T("Perguntas frequentes", "Preguntas frecuentes", "FAQ", "span", "eyebrow")}
+      {T("Antes de apoiar.", "Antes de apoyar.", "Before you support.", "h2")}
+    </div>
+    <div class="faq">
+      <details><summary>{T("Isto é um investimento?", "¿Esto es una inversión?", "Is this an investment?")}</summary>{T("Não. É uma doação com recompensas. Ela não dá participação na empresa, lucro ou retorno financeiro. Investidores têm uma área própria.", "No. Es una donación con recompensas. No da participación en la empresa, ganancias ni retorno financiero. Los inversionistas tienen un área propia.", "No. It’s a donation with rewards. It gives no stake in the company, profit or financial return. Investors have their own area.", "p")}</details>
+      <details><summary>{T("Haverá um token Help Cure?", "¿Habrá un token Help Cure?", "Will there be a Help Cure token?")}</summary>{T("Numa segunda fase, a recompensa poderá ser emitida como token digital. Ele servirá apenas para registrar o apoio e liberar recompensas, sem promessa de valorização.", "En una segunda fase, la recompensa podrá emitirse como token digital. Solo servirá para registrar el apoyo y liberar recompensas, sin promesa de valorización.", "In a second phase, the reward may be issued as a digital token. It will only record support and unlock rewards, with no promise of appreciation.", "p")}</details>
+      <details><summary>{T("Quem recebe o dinheiro?", "¿Quién recibe el dinero?", "Who receives the money?")}</summary>{T("As doações vão para a Fundação Help Cure, que opera as unidades móveis. A tecnologia é fornecida pela empresa Help Cure por contrato, com contas separadas.", "Las donaciones van a la Fundación Help Cure, que opera las unidades móviles. La tecnología la provee la empresa Help Cure por contrato, con cuentas separadas.", "Donations go to the Help Cure Foundation, which runs the mobile units. The technology is provided by the Help Cure company under contract, with separate accounts.", "p")}</details>
+      <details><summary>{T("Como escolhem as comunidades?", "¿Cómo eligen las comunidades?", "How are communities chosen?")}</summary>{T("Em parceria com a rede pública local e organizações da comunidade, priorizando quem tem menos acesso à saúde.", "En alianza con la red pública local y organizaciones de la comunidad, priorizando a quienes tienen menos acceso a la salud.", "With local public health services and community organizations, prioritizing those with the least access to care.", "p")}</details>
+    </div>
+  </div>
+</section>
+<script src="assets/campanha.js?v=1"></script>
+'''
+    shell(pg, "solidario.html", title, b, "Help Cure Solidário: campanha para levar unidades móveis com atendimento gratuito a comunidades carentes do Paraguai e do Brasil.")
+
+
 if __name__ == "__main__":
-    home(); sol_index(); para_quem(); tecnologia()
+    home(); sol_index(); para_quem(); tecnologia(); solidario()
     for k, v in SOLDATA.items():
         sol_page(k, v)
     print("ok")
