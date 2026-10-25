@@ -187,3 +187,5 @@ footer .legal{grid-column:1/-1;border-top:1px solid rgba(233,243,240,.12);paddin
 .faq details{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 20px}
 .faq summary{cursor:pointer;font:600 16px var(--f-d)}
 .faq details p{margin-top:10px;color:var(--ink-2)}
+
+.card video{width:100%;display:block;aspect-ratio:16/9;background:#0B3B36;object-fit:cover}

@@ -3,6 +3,16 @@
   "moeda": "USD",
   "status": "preparacao",
   "arrecadado": null,
-  "metas": { "piloto": null, "movel1": null, "expansao": null },
-  "niveis": { "apoiador": null, "padrinho": null, "guardiao": null, "solidario": null, "institucional": null }
+  "metas": {
+    "piloto": 15000,
+    "movel1": 260000,
+    "expansao": 270000
+  },
+  "niveis": {
+    "apoiador": 25,
+    "padrinho": 50,
+    "guardiao": 500,
+    "solidario": 1000,
+    "institucional": 10000
+  }
 }
