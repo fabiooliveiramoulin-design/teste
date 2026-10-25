@@ -1,1 +1,3 @@
-https://cdn.kairogen.ai/gallery/images/6ac0f6a2802cc9242f535555/bec47b17-ae24-4984-82e5-9fad5a931434.png midia/movel20/caminhao.png
+https://cdn.kairogen.ai/gallery/images/6ac0f6a2802cc9242f535555/401f6c98-a5ac-4fff-8ea4-59b340266537.png midia/movel20/estacionado.png
+https://cdn.kairogen.ai/gallery/images/6ac0f6a2802cc9242f535555/f1f1ea5c-d33b-4354-a78f-93dafeba414c.png midia/movel20/interior.png
+https://cdn.kairogen.ai/gallery/images/6ac0f6a2802cc9242f535555/5db2516c-cf6b-4768-a45f-2f0166821eea.png midia/casa/casa.png
