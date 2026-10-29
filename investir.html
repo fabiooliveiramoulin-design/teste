@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Investir no Help Cure</title><meta name="robots" content="noindex,nofollow">
+<meta name="description" content="A tecnologia do Help Cure: motor RAPP, captura de sinais, resumo de emergência, interoperabilidade, assinatura digital e privacidade.">
+<meta property="og:title" content="Tecnologia e segurança — Help Cure">
+<meta property="og:description" content="A tecnologia do Help Cure: motor RAPP, captura de sinais, resumo de emergência, interoperabilidade, assinatura digital e privacidade.">
+<meta property="og:image" content="img/hero.webp">
+<link rel="icon" href="img/icone.svg" type="image/svg+xml"><link rel="icon" href="img/logo/favicon-32.png" sizes="32x32"><link rel="apple-touch-icon" href="img/logo/helpcure-icone-app-180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Lexend:wght@300;400;500;600&display=swap">
+<link rel="stylesheet" href="assets/site.css?v=3">
+<style>
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:28px}
+@media (max-width:860px){.kpis{grid-template-columns:1fr 1fr}}
+.kpi{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:16px 18px}
+.dark .kpi,.hero .kpi{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.14)}
+.kpi b{display:block;font:700 clamp(22px,3vw,30px)/1.15 var(--f-d);color:var(--led-ink);font-variant-numeric:tabular-nums}
+.dark .kpi b,.hero .kpi b{color:#3EE39A}
+.kpi span{font-size:13.5px;color:var(--ink-3)}.dark .kpi span,.hero .kpi span{color:#BFD3CD}
+.kpi.tbd b{color:var(--ink-3);font-style:italic;font-weight:500;font-size:20px}
+.ctabs{display:flex;flex-wrap:wrap;gap:8px;margin-top:32px}
+.ctabs button{all:unset;cursor:pointer;padding:10px 18px;border-radius:999px;border:1.5px solid var(--line);font:600 14.5px var(--f-d);color:var(--ink-2);background:var(--surface)}
+.ctabs button[aria-selected=true]{background:var(--brand);border-color:var(--brand);color:#E9F3F0}
+.ctabs button:focus-visible{outline:2px solid var(--led);outline-offset:2px}
+.case{display:none;margin-top:24px}.case.on{display:block}
+.case .top{display:grid;grid-template-columns:1.2fr 1fr;gap:28px;align-items:start}
+@media (max-width:860px){.case .top{grid-template-columns:1fr}}
+.sub2{display:flex;gap:8px;margin:18px 0 0}.sub2 button{all:unset;cursor:pointer;font:600 13px var(--f-d);padding:6px 12px;border-radius:999px;border:1px solid var(--line);color:var(--ink-2)}
+.sub2 button[aria-pressed=true]{background:var(--led);border-color:var(--led);color:#05241C}
+.rev{list-style:none;margin:14px 0 0;padding:0;display:grid;gap:10px}
+.rev li{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 14px;font-size:15px;color:var(--ink-2)}
+.rev li b{color:var(--ink);font-family:var(--f-d)}
+.docs{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:22px}
+@media (max-width:860px){.docs{grid-template-columns:1fr 1fr}}
+.doc{border:1px dashed var(--line);border-radius:14px;padding:14px;font-size:14px;color:var(--ink-3)}
+.doc b{display:block;color:var(--ink);font:600 15px var(--f-d);margin-bottom:2px}
+.doc.ok{border-style:solid;background:var(--surface)}
+.tag{display:inline-block;font:600 11px var(--f-d);letter-spacing:.06em;text-transform:uppercase;padding:2px 8px;border-radius:999px;background:var(--soft);color:var(--ink-3);margin-top:6px}
+.tag.ok{background:#17B87722;color:var(--led-ink)}
+table.t{width:100%;border-collapse:collapse;margin-top:20px;font-size:15px;min-width:560px}
+.tw{overflow-x:auto}
+table.t th,table.t td{text-align:left;padding:11px 12px;border-bottom:1px solid var(--line)}
+table.t th{font:600 12px var(--f-d);text-transform:uppercase;letter-spacing:.05em;color:var(--ink-3)}
+table.t td.n{text-align:right;font-variant-numeric:tabular-nums}
+.draft{background:#FFB50022;color:#8A5A00;border-radius:999px;padding:4px 12px;font:600 12px var(--f-d);display:inline-block;margin-bottom:10px}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap nav">
+    <a class="logo" href="" aria-label="Help Cure"><img src="img/logo/helpcure-simbolo-animado-fundo-escuro.svg" alt="" aria-hidden="true"><span style="letter-spacing:-.02em">Help<b>Cure</b></span></a>
+    <button class="burger" type="button" aria-label="Menu" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+    <nav class="menu" aria-label="Menu"><a href="./"><span data-i="k32">Início</span></a><a href="solucoes/"><span data-i="k33">Soluções</span></a><a href="para-quem.html"><span data-i="k34">Para quem</span></a><a href="tecnologia.html"><span data-i="k35">Tecnologia</span></a><a href="solidario.html"><span data-i="k36">Solidário</span></a><a href="/investidores/" data-inv="/investidores/"><span data-i="k37">Investidores</span></a></nav>
+    <div class="lang" role="group" aria-label="Idioma / Language">
+      <button type="button" data-l="pt" aria-pressed="true">PT</button><button type="button" data-l="es" aria-pressed="false">ES</button><button type="button" data-l="en" aria-pressed="false">EN</button>
+    </div>
+  </div>
+</header>
+<main>
+<div class="hero sub">
+  <img src="img/central.webp" alt="">
+  <div class="wrap">
+    <span class="draft">Rascunho · não divulgado</span><br>
+    <span class="eyebrow">Investidores</span>
+    <h1>Receita recorrente em cada ponto de cuidado.</h1>
+    <p class="lead">O Help Cure é pago por pessoa monitorada, todo mês, por governos, planos de saúde, clínicas e empregadores. Veja como cada modelo gera receita e o retorno projetado.</p>
+    <div class="kpis"><div class="kpi"><b>US$ 30 mi</b><span>Rodada por 12% da empresa</span></div><div class="kpi"><b>+60%</b><span>Margem EBITDA a partir do Ano 3</span></div><div class="kpi"><b>R$ 1,15 bi</b><span>Receita em 5 anos (Brasil)</span></div><div class="kpi"><b>2,1–3,3x</b><span>Retorno projetado do aporte</span></div></div>
+  </div>
+</div>
+
+<section>
+  <div class="wrap">
+    <div class="head"><span class="eyebrow">Apresentação</span><h2>Em 10 minutos, o Help Cure para investidores.</h2><p>Vídeo narrado com a oportunidade, o modelo de receita e os quatro cases. Logo abaixo, os vídeos de como o Help Cure funciona em cada ponto de cuidado.</p></div>
+    <div class="player" style="margin-top:28px;aspect-ratio:16/9;border-radius:18px;background:#06201C url(img/hero.webp) center/cover;display:grid;place-items:center"><span style="background:rgba(6,32,28,.85);color:#E9F3F0;padding:12px 18px;border-radius:12px">Vídeo do investidor em produção</span></div>
+    <p style="margin-top:14px"><a class="btn line" href="/investidores/">Ver os vídeos por módulo</a></p>
+  </div>
+</section>
+
+<section class="soft">
+  <div class="wrap">
+    <div class="head"><span class="eyebrow">Como gera receita</span><h2>Quatro fontes, um mesmo histórico do paciente.</h2></div>
+    <div class="g g4">
+      <div class="card"><div class="in"><h3>Por pessoa monitorada</h3><p>Mensalidade por paciente, paga pelo governo, plano, empregador ou pelo próprio usuário. É a maior parte da receita.</p></div></div>
+      <div class="card"><div class="in"><h3>Implantação e integração</h3><p>Setup e conexão com prontuários e sistemas públicos no padrão exigido, com assinatura mensal por órgão.</p></div></div>
+      <div class="card"><div class="in"><h3>Infraestrutura como serviço</h3><p>Células de atendimento, unidades móveis e kits residenciais, cobrados em contrato anual.</p></div></div>
+      <div class="card"><div class="in"><h3>Assinaturas e serviços</h3><p>Cuidador Familiar, alta monitorada, farmácias, academias e home care.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="head"><span class="eyebrow">Os cases</span><h2>O mesmo modelo, quatro tipos de cliente.</h2><p>Cada case tem o mesmo kit: apresentação, resumo executivo, planilha detalhada e vídeo.</p></div>
+    <div class="ctabs" role="tablist"><button role="tab" aria-selected="true" data-c="pais">País</button><button role="tab" aria-selected="false" data-c="estados">Estados</button><button role="tab" aria-selected="false" data-c="clinica">Clínica</button><button role="tab" aria-selected="false" data-c="plano">Plano de saúde</button></div><div class="case on" id="c-pais"><p class="lead" style="max-width:70ch">Um país inteiro monitorado: governo, planos de saúde, empregadores e o próprio usuário pagando por pessoa acompanhada.</p><div class="sub2"><button aria-pressed="true" data-s="pais-br">Brasil</button><button aria-pressed="false" data-s="pais-py">Paraguai</button></div><div class="sv2" id="s-pais-br"><div class="kpis"><div class="kpi"><b>R$ 662,7 mi</b><span>Receita no Ano 5</span></div><div class="kpi"><b>R$ 405 mi</b><span>EBITDA no Ano 5 (61%)</span></div><div class="kpi"><b>R$ 470 mi</b><span>Valor pelo fluxo descontado (16% a.a.)</span></div><div class="kpi"><b>Ano 4</b><span>Caixa livre positivo · consumo de R$ 26 mi</span></div></div><h3 style="margin-top:26px">Como gera receita — Brasil</h3><ul class="rev"><li><b>Plano de saúde</b> R$ 60 por paciente/mês — 450 mil monitorados no Ano 5</li><li><b>Governo</b> R$ 30 por cidadão/mês — 750 mil monitorados no Ano 5</li><li><b>Demais entidades</b> farmácias, hospitais, empresas, academias, Cuidador Familiar — 10% da receita</li></ul></div><div class="sv2" id="s-pais-py" hidden><div class="kpis"><div class="kpi"><b>US$ 16,2 mi</b><span>Receita no Ano 5</span></div><div class="kpi"><b>38,6%</b><span>TIR</span></div><div class="kpi"><b>US$ 1,98 mi</b><span>VPL (Anos 0–5)</span></div><div class="kpi"><b>3,2 anos</b><span>Payback · CAPEX US$ 2,03 mi</span></div></div><h3 style="margin-top:26px">Como gera receita — Paraguai</h3><ul class="rev"><li><b>Usuário</b> US$ 9,90 · <b>Governo</b> US$ 10 · <b>Plano</b> US$ 12 · <b>Empregador</b> US$ 3 por pessoa/mês</li><li><b>91,8 mil pessoas</b> monitoradas no Ano 5, margem EBITDA de 60%</li><li><b>Ferramentas:</b> célula de atendimento, unidade móvel e kit residencial cotados por entidade</li></ul></div><div class="docs"><div class="doc"><b>Apresentação</b>Modelo País BR e PY<br><span class="tag">A enviar</span></div><div class="doc"><b>Resumo executivo</b>2 páginas por país<br><span class="tag">A enviar</span></div><div class="doc ok"><b>Planilha</b>Modelo Pagadores PY (15/10) · Plano 30MM BR<br><span class="tag ok">Pronto</span></div><div class="doc"><b>Vídeo</b>3–5 min, narrado<br><span class="tag">A enviar</span></div></div></div><div class="case" id="c-estados"><p class="lead" style="max-width:70ch">Contrato com a Secretaria de Saúde: o estado paga por cidadão do SUS monitorado, pelas células instaladas e pela integração com os sistemas públicos.</p><div class="sv2" id="s-estados-ba"><div class="kpis"><div class="kpi"><b>R$ 8,25 mi</b><span>Investimento no Ano 0 (implantação)</span></div><div class="kpi tbd"><b>A confirmar</b><span>TIR</span></div><div class="kpi tbd"><b>A confirmar</b><span>VPL</span></div><div class="kpi tbd"><b>A confirmar</b><span>Payback</span></div></div><h3 style="margin-top:26px">Como gera receita — Bahia e Ceará</h3><ul class="rev"><li><b>Per capita</b> R$ 30 por cidadão SUS monitorado/mês</li><li><b>Célula instalada</b> em órgão público — contrato anual</li><li><b>Licença de integração</b> por órgão — implantação + assinatura mensal</li></ul></div><div class="docs"><div class="doc"><b>Apresentação</b>Case Estados<br><span class="tag">A enviar</span></div><div class="doc"><b>Resumo executivo</b>Bahia e Ceará<br><span class="tag">A enviar</span></div><div class="doc ok"><b>Planilha</b>Modelo Estado/Brasil<br><span class="tag ok">Pronto</span></div><div class="doc"><b>Vídeo</b>3–5 min, narrado<br><span class="tag">A enviar</span></div></div></div><div class="case" id="c-clinica"><p class="lead" style="max-width:70ch">A clínica ou o hospital recebe células, kits pós-alta e integração; paga uma mensalidade fixa, e cada paciente acompanhado gera receita por mês.</p><div class="sv2" id="s-clinica-hc"><div class="kpis"><div class="kpi"><b>US$ 11,1 mil</b><span>Receita por mês por cliente</span></div><div class="kpi"><b>71%</b><span>Margem mensal</span></div><div class="kpi"><b>13 meses</b><span>Payback por cliente</span></div><div class="kpi"><b>US$ 113 mil</b><span>VPL por contrato de 36 meses</span></div></div><h3 style="margin-top:26px">Como gera receita — Cotação-padrão</h3><ul class="rev"><li><b>Implantação</b> US$ 31 mil (células, kits, tablets, integração)</li><li><b>Mensalidade fixa</b> US$ 5.500 da instituição</li><li><b>Por paciente</b> US$ 5.595/mês pagos por usuário, governo ou plano (500 pacientes)</li></ul></div><div class="docs"><div class="doc"><b>Apresentação</b>Case Clínica<br><span class="tag">A enviar</span></div><div class="doc"><b>Resumo executivo</b>1 cliente-tipo<br><span class="tag">A enviar</span></div><div class="doc ok"><b>Planilha</b>Cotação por entidade (PY)<br><span class="tag ok">Pronto</span></div><div class="doc"><b>Vídeo</b>3–5 min, narrado<br><span class="tag">A enviar</span></div></div></div><div class="case" id="c-plano"><p class="lead" style="max-width:70ch">A operadora paga por beneficiário monitorado e economiza mais do que paga, evitando internações e idas ao pronto-socorro.</p><div class="sub2"><button aria-pressed="true" data-s="plano-unimed">Unimed-BH</button><button aria-pressed="false" data-s="plano-cassi">Cassi</button></div><div class="sv2" id="s-plano-unimed"><div class="kpis"><div class="kpi"><b>R$ 31,0 mi</b><span>Receita no Ano 5</span></div><div class="kpi"><b>R$ 19,2 mi</b><span>EBITDA no Ano 5</span></div><div class="kpi"><b>4,2 anos</b><span>Payback</span></div><div class="kpi"><b>R$ 31,0 mi</b><span>VPL com valor terminal (WACC 16%)</span></div></div><h3 style="margin-top:26px">Como gera receita — Unimed-BH</h3><ul class="rev"><li><b>R$ 60</b> por beneficiário/mês — a Unimed economiza <b>R$ 73,75</b></li><li><b>Alta monitorada</b> R$ 120 por episódio</li><li><b>40 mil</b> monitorados no Ano 5 · necessidade de caixa R$ 8,7 mi</li></ul></div><div class="sv2" id="s-plano-cassi" hidden><div class="kpis"><div class="kpi tbd"><b>A confirmar</b><span>Receita no Ano 5</span></div><div class="kpi tbd"><b>A confirmar</b><span>TIR</span></div><div class="kpi tbd"><b>A confirmar</b><span>VPL</span></div><div class="kpi tbd"><b>A confirmar</b><span>Payback</span></div></div><h3 style="margin-top:26px">Como gera receita — Cassi</h3><ul class="rev"><li>Modelo em preparação a partir da apresentação Cassi</li></ul></div><div class="docs"><div class="doc ok"><b>Apresentação</b>Unimed-BH e Cassi<br><span class="tag ok">Pronto</span></div><div class="doc ok"><b>Resumo executivo</b>Unimed-BH (2 cenários)<br><span class="tag ok">Pronto</span></div><div class="doc ok"><b>Planilha</b>Modelo Plano + Governo<br><span class="tag ok">Pronto</span></div><div class="doc"><b>Vídeo</b>3–5 min, narrado<br><span class="tag">A enviar</span></div></div></div>
+  </div>
+</section>
+
+<section class="dark">
+  <div class="wrap">
+    <div class="head"><span class="eyebrow">A rodada</span><h2>US$ 30 milhões por 12% da empresa.</h2><p class="muted">Metade em ações ordinárias e metade em preferenciais, com dividendo cumulativo de 8% ao ano. Liberação em etapas ligadas a marcos é possível.</p></div>
+    <div class="tw"><table class="t" style="color:#E9F3F0">
+      <thead><tr><th>Uso dos recursos</th><th style="text-align:right">R$ mi</th><th style="text-align:right">%</th></tr></thead>
+      <tbody>
+      <tr><td>Operação e investimentos do plano base</td><td class="n">35,0</td><td class="n">22%</td></tr>
+      <tr><td>Aceleração do crescimento</td><td class="n">50,0</td><td class="n">32%</td></tr>
+      <tr><td>Plataforma, IA e registro na ANVISA</td><td class="n">20,0</td><td class="n">13%</td></tr>
+      <tr><td>Estrutura comercial e institucional</td><td class="n">15,0</td><td class="n">10%</td></tr>
+      <tr><td>Expansão Paraguai/América Latina e gestão hospitalar</td><td class="n">15,0</td><td class="n">10%</td></tr>
+      <tr><td>Reserva estratégica</td><td class="n">20,4</td><td class="n">13%</td></tr>
+      </tbody></table></div>
+    <div class="kpis"><div class="kpi"><b>2,1x · 16% a.a.</b><span>Saída a 6x EBITDA</span></div><div class="kpi"><b>2,7x · 22% a.a.</b><span>Saída a 8x EBITDA</span></div><div class="kpi"><b>3,3x · 27% a.a.</b><span>Saída a 10x EBITDA</span></div><div class="kpi"><b>R$ 1,295 bi</b><span>Valor após o aporte</span></div></div>
+    <p class="muted" style="margin-top:24px;font-size:14px">Projeções do modelo financeiro do Help Cure, com premissas de planejamento. Não são resultados realizados nem garantia de retorno. Estrutura tributária e societária a validar por assessores antes do fechamento.</p>
+    <p style="margin-top:20px"><a class="btn primary" href="mailto:investidores@helpcure.com.py">Falar com a equipe</a></p>
+  </div>
+</section>
+</main>
+<footer>
+  <div class="wrap">
+    <div><a class="logo" href="" style="color:#E9F3F0;display:flex"><img src="img/logo/helpcure-simbolo-animado-fundo-escuro.svg" alt="" aria-hidden="true"><span style="letter-spacing:-.02em">Help<b>Cure</b></span></a>
+      <p data-i="k44" style="margin-top:10px;max-width:40ch">Monitoramento contínuo de saúde: cada paciente comparado com ele mesmo.</p>
+      <p style="margin-top:12px"><span data-i="k45">Contato</span>: <a href="mailto:contato@helpcure.com.py" style="display:inline">contato@helpcure.com.py</a></p></div>
+    <div><h4><span data-i="k46">Soluções</span></h4><a href="solucoes/paciente.html"><span data-i="k38">Paciente e família</span></a><a href="solucoes/hospital.html"><span data-i="k39">Hospital e clínica</span></a><a href="solucoes/farmacia.html"><span data-i="k40">Farmácia</span></a><a href="solucoes/homecare.html"><span data-i="k41">Home care</span></a><a href="solucoes/celula.html"><span data-i="k42">Célula de atendimento</span></a><a href="solucoes/movel.html"><span data-i="k43">Unidade móvel</span></a></div>
+    <div><h4><span data-i="k47">Help Cure</span></h4>
+      <a href="para-quem.html"><span data-i="k48">Para quem é</span></a>
+      <a href="tecnologia.html"><span data-i="k49">Tecnologia e segurança</span></a>
+      <a href="solidario.html"><span data-i="k50">Help Cure Solidário</span></a>
+      <a href="app/"><span data-i="k51">App do paciente</span></a>
+      <a href="/investidores/" data-inv="/investidores/"><span data-i="k52">Área do investidor</span></a></div>
+    <div class="legal">© 2026 Help Cure · <span data-i="k53">Plataforma em fase de piloto. Imagens dos vídeos são simulações com personagens fictícios.</span></div>
+  </div>
+</footer>
+<script>
+document.querySelectorAll('.ctabs button').forEach(function(b){b.onclick=function(){document.querySelectorAll('.ctabs button').forEach(function(x){x.setAttribute('aria-selected',x===b)});document.querySelectorAll('.case').forEach(function(c){c.classList.toggle('on',c.id==='c-'+b.dataset.c)})}});
+document.querySelectorAll('.sub2 button').forEach(function(b){b.onclick=function(){var g=b.parentNode;g.querySelectorAll('button').forEach(function(x){x.setAttribute('aria-pressed',x===b)});g.parentNode.querySelectorAll('.sv2').forEach(function(s){s.hidden=s.id!=='s-'+b.dataset.s})}});
+</script>
+<script>window.HC_T={"es":{},"en":{}};</script><script src="assets/site.js?v=3"></script>
+</body></html>
