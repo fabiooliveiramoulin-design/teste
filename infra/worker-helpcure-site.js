@@ -8,7 +8,7 @@ const TYPES = { html: "text/html; charset=utf-8", css: "text/css; charset=utf-8"
 const HC_MAIL = "investidores@helpcure.com.py";
 // Páginas e scripts da área do investidor: só existem cifrados em /priv no repositório.
 const PRIV = { "/investir.html": "investir.html", "/assets/viabilidade-dados.js": "assets__viabilidade-dados.js", "/assets/modelo-motor.js": "assets__modelo-motor.js", "/assets/viabilidade.js": "assets__viabilidade.js", "/assets/rede.js": "assets__rede.js" };
-const VIDEOS = { pt: "tWPiFOwbaNw", es: "pTT-sQGMW0U", en: "2fYAVUm0ziI" };
+const VIDEOS = { pt: "/investidores/video/HelpCure_Video_Investidor_PT.mp4", es: "pTT-sQGMW0U", en: "2fYAVUm0ziI" };
 const SHORTS = [
   { id: { pt: "CR9zwnwG_Lg", es: "2hfLJ0W2Y1s", en: "" }, d: "2:48", n: { pt: "Paciente", es: "Paciente", en: "Patient" } },
   { id: { pt: "DGMd9nJyOEg", es: "zBIRuKMUgQo", en: "" }, d: "2:46", n: { pt: "Hospital", es: "Hospital", en: "Hospital" } },
@@ -219,7 +219,7 @@ ${error ? `<div class="err" role="alert">${error}</div>` : ""}<button class="btn
   return new Response(page(lang, `<h1>${t.h}</h1><p>${t.p}</p><div class="row"><a class="btn big" href="/investir.html">${t.plan}</a></div><h2 class="h2">${t.full}</h2><div class="tabs" role="tablist">${tabs}</div><div class="player" id="pl"></div><h2 class="h2">${t.mods}</h2><div class="grid">${SHORTS.map((v) => { const vl = v.id[lang] ? lang : "pt"; return `<div class="sv"><div class="f"><iframe src="https://www.youtube-nocookie.com/embed/${v.id[vl]}?rel=0&modestbranding=1" title="Help Cure — ${esc(v.n[lang])}" loading="lazy" allow="fullscreen; picture-in-picture; encrypted-media" allowfullscreen></iframe></div><b>${esc(v.n[lang])}</b><small>${t.lg[vl]}</small></div>`; }).join("")}</div>
 ${queroBox(lang)}
 <div class="row"><a class="btn g" href="/app/">${t.app}</a><a class="btn g" href="/">${t.back}</a><a class="btn g" href="/investidores/sair?lang=${lang}">${t.out}</a></div><p class="conf">${t.conf}</p>
-<script>var SOON=${JSON.stringify(t.soon)};function show(b){document.querySelectorAll('.tabs button').forEach(function(x){x.setAttribute('aria-selected',x===b)});var id=b.dataset.v,p=document.getElementById('pl');p.innerHTML=id?'<iframe src="https://www.youtube-nocookie.com/embed/'+id+'?rel=0&modestbranding=1" title="Help Cure" allow="fullscreen; picture-in-picture; encrypted-media" allowfullscreen></iframe>':'<span>'+SOON+'</span>'}document.querySelectorAll('.tabs button').forEach(function(b){b.onclick=function(){show(b)}});show(document.querySelector('.tabs button'));</script>`), { headers: H });
+<script>var SOON=${JSON.stringify(t.soon)};function show(b){document.querySelectorAll('.tabs button').forEach(function(x){x.setAttribute('aria-selected',x===b)});var id=b.dataset.v,p=document.getElementById('pl');p.innerHTML=id&&id.charAt(0)=='/'?'<video controls playsinline preload="metadata" src="'+id+'" style="width:100%;height:100%;display:block;background:#06201C"></video>':id?'<iframe src="https://www.youtube-nocookie.com/embed/'+id+'?rel=0&modestbranding=1" title="Help Cure" allow="fullscreen; picture-in-picture; encrypted-media" allowfullscreen></iframe>':'<span>'+SOON+'</span>'}document.querySelectorAll('.tabs button').forEach(function(b){b.onclick=function(){show(b)}});show(document.querySelector('.tabs button'));</script>`), { headers: H });
 }
 
 // Lista de cadastros (CSV): /investidores/admin?key=ADMIN_KEY[&p=2SEA]
