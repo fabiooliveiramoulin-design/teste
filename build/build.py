@@ -54,9 +54,10 @@ def shell(pg, path, title, body, desc, extra_head=""):
     links.append('<a href="%sinvestir.html"%s>%s</a>' % (p, cur, pg.t("Investidores", "Inversionistas", "Investors")))
     foot_sol = "".join('<a href="%ssolucoes/%s.html">%s</a>' % (p, s, pg.t(a, b, c)) for s, a, b, c in SOLS)
     head = f'''<!doctype html>
-<html lang="pt-BR">
+<html lang="pt-BR" translate="no" class="notranslate">
 <head>
 <meta charset="utf-8">
+<meta name="google" content="notranslate">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{html.escape(title)}</title>
 <meta name="description" content="{html.escape(desc)}">
@@ -98,7 +99,7 @@ def shell(pg, path, title, body, desc, extra_head=""):
   </div>
 </footer>
 <script>window.HC_T={json.dumps({"es": pg.es, "en": pg.en}, ensure_ascii=False)};</script>
-<script src="{p}assets/site.js?v=3"></script>
+<script src="{p}assets/site.js?v=4"></script>
 </body>
 </html>
 '''
