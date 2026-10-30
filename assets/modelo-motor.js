@@ -1,5 +1,5 @@
 // Help Cure — motor do modelo final (30/10/2026), igual às abas Segmentos e Empresa de HelpCure_Equity_Lucros_Royalties.xlsx.
-// Segmento: royalty da Moulin por vida monitorada. Empresa: o investidor fundador paga Fase 1 + segmentos + reserva,
+// Segmento: royalty RAPP por vida monitorada. Empresa: o investidor fundador paga Fase 1 + segmentos + reserva,
 // recebe divisão de lucros (10% do EBITDA, teto 5x a Fase 1, depois 1%) e um percentual da Help Cure.
 (function (root) {
   function pv0(r, xs) { var s = 0; for (var i = 0; i < xs.length; i++) s += xs[i] / Math.pow(1 + r, i); return s; }

@@ -110,7 +110,7 @@ for code, cfg in MERCADO.items():
               "receita": rec, "servir": srv, "op_celula": cop, "op_movel": uop, "capex": cpx,
               "passo": PASSO[code], "min": PASSO[code], "max": max(S["max"], 3 * nb), "mercado": {"vidas_ano5": nb, "fator_vs_plano": kt}})
 
-# ---- Modelo final (30/10/2026): royalty da Moulin por vida e divisão de lucros do fundador (planilha HelpCure_Equity_Lucros_Royalties)
+# ---- Modelo final (30/10/2026): royalty RAPP por vida e divisão de lucros do fundador (planilha HelpCure_Equity_Lucros_Royalties)
 prem.update({"mvida": 0.60, "ps": 0.10, "pscap": 5, "psres": 0.01})
 out = {"fonte": "HelpCure_Simulador_Vidas.xlsx", "gerado": datetime.date.today().isoformat(), "premissas": prem, "escopos": esc}
 dst = os.path.join(ROOT, "assets", "viabilidade-dados.js")
