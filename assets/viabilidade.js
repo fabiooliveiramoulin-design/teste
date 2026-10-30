@@ -8,7 +8,7 @@
     var k = N / D.escopos[code].nbase, g = M.segmento(D, code, k), c = M.empresa(D, [[code, k, 2]], true), s0 = M.empresa(D, [[code, k, 2]], false);
     return { vidas: N, rodada: true, curva: g.curva, receita5: g.curva.receita[5], ebitda5: g.curva.ebitda[5], margem: g.curva.receita[5] ? g.curva.ebitda[5] / g.curva.receita[5] : 0,
       vpl: g.vpl, tir: g.tir, payback: g.payback, captacao: g.captacao, ticket: c.rodada, posmoney: c.posmoney, premoney: c.premoney,
-      participacao: c.participacao, participacaoSem: s0.participacao, vpDivisao: c.vpDivisao };
+      participacao: c.participacao, participacaoSem: s0.participacao, vpDivisao: c.vpDivisao, psc: c.psClinicas };
   }
   var P = D.premissas;
 
@@ -16,7 +16,7 @@
     pt: { mil: "mil", mi: "mi", bi: "bi", anos: "anos", ano: "Ano", mais5: "mais de 5 anos", sobre: "acima da referência", abaixo: "abaixo da referência", calc: "valor de referência",
       val: "Valuation da Help Cure (pré-money)", valE1: "Valor do projeto (VPL)", valsub: "valor da empresa antes do aporte, a 25% a.a.", valsubE1: "por clínica replicada, a 20% a.a.",
       neg: "não sustenta a rodada", margem: "margem", rec: "Receita", ebit: "EBITDA", vidas: "Vidas", caixa: "Caixa acumulado",
-      ok: "Rodada viável: {p} da Help Cure entrega 25% a.a. ao investidor.",
+      ok: "Rodada viável: {p} da Help Cure entrega 25% a.a. ao investidor.", psc: " A rede de clínicas recebe {q} do lucro das próprias clínicas.",
       alto: "Rodada possível, mas cara: o investidor precisa de {p} da Help Cure para ter 25% a.a.",
       inv: "Nesta escala, nem 100% da Help Cure entrega 25% a.a. ao investidor.",
       ate: " Com {n}, a participação cai para {p}.", un: "vidas", cli: "vidas ({c} clínicas)", nunca: " Nem no máximo da barra a participação fica abaixo do limite.",
@@ -25,7 +25,7 @@
     es: { mil: "mil", mi: "M", bi: "mil M", anos: "años", ano: "Año", mais5: "más de 5 años", sobre: "por encima de la referencia", abaixo: "por debajo de la referencia", calc: "valor de referencia",
       val: "Valuation de Help Cure (pre-money)", valE1: "Valor del proyecto (VAN)", valsub: "valor de la empresa antes del aporte, al 25% anual", valsubE1: "por clínica replicada, al 20% anual",
       neg: "no sostiene la ronda", margem: "margen", rec: "Ingresos", ebit: "EBITDA", vidas: "Vidas", caixa: "Caja acumulada",
-      ok: "Ronda viable: el {p} de Help Cure entrega 25% anual al inversionista.",
+      ok: "Ronda viable: el {p} de Help Cure entrega 25% anual al inversionista.", psc: " La red de clínicas recibe el {q} de las utilidades de sus propias clínicas.",
       alto: "Ronda posible, pero cara: el inversionista necesita el {p} de Help Cure para obtener 25% anual.",
       inv: "En esta escala, ni el 100% de Help Cure entrega 25% anual al inversionista.",
       ate: " Con {n}, la participación baja al {p}.", un: "vidas", cli: "vidas ({c} clínicas)", nunca: " Ni en el máximo de la barra la participación queda por debajo del límite.",
@@ -34,7 +34,7 @@
     en: { mil: "k", mi: "M", bi: "B", anos: "years", ano: "Year", mais5: "over 5 years", sobre: "above the reference", abaixo: "below the reference", calc: "reference value",
       val: "Help Cure valuation (pre-money)", valE1: "Project value (NPV)", valsub: "company value before the investment, at 25% a year", valsubE1: "per replicated clinic, at 20% a year",
       neg: "does not support the round", margem: "margin", rec: "Revenue", ebit: "EBITDA", vidas: "Lives", caixa: "Cumulative cash",
-      ok: "Viable round: {p} of Help Cure delivers 25% a year to the investor.",
+      ok: "Viable round: {p} of Help Cure delivers 25% a year to the investor.", psc: " The clinic network receives {q} of its own clinics’ profit.",
       alto: "Possible but expensive round: the investor needs {p} of Help Cure for 25% a year.",
       inv: "At this scale, not even 100% of Help Cure delivers 25% a year to the investor.",
       ate: " With {n}, the stake drops to {p}.", un: "lives", cli: "lives ({c} clinics)", nunca: " Even at the top of the slider the stake stays above the limit.",
@@ -59,9 +59,9 @@
   // valores da barra: o calculado no plano + passos (5 mil ou 20 mil) até o máximo do segmento
   // valores da barra: passos fechados do mínimo ao máximo, com o valor calculado no plano incluído (a barra começa nele)
   function steps(S) {
-    var v = [], x = Math.min(S.min, S.nbase);
-    for (; x < S.nbase; x += S.passo) v.push(x);
-    v.push(S.nbase); x = Math.ceil((S.nbase + 1) / S.passo) * S.passo;
+    var ref = S.ref || S.nbase, v = [], x = Math.min(S.min, ref);
+    for (; x < ref; x += S.passo) v.push(x);
+    v.push(ref); x = Math.ceil((ref + 1) / S.passo) * S.passo;
     for (; x <= S.max; x += S.passo) v.push(x);
     if (v[v.length - 1] < S.max) v.push(S.max);
     return v;
@@ -71,7 +71,8 @@
   function load(b, code) {
     b.code = code; b.S = D.escopos[code];
     b.st = steps(b.S); b.R = b.st.map(function (n) { return calc(code, n); });
-    b.i0 = b.st.indexOf(b.S.nbase); b.i = b.i0; b.inp.max = b.st.length - 1; b.inp.value = b.i0;
+    b.i0 = b.st.indexOf(b.S.ref || b.S.nbase); b.i = b.i0; // clínica: referência = rede de 30 clínicas
+    b.inp.max = b.st.length - 1; b.inp.value = b.i0;
   }
   document.querySelectorAll(".viab[data-esc]").forEach(function (el) {
     if (!D.escopos[el.dataset.esc]) return;
@@ -95,7 +96,7 @@
   function paint(b) {
     var l = lang(), t = TX[l], r = b.R[b.i], e1 = !r.rodada;
     set(b, "vidas", int(r.vidas, l));
-    set(b, "delta", b.i === b.i0 ? t.calc : r.vidas > b.S.nbase ? "+" + int(r.vidas - b.S.nbase, l) + " " + t.sobre : "−" + int(b.S.nbase - r.vidas, l) + " " + t.abaixo);
+    var rf = b.S.ref || b.S.nbase; set(b, "delta", b.i === b.i0 ? t.calc : r.vidas > rf ? "+" + int(r.vidas - rf, l) + " " + t.sobre : "−" + int(rf - r.vidas, l) + " " + t.abaixo);
     set(b, "min", int(b.st[0], l)); set(b, "max", int(b.st[b.st.length - 1], l));
     b.inp.setAttribute("aria-valuetext", int(r.vidas, l));
     b.el.querySelector(".vreset").hidden = b.i === b.i0;
@@ -119,6 +120,7 @@
         var j = -1; for (var q = b.i + 1; q < b.R.length; q++) if (b.R[q].participacao <= lim) { j = q; break; }
         msg += j >= 0 ? fill(t.ate, { n: int(b.R[j].vidas, l) + " " + (b.code.indexOf("E1") === 0 ? fill(t.cli, { c: int(b.R[j].vidas / b.S.nbase, l) }) : t.un), p: pct(b.R[j].participacao, l) }) : t.nunca;
       }
+      if (b.code.indexOf("E1") === 0 && r.psc && r.participacao <= 1) msg += fill(t.psc, { q: pct(r.psc, l) });
       if (r.vpl < 0) msg = t.vpln + " " + msg;
       set(b, "status", msg);
       o(b, "status").className = "vst " + (r.participacao <= lim && r.vpl >= 0 ? "good" : r.participacao <= 1 ? "warn" : "bad");

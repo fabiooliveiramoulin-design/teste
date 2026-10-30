@@ -120,6 +120,7 @@ aplica_disp(esc)
 # ---- Modelo final (30/10/2026): royalty RAPP por vida e divisão de lucros do fundador (planilha HelpCure_Equity_Lucros_Royalties)
 prem.update({"mvida": 0.60, "ps": 0.10, "pscap": 5, "psres": 0.01})
 for _c in ("E1PY", "E1BR"):
+    esc[_c]["ref"] = 60000  # referência da barra: rede de 30 clínicas
     esc[_c]["psmax"] = 0.35  # rede de clínicas fundadora: divisão de lucros de 10% a 35%, para vender no máximo 30%
 out = {"fonte": "HelpCure_Simulador_Vidas.xlsx", "gerado": datetime.date.today().isoformat(), "premissas": prem, "escopos": esc}
 dst = os.path.join(ROOT, "assets", "viabilidade-dados.js")

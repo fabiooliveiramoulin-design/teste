@@ -44,9 +44,10 @@ def build(Page, shell, S):
          [(S("Mensalidade fixa", "Mensualidad fija", "Fixed monthly fee"), S("US$ 5.500 da instituição", "US$ 5.500 de la institución", "US$ 5,500 from the institution")),
           (S("Por paciente", "Por paciente", "Per patient"), S("pagos por usuário, governo ou plano (2.000 vidas por clínica no Ano 5)", "pagados por el usuario, el gobierno o el seguro (2.000 vidas por clínica en el Año 5)", "paid by the user, government or health plan (2,000 lives per clinic in Year 5)")),
           (S("Integração", "Integración", "Integration"), S("US$ 20 mil com o sistema da clínica (única despesa de capital)", "US$ 20 mil con el sistema de la clínica (único gasto de capital)", "US$ 20k with the clinic’s system (the only capital expense)"))],
-         [(PRES, S("HelpCure na sua Clínica · Para o Médico", "HelpCure en su Clínica · Para el Médico", "HelpCure in your Clinic · For Doctors"), True),
-          (RES, S("1 cliente-tipo", "1 cliente tipo", "1 typical client"), False),
-          (PLAN, aba("E1"), True), (VID, VID35, False)]),
+         [(PRES, S("5 slides para investidor (PT)", "5 diapositivas para inversionistas (PT)", "5-slide investor deck (PT)"), True),
+          (RES, S("PT · Word", "PT · Word", "PT · Word"), True),
+          (PLAN, S("Planilha da entidade pagadora", "Planilla de la entidad pagadora", "Paying-entity spreadsheet"), False),
+          (VID, VID35, False)]),
         ("e2", S("E2 · Plano de saúde", "E2 · Seguro de salud", "E2 · Health plan"),
          S("Uma operadora nacional (~3,5 mi de beneficiários, porte de Amil, Bradesco Saúde e SulAmérica). No Ano 5, metade dos candidatos usa o Help Cure: idosos com hipertensão ou diabetes e todas as crianças e adolescentes, com a pulseira com GPS para os pais — cerca de 545 mil vidas (15,6% da carteira). Diluído na carteira, o custo sobe a mensalidade média em cerca de 2,4%.",
            "Una aseguradora nacional (~3,5 M de beneficiarios, del tamaño de Amil, Bradesco Saúde y SulAmérica). En el Año 5, la mitad de los candidatos usa Help Cure: adultos mayores con hipertensión o diabetes y todos los niños y adolescentes, con la pulsera con GPS para los padres — unas 545 mil vidas (15,6% de la cartera). Diluido en la cartera, el costo sube la cuota media alrededor de un 2,4%.",
@@ -56,9 +57,9 @@ def build(Page, shell, S):
          [(S("Por beneficiário", "Por beneficiario", "Per member"), S("monitorado por mês; fixo + variável por economia comprovada (modelo CASSI)", "monitoreado por mes; fijo + variable por ahorro comprobado (modelo CASSI)", "monitored per month; fixed + variable on proven savings (CASSI model)")),
           (S("Teto", "Techo", "Cap"), S("= economia do plano de saúde em internações e pronto-socorro evitados", "= ahorro del seguro de salud en internaciones y urgencias evitadas", "= the plan’s savings on avoided admissions and ER visits")),
           (S("Alta monitorada", "Alta monitoreada", "Monitored discharge"), S("por episódio", "por episodio", "per episode"))],
-         [(PRES, S("Unimed-BH e CASSI", "Unimed-BH y CASSI", "Unimed-BH and CASSI"), True),
-          (RES, S("Unimed-BH e CASSI", "Unimed-BH y CASSI", "Unimed-BH and CASSI"), True),
-          (PLAN, aba("E2"), True),
+         [(PRES, S("5 slides para investidor (PT)", "5 diapositivas para inversionistas (PT)", "5-slide investor deck (PT)"), True),
+          (RES, S("PT · Word", "PT · Word", "PT · Word"), True),
+          (PLAN, S("Planilha da entidade pagadora", "Planilla de la entidad pagadora", "Paying-entity spreadsheet"), False),
           (VID, S("CASSI (pronto) · genérico a fazer", "CASSI (listo) · genérico por hacer", "CASSI (ready) · generic to do"), True)]),
         ("e3", S("E3 · Estado", "E3 · Estado", "E3 · State"),
          S("Secretaria estadual de saúde, planos, empresas e cidadãos de um estado. Volumes de mercado pela média dos estados em prospecção (RJ, SP, MG, BA, CE e PR): no Ano 5, 2% da população sem plano e 2,4% dos beneficiários de planos.",
@@ -68,9 +69,10 @@ def build(Page, shell, S):
           (S("US$ 5,3 mi", "US$ 5,3 M", "US$ 5.3M"), CAP)],
          [(S("Governo", "Gobierno", "Government"), S("por cidadão coberto no atendimento móvel + contrato anual por célula pública", "por ciudadano cubierto en la atención móvil + contrato anual por célula pública", "per citizen covered by mobile care + annual contract per public cell")),
           (S("Planos, empresas e academias", "Seguros, empresas y gimnasios", "Plans, employers and gyms"), S("por pessoa e por célula instalada", "por persona y por célula instalada", "per person and per installed cell"))],
-         [(PRES, S("Bahia · Ceará · Ecossistema", "Bahía · Ceará · Ecosistema", "Bahia · Ceará · Ecosystem"), True),
-          (RES, S("Bahia e Ceará (a alinhar)", "Bahía y Ceará (por alinear)", "Bahia and Ceará (to align)"), True),
-          (PLAN, aba("E3"), True), (VID, VID35, False)]),
+         [(PRES, S("5 slides para investidor (PT)", "5 diapositivas para inversionistas (PT)", "5-slide investor deck (PT)"), True),
+          (RES, S("PT · Word", "PT · Word", "PT · Word"), True),
+          (PLAN, S("Planilha da entidade pagadora", "Planilla de la entidad pagadora", "Paying-entity spreadsheet"), False),
+          (VID, VID35, False)]),
         ("e4", S("E4 · Paraguai", "E4 · Paraguay", "E4 · Paraguay"),
          S("O país-piloto da Fase 2: a plataforma já existe, então só entram os custos de aplicação no Paraguai. Volumes de mercado: 6,1 mi de habitantes (censo 2022), cerca de 7% com seguro privado; no Ano 5, 2% da população sem seguro e 2,4% dos segurados.",
            "El país piloto de la Fase 2: la plataforma ya existe, así que solo entran los costos de aplicación en Paraguay. Volúmenes de mercado: 6,1 M de habitantes (censo 2022), cerca del 7% con seguro privado; en el Año 5, 2% de la población sin seguro y 2,4% de los asegurados.",
@@ -81,9 +83,10 @@ def build(Page, shell, S):
           (S("US$ 0,46 mi", "US$ 0,46 M", "US$ 0.46M"), S("Captação (+ Fase 1)", "Captación (+ Fase 1)", "Funding (+ Phase 1)"))],
          [(S("Por pessoa/mês", "Por persona/mes", "Per person/month"), S("usuário US$ 9,90 · governo US$ 10 · plano US$ 12 · empregador US$ 3", "usuario US$ 9,90 · gobierno US$ 10 · seguro US$ 12 · empleador US$ 3", "user US$ 9.90 · government US$ 10 · plan US$ 12 · employer US$ 3")),
           (S("Células e unidades móveis", "Células y unidades móviles", "Cells and mobile units"), S("por entidade e por região de saúde", "por entidad y por región sanitaria", "per entity and per health region"))],
-         [(PRES, S("Plano de Negócios Paraguai (a atualizar)", "Plan de Negocios Paraguay (por actualizar)", "Paraguay Business Plan (to update)"), True),
-          (RES, S("ES/PT", "ES/PT", "ES/PT"), True),
-          (PLAN, aba("E4"), True), (VID, VID35, False)]),
+         [(PRES, S("5 slides para investidor (PT)", "5 diapositivas para inversionistas (PT)", "5-slide investor deck (PT)"), True),
+          (RES, S("PT · Word", "PT · Word", "PT · Word"), True),
+          (PLAN, S("Planilha da entidade pagadora", "Planilla de la entidad pagadora", "Paying-entity spreadsheet"), False),
+          (VID, VID35, False)]),
         ("e5", S("E5 · Brasil", "E5 · Brasil", "E5 · Brazil"),
          S("Camada nacional de monitoramento integrada à RNDS e aos programas do Ministério da Saúde, mais planos e cidadãos. Volumes de mercado: no Ano 5, 2% dos 160 mi de brasileiros sem plano e 2,4% dos 53 mi de beneficiários — o potencial com todos os estados aderindo.",
            "Capa nacional de monitoreo integrada a la RNDS y a los programas del Ministerio de Salud de Brasil, más seguros y ciudadanos. Volúmenes de mercado: en el Año 5, 2% de los 160 M de brasileños sin seguro y 2,4% de los 53 M de beneficiarios — el potencial con todos los estados adhiriendo.",
@@ -93,9 +96,10 @@ def build(Page, shell, S):
          [(S("Governo", "Gobierno", "Government"), S("per capita por cidadão coberto, no espírito do PMAE", "per cápita por ciudadano cubierto, en la línea del PMAE", "per capita per covered citizen, in the spirit of PMAE")),
           (S("Planos", "Seguros", "Health plans"), S("via integração RNDS–ANS", "vía integración RNDS–ANS", "via RNDS–ANS integration")),
           (S("Certificação RNDS/FHIR", "Certificación RNDS/FHIR", "RNDS/FHIR certification"), S("no Ano 0", "en el Año 0", "in Year 0"))],
-         [(PRES, S("Brasil Vital Grid · Ministério", "Brasil Vital Grid · Ministerio", "Brasil Vital Grid · Ministry"), True),
-          (RES, S("Ministério da Saúde (a alinhar)", "Ministerio de Salud (por alinear)", "Ministry of Health (to align)"), True),
-          (PLAN, aba("E5"), True), (VID, VID35, False)]),
+         [(PRES, S("5 slides para investidor (PT)", "5 diapositivas para inversionistas (PT)", "5-slide investor deck (PT)"), True),
+          (RES, S("PT · Word", "PT · Word", "PT · Word"), True),
+          (PLAN, S("Planilha da entidade pagadora", "Planilla de la entidad pagadora", "Paying-entity spreadsheet"), False),
+          (VID, VID35, False)]),
     ]
 
     def viab(code):
@@ -257,7 +261,7 @@ def build(Page, shell, S):
     <p style="margin-top:20px"><a class="btn primary" href="mailto:investidores@helpcure.com.py">{T("Falar com a equipe", "Hablar con el equipo", "Talk to the team")}</a></p>
   </div>
 </section>
-<script src="assets/viabilidade-dados.js?v=8"></script><script src="assets/modelo-motor.js?v=2"></script><script src="assets/viabilidade.js?v=6" defer></script><script src="assets/rede.js?v=3" defer></script>
+<script src="assets/viabilidade-dados.js?v=9"></script><script src="assets/modelo-motor.js?v=2"></script><script src="assets/viabilidade.js?v=7" defer></script><script src="assets/rede.js?v=3" defer></script>
 <script>
 document.querySelectorAll('.ctabs:not(.fcen) button').forEach(function(b){{b.onclick=function(){{document.querySelectorAll('.ctabs:not(.fcen) button').forEach(function(x){{x.setAttribute('aria-selected',x===b)}});document.querySelectorAll('.case').forEach(function(c){{c.classList.toggle('on',c.id==='c-'+b.dataset.c)}})}}}});
 </script>
