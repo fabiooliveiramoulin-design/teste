@@ -114,6 +114,8 @@ for code, cfg in MERCADO.items():
 import sys as _s; _s.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from mercado_e2 import aplica_e2
 aplica_e2(esc["E2"])
+from dispositivos_modelo import aplica_disp   # dispositivos no pacote (receita = custo, preço de lote)
+aplica_disp(esc)
 
 # ---- Modelo final (30/10/2026): royalty RAPP por vida e divisão de lucros do fundador (planilha HelpCure_Equity_Lucros_Royalties)
 prem.update({"mvida": 0.60, "ps": 0.10, "pscap": 5, "psres": 0.01})
