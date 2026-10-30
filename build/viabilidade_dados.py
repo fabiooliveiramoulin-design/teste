@@ -67,6 +67,49 @@ for code in ("E1PY", "E1BR"):
         "receita": [0] + [CLI_FEE * 12 + sum(v * MIX[k] * PRECO[t][k] * 12 for k in MIX) for v in vid[1:]],
         "servir": [0] + [sum(v * MIX[k] * SERVIR[k] * 12 for k in MIX) for v in vid[1:]],
         "op_celula": [0] * 6, "op_movel": [0] * 6, "capex": [0] * 6})
+# ---- Vidas por estimativa de mercado (30/10/2026): 2% da população sem plano (SUS) + 2,4% dos beneficiários de planos no Ano 5,
+# mais a parcela de empregadores do plano original. Rampa: a forma da curva original de cada pagador.
+# Fontes: IBGE, estimativa de 1/7/2025; ANS/IESS NAB 111 (set/2025); Paraguai: censo 2022 (INE) e ~7% com seguro privado (Cimap).
+MERCADO = {"E3": {"uf": {"SP": (46081801, 18694732), "MG": (21393441, 5902946), "RJ": (17223547, 5607424),
+                         "BA": (14870907, 1791085), "PR": (11890517, 3202576), "CE": (9268836, 1489455)}},
+           "E5": {"uf": {"BR": (213421037, 53232560)}},
+           "E4": {"uf": {"PY": (6109644, round(6109644 * 0.07))}}}
+SUS_ADES, PLANO_ADES = 0.02, 0.024
+PASSO = {"E3": 20000, "E4": 20000, "E5": 100000}
+pm = wb["Premissas"]
+PRICE = {t: [pm.cell(5 + i, 2 + j).value for i in range(4)] for j, t in enumerate(TIERS)}   # Usuário, Governo, Plano, Empregador
+COST = [(pm.cell(5 + i, 6).value or 0) + (pm.cell(5 + i, 7).value or 0) for i in range(4)]
+CELCAP, CELOP, UMCAP, UMOP = (pm[c].value for c in ("B11", "B12", "B13", "B14"))
+for code, cfg in MERCADO.items():
+    i = CODES.index(code); bk = 12 + i * 11; r = 5 + i
+    pay = [[b.cell(bk + 2 + q, 2 + y).value or 0 for y in range(6)] for q in range(4)]          # vidas por pagador, Ano 0..5
+    ent = [b.cell(bk + 7, 2 + y).value or 0 for y in range(6)]; um = [b.cell(bk + 8, 2 + y).value or 0 for y in range(6)]
+    fee, setup, cell = b.cell(r, 10).value, b.cell(r, 11).value, b.cell(r, 15).value
+    S = esc[code]; t = S["tabela"]
+    def arrays(pay, ent, um):
+        rec, srv, cop, uop, cpx = [], [], [], [], []
+        for y in range(6):
+            pe = ent[y - 1] if y else 0; pu = um[y - 1] if y else 0
+            rec.append(sum(pay[q][y] * PRICE[t][q] * 12 for q in range(4)) + ent[y] * fee * 12 + max(0, ent[y] - pe) * CELCAP * setup * cell)
+            srv.append(sum(pay[q][y] * COST[q] for q in range(4)) * 12)
+            cop.append(ent[y] * CELOP * 12 * cell); uop.append(um[y] * UMOP * 12)
+            cpx.append(max(0, ent[y] - pe) * CELCAP * cell + max(0, um[y] - pu) * UMCAP)
+        return rec, srv, cop, uop, cpx
+    chk = arrays(pay, ent, um)                       # conferência: refaz as séries do plano original
+    assert all(abs(x - y) < 1e-6 for a_, b_ in zip(chk, (S["receita"], S["servir"], S["op_celula"], S["op_movel"], S["capex"])) for x, y in zip(a_, b_)), code
+    y5 = [pay[q][5] for q in range(4)]; tot5 = sum(y5); gov_share = y5[1] / (y5[0] + y5[1]); emp_share = y5[3] / tot5
+    novo = [0, 0, 0, 0]
+    for pop, plano in cfg["uf"].values():
+        sus = (pop - plano) * SUS_ADES; pl = plano * PLANO_ADES; tot = (sus + pl) / (1 - emp_share)
+        for q, v in enumerate((sus * (1 - gov_share), sus * gov_share, pl, tot * emp_share)): novo[q] += v / len(cfg["uf"])
+    pay2 = [[pay[q][y] / y5[q] * novo[q] if y5[q] else 0 for y in range(6)] for q in range(4)]
+    kt = sum(novo) / tot5
+    rec, srv, cop, uop, cpx = arrays(pay2, [x * kt for x in ent], [x * kt for x in um])
+    nb = round(sum(novo))
+    S.update({"nbase": nb, "teamb": S["teamb"] * kt ** S["elast"], "vidas": [sum(pay2[q][y] for q in range(4)) for y in range(6)],
+              "receita": rec, "servir": srv, "op_celula": cop, "op_movel": uop, "capex": cpx,
+              "passo": PASSO[code], "min": PASSO[code], "max": max(S["max"], 3 * nb), "mercado": {"vidas_ano5": nb, "fator_vs_plano": kt}})
+
 # ---- Modelo final (30/10/2026): royalty da Moulin por vida e divisão de lucros do fundador (planilha HelpCure_Equity_Lucros_Royalties)
 prem.update({"mvida": 0.60, "ps": 0.10, "pscap": 5, "psres": 0.01})
 out = {"fonte": "HelpCure_Simulador_Vidas.xlsx", "gerado": datetime.date.today().isoformat(), "premissas": prem, "escopos": esc}

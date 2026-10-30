@@ -61,9 +61,9 @@ def build(Page, shell, S):
           (PLAN, aba("E2"), True),
           (VID, S("CASSI (pronto) · genérico a fazer", "CASSI (listo) · genérico por hacer", "CASSI (ready) · generic to do"), True)]),
         ("e3", S("E3 · Estado", "E3 · Estado", "E3 · State"),
-         S("Secretaria estadual de saúde, planos, empresas e cidadãos de um estado. Volumes do estudo da Bahia (14,9 mi de habitantes); aplicável ao Ceará.",
-           "Secretaría estatal de salud, seguros, empresas y ciudadanos de un estado. Volúmenes del estudio de Bahía (14,9 M de habitantes); aplicable a Ceará.",
-           "A state health department, plus health plans, employers and citizens of one state. Volumes from the Bahia study (14.9M people); applicable to Ceará."),
+         S("Secretaria estadual de saúde, planos, empresas e cidadãos de um estado. Volumes de mercado pela média dos estados em prospecção (RJ, SP, MG, BA, CE e PR): no Ano 5, 2% da população sem plano e 2,4% dos beneficiários de planos.",
+           "Secretaría estatal de salud, seguros, empresas y ciudadanos de un estado. Volúmenes de mercado por el promedio de los estados en prospección (RJ, SP, MG, BA, CE y PR): en el Año 5, 2% de la población sin seguro y 2,4% de los beneficiarios de seguros.",
+           "A state health department, plus health plans, employers and citizens of one state. Market volumes from the average of the states in prospection (RJ, SP, MG, BA, CE and PR): in Year 5, 2% of the population without a plan and 2.4% of health-plan members."),
          [(S("US$ 20,0 mi", "US$ 20,0 M", "US$ 20.0M"), REC5), (S("20%", "20%", "20%"), TIR), (yrs("4,3"), PAY),
           (S("US$ 2,4 mi", "US$ 2,4 M", "US$ 2.4M"), CAP)],
          [(S("Governo", "Gobierno", "Government"), S("por cidadão coberto no atendimento móvel + contrato anual por célula pública", "por ciudadano cubierto en la atención móvil + contrato anual por célula pública", "per citizen covered by mobile care + annual contract per public cell")),
@@ -73,9 +73,9 @@ def build(Page, shell, S):
           (RES, S("Bahia e Ceará (a alinhar)", "Bahía y Ceará (por alinear)", "Bahia and Ceará (to align)"), True),
           (PLAN, aba("E3"), True), (VID, VID35, False)]),
         ("e4", S("E4 · Paraguai", "E4 · Paraguay", "E4 · Paraguay"),
-         S("O país-piloto da Fase 2: a plataforma já existe, então só entram os custos de aplicação no Paraguai. É o laboratório que gera a evidência para os outros escopos.",
-           "El país piloto de la Fase 2: la plataforma ya existe, así que solo entran los costos de aplicación en Paraguay. Es el laboratorio que genera la evidencia para los demás alcances.",
-           "Phase 2’s pilot country: the platform already exists, so only the costs of deploying in Paraguay come in. It is the lab that produces the evidence for the other scopes."),
+         S("O país-piloto da Fase 2: a plataforma já existe, então só entram os custos de aplicação no Paraguai. Volumes de mercado: 6,1 mi de habitantes (censo 2022), cerca de 7% com seguro privado; no Ano 5, 2% da população sem seguro e 2,4% dos segurados.",
+           "El país piloto de la Fase 2: la plataforma ya existe, así que solo entran los costos de aplicación en Paraguay. Volúmenes de mercado: 6,1 M de habitantes (censo 2022), cerca del 7% con seguro privado; en el Año 5, 2% de la población sin seguro y 2,4% de los asegurados.",
+           "Phase 2’s pilot country: the platform already exists, so only the costs of deploying in Paraguay come in. Market volumes: 6.1M people (2022 census), about 7% privately insured; in Year 5, 2% of the uninsured population and 2.4% of the insured."),
          [(S("US$ 13,5 mi", "US$ 13,5 M", "US$ 13.5M"), REC5),
           (S("> 100%", "> 100%", "> 100%"), S("TIR (plataforma paga na Fase 1)", "TIR (plataforma pagada en la Fase 1)", "IRR (platform paid in Phase 1)")),
           (yrs("1,4"), PAY),
@@ -87,9 +87,9 @@ def build(Page, shell, S):
           (RES, S("ES/PT", "ES/PT", "ES/PT"), True),
           (PLAN, aba("E4"), True), (VID, VID35, False)]),
         ("e5", S("E5 · Brasil", "E5 · Brasil", "E5 · Brazil"),
-         S("Camada nacional de monitoramento integrada à RNDS e aos programas do Ministério da Saúde, mais planos e cidadãos. Volumes do estudo nacional.",
-           "Capa nacional de monitoreo integrada a la RNDS y a los programas del Ministerio de Salud de Brasil, más seguros y ciudadanos. Volúmenes del estudio nacional.",
-           "A national monitoring layer integrated with Brazil’s RNDS and Ministry of Health programs, plus health plans and citizens. Volumes from the national study."),
+         S("Camada nacional de monitoramento integrada à RNDS e aos programas do Ministério da Saúde, mais planos e cidadãos. Volumes de mercado: no Ano 5, 2% dos 160 mi de brasileiros sem plano e 2,4% dos 53 mi de beneficiários — o potencial com todos os estados aderindo.",
+           "Capa nacional de monitoreo integrada a la RNDS y a los programas del Ministerio de Salud de Brasil, más seguros y ciudadanos. Volúmenes de mercado: en el Año 5, 2% de los 160 M de brasileños sin seguro y 2,4% de los 53 M de beneficiarios — el potencial con todos los estados adhiriendo.",
+           "A national monitoring layer integrated with Brazil’s RNDS and Ministry of Health programs, plus health plans and citizens. Market volumes: in Year 5, 2% of the 160M Brazilians without a plan and 2.4% of the 53M plan members — the potential with every state joining."),
          [(S("US$ 96,3 mi", "US$ 96,3 M", "US$ 96.3M"), REC5), (S("40%", "40%", "40%"), TIR), (yrs("3,8"), PAY),
           (S("US$ 8,7 mi", "US$ 8,7 M", "US$ 8.7M"), CAP)],
          [(S("Governo", "Gobierno", "Government"), S("per capita por cidadão coberto, no espírito do PMAE", "per cápita por ciudadano cubierto, en la línea del PMAE", "per capita per covered citizen, in the spirit of PMAE")),
@@ -132,7 +132,7 @@ def build(Page, shell, S):
     <div class="vsl">
       <div class="vtop">{T(*lab, cls="vlab")}<b class="vn" data-o="vidas">—</b><span class="vd" data-o="delta"></span></div>
       <input type="range" min="0" max="0" step="1" value="0" aria-label="{html.escape(lab[0])}">
-      <div class="vends"><span data-o="min"></span><button class="vreset" type="button">{T("Voltar ao calculado", "Volver a lo calculado", "Back to the estimate")}</button><span data-o="max"></span></div>
+      <div class="vends"><span data-o="min"></span><button class="vreset" type="button">{T("Voltar à referência", "Volver a la referencia", "Back to the reference")}</button><span data-o="max"></span></div>
     </div>
     <div class="vval" aria-live="polite"><span class="vlab" data-o="vallab"></span><b data-o="val">—</b><span class="vsub" data-o="valsub"></span></div>
   </div>
@@ -184,7 +184,7 @@ def build(Page, shell, S):
     {kpis([(S("10% do lucro", "10% de las utilidades", "10% of profit"), S("da rede ao investidor fundador, além do equity", "de la red al inversionista fundador, además del equity", "of the network to the founder investor, plus equity")),
            (S("US$ 0,60", "US$ 0,60", "US$ 0.60"), S("Royalty do motor por vida monitorada por mês", "Royalty del motor por vida monitoreada por mes", "Engine royalty per monitored life per month")),
            (S("US$ 4,8 mi", "US$ 4,8 M", "US$ 4.8M"), S("Fase 1: desenvolvimento, piloto e 24 meses da empresa", "Fase 1: desarrollo, piloto y 24 meses de la empresa", "Phase 1: development, pilot and 24 months of the company")),
-           (S("9% a 45%", "9% a 45%", "9% to 45%"), S("Da Help Cure a vender ao fundador, conforme o segmento", "De Help Cure a vender al fundador, según el segmento", "Of Help Cure to sell to the founder, by segment"))])}
+           (S("3% a 46%", "3% a 46%", "3% to 46%"), S("Da Help Cure a vender ao fundador, conforme o segmento", "De Help Cure a vender al fundador, según el segmento", "Of Help Cure to sell to the founder, by segment"))])}
   </div>
 </div>
 
@@ -205,7 +205,7 @@ def build(Page, shell, S):
 
 <section>
   <div class="wrap">
-    <div class="head">{T("Viabilidade por segmento", "Viabilidad por segmento", "Feasibility by segment", "span", "eyebrow")}{T("Escolha o segmento e mova a barra de vidas.", "Elija el segmento y mueva la barra de vidas.", "Pick a segment and move the lives slider.", "h2")}{T("A barra começa nas vidas calculadas no plano de cada segmento e soma passos de 2 mil na clínica (uma clínica a mais por passo), 5 mil no plano de saúde e 20 mil no estado e no país. VPL, TIR, payback, captação, valuation e o percentual da Help Cure a vender recalculam na hora. Em cada segmento o investidor é o fundador: paga a Fase 1 (fixa), o segmento e a reserva, recebe 10% do lucro e o percentual da empresa.", "La barra empieza en las vidas calculadas en el plan de cada segmento y suma pasos de 2 mil en la clínica (una clínica más por paso), 5 mil en el seguro de salud y 20 mil en el estado y el país. VAN, TIR, payback, captación, valuation y el porcentaje de Help Cure a vender se recalculan al instante. En cada segmento el inversionista es el fundador: paga la Fase 1 (fija), el segmento y la reserva, y recibe el 10% de las utilidades y el porcentaje de la empresa.", "The slider starts at the lives estimated in each segment’s plan and adds steps of 2,000 for the clinic (one more clinic per step), 5,000 for the health plan and 20,000 for the state and country. NPV, IRR, payback, funding, valuation and the share of Help Cure to sell recalculate instantly. In each segment the investor is the founder: pays Phase 1 (fixed), the segment and the reserve, and receives 10% of profit plus the stake.", "p")}</div>
+    <div class="head">{T("Viabilidade por segmento", "Viabilidad por segmento", "Feasibility by segment", "span", "eyebrow")}{T("Escolha o segmento e mova a barra de vidas.", "Elija el segmento y mueva la barra de vidas.", "Pick a segment and move the lives slider.", "h2")}{T("A barra começa nas vidas calculadas (estimativas de mercado), pode descer para cenários mais conservadores e anda em passos de 2 mil na clínica (uma clínica a mais por passo), 5 mil no plano de saúde, 20 mil no estado e no Paraguai e 100 mil no Brasil. VPL, TIR, payback, captação, valuation e o percentual da Help Cure a vender recalculam na hora. Em cada segmento o investidor é o fundador: paga a Fase 1 (fixa), o segmento e a reserva, recebe 10% do lucro e o percentual da empresa.", "La barra empieza en las vidas calculadas (estimaciones de mercado), puede bajar a escenarios más conservadores y avanza en pasos de 2 mil en la clínica (una clínica más por paso), 5 mil en el seguro de salud, 20 mil en el estado y en Paraguay y 100 mil en Brasil. VAN, TIR, payback, captación, valuation y el porcentaje de Help Cure a vender se recalculan al instante. En cada segmento el inversionista es el fundador: paga la Fase 1 (fija), el segmento y la reserva, y recibe el 10% de las utilidades y el porcentaje de la empresa.", "The slider starts at the estimated lives (market estimates), can go down to more conservative cases and moves in steps of 2,000 for the clinic (one more clinic per step), 5,000 for the health plan, 20,000 for the state and Paraguay and 100,000 for Brazil. NPV, IRR, payback, funding, valuation and the share of Help Cure to sell recalculate instantly. In each segment the investor is the founder: pays Phase 1 (fixed), the segment and the reserve, and receives 10% of profit plus the stake.", "p")}</div>
     <div class="ctabs" role="tablist">{"".join(tabs)}</div>{"".join(cases)}
     {T("Como calculamos: o mesmo motor da planilha de equity do Help Cure (out/2026). VPL a 20% a.a. O percentual a vender é o que dá ao investidor exatamente 25% a.a., somando divisão de lucros, dividendos (50% do caixa livre) e saída no ano 7 a 6× o EBITDA. A divisão de lucros é de 10% do EBITDA positivo por 10 anos; ao chegar a 5× a Fase 1, cai para 1%. A rodada inclui a Fase 1 (US$ 4,8 mi) e 15% de reserva. Todo segmento tem pelo menos 8 meses de desenvolvimento antes da primeira receita; o payback conta desde o início. Acima das vidas calculadas, a curva é extrapolada na mesma proporção.", "Cómo calculamos: el mismo motor de la planilla de equity de Help Cure (oct/2026). VAN al 20% anual. El porcentaje a vender es el que da al inversionista exactamente 25% anual, sumando participación en utilidades, dividendos (50% de la caja libre) y salida en el año 7 a 6× el EBITDA. La participación es del 10% del EBITDA positivo por 10 años; al llegar a 5× la Fase 1, baja al 1%. La ronda incluye la Fase 1 (US$ 4,8 M) y 15% de reserva. Todo segmento tiene al menos 8 meses de desarrollo antes del primer ingreso; el payback se cuenta desde el inicio. Por encima de las vidas calculadas, la curva se extrapola en la misma proporción.", "How we calculate: the same engine as Help Cure’s equity spreadsheet (Oct 2026). NPV at 20% a year. The share to sell is the one that gives the investor exactly 25% a year, adding profit share, dividends (50% of free cash) and exit in year 7 at 6× EBITDA. The profit share is 10% of positive EBITDA for 10 years; once it reaches 5× Phase 1, it drops to 1%. The round includes Phase 1 (US$ 4.8M) and a 15% reserve. Every segment has at least 8 months of development before its first revenue; payback counts from the start. Above the estimated lives, the curve is extrapolated in the same proportion.", "p", "vnote2", attrs=' style="margin-top:22px;font-size:13.5px"')}
   </div>
@@ -260,7 +260,7 @@ def build(Page, shell, S):
     <p style="margin-top:20px"><a class="btn primary" href="mailto:investidores@helpcure.com.py">{T("Falar com a equipe", "Hablar con el equipo", "Talk to the team")}</a></p>
   </div>
 </section>
-<script src="assets/viabilidade-dados.js?v=4"></script><script src="assets/modelo-motor.js?v=1"></script><script src="assets/viabilidade.js?v=4" defer></script><script src="assets/rede.js?v=1" defer></script>
+<script src="assets/viabilidade-dados.js?v=5"></script><script src="assets/modelo-motor.js?v=1"></script><script src="assets/viabilidade.js?v=5" defer></script><script src="assets/rede.js?v=2" defer></script>
 <script>
 document.querySelectorAll('.ctabs:not(.fcen) button').forEach(function(b){{b.onclick=function(){{document.querySelectorAll('.ctabs:not(.fcen) button').forEach(function(x){{x.setAttribute('aria-selected',x===b)}});document.querySelectorAll('.case').forEach(function(c){{c.classList.toggle('on',c.id==='c-'+b.dataset.c)}})}}}});
 </script>
