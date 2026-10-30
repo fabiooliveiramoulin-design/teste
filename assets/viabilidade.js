@@ -1,8 +1,15 @@
 // Help Cure — viabilidade por segmento na página do investidor (barra de vidas + indicadores + valuation).
-// Dados: assets/viabilidade-dados.js · Motor: assets/viabilidade-motor.js (mesmas fórmulas do simulador em Excel).
+// Dados: assets/viabilidade-dados.js · Motor: assets/modelo-motor.js (mesmas fórmulas da planilha HelpCure_Equity_Lucros_Royalties).
 (function () {
-  var D = window.HC_VIAB, M = window.HCMotor;
+  var D = window.HC_VIAB, M = window.HCModelo;
   if (!D || !M) return;
+  // Um segmento sozinho: o investidor dele é o fundador (Fase 1 + segmento + reserva), com divisão de lucros
+  function calc(code, N) {
+    var k = N / D.escopos[code].nbase, g = M.segmento(D, code, k), c = M.empresa(D, [[code, k, 2]], true), s0 = M.empresa(D, [[code, k, 2]], false);
+    return { vidas: N, rodada: true, curva: g.curva, receita5: g.curva.receita[5], ebitda5: g.curva.ebitda[5], margem: g.curva.receita[5] ? g.curva.ebitda[5] / g.curva.receita[5] : 0,
+      vpl: g.vpl, tir: g.tir, payback: g.payback, captacao: g.captacao, ticket: c.rodada, posmoney: c.posmoney, premoney: c.premoney,
+      participacao: c.participacao, participacaoSem: s0.participacao, vpDivisao: c.vpDivisao };
+  }
   var P = D.premissas;
 
   var TX = {
@@ -60,7 +67,7 @@
   var boxes = [];
   function load(b, code) {
     b.code = code; b.S = D.escopos[code];
-    b.st = steps(b.S); b.R = b.st.map(function (n) { return M.calc(D, code, n); });
+    b.st = steps(b.S); b.R = b.st.map(function (n) { return calc(code, n); });
     b.i = 0; b.inp.max = b.st.length - 1; b.inp.value = 0;
   }
   document.querySelectorAll(".viab[data-esc]").forEach(function (el) {
@@ -102,7 +109,7 @@
       set(b, "val", r.premoney > 0 ? usd(r.premoney, l) : t.neg); o(b, "val").classList.toggle("txt", !(r.premoney > 0));
       set(b, "valsub", r.premoney > 0 ? t.valsub : "");
       set(b, "ticket", usd(r.ticket, l)); set(b, "posmoney", usd(r.posmoney, l));
-      set(b, "participacao", r.participacao > 1 ? "> 100%" : pct(r.participacao, l)); set(b, "moic", r.moicJusto === null ? "—" : dec(r.moicJusto, 1, l) + "x");
+      set(b, "participacao", r.participacao > 1 ? "> 100%" : pct(r.participacao, l)); set(b, "semdiv", r.participacaoSem > 1 ? "> 100%" : pct(r.participacaoSem, l)); set(b, "vpdiv", usd(r.vpDivisao, l));
       var msg = r.participacao <= 0.4 ? fill(t.ok, { p: pct(r.participacao, l) }) : r.participacao <= 1 ? fill(t.alto, { p: pct(r.participacao, l) }) : t.inv;
       if (r.participacao > 0.4) {
         var j = -1; for (var q = b.i + 1; q < b.R.length; q++) if (b.R[q].participacao <= 0.4) { j = q; break; }

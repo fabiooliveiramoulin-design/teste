@@ -67,6 +67,8 @@ for code in ("E1PY", "E1BR"):
         "receita": [0] + [CLI_FEE * 12 + sum(v * MIX[k] * PRECO[t][k] * 12 for k in MIX) for v in vid[1:]],
         "servir": [0] + [sum(v * MIX[k] * SERVIR[k] * 12 for k in MIX) for v in vid[1:]],
         "op_celula": [0] * 6, "op_movel": [0] * 6, "capex": [0] * 6})
+# ---- Modelo final (30/10/2026): royalty da Moulin por vida e divisão de lucros do fundador (planilha HelpCure_Equity_Lucros_Royalties)
+prem.update({"mvida": 0.60, "ps": 0.10, "pscap": 5, "psres": 0.01})
 out = {"fonte": "HelpCure_Simulador_Vidas.xlsx", "gerado": datetime.date.today().isoformat(), "premissas": prem, "escopos": esc}
 dst = os.path.join(ROOT, "assets", "viabilidade-dados.js")
 open(dst, "w", encoding="utf-8").write("// Gerado por build/viabilidade_dados.py a partir do simulador de vidas. Não editar à mão.\nwindow.HC_VIAB=" + json.dumps(out, ensure_ascii=False, separators=(",", ":")) + ";\n")
