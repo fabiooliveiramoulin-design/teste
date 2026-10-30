@@ -12,13 +12,15 @@ REV0, SRV0, COP0, UOP0, CPX0, LIV0 = 70, 93, 101, 109, 117, 125   # layout fixo 
 row = lambda r: [b.cell(r, c).value or 0 for c in range(2, 8)]
 P = lambda a: p[a].value
 
+# Pelo menos 8 meses de desenvolvimento/implantação (Ano 0, sem receita) em todos os segmentos — decisão de 30/10/2026.
+MIN_DEV_MESES = 8
 esc = {}
 for i, code in enumerate(CODES):
     r = 5 + i
     v = [b.cell(r, c).value for c in range(1, 19)]
     tier = v[8]
     esc[code] = {
-        "nbase": v[2], "m0": v[3], "teamb": v[4], "integ": v[5], "roy": v[6], "regime": v[7], "tabela": tier,
+        "nbase": v[2], "m0": max(v[3], MIN_DEV_MESES), "teamb": v[4], "integ": v[5], "roy": v[6], "regime": v[7], "tabela": tier,
         "passo": v[11], "min": v[12], "max": v[13], "celula": v[14], "rodada": v[15], "elast": v[16], "integk": v[17],
         "vidas": row(LIV0 + i), "receita": row(REV0 + i * 4 + TIERS.index(tier)),
         "servir": row(SRV0 + i), "op_celula": row(COP0 + i), "op_movel": row(UOP0 + i), "capex": row(CPX0 + i),

@@ -36,7 +36,7 @@
     var vpl = fcf[0] + npv(wacc, fcf.slice(1));
     var tir = irr(fcf); if (tir === null) tir = 0;
     var payback = null;
-    for (y = 1; y <= 5; y++) if (cum[y] >= 0) { payback = y - 1 + (-cum[y - 1] / fcf[y]); break; }
+    for (y = 1; y <= 5; y++) if (cum[y] >= 0) { payback = S.m0 / 12 + y - 1 + (-cum[y - 1] / fcf[y]); break; } // contado desde o início do desenvolvimento (Ano 0 = m0 meses)
     var need = -Math.min(0, Math.min.apply(null, cum));
     var capt = need * P.safety;
     var ticket = inr ? (F.f1cap + capt) * (1 + P.res) : capt;
