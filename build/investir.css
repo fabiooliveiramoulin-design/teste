@@ -82,3 +82,8 @@ table.t td.n{text-align:right;font-variant-numeric:tabular-nums}
 .vpais button[aria-pressed=true]{background:var(--led);border-color:var(--led);color:#05241C}
 .vpais button:focus-visible{outline:2px solid var(--led);outline-offset:2px}
 .vpn{font-size:13px;color:var(--ink-3);margin-left:6px}
+.frules .card h3{font-size:18px}
+.fsvg path.br{fill:var(--ce)}
+.fund .vk .kpi b{font-size:clamp(22px,3vw,30px)}
+.fund{--cr:#3B6FC4;--ce:#13A06A}
+@media (prefers-color-scheme:dark){.fund{--cr:#5584D4;--ce:#1FAE75}}

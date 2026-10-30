@@ -1,7 +1,7 @@
 // Help Cure — idioma (PT/ES/EN), menu móvel e player de vídeo
 (function () {
   // O site já tem PT/ES/EN: evita que o tradutor do navegador estrague marca, números e botões de idioma
-  document.querySelectorAll(".logo, .lang, .kpi b, .vrow b, [data-o], .vsvg, .vtab, .vtip, table.t td.n").forEach(function (e) { e.setAttribute("translate", "no"); e.classList.add("notranslate"); });
+  document.querySelectorAll(".logo, .lang, .kpi b, .vrow b, [data-o], [data-f], .vsvg, .vtab, .ftab, .vtip, table.t td.n").forEach(function (e) { e.setAttribute("translate", "no"); e.classList.add("notranslate"); });
   var PT = {};
   document.querySelectorAll("[data-i]").forEach(function (el) { PT[el.dataset.i] = el.hasAttribute("data-html") ? el.innerHTML : el.textContent; });
   document.querySelectorAll("[data-alt]").forEach(function (el) { PT["alt:" + el.dataset.alt] = el.alt; });

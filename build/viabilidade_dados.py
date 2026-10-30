@@ -31,7 +31,8 @@ prem = {
     "tr": [P("B32"), P("B33"), P("B34")], "tir": P("B37"), "mult": P("B38"), "corpk": P("B39"), "res": P("B40"), "payout": P("B41"),
     "minm": P("B42"), "eref": P("B43"), "dsh": P("B44"), "psh": P("B45"), "csh": P("B46"),
 }
-# ---- Clínica: projeto enxuto (decisão de 30/10/2026), em duas versões — Paraguai e Brasil (preços e impostos de cada país).
+# ---- Clínica (30/10/2026): como fundadora, paga a Fase 1 cheia e recebe a cota fundadora. A Fase 1 enxuta abaixo ficou só como referência.
+# Antes: projeto enxuto, em duas versões — Paraguai e Brasil (preços e impostos de cada país).
 # Só desenvolvimento + implantação + 24 meses de manutenção da empresa. Sem dispositivos, célula, unidade móvel nem piloto físico.
 # Itens da aba F1_Desenvolvimento (HelpCure_Modelo_por_Abrangencia4.xlsx, pontos médios) que saem ou diminuem:
 F1_DEV_SUB = 2248000                 # subtotal do desenvolvimento completo
@@ -47,7 +48,7 @@ f1_cli = {"dev": dev_cli, "pil": 0, "cg": cg, "f1cap": (dev_cli + cg) * prem["sa
 base = esc.pop("E1")
 prem_elast = 0.7   # suporte com ganho de escala, como nos demais segmentos (decisão de 30/10/2026; a planilha usa 1,0)
 for code, tier, regime in (("E1PY", "PY", "PY"), ("E1BR", "BR realista", "BR")):
-    e = dict(base); e.update({"tabela": tier, "regime": regime, "rodada": 1, "f1": f1_cli, "elast": prem_elast,
+    e = dict(base); e.update({"tabela": tier, "regime": regime, "rodada": 1, "elast": prem_elast,  # Fase 1 cheia (cota fundadora, 30/10/2026); f1_cli fica só como referência
                               "receita": row(REV0 + 0 * 4 + TIERS.index(tier))})
     esc[code] = e
 out = {"fonte": "HelpCure_Simulador_Vidas.xlsx", "gerado": datetime.date.today().isoformat(), "premissas": prem, "escopos": esc}
