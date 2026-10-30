@@ -30,3 +30,50 @@ table.t{width:100%;border-collapse:collapse;margin-top:20px;font-size:15px;min-w
 table.t th,table.t td{text-align:left;padding:11px 12px;border-bottom:1px solid var(--line)}
 table.t th{font:600 12px var(--f-d);text-transform:uppercase;letter-spacing:.05em;color:var(--ink-3)}
 table.t td.n{text-align:right;font-variant-numeric:tabular-nums}
+/* viabilidade por segmento */
+.viab{margin-top:22px;--cr:#3B6FC4;--ce:#13A06A}
+@media (prefers-color-scheme:dark){.viab{--cr:#5584D4;--ce:#1FAE75}}
+.vbar{display:grid;grid-template-columns:1fr minmax(240px,320px);gap:0;background:var(--brand);color:#E9F3F0;border-radius:18px;overflow:hidden}
+@media (max-width:760px){.vbar{grid-template-columns:1fr}}
+.vsl{padding:22px 24px 18px}
+.vtop{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 12px}
+.vlab{font-size:13.5px;color:#BFD3CD;flex-basis:100%}
+.vn{font:700 clamp(28px,4vw,40px)/1.1 var(--f-d);font-variant-numeric:tabular-nums}
+.vd{font-size:14px;color:#3EE39A}
+.viab input[type=range]{width:100%;margin:16px 0 6px;accent-color:#17B877;height:28px;cursor:pointer}
+.vends{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:13px;color:#BFD3CD;font-variant-numeric:tabular-nums}
+.vreset{all:unset;cursor:pointer;font:600 12.5px var(--f-d);color:#E9F3F0;border:1px solid rgba(255,255,255,.3);border-radius:999px;padding:4px 12px}
+.vreset:focus-visible{outline:2px solid #3EE39A}
+.vval{background:#06201C;padding:22px 24px;display:flex;flex-direction:column;justify-content:center;gap:4px;border-left:1px solid rgba(255,255,255,.08)}
+.vval b{font:700 clamp(26px,3.4vw,36px)/1.15 var(--f-d);color:#3EE39A;font-variant-numeric:tabular-nums}
+.vsub{font-size:12.5px;color:#BFD3CD}
+.vst{margin:16px 0 0;padding:12px 16px;border-radius:12px;font-size:15px;background:var(--soft);color:var(--ink-2);border-left:4px solid var(--line)}
+.vst.good{border-left-color:#17B877}.vst.warn{border-left-color:#E0A100}.vst.bad{border-left-color:#D9534F}
+.vk{grid-template-columns:repeat(3,1fr);margin-top:16px}
+@media (max-width:640px){.vk{grid-template-columns:1fr 1fr}}
+.kpi b.neg{color:#C0392B}
+.vrow{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-top:14px}
+@media (max-width:760px){.vrow{grid-template-columns:1fr 1fr}}
+.vrow div{background:var(--surface);padding:12px 14px;font-size:13px;color:var(--ink-3)}
+.vrow b{display:block;font:600 18px/1.3 var(--f-d);color:var(--ink);font-variant-numeric:tabular-nums}
+.vnote2{margin-top:14px;font-size:14.5px;color:var(--ink-3);max-width:75ch}
+.vchart{position:relative;margin-top:22px;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:16px 16px 10px}
+.vch-h{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px}
+.vch-h h3{margin:0;font-size:16px}
+.vleg{display:flex;gap:14px;font-size:13px;color:var(--ink-2)}
+.sw{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+.sw.r{background:var(--cr)}.sw.e{background:var(--ce)}
+.vsvg{margin-top:8px;min-height:230px}
+.vsvg svg{display:block;overflow:visible}
+.vsvg text{font:12px var(--f-b);fill:var(--ink-3)}
+.vsvg line.g{stroke:var(--line);stroke-width:1}
+.vsvg line.z{stroke:var(--ink-3);stroke-width:1}
+.vsvg path.br{fill:var(--cr)}.vsvg path.be{fill:var(--ce)}
+.vsvg rect.hit{fill:transparent;cursor:pointer}
+.vsvg rect.hit.on{fill:var(--ink);fill-opacity:.05}
+.vtip{position:absolute;top:58px;width:190px;pointer-events:none;opacity:0;transition:opacity .12s;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:8px 10px;font-size:12.5px;color:var(--ink-2);box-shadow:0 6px 18px rgba(0,0,0,.12);display:flex;flex-direction:column;gap:2px}
+.vtip.on{opacity:1}.vtip b{color:var(--ink);font-family:var(--f-d)}
+.vchart details{margin-top:6px;font-size:13.5px}.vchart summary{cursor:pointer;color:var(--ink-2)}
+.vtab{min-width:620px;font-size:13.5px;margin-top:8px}
+.vreset[hidden]{visibility:hidden}
+.vval b.txt{font-size:22px;color:#FFB4A8}

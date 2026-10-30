@@ -1,6 +1,6 @@
 # Página do investidor (investir.html) — PT/ES/EN. Importada por build.py.
 # Números: modelo HelpCure_Modelo_por_Abrangencia (out/2026). Ao mudar o modelo, atualize aqui.
-import os
+import os, html
 
 INV_CSS = open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "investir.css"), encoding="utf-8").read()
 
@@ -100,6 +100,43 @@ def build(Page, shell, S):
           (PLAN, aba("E5"), True), (VID, VID35, False)]),
     ]
 
+    def viab(code):
+        clin = code == "E1"
+        lab = S("Pacientes no Ano 5 (clínicas replicadas)", "Pacientes en el Año 5 (clínicas replicadas)", "Patients in Year 5 (replicated clinics)") if clin else \
+            S("Vidas monitoradas no Ano 5", "Vidas monitoreadas en el Año 5", "Lives monitored in Year 5")
+        k6 = [("vpl", S("VPL do projeto", "VAN del proyecto", "Project NPV")), ("tir", S("TIR do projeto", "TIR del proyecto", "Project IRR")),
+              ("payback", S("Payback", "Payback", "Payback")), ("receita5", S("Receita no Ano 5", "Ingresos en el Año 5", "Year 5 revenue")),
+              ("ebitda5", S("EBITDA no Ano 5", "EBITDA en el Año 5", "Year 5 EBITDA")), ("captacao", S("Captação do segmento", "Captación del segmento", "Segment funding"))]
+        kp6 = '<div class="kpis vk">' + "".join('<div class="kpi"><b data-o="%s">—</b>%s</div>' % (o, T(*l)) for o, l in k6) + '</div>'
+        if clin:
+            val = T("A clínica usa a plataforma pronta: não paga célula nem unidade móvel e não entra na rodada da Fase 1. Por isso o que vale aqui é o resultado do projeto, por clínica replicada.",
+                    "La clínica usa la plataforma lista: no paga célula ni unidad móvil y no entra en la ronda de la Fase 1. Por eso lo que vale aquí es el resultado del proyecto, por clínica replicada.",
+                    "The clinic uses the ready platform: it pays for no cell or mobile unit and is not part of the Phase 1 round. So what counts here is the project result, per replicated clinic.", "p", "vnote2")
+        else:
+            v4 = [("ticket", S("Rodada (Fase 1 + segmento + reserva)", "Ronda (Fase 1 + segmento + reserva)", "Round (Phase 1 + segment + reserve)")),
+                  ("posmoney", S("Pós-money", "Post-money", "Post-money")),
+                  ("participacao", S("Participação justa para TIR de 25%", "Participación justa para TIR del 25%", "Fair stake for a 25% IRR")),
+                  ("moic", S("Múltiplo do investidor (MOIC)", "Múltiplo del inversionista (MOIC)", "Investor multiple (MOIC)"))]
+            val = '<div class="vrow">' + "".join('<div><b data-o="%s">—</b>%s</div>' % (o, T(*l)) for o, l in v4) + '</div>'
+        return f'''<div class="viab" data-esc="{code}">
+  <div class="vbar">
+    <div class="vsl">
+      <div class="vtop">{T(*lab, cls="vlab")}<b class="vn" data-o="vidas">—</b><span class="vd" data-o="delta"></span></div>
+      <input type="range" min="0" max="0" step="1" value="0" aria-label="{html.escape(lab[0])}">
+      <div class="vends"><span data-o="min"></span><button class="vreset" type="button">{T("Voltar ao calculado", "Volver a lo calculado", "Back to the estimate")}</button><span data-o="max"></span></div>
+    </div>
+    <div class="vval" aria-live="polite"><span class="vlab" data-o="vallab"></span><b data-o="val">—</b><span class="vsub" data-o="valsub"></span></div>
+  </div>
+  <p class="vst" data-o="status"></p>
+  {kp6}
+  {val}
+  <div class="vchart">
+    <div class="vch-h">{T("Receita e EBITDA por ano", "Ingresos y EBITDA por año", "Revenue and EBITDA by year", "h3")}<div class="vleg"><span><i class="sw r"></i>{T("Receita", "Ingresos", "Revenue")}</span><span><i class="sw e"></i>{T("EBITDA", "EBITDA", "EBITDA")}</span></div></div>
+    <div class="vsvg"></div><div class="vtip" role="status"></div>
+    <details><summary>{T("Ver em tabela", "Ver en tabla", "View as table")}</summary><div class="tw"><table class="t vtab"></table></div></details>
+  </div>
+</div>'''
+
     tabs, cases = [], []
     for i, (cid, lab, txt, kp, rev, docs) in enumerate(ESC):
         tabs.append('<button role="tab" aria-selected="%s" data-c="%s">%s</button>' % ("true" if i == 0 else "false", cid, T(*lab)))
@@ -107,7 +144,7 @@ def build(Page, shell, S):
         ds = "".join('<div class="doc%s">%s%s<br><span class="tag%s">%s</span></div>' % (
             " ok" if ok else "", T(*a, tag="b"), T(*b), " ok" if ok else "", T(*(OK if ok else TODO))) for a, b, ok in docs)
         cases.append('<div class="case%s" id="c-%s">%s%s%s<ul class="rev">%s</ul><div class="docs">%s</div></div>' % (
-            " on" if i == 0 else "", cid, T(*txt, tag="p", cls="lead", attrs=' style="max-width:70ch"'), kpis(kp),
+            " on" if i == 0 else "", cid, T(*txt, tag="p", cls="lead", attrs=' style="max-width:70ch"'), viab(cid.upper()),
             T("Como gera receita", "Cómo genera ingresos", "How it makes money", "h3", attrs=' style="margin-top:26px"'), revs, ds))
 
     modelo = [
@@ -159,8 +196,9 @@ def build(Page, shell, S):
 
 <section>
   <div class="wrap">
-    <div class="head">{T("Os escopos", "Los alcances", "The scopes", "span", "eyebrow")}{T("Escolha a abrangência. Os números acompanham.", "Elija el alcance. Los números acompañan.", "Pick the reach. The numbers follow.", "h2")}{T("Mesmas premissas de preço e custo em todos os escopos. Cada um tem o mesmo kit: apresentação, resumo executivo, planilha e vídeo.", "Mismas premisas de precio y costo en todos los alcances. Cada uno tiene el mismo kit: presentación, resumen ejecutivo, planilla y video.", "Same price and cost assumptions in every scope. Each has the same kit: presentation, executive summary, spreadsheet and video.", "p")}</div>
+    <div class="head">{T("Viabilidade por segmento", "Viabilidad por segmento", "Feasibility by segment", "span", "eyebrow")}{T("Escolha o segmento e mova a barra de vidas.", "Elija el segmento y mueva la barra de vidas.", "Pick a segment and move the lives slider.", "h2")}{T("A barra começa nas vidas calculadas no plano de cada segmento e soma passos de 5 mil (clínica e operadora) ou 20 mil (estado e país). VPL, TIR, payback, captação e o valuation da Help Cure recalculam na hora. Em todos os segmentos, menos a clínica, a rodada inclui a Fase 1 (desenvolvimento), que é fixa.", "La barra empieza en las vidas calculadas en el plan de cada segmento y suma pasos de 5 mil (clínica y aseguradora) o 20 mil (estado y país). VAN, TIR, payback, captación y el valuation de Help Cure se recalculan al instante. En todos los segmentos, menos la clínica, la ronda incluye la Fase 1 (desarrollo), que es fija.", "The slider starts at the lives estimated in each segment’s plan and adds steps of 5,000 (clinic and health plan) or 20,000 (state and country). NPV, IRR, payback, funding and Help Cure’s valuation recalculate instantly. In every segment except the clinic, the round includes Phase 1 (development), which is fixed.", "p")}</div>
     <div class="ctabs" role="tablist">{"".join(tabs)}</div>{"".join(cases)}
+    {T("Como calculamos: mesmo motor do simulador de vidas do plano de negócios (out/2026). VPL a 20% a.a.; valuation por fluxo descontado à TIR de 25% exigida pelo investidor, com saída no ano 7 a 6× o EBITDA e dividendos de 50% do caixa livre. A rodada de cada segmento inclui a Fase 1 (US$ 4,8 mi) e 15% de reserva. Acima das vidas calculadas, a curva é extrapolada na mesma proporção, sem teste de capacidade de mercado.", "Cómo calculamos: el mismo motor del simulador de vidas del plan de negocios (oct/2026). VAN al 20% anual; valuation por flujo descontado a la TIR del 25% exigida por el inversionista, con salida en el año 7 a 6× el EBITDA y dividendos del 50% de la caja libre. La ronda de cada segmento incluye la Fase 1 (US$ 4,8 M) y 15% de reserva. Por encima de las vidas calculadas, la curva se extrapola en la misma proporción, sin prueba de capacidad de mercado.", "How we calculate: the same engine as the business plan’s lives simulator (Oct 2026). NPV at 20% a year; valuation by discounted cash flow at the investor’s required 25% IRR, with exit in year 7 at 6× EBITDA and 50% of free cash paid as dividends. Each segment’s round includes Phase 1 (US$ 4.8M) and a 15% reserve. Above the estimated lives, the curve is extrapolated in the same proportion, with no market-capacity test.", "p", "vnote2", attrs=' style="margin-top:22px;font-size:13.5px"')}
   </div>
 </section>
 
@@ -174,6 +212,7 @@ def build(Page, shell, S):
     <p style="margin-top:20px"><a class="btn primary" href="mailto:investidores@helpcure.com.py">{T("Falar com a equipe", "Hablar con el equipo", "Talk to the team")}</a></p>
   </div>
 </section>
+<script src="assets/viabilidade-dados.js?v=1"></script><script src="assets/viabilidade-motor.js?v=1"></script><script src="assets/viabilidade.js?v=1" defer></script>
 <script>
 document.querySelectorAll('.ctabs button').forEach(function(b){{b.onclick=function(){{document.querySelectorAll('.ctabs button').forEach(function(x){{x.setAttribute('aria-selected',x===b)}});document.querySelectorAll('.case').forEach(function(c){{c.classList.toggle('on',c.id==='c-'+b.dataset.c)}})}}}});
 </script>
