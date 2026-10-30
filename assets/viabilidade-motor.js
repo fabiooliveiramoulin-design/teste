@@ -18,7 +18,7 @@
 
   function calc(D, code, N) {
     var P = D.premissas, S = D.escopos[code];
-    var k = N / S.nbase, inr = S.rodada === 1;
+    var k = N / S.nbase, inr = S.rodada === 1, F = S.f1 || P; // F = Fase 1 do segmento (a clínica tem uma Fase 1 enxuta)
     var tax = S.regime === "PY" ? P.taxPY : P.taxBR, wacc = S.regime === "PY" ? P.wPY : P.wBR;
     var teamm = S.teamb * Math.max(P.floor, Math.pow(k, S.elast));
     var integ = S.integ * (S.integk === 1 ? k : 1);
@@ -39,7 +39,7 @@
     for (y = 1; y <= 5; y++) if (cum[y] >= 0) { payback = y - 1 + (-cum[y - 1] / fcf[y]); break; }
     var need = -Math.min(0, Math.min.apply(null, cum));
     var capt = need * P.safety;
-    var ticket = inr ? (P.f1cap + capt) * (1 + P.res) : capt;
+    var ticket = inr ? (F.f1cap + capt) * (1 + P.res) : capt;
     var R = { vidas: N, k: k, curva: { vidas: lives, receita: rev, ebitda: ebitda, fluxo: fcf, caixa: cum },
       receita5: rev[5], ebitda5: ebitda[5], margem: rev[5] ? ebitda[5] / rev[5] : 0, vpl: vpl, tir: tir, payback: payback,
       necessidade: need, captacao: capt, ticket: ticket, rodada: inr };
@@ -47,9 +47,9 @@
 
     // valuation da Help Cure (linha do tempo t0..t7: Fase 1 em t1–t2, Fase 2 de t2 em diante)
     var corp = function (t) { return -P.corp * 12 * P.corpk * Math.pow(1 + P.grow, t - 3); };
-    var firm = [0, -(P.dev * P.dsh + P.pil * P.psh + P.cg * P.csh), -(P.dev * (1 - P.dsh) + P.pil * (1 - P.psh) + P.cg * (1 - P.csh)) + fcf[0]];
+    var firm = [0, -(F.dev * P.dsh + F.pil * P.psh + F.cg * P.csh), -(F.dev * (1 - P.dsh) + F.pil * (1 - P.psh) + F.cg * (1 - P.csh)) + fcf[0]];
     for (var t = 3; t <= 7; t++) firm[t] = fcf[t - 2] + corp(t);
-    var ap = [P.f1cap * P.tr[0], P.f1cap * P.tr[1], P.f1cap * P.tr[2] + (ticket - P.f1cap)];
+    var ap = [F.f1cap * P.tr[0], F.f1cap * P.tr[1], F.f1cap * P.tr[2] + (ticket - F.f1cap)];
     var buf = P.minm * P.corp * P.corpk, div = [0, 0, 0], cash = [ap[0] + firm[0]];
     for (t = 1; t <= 7; t++) {
       if (t >= 3) div[t] = P.payout * Math.max(0, Math.min(firm[t], cash[t - 1] + firm[t] - buf));

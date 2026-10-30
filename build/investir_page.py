@@ -35,9 +35,9 @@ def build(Page, shell, S):
 
     ESC = [
         ("e1", S("E1 · Clínica", "E1 · Clínica", "E1 · Clinic"),
-         S("Caso à parte: um hospital ou clínica que usa a plataforma pronta, sem célula física, sem unidade móvel e sem piloto. Só a integração com o sistema da casa. Não depende da Fase 1 e cresce por clínica replicada.",
-           "Caso aparte: un hospital o clínica que usa la plataforma lista, sin célula física, sin unidad móvil y sin piloto. Solo la integración con el sistema de la institución. No depende de la Fase 1 y crece clínica por clínica.",
-           "A separate case: a hospital or clinic using the ready platform, with no physical cell, no mobile unit and no pilot. Only the integration with its own system. It doesn’t depend on Phase 1 and grows clinic by clinic."),
+         S("Projeto enxuto para redes de clínicas e hospitais: só o desenvolvimento da plataforma, a implantação no sistema de cada clínica e 24 meses de manutenção da empresa. Sem dispositivos, sem célula de atendimento e sem unidade móvel. Cresce por clínica replicada (500 pacientes cada), no Paraguai ou no Brasil, com os preços e impostos de cada país.",
+           "Proyecto reducido para redes de clínicas y hospitales: solo el desarrollo de la plataforma, la implantación en el sistema de cada clínica y 24 meses de mantenimiento de la empresa. Sin dispositivos, sin célula de atención y sin unidad móvil. Crece clínica por clínica (500 pacientes cada una), en Paraguay o en Brasil, con los precios e impuestos de cada país.",
+           "A lean project for clinic and hospital networks: only platform development, deployment into each clinic’s system and 24 months of company upkeep. No devices, no care cell and no mobile unit. It grows clinic by clinic (500 patients each), in Paraguay or Brazil, with each country’s prices and taxes."),
          [(S("US$ 133 mil", "US$ 133 mil", "US$ 133k"), S("Receita por ano, por cliente", "Ingresos por año, por cliente", "Revenue per year, per client")),
           (S("73%", "73%", "73%"), TIR), (yrs("1,1"), PAY),
           (S("US$ 42 mil", "US$ 42 mil", "US$ 42k"), S("Captação por cliente", "Captación por cliente", "Funding per client"))],
@@ -102,13 +102,15 @@ def build(Page, shell, S):
 
     def viab(code):
         clin = code == "E1"
+        if clin:
+            code = "E1PY"
         lab = S("Pacientes no Ano 5 (clínicas replicadas)", "Pacientes en el Año 5 (clínicas replicadas)", "Patients in Year 5 (replicated clinics)") if clin else \
             S("Vidas monitoradas no Ano 5", "Vidas monitoreadas en el Año 5", "Lives monitored in Year 5")
         k6 = [("vpl", S("VPL do projeto", "VAN del proyecto", "Project NPV")), ("tir", S("TIR do projeto", "TIR del proyecto", "Project IRR")),
               ("payback", S("Payback", "Payback", "Payback")), ("receita5", S("Receita no Ano 5", "Ingresos en el Año 5", "Year 5 revenue")),
               ("ebitda5", S("EBITDA no Ano 5", "EBITDA en el Año 5", "Year 5 EBITDA")), ("captacao", S("Captação do segmento", "Captación del segmento", "Segment funding"))]
         kp6 = '<div class="kpis vk">' + "".join('<div class="kpi"><b data-o="%s">—</b>%s</div>' % (o, T(*l)) for o, l in k6) + '</div>'
-        if clin:
+        if False:
             val = T("A clínica usa a plataforma pronta: não paga célula nem unidade móvel e não entra na rodada da Fase 1. Por isso o que vale aqui é o resultado do projeto, por clínica replicada.",
                     "La clínica usa la plataforma lista: no paga célula ni unidad móvil y no entra en la ronda de la Fase 1. Por eso lo que vale aquí es el resultado del proyecto, por clínica replicada.",
                     "The clinic uses the ready platform: it pays for no cell or mobile unit and is not part of the Phase 1 round. So what counts here is the project result, per replicated clinic.", "p", "vnote2")
@@ -118,7 +120,14 @@ def build(Page, shell, S):
                   ("participacao", S("Participação justa para TIR de 25%", "Participación justa para TIR del 25%", "Fair stake for a 25% IRR")),
                   ("moic", S("Múltiplo do investidor (MOIC)", "Múltiplo del inversionista (MOIC)", "Investor multiple (MOIC)"))]
             val = '<div class="vrow">' + "".join('<div><b data-o="%s">—</b>%s</div>' % (o, T(*l)) for o, l in v4) + '</div>'
+        pais = ('<div class="vpais" role="group" aria-label="País">'
+                '<button type="button" data-p="E1PY" aria-pressed="true">%s</button><button type="button" data-p="E1BR" aria-pressed="false">%s</button>'
+                '%s</div>' % (T("Paraguai", "Paraguay", "Paraguay"), T("Brasil", "Brasil", "Brazil"),
+                              T("Fase 1 enxuta: US$ 3,7 mi (desenvolvimento + 24 meses de empresa, com 30% de folga)",
+                                "Fase 1 reducida: US$ 3,7 M (desarrollo + 24 meses de empresa, con 30% de margen)",
+                                "Lean Phase 1: US$ 3.7M (development + 24 months of company, with a 30% buffer)", cls="vpn"))) if clin else ""
         return f'''<div class="viab" data-esc="{code}">
+  {pais}
   <div class="vbar">
     <div class="vsl">
       <div class="vtop">{T(*lab, cls="vlab")}<b class="vn" data-o="vidas">—</b><span class="vd" data-o="delta"></span></div>
@@ -157,7 +166,7 @@ def build(Page, shell, S):
 
     rows = [
         (S("Fase 1 — desenvolvimento, piloto e empresa (24 meses)", "Fase 1 — desarrollo, piloto y empresa (24 meses)", "Phase 1 — development, pilot and company (24 months)"), S("Base de qualquer rodada", "Base de cualquier ronda", "Basis of any round"), S("4,8 mi em 3 tranches", "4,8 M en 3 tramos", "4.8M in 3 tranches")),
-        (S("Clínica ou hospital", "Clínica u hospital", "Clinic or hospital"), S("E1", "E1", "E1"), S("42 mil por cliente", "42 mil por cliente", "42k per client")),
+        (S("Rede de clínicas (Paraguai ou Brasil)", "Red de clínicas (Paraguay o Brasil)", "Clinic network (Paraguay or Brazil)"), S("Fase 1 enxuta + E1 + reserva", "Fase 1 reducida + E1 + reserva", "Lean Phase 1 + E1 + reserve"), S("4,3 mi (1 clínica) a 7,7 mi (100)", "4,3 M (1 clínica) a 7,7 M (100)", "4.3M (1 clinic) to 7.7M (100)")),
         (S("Investidor no Paraguai", "Inversionista en Paraguay", "Investor in Paraguay"), S("Fase 1 + E4 + reserva", "Fase 1 + E4 + reserva", "Phase 1 + E4 + reserve"), S("5,9 mi", "5,9 M", "5.9M")),
         (S("Investidor regional no Brasil", "Inversionista regional en Brasil", "Regional investor in Brazil"), S("Fase 1 + E2 + E3 + reserva", "Fase 1 + E2 + E3 + reserva", "Phase 1 + E2 + E3 + reserve"), S("9,2 mi", "9,2 M", "9.2M")),
         (S("Parceiro nacional no Brasil", "Socio nacional en Brasil", "National partner in Brazil"), S("Fase 1 + E5 + reserva", "Fase 1 + E5 + reserva", "Phase 1 + E5 + reserve"), S("15,5 mi", "15,5 M", "15.5M")),
@@ -196,9 +205,9 @@ def build(Page, shell, S):
 
 <section>
   <div class="wrap">
-    <div class="head">{T("Viabilidade por segmento", "Viabilidad por segmento", "Feasibility by segment", "span", "eyebrow")}{T("Escolha o segmento e mova a barra de vidas.", "Elija el segmento y mueva la barra de vidas.", "Pick a segment and move the lives slider.", "h2")}{T("A barra começa nas vidas calculadas no plano de cada segmento e soma passos de 5 mil (clínica e plano de saúde) ou 20 mil (estado e país). VPL, TIR, payback, captação e o valuation da Help Cure recalculam na hora. Em todos os segmentos, menos a clínica, a rodada inclui a Fase 1 (desenvolvimento), que é fixa.", "La barra empieza en las vidas calculadas en el plan de cada segmento y suma pasos de 5 mil (clínica y seguro de salud) o 20 mil (estado y país). VAN, TIR, payback, captación y el valuation de Help Cure se recalculan al instante. En todos los segmentos, menos la clínica, la ronda incluye la Fase 1 (desarrollo), que es fija.", "The slider starts at the lives estimated in each segment’s plan and adds steps of 5,000 (clinic and health plan) or 20,000 (state and country). NPV, IRR, payback, funding and Help Cure’s valuation recalculate instantly. In every segment except the clinic, the round includes Phase 1 (development), which is fixed.", "p")}</div>
+    <div class="head">{T("Viabilidade por segmento", "Viabilidad por segmento", "Feasibility by segment", "span", "eyebrow")}{T("Escolha o segmento e mova a barra de vidas.", "Elija el segmento y mueva la barra de vidas.", "Pick a segment and move the lives slider.", "h2")}{T("A barra começa nas vidas calculadas no plano de cada segmento e soma passos de 5 mil (clínica e plano de saúde) ou 20 mil (estado e país). VPL, TIR, payback, captação e o valuation da Help Cure recalculam na hora. Em todos os segmentos a rodada inclui a Fase 1 (desenvolvimento), que é fixa; na clínica, uma Fase 1 enxuta, sem dispositivos, célula nem unidade móvel.", "La barra empieza en las vidas calculadas en el plan de cada segmento y suma pasos de 5 mil (clínica y seguro de salud) o 20 mil (estado y país). VAN, TIR, payback, captación y el valuation de Help Cure se recalculan al instante. En todos los segmentos la ronda incluye la Fase 1 (desarrollo), que es fija; en la clínica, una Fase 1 reducida, sin dispositivos, célula ni unidad móvil.", "The slider starts at the lives estimated in each segment’s plan and adds steps of 5,000 (clinic and health plan) or 20,000 (state and country). NPV, IRR, payback, funding and Help Cure’s valuation recalculate instantly. In every segment the round includes Phase 1 (development), which is fixed; for the clinic, a lean Phase 1 with no devices, cell or mobile unit.", "p")}</div>
     <div class="ctabs" role="tablist">{"".join(tabs)}</div>{"".join(cases)}
-    {T("Como calculamos: mesmo motor do simulador de vidas do plano de negócios (out/2026). VPL a 20% a.a.; valuation por fluxo descontado à TIR de 25% exigida pelo investidor, com saída no ano 7 a 6× o EBITDA e dividendos de 50% do caixa livre. A rodada de cada segmento inclui a Fase 1 (US$ 4,8 mi) e 15% de reserva. Acima das vidas calculadas, a curva é extrapolada na mesma proporção, sem teste de capacidade de mercado.", "Cómo calculamos: el mismo motor del simulador de vidas del plan de negocios (oct/2026). VAN al 20% anual; valuation por flujo descontado a la TIR del 25% exigida por el inversionista, con salida en el año 7 a 6× el EBITDA y dividendos del 50% de la caja libre. La ronda de cada segmento incluye la Fase 1 (US$ 4,8 M) y 15% de reserva. Por encima de las vidas calculadas, la curva se extrapola en la misma proporción, sin prueba de capacidad de mercado.", "How we calculate: the same engine as the business plan’s lives simulator (Oct 2026). NPV at 20% a year; valuation by discounted cash flow at the investor’s required 25% IRR, with exit in year 7 at 6× EBITDA and 50% of free cash paid as dividends. Each segment’s round includes Phase 1 (US$ 4.8M) and a 15% reserve. Above the estimated lives, the curve is extrapolated in the same proportion, with no market-capacity test.", "p", "vnote2", attrs=' style="margin-top:22px;font-size:13.5px"')}
+    {T("Como calculamos: mesmo motor do simulador de vidas do plano de negócios (out/2026). VPL a 20% a.a.; valuation por fluxo descontado à TIR de 25% exigida pelo investidor, com saída no ano 7 a 6× o EBITDA e dividendos de 50% do caixa livre. A rodada de cada segmento inclui a Fase 1 (US$ 4,8 mi; na clínica, a enxuta de US$ 3,7 mi) e 15% de reserva. Na clínica, o suporte ganha escala com o número de clínicas, como nos demais segmentos. Acima das vidas calculadas, a curva é extrapolada na mesma proporção, sem teste de capacidade de mercado.", "Cómo calculamos: el mismo motor del simulador de vidas del plan de negocios (oct/2026). VAN al 20% anual; valuation por flujo descontado a la TIR del 25% exigida por el inversionista, con salida en el año 7 a 6× el EBITDA y dividendos del 50% de la caja libre. La ronda de cada segmento incluye la Fase 1 (US$ 4,8 M; en la clínica, la reducida de US$ 3,7 M) y 15% de reserva. En la clínica, el soporte gana escala con el número de clínicas, como en los demás segmentos. Por encima de las vidas calculadas, la curva se extrapola en la misma proporción, sin prueba de capacidad de mercado.", "How we calculate: the same engine as the business plan’s lives simulator (Oct 2026). NPV at 20% a year; valuation by discounted cash flow at the investor’s required 25% IRR, with exit in year 7 at 6× EBITDA and 50% of free cash paid as dividends. Each segment’s round includes Phase 1 (US$ 4.8M; for the clinic, the lean US$ 3.7M one) and a 15% reserve. For the clinic, support scales with the number of clinics, as in the other segments. Above the estimated lives, the curve is extrapolated in the same proportion, with no market-capacity test.", "p", "vnote2", attrs=' style="margin-top:22px;font-size:13.5px"')}
   </div>
 </section>
 

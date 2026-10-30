@@ -77,3 +77,8 @@ table.t td.n{text-align:right;font-variant-numeric:tabular-nums}
 .vtab{min-width:620px;font-size:13.5px;margin-top:8px}
 .vreset[hidden]{visibility:hidden}
 .vval b.txt{font-size:22px;color:#FFB4A8}
+.vpais{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-bottom:12px}
+.vpais button{all:unset;cursor:pointer;padding:8px 16px;border-radius:999px;border:1.5px solid var(--line);font:600 14px var(--f-d);color:var(--ink-2);background:var(--surface)}
+.vpais button[aria-pressed=true]{background:var(--led);border-color:var(--led);color:#05241C}
+.vpais button:focus-visible{outline:2px solid var(--led);outline-offset:2px}
+.vpn{font-size:13px;color:var(--ink-3);margin-left:6px}
