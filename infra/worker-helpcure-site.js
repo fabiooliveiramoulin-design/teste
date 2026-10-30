@@ -172,6 +172,31 @@ ${error ? `<div class="err" role="alert">${error}</div>` : ""}<button class="btn
     return new Response(body, { headers: { "content-type": ct, "content-disposition": `attachment; filename="${name}"`, "cache-control": "private, no-store", "x-content-type-options": "nosniff" } });
   }
 
+  // 3b) vídeo do investidor: cifrado em blocos de 1 MiB (cada um iv + AES-GCM) em /priv/video; servido por faixas (Range), lendo só os blocos pedidos
+  if (path.startsWith("/investidores/video/")) {
+    const name = decodeURIComponent(path.slice("/investidores/video/".length));
+    if (!/^HelpCure_[A-Za-z0-9_]+\.mp4$/.test(name)) return new Response("Not found", { status: 404 });
+    const src = RAW + "/priv/video/" + name + ".enc", CH = 1048576, REC = CH + 28;
+    const m = /bytes=(\d*)-(\d*)/.exec(req.headers.get("range") || "");
+    let a = m && m[1] !== "" ? Number(m[1]) : 0, b = m && m[1] !== "" && m[2] !== "" ? Number(m[2]) : Infinity;
+    const ia = Math.floor(a / CH), ib = Math.min(Math.floor(Math.min(b, 1e15) / CH), ia + 1); // no máx. 2 blocos (2 MiB) por resposta
+    const r = await fetch(src, { headers: { range: `bytes=${ia * REC}-${(ib + 1) * REC - 1}` } });
+    let enc, total;
+    if (r.status === 206) { enc = new Uint8Array(await r.arrayBuffer()); total = Number((r.headers.get("content-range") || "").split("/")[1]); }
+    else if (r.ok) { const all = new Uint8Array(await r.arrayBuffer()); total = all.length; enc = all.slice(ia * REC, (ib + 1) * REC); }
+    else if (r.status === 416) { const h = await fetch(src, { headers: { range: "bytes=0-0" } }); total = Number((h.headers.get("content-range") || "").split("/")[1]) || 0; enc = new Uint8Array(0); }
+    else return new Response("Not found", { status: 404 });
+    const n = total - 28 * Math.ceil(total / REC);
+    if (!(a < n)) return new Response(null, { status: 416, headers: { "content-range": `bytes */${n}` } });
+    b = Math.min(b, n - 1, (ib + 1) * CH - 1);
+    const key = await crypto.subtle.importKey("raw", Uint8Array.from(atob(env.PRIV_KEY), (c) => c.charCodeAt(0)), { name: "AES-GCM" }, false, ["decrypt"]);
+    const parts = [];
+    for (let o = 0; o < enc.length; o += REC) { const rec = enc.subarray(o, Math.min(o + REC, enc.length)); parts.push(new Uint8Array(await crypto.subtle.decrypt({ name: "AES-GCM", iv: rec.subarray(0, 12) }, key, rec.subarray(12)))); }
+    const plain = new Uint8Array(parts.reduce((x, y) => x + y.length, 0)); let off = 0; for (const q of parts) { plain.set(q, off); off += q.length; }
+    if (a === 0) { try { const k = "inv:" + s.p + ":" + s.l; const rec = await env.LEADS.get(k, "json"); if (rec && !(rec.eventos || []).some((e) => e.tipo === "video" && e.doc === name)) { rec.eventos.push({ tipo: "video", doc: name, quando: new Date().toISOString() }); await env.LEADS.put(k, JSON.stringify(rec)); } } catch (e) {} }
+    return new Response(plain.slice(a - ia * CH, b - ia * CH + 1), { status: 206, headers: { "content-type": "video/mp4", "accept-ranges": "bytes", "content-range": `bytes ${a}-${b}/${n}`, "content-length": String(b - a + 1), "cache-control": "private, no-store", "x-content-type-options": "nosniff" } });
+  }
+
   // 4) "Quero investir"
   if (path === "/investidores/quero-investir") {
     const k = "inv:" + s.p + ":" + s.l; const rec = await env.LEADS.get(k, "json");
