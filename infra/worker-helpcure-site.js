@@ -160,7 +160,19 @@ async function investors(req, env, url) {
 ${error ? `<div class="err" role="alert">${error}</div>` : ""}<button class="btn w" type="submit">${t.send}</button></form><div class="row"><a class="btn g" href="/investidores/sair?lang=${lang}">${t.out}</a></div></div>`), { status: error ? 400 : 200, headers: H });
   }
 
-  // 3) "Quero investir"
+  // 3) documentos do investidor (apresentação, resumo executivo e planilha por segmento, PT/ES/EN), cifrados em /priv/docs
+  if (path.startsWith("/investidores/docs/")) {
+    const name = decodeURIComponent(path.slice("/investidores/docs/".length));
+    if (!/^HelpCure_[A-Za-z0-9_]+\.(pptx|docx|xlsx)$/.test(name)) return new Response("Not found", { status: 404 });
+    const r = await fetch(RAW + "/priv/docs/" + name + ".enc", { cf: { cacheTtl: 300, cacheEverything: true } });
+    if (!r.ok) return new Response("Not found", { status: 404 });
+    const body = await decrypt(env, await r.text());
+    try { const k = "inv:" + s.p + ":" + s.l; const rec = await env.LEADS.get(k, "json"); if (rec) { rec.eventos.push({ tipo: "download", doc: name, quando: new Date().toISOString() }); await env.LEADS.put(k, JSON.stringify(rec)); } } catch (e) {}
+    const ct = { pptx: "application/vnd.openxmlformats-officedocument.presentationml.presentation", docx: "application/vnd.openxmlformats-officedocument.wordprocessingml.document", xlsx: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" }[name.split(".").pop()];
+    return new Response(body, { headers: { "content-type": ct, "content-disposition": `attachment; filename="${name}"`, "cache-control": "private, no-store", "x-content-type-options": "nosniff" } });
+  }
+
+  // 4) "Quero investir"
   if (path === "/investidores/quero-investir") {
     const k = "inv:" + s.p + ":" + s.l; const rec = await env.LEADS.get(k, "json");
     if (!rec) return new Response(null, { status: 302, headers: { location: "/investidores/sair?lang=" + lang } });
@@ -176,7 +188,7 @@ ${error ? `<div class="err" role="alert">${error}</div>` : ""}<button class="btn
     return new Response(page(lang, `<div class="gate"><h1>${t.obr}</h1><p>${fill(t.obs, { e: esc(rec.email) })}</p><div class="row"><a class="btn" href="/investidores/?lang=${lang}">${t.voltar}</a><a class="btn g" href="/">${t.back}</a></div></div>`), { headers: H });
   }
 
-  // 4) conteúdo
+  // 5) conteúdo
   const order = [lang, ...["pt", "es", "en"].filter((l) => l !== lang)];
   const tabs = order.map((l, i) => `<button role="tab" aria-selected="${i === 0}" data-v="${VIDEOS[l]}">${NAMES[l]}</button>`).join("");
   return new Response(page(lang, `<h1>${t.h}</h1><p>${t.p}</p><div class="row"><a class="btn big" href="/investir.html">${t.plan}</a></div><h2 class="h2">${t.full}</h2><div class="tabs" role="tablist">${tabs}</div><div class="player" id="pl"></div><h2 class="h2">${t.mods}</h2><div class="grid">${SHORTS.map((v) => { const vl = v.id[lang] ? lang : "pt"; return `<div class="sv"><div class="f"><iframe src="https://www.youtube-nocookie.com/embed/${v.id[vl]}?rel=0&modestbranding=1" title="Help Cure — ${esc(v.n[lang])}" loading="lazy" allow="fullscreen; picture-in-picture; encrypted-media" allowfullscreen></iframe></div><b>${esc(v.n[lang])}</b><small>${t.lg[vl]}</small></div>`; }).join("")}</div>
@@ -189,11 +201,11 @@ ${queroBox(lang)}
 async function admin(req, env, url) {
   if (!env.ADMIN_KEY || !same(url.searchParams.get("key") || "", env.ADMIN_KEY)) return new Response("Not found", { status: 404 });
   const pref = (url.searchParams.get("p") || "").toUpperCase();
-  const rows = [["data", "prospect", "nome", "email", "telefone", "idioma", "pais", "quero_investir", "email_cadastro", "email_quero"]];
+  const rows = [["data", "prospect", "nome", "email", "telefone", "idioma", "pais", "quero_investir", "email_cadastro", "email_quero", "documentos_baixados"]];
   let cur; do {
     const ls = await env.LEADS.list({ prefix: "inv:" + (pref ? pref + ":" : ""), cursor: cur }); cur = ls.list_complete ? null : ls.cursor;
     for (const k of ls.keys) { const r = await env.LEADS.get(k.name, "json"); if (!r) continue; const q = (r.eventos || []).filter((e) => e.tipo === "quero-investir");
-      rows.push([r.quando, r.prospectNome || r.prospect, r.nome, r.email, r.tel, r.idioma, r.pais, q.length ? q[q.length - 1].quando : "", r.mailCadastro || "", q.length ? q[q.length - 1].mail : ""]); }
+      rows.push([r.quando, r.prospectNome || r.prospect, r.nome, r.email, r.tel, r.idioma, r.pais, q.length ? q[q.length - 1].quando : "", r.mailCadastro || "", q.length ? q[q.length - 1].mail : "", [...new Set((r.eventos || []).filter((e) => e.tipo === "download").map((e) => e.doc))].join(" | ")]); }
   } while (cur);
   const csv = "﻿" + rows.map((r) => r.map((c) => '"' + String(c).replace(/"/g, '""') + '"').join(";")).join("\r\n");
   return new Response(csv, { headers: { "content-type": "text/csv; charset=utf-8", "content-disposition": "attachment; filename=investidores_helpcure.csv", "cache-control": "no-store" } });
