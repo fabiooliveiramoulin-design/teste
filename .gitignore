@@ -11,3 +11,4 @@ build/mercado_e2.py
 build/dispositivos_modelo.py
 build/privado.py
 build/__pycache__/
+docs_inv/
