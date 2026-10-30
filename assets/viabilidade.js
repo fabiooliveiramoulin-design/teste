@@ -12,7 +12,7 @@
       ok: "Rodada viável: {p} da Help Cure entrega 25% a.a. ao investidor.",
       alto: "Rodada possível, mas cara: o investidor precisa de {p} da Help Cure para ter 25% a.a.",
       inv: "Nesta escala, nem 100% da Help Cure entrega 25% a.a. ao investidor.",
-      ate: " Com {n}, a participação cai para {p}.", un: "vidas", cli: "pacientes ({c} clínicas)", nunca: " Nem no máximo da barra a participação fica abaixo de 40%.",
+      ate: " Com {n}, a participação cai para {p}.", un: "vidas", cli: "vidas ({c} clínicas)", nunca: " Nem no máximo da barra a participação fica abaixo de 40%.",
       e1ok: "Projeto viável por clínica: VPL positivo e payback de {pb}.", e1no: "Nesta escala o projeto não se paga em 5 anos.",
       vpln: "VPL negativo: nesta escala o segmento não cobre a sua estrutura fixa." },
     es: { mil: "mil", mi: "M", bi: "mil M", anos: "años", ano: "Año", mais5: "más de 5 años", sobre: "sobre lo calculado", calc: "calculado en el plan",
@@ -21,7 +21,7 @@
       ok: "Ronda viable: el {p} de Help Cure entrega 25% anual al inversionista.",
       alto: "Ronda posible, pero cara: el inversionista necesita el {p} de Help Cure para obtener 25% anual.",
       inv: "En esta escala, ni el 100% de Help Cure entrega 25% anual al inversionista.",
-      ate: " Con {n}, la participación baja al {p}.", un: "vidas", cli: "pacientes ({c} clínicas)", nunca: " Ni en el máximo de la barra la participación queda por debajo del 40%.",
+      ate: " Con {n}, la participación baja al {p}.", un: "vidas", cli: "vidas ({c} clínicas)", nunca: " Ni en el máximo de la barra la participación queda por debajo del 40%.",
       e1ok: "Proyecto viable por clínica: VAN positivo y payback de {pb}.", e1no: "En esta escala el proyecto no se paga en 5 años.",
       vpln: "VAN negativo: en esta escala el segmento no cubre su estructura fija." },
     en: { mil: "k", mi: "M", bi: "B", anos: "years", ano: "Year", mais5: "over 5 years", sobre: "above the estimate", calc: "estimated in the plan",
@@ -30,7 +30,7 @@
       ok: "Viable round: {p} of Help Cure delivers 25% a year to the investor.",
       alto: "Possible but expensive round: the investor needs {p} of Help Cure for 25% a year.",
       inv: "At this scale, not even 100% of Help Cure delivers 25% a year to the investor.",
-      ate: " With {n}, the stake drops to {p}.", un: "lives", cli: "patients ({c} clinics)", nunca: " Even at the top of the slider the stake stays above 40%.",
+      ate: " With {n}, the stake drops to {p}.", un: "lives", cli: "lives ({c} clinics)", nunca: " Even at the top of the slider the stake stays above 40%.",
       e1ok: "Viable project per clinic: positive NPV and payback of {pb}.", e1no: "At this scale the project does not pay back within 5 years.",
       vpln: "Negative NPV: at this scale the segment does not cover its fixed structure." }
   };
@@ -106,7 +106,7 @@
       var msg = r.participacao <= 0.4 ? fill(t.ok, { p: pct(r.participacao, l) }) : r.participacao <= 1 ? fill(t.alto, { p: pct(r.participacao, l) }) : t.inv;
       if (r.participacao > 0.4) {
         var j = -1; for (var q = b.i + 1; q < b.R.length; q++) if (b.R[q].participacao <= 0.4) { j = q; break; }
-        msg += j >= 0 ? fill(t.ate, { n: int(b.R[j].vidas, l) + " " + (b.code.indexOf("E1") === 0 ? fill(t.cli, { c: int(b.R[j].vidas / 500, l) }) : t.un), p: pct(b.R[j].participacao, l) }) : t.nunca;
+        msg += j >= 0 ? fill(t.ate, { n: int(b.R[j].vidas, l) + " " + (b.code.indexOf("E1") === 0 ? fill(t.cli, { c: int(b.R[j].vidas / b.S.nbase, l) }) : t.un), p: pct(b.R[j].participacao, l) }) : t.nunca;
       }
       if (r.vpl < 0) msg = t.vpln + " " + msg;
       set(b, "status", msg);

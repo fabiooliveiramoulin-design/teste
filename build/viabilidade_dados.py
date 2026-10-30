@@ -51,6 +51,22 @@ for code, tier, regime in (("E1PY", "PY", "PY"), ("E1BR", "BR realista", "BR")):
     e = dict(base); e.update({"tabela": tier, "regime": regime, "rodada": 1, "elast": prem_elast,  # Fase 1 cheia (cota fundadora, 30/10/2026); f1_cli fica só como referência
                               "receita": row(REV0 + 0 * 4 + TIERS.index(tier))})
     esc[code] = e
+# ---- Clínica (30/10/2026, pesquisa de mercado): 2.000 vidas monitoradas por clínica no Ano 5, crescendo 10% ao ano.
+# Base: ~67 mil pacientes ativos por clínica × 3% de adesão (AmorSaúde ~19 mil/ano, dr.consulta ~100 mil, rede do Rio ~182 mil).
+# Crescimento: Rede D'Or +10% em volume (3T25), Hapvida +6% em vidas, planos +2,8%, monitoramento remoto +12%/ano.
+CLI_VIDAS5, CLI_CRESC, CLI_FEE = 2000, 0.10, 5500
+MIX = {"Usuário": 0.10, "Governo": 0.30, "Plano": 0.60}           # mesmo mix do plano original (50/150/300 em 500)
+PRECO = {"PY": {"Usuário": 9.9, "Governo": 10, "Plano": 12}, "BR realista": {"Usuário": 9.9, "Governo": 8, "Plano": 14}}
+SERVIR = {"Usuário": 0.6, "Governo": 4.6, "Plano": 4.6}            # custo clínico + nuvem por vida/mês (aba Premissas)
+vid = [0] + [CLI_VIDAS5 / (1 + CLI_CRESC) ** (5 - y) for y in range(1, 6)]
+for code in ("E1PY", "E1BR"):
+    t = esc[code]["tabela"]
+    esc[code].update({
+        "nbase": CLI_VIDAS5, "passo": CLI_VIDAS5, "min": CLI_VIDAS5, "max": 100000,
+        "vidas": [round(v) for v in vid],
+        "receita": [0] + [CLI_FEE * 12 + sum(v * MIX[k] * PRECO[t][k] * 12 for k in MIX) for v in vid[1:]],
+        "servir": [0] + [sum(v * MIX[k] * SERVIR[k] * 12 for k in MIX) for v in vid[1:]],
+        "op_celula": [0] * 6, "op_movel": [0] * 6, "capex": [0] * 6})
 out = {"fonte": "HelpCure_Simulador_Vidas.xlsx", "gerado": datetime.date.today().isoformat(), "premissas": prem, "escopos": esc}
 dst = os.path.join(ROOT, "assets", "viabilidade-dados.js")
 open(dst, "w", encoding="utf-8").write("// Gerado por build/viabilidade_dados.py a partir do simulador de vidas. Não editar à mão.\nwindow.HC_VIAB=" + json.dumps(out, ensure_ascii=False, separators=(",", ":")) + ";\n")

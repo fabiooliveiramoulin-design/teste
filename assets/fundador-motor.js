@@ -5,7 +5,7 @@
   var REGRA = { taxa: 0.05, anos: 10, teto: 5, residual: 0.01 };
   // Cenários de expansão: [segmento, vidas (null = calculado no plano), ano t em que começa o Ano 0 do segmento]
   var CEN = [
-    { id: "clin", seg: [["E1PY", 50000, 2]] },
+    { id: "clin", seg: [["E1PY", 60000, 2]] }, // 30 clínicas de 2.000 vidas
     { id: "py", seg: [["E4", null, 2]] },
     { id: "pyp", seg: [["E4", null, 2], ["E2", null, 3]] },
     { id: "pype", seg: [["E4", null, 2], ["E2", null, 3], ["E3", null, 3]] },
