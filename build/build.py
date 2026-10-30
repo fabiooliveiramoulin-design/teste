@@ -44,13 +44,14 @@ NAV = [("index.html", "Início", "Inicio", "Home"),
        ("solidario.html", "Solidário", "Solidario", "Solidarity")]
 
 
-def shell(pg, path, title, body, desc):
+def shell(pg, path, title, body, desc, extra_head=""):
     p = pg.p
     links = []
     for href, pt, es, en in NAV:
         cur = ' aria-current="page"' if path == href or (href.startswith("solucoes/") and path.startswith("solucoes/")) else ''
         links.append('<a href="%s%s"%s>%s</a>' % (p, href.replace("index.html", "") or "./", cur, pg.t(pt, es, en)))
-    links.append('<a href="/investidores/" data-inv="/investidores/">%s</a>' % pg.t("Investidores", "Inversionistas", "Investors"))
+    cur = ' aria-current="page"' if path == "investir.html" else ''
+    links.append('<a href="%sinvestir.html"%s>%s</a>' % (p, cur, pg.t("Investidores", "Inversionistas", "Investors")))
     foot_sol = "".join('<a href="%ssolucoes/%s.html">%s</a>' % (p, s, pg.t(a, b, c)) for s, a, b, c in SOLS)
     head = f'''<!doctype html>
 <html lang="pt-BR">
@@ -65,7 +66,7 @@ def shell(pg, path, title, body, desc):
 <link rel="icon" href="{p}img/icone.svg" type="image/svg+xml"><link rel="icon" href="{p}img/logo/favicon-32.png" sizes="32x32"><link rel="apple-touch-icon" href="{p}img/logo/helpcure-icone-app-180.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Lexend:wght@300;400;500;600&display=swap">
-<link rel="stylesheet" href="{p}assets/site.css?v=3">
+<link rel="stylesheet" href="{p}assets/site.css?v=3">{extra_head}
 </head>
 <body>
 <header class="top">
@@ -92,7 +93,7 @@ def shell(pg, path, title, body, desc):
       <a href="{p}tecnologia.html">{pg.t("Tecnologia e segurança", "Tecnología y seguridad", "Technology and security")}</a>
       <a href="{p}solidario.html">{pg.t("Help Cure Solidário", "Help Cure Solidario", "Help Cure Solidarity")}</a>
       <a href="{p}app/">{pg.t("App do paciente", "App del paciente", "Patient app")}</a>
-      <a href="/investidores/" data-inv="/investidores/">{pg.t("Área do investidor", "Área del inversionista", "Investor area")}</a></div>
+      <a href="{p}investir.html">{pg.t("Área do investidor", "Área del inversionista", "Investor area")}</a></div>
     <div class="legal">© 2026 Help Cure · {pg.t("Plataforma em fase de piloto. Imagens dos vídeos são simulações com personagens fictícios.", "Plataforma en fase piloto. Las imágenes de los videos son simulaciones con personajes ficticios.", "Platform in pilot stage. Video images are simulations with fictional characters.")}</div>
   </div>
 </footer>
@@ -265,7 +266,7 @@ def home():
         {T("Próximo passo", "Próximo paso", "Next step", "span", "eyebrow")}
         {T("Piloto no Paraguai e no Brasil.", "Piloto en Paraguay y Brasil.", "Pilot in Paraguay and Brazil.", "h2")}
         {T("Estamos começando com um grupo de pacientes reais: receita por foto, lembretes pelo app e pelo WhatsApp e acompanhamento por uma central de monitoramento.", "Empezamos con un grupo de pacientes reales: receta por foto, recordatorios por la app y por WhatsApp y seguimiento desde una central de monitoreo.", "We are starting with a group of real patients: prescriptions by photo, reminders through the app and WhatsApp, and follow-up from a monitoring center.", "p")}
-        <div class="cta"><a class="btn primary" href="app/">{T("Experimentar o app", "Probar la app", "Try the app")}</a><a class="btn ghost" href="/investidores/" data-inv="/investidores/">{T("Área do investidor", "Área del inversionista", "Investor area")}</a></div>
+        <div class="cta"><a class="btn primary" href="app/">{T("Experimentar o app", "Probar la app", "Try the app")}</a><a class="btn ghost" href="investir.html">{T("Área do investidor", "Área del inversionista", "Investor area")}</a></div>
       </div>
     </div>
   </div>
@@ -744,8 +745,21 @@ def solidario():
     shell(pg, "solidario.html", title, b, "Help Cure Solidário: campanha para levar unidades móveis com atendimento gratuito a comunidades carentes do Paraguai e do Brasil.")
 
 
+# ------------------------------------------------------------------ INVESTIDORES
+def investir():
+    import sys
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    import investir_page
+    investir_page.build(Page, shell, S)
+
+
 if __name__ == "__main__":
-    home(); sol_index(); para_quem(); tecnologia(); solidario()
+    import sys
+    # ATENÇÃO (30/10/2026): as outras páginas foram editadas direto no HTML depois da última versão deste gerador.
+    # Rodar sem argumento só gera investir.html. Use "tudo" apenas depois de trazer essas mudanças para cá.
+    if sys.argv[1:] != ["tudo"]:
+        investir(); print("ok (investir.html)"); sys.exit()
+    home(); sol_index(); para_quem(); tecnologia(); solidario(); investir()
     for k, v in SOLDATA.items():
         sol_page(k, v)
     print("ok")
