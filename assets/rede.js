@@ -12,17 +12,17 @@
     pt: { mil: "mil", mi: "mi", ano: "Ano", nf: "não fecha", div: "Divisão de lucros", rede: "EBITDA da rede", acum: "Acumulado",
       ok: "Com essa rede, basta vender {e} da Help Cure ao fundador: com a divisão de lucros ele tem 25% a.a.", alto: "Com essa rede, o fundador precisa de {e} da Help Cure para ter 25% a.a.", no: "Essa rede ainda não sustenta a rodada.",
       linhas: [["Rede de clínicas de porte médio — 30 clínicas (Paraguai)", [["E1PY", 30, 2]]], ["Rede de clínicas de porte médio — 50 clínicas (Paraguai)", [["E1PY", 50, 2]]],
-        ["Plano de saúde (40 mil vidas)", [["E2", 1, 2]]], ["Estado brasileiro (média de RJ, SP, MG, BA, CE e PR)", [["E3", 1, 2]]], ["País: Paraguai", [["E4", 1, 2]]], ["País: Brasil", [["E5", 1, 2]]],
+        ["Plano de saúde nacional (3,5 mi de beneficiários, com crianças)", [["E2", 1, 2]]], ["Estado brasileiro (média de RJ, SP, MG, BA, CE e PR)", [["E3", 1, 2]]], ["País: Paraguai", [["E4", 1, 2]]], ["País: Brasil", [["E5", 1, 2]]],
         ["Rede: Paraguai + plano de saúde", REDE.R1], ["Rede: Paraguai + plano + estado", REDE.R2], ["Rede: Paraguai, Brasil, estado e 2 planos", REDE.R3], ["Rede: clínicas fundadoras + Paraguai, plano e estado", REDE.R4]] },
     es: { mil: "mil", mi: "M", ano: "Año", nf: "no cierra", div: "Participación en utilidades", rede: "EBITDA de la red", acum: "Acumulado",
       ok: "Con esta red, basta vender el {e} de Help Cure al fundador: con la participación en utilidades obtiene 25% anual.", alto: "Con esta red, el fundador necesita el {e} de Help Cure para obtener 25% anual.", no: "Esta red todavía no sostiene la ronda.",
       linhas: [["Red de clínicas medianas — 30 clínicas (Paraguay)", [["E1PY", 30, 2]]], ["Red de clínicas medianas — 50 clínicas (Paraguay)", [["E1PY", 50, 2]]],
-        ["Seguro de salud (40 mil vidas)", [["E2", 1, 2]]], ["Estado brasileño (promedio de RJ, SP, MG, BA, CE y PR)", [["E3", 1, 2]]], ["País: Paraguay", [["E4", 1, 2]]], ["País: Brasil", [["E5", 1, 2]]],
+        ["Seguro de salud nacional (3,5 M de beneficiarios, con niños)", [["E2", 1, 2]]], ["Estado brasileño (promedio de RJ, SP, MG, BA, CE y PR)", [["E3", 1, 2]]], ["País: Paraguay", [["E4", 1, 2]]], ["País: Brasil", [["E5", 1, 2]]],
         ["Red: Paraguay + seguro de salud", REDE.R1], ["Red: Paraguay + seguro + estado", REDE.R2], ["Red: Paraguay, Brasil, estado y 2 seguros", REDE.R3], ["Red: clínicas fundadoras + Paraguay, seguro y estado", REDE.R4]] },
     en: { mil: "k", mi: "M", ano: "Year", nf: "does not close", div: "Profit share", rede: "Network EBITDA", acum: "Cumulative",
       ok: "With this network, selling {e} of Help Cure to the founder is enough: with the profit share it earns 25% a year.", alto: "With this network, the founder needs {e} of Help Cure to earn 25% a year.", no: "This network does not yet support the round.",
       linhas: [["Mid-size clinic network — 30 clinics (Paraguay)", [["E1PY", 30, 2]]], ["Mid-size clinic network — 50 clinics (Paraguay)", [["E1PY", 50, 2]]],
-        ["Health plan (40,000 lives)", [["E2", 1, 2]]], ["Brazilian state (average of RJ, SP, MG, BA, CE and PR)", [["E3", 1, 2]]], ["Country: Paraguay", [["E4", 1, 2]]], ["Country: Brazil", [["E5", 1, 2]]],
+        ["National health plan (3.5M members, with children)", [["E2", 1, 2]]], ["Brazilian state (average of RJ, SP, MG, BA, CE and PR)", [["E3", 1, 2]]], ["Country: Paraguay", [["E4", 1, 2]]], ["Country: Brazil", [["E5", 1, 2]]],
         ["Network: Paraguay + health plan", REDE.R1], ["Network: Paraguay + plan + state", REDE.R2], ["Network: Paraguay, Brazil, state and 2 plans", REDE.R3], ["Network: founder clinics + Paraguay, plan and state", REDE.R4]] }
   };
   function lang() { var l = (document.documentElement.lang || "pt").slice(0, 2); return TX[l] ? l : "pt"; }
