@@ -1,0 +1,13 @@
+# Área do investidor: só vai ao repositório cifrada (priv/*.enc, gerada por build/privado.py)
+investir.html
+assets/viabilidade-dados.js
+assets/modelo-motor.js
+assets/viabilidade.js
+assets/rede.js
+build/investir_page.py
+build/investir.css
+build/viabilidade_dados.py
+build/mercado_e2.py
+build/dispositivos_modelo.py
+build/privado.py
+build/__pycache__/
