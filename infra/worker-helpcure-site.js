@@ -151,7 +151,9 @@ async function investors(req, env, url) {
       const pref = code.split("-")[0];
       const pr = /^[A-Z0-9]{2,8}$/.test(pref) ? await prospect(env, pref) : null;
       if (pr && same(code, String(pr.codigo).toUpperCase())) {
-        return new Response(null, { status: 303, headers: { location: "/investidores/?lang=" + lang, "set-cookie": SC(await sign(env, { p: pref, l: "" }), 2592000) } });
+        let lid = ""; // investidor direto: o cadastro já veio do pedido de acesso, não pede de novo
+        if (pr.pedido) { const pd = await env.LEADS.get("pedido:" + pr.pedido, "json"); if (pd) { lid = pr.pedido; const ik = "inv:" + pref + ":" + lid; if (!(await env.LEADS.get(ik))) await env.LEADS.put(ik, JSON.stringify({ nome: pd.nome, email: pd.email, tel: pd.tel, prospect: pref, prospectNome: pr.nome, origem: pd.origem, idioma: lang, consent: true, quando: new Date().toISOString(), pais: pd.pais || "", eventos: [] })); } }
+        return new Response(null, { status: 303, headers: { location: "/investidores/?lang=" + lang, "set-cookie": SC(await sign(env, { p: pref, l: lid }), 2592000) } });
       }
       error = t.bad;
     }
