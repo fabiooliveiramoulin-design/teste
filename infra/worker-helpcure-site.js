@@ -19,34 +19,34 @@ const SHORTS = [
 const L = {
   pt: { full: "Vídeo completo", mods: "Por módulo", lg: { pt: "em português", es: "em espanhol", en: "em inglês" }, t: "Área do investidor",
     sub: "Digite o código de acesso que você recebeu de quem indicou a Help Cure.", code: "Código de acesso", go: "Entrar", bad: "Código inválido. Confira e tente de novo.",
-    ft: "Antes de começar", fs: "Para liberar o conteúdo completo, informe seus dados de contato.", nome: "Nome completo", email: "E-mail", tel: "Telefone (com DDD / código do país)",
+    ft: "Antes de começar", fs: "Para liberar o conteúdo completo, informe seus dados de contato.", nome: "Nome completo", email: "E-mail", tel: "WhatsApp (com código do país e DDD)",
     consent: "Autorizo a Help Cure e o parceiro que me indicou a usar estes dados para contato sobre o investimento, conforme a LGPD (Brasil) e a Lei 6534/2020 (Paraguai).",
-    send: "Ver o conteúdo", need: "Preencha nome, e-mail válido e telefone, e marque a autorização.",
+    send: "Ver o conteúdo", need: "Preencha nome, e-mail válido e WhatsApp, e marque a autorização.",
     h: "Help Cure para investidores", p: "Os vídeos da plataforma e o plano completo: modelo de receita, viabilidade por segmento, divisão de lucros e rodada.",
     plan: "Ver o plano completo", soon: "Vídeo disponível em breve.", app: "Abrir o app do paciente", back: "Voltar ao site", out: "Sair", conf: "Material confidencial. Não compartilhe o código de acesso.",
     qt: "Gostou do que viu?", qs: "Clique abaixo e a nossa equipe entra em contato pelo e-mail ou telefone que você cadastrou.", quero: "Quero investir",
     obr: "Obrigado pelo interesse na nossa inovação!", obs: "Entraremos em contato pelo e-mail ou telefone cadastrado. Enviamos uma confirmação para {e}.", voltar: "Voltar ao conteúdo",
-    m_subj: "Help Cure — obrigado pelo seu interesse", m_body: "Olá, {n}!\n\nObrigado pelo interesse na nossa inovação. Entraremos em contato pelo e-mail ou telefone cadastrado.\n\nDados cadastrados:\nNome: {n}\nE-mail: {e}\nTelefone: {t}\n\nEquipe Help Cure\ninvestidores@helpcure.com.py · helpcure.com.py" },
+    m_subj: "Help Cure — obrigado pelo seu interesse", m_body: "Olá, {n}!\n\nObrigado pelo interesse na nossa inovação. Entraremos em contato pelo e-mail ou telefone cadastrado.\n\nDados cadastrados:\nNome: {n}\nE-mail: {e}\nWhatsApp: {t}\n\nEquipe Help Cure\ninvestidores@helpcure.com.py · helpcure.com.py" },
   es: { full: "Video completo", mods: "Por módulo", lg: { pt: "en portugués", es: "en español", en: "en inglés" }, t: "Área del inversionista",
     sub: "Ingrese el código de acceso que recibió de quien le recomendó Help Cure.", code: "Código de acceso", go: "Entrar", bad: "Código inválido. Verifique e intente de nuevo.",
-    ft: "Antes de empezar", fs: "Para liberar el contenido completo, informe sus datos de contacto.", nome: "Nombre completo", email: "Correo electrónico", tel: "Teléfono (con código de país)",
+    ft: "Antes de empezar", fs: "Para liberar el contenido completo, informe sus datos de contacto.", nome: "Nombre completo", email: "Correo electrónico", tel: "WhatsApp (con código de país)",
     consent: "Autorizo a Help Cure y al socio que me recomendó a usar estos datos para contactarme sobre la inversión, conforme a la Ley 6534/2020 (Paraguay) y la LGPD (Brasil).",
-    send: "Ver el contenido", need: "Complete nombre, correo válido y teléfono, y marque la autorización.",
+    send: "Ver el contenido", need: "Complete nombre, correo válido y WhatsApp, y marque la autorización.",
     h: "Help Cure para inversionistas", p: "Los videos de la plataforma y el plan completo: modelo de ingresos, viabilidad por segmento, participación en utilidades y ronda.",
     plan: "Ver el plan completo", soon: "Video disponible pronto.", app: "Abrir la app del paciente", back: "Volver al sitio", out: "Salir", conf: "Material confidencial. No comparta el código de acceso.",
     qt: "¿Le gustó lo que vio?", qs: "Haga clic abajo y nuestro equipo se pondrá en contacto por el correo o el teléfono que registró.", quero: "Quiero invertir",
     obr: "¡Gracias por su interés en nuestra innovación!", obs: "Nos pondremos en contacto por el correo electrónico o el teléfono registrado. Enviamos una confirmación a {e}.", voltar: "Volver al contenido",
-    m_subj: "Help Cure — gracias por su interés", m_body: "Hola, {n}:\n\nGracias por su interés en nuestra innovación. Nos pondremos en contacto por el correo electrónico o el teléfono registrado.\n\nDatos registrados:\nNombre: {n}\nCorreo: {e}\nTeléfono: {t}\n\nEquipo Help Cure\ninvestidores@helpcure.com.py · helpcure.com.py" },
+    m_subj: "Help Cure — gracias por su interés", m_body: "Hola, {n}:\n\nGracias por su interés en nuestra innovación. Nos pondremos en contacto por el correo electrónico o el teléfono registrado.\n\nDatos registrados:\nNombre: {n}\nCorreo: {e}\nWhatsApp: {t}\n\nEquipo Help Cure\ninvestidores@helpcure.com.py · helpcure.com.py" },
   en: { full: "Full video", mods: "By module", lg: { pt: "in Portuguese", es: "in Spanish", en: "in English" }, t: "Investor area",
     sub: "Enter the access code you received from whoever referred you to Help Cure.", code: "Access code", go: "Enter", bad: "Invalid code. Please check and try again.",
-    ft: "Before you start", fs: "To unlock the full content, please share your contact details.", nome: "Full name", email: "Email", tel: "Phone (with country code)",
+    ft: "Before you start", fs: "To unlock the full content, please share your contact details.", nome: "Full name", email: "Email", tel: "WhatsApp (with country code)",
     consent: "I authorize Help Cure and the partner who referred me to use this data to contact me about the investment, under Brazil’s LGPD and Paraguay’s Law 6534/2020.",
-    send: "See the content", need: "Please fill in your name, a valid email and phone, and tick the authorization.",
+    send: "See the content", need: "Please fill in your name, a valid email and WhatsApp, and tick the authorization.",
     h: "Help Cure for investors", p: "The platform videos and the full plan: revenue model, feasibility by segment, profit share and round.",
     plan: "See the full plan", soon: "Video coming soon.", app: "Open the patient app", back: "Back to the site", out: "Sign out", conf: "Confidential material. Do not share the access code.",
     qt: "Liked what you saw?", qs: "Click below and our team will contact you by the email or phone you registered.", quero: "I want to invest",
     obr: "Thank you for your interest in our innovation!", obs: "We will contact you by the email or phone you registered. A confirmation was sent to {e}.", voltar: "Back to the content",
-    m_subj: "Help Cure — thank you for your interest", m_body: "Hello, {n},\n\nThank you for your interest in our innovation. We will contact you by the email or phone you registered.\n\nRegistered details:\nName: {n}\nEmail: {e}\nPhone: {t}\n\nHelp Cure team\ninvestidores@helpcure.com.py · helpcure.com.py" },
+    m_subj: "Help Cure — thank you for your interest", m_body: "Hello, {n},\n\nThank you for your interest in our innovation. We will contact you by the email or phone you registered.\n\nRegistered details:\nName: {n}\nEmail: {e}\nWhatsApp: {t}\n\nHelp Cure team\ninvestidores@helpcure.com.py · helpcure.com.py" },
 };
 const NAMES = { pt: "Português", es: "Español", en: "English" };
 const CAMP_MAIL = "campanha@helpcure.com.py";
@@ -152,7 +152,7 @@ async function investors(req, env, url) {
         const rec = { ...v, prospect: s.p, prospectNome: s.pr.nome, idioma: lang, consent: true, quando: new Date().toISOString(), pais: (req.cf && req.cf.country) || "", eventos: [] };
         rec.mailCadastro = await mail(env, { from: HC_MAIL, to: s.pr.emails.join(","), cc: HC_MAIL, replyTo: v.email,
           subject: `Help Cure — novo investidor cadastrado (${s.pr.nome})`,
-          text: `Um investidor indicado por ${s.pr.nome} se cadastrou na área do investidor da Help Cure.\n\nNome: ${v.nome}\nE-mail: ${v.email}\nTelefone: ${v.tel}\nIdioma: ${NAMES[lang]}\nPaís de acesso: ${rec.pais}\nData: ${rec.quando}\n\nO investidor autorizou o uso destes dados pela Help Cure e por ${s.pr.nome} para contato sobre o investimento.` });
+          text: `Um investidor indicado por ${s.pr.nome} se cadastrou na área do investidor da Help Cure.\n\nNome: ${v.nome}\nE-mail: ${v.email}\nWhatsApp: ${v.tel}\nConversar no WhatsApp: https://wa.me/${v.tel.replace(/\D/g, "")}\nIdioma: ${NAMES[lang]}\nPaís de acesso: ${rec.pais}\nData: ${rec.quando}\n\nO investidor autorizou o uso destes dados pela Help Cure e por ${s.pr.nome} para contato sobre o investimento.` });
         await env.LEADS.put("inv:" + s.p + ":" + id, JSON.stringify(rec));
         return new Response(null, { status: 303, headers: { location: "/investidores/?lang=" + lang, "set-cookie": SC(await sign(env, { p: s.p, l: id }), 2592000) } });
       }
@@ -211,7 +211,7 @@ ${error ? `<div class="err" role="alert">${error}</div>` : ""}<button class="btn
       const last = (rec.eventos || []).filter((e) => e.tipo === "quero-investir").pop();
       if (last && Date.now() - Date.parse(last.quando) < 600000) return new Response(null, { status: 303, headers: { location: "/investidores/quero-investir?lang=" + lang } }); // evita e-mails repetidos em 10 min
       const st = await mail(env, { from: HC_MAIL, to: rec.email, cc: [...s.pr.emails, HC_MAIL].join(","), replyTo: HC_MAIL, subject: t.m_subj,
-        text: fill(t.m_body, { n: rec.nome, e: rec.email, t: rec.tel }) + `\n\n— Indicação: ${s.pr.nome}` });
+        text: fill(t.m_body, { n: rec.nome, e: rec.email, t: rec.tel }) + `\n\n— Indicação: ${s.pr.nome}\nWhatsApp do investidor: https://wa.me/${String(rec.tel).replace(/\D/g, "")}` });
       rec.eventos.push({ tipo: "quero-investir", quando: new Date().toISOString(), mail: st });
       rec.queroInvestir = true; await env.LEADS.put(k, JSON.stringify(rec));
       return new Response(null, { status: 303, headers: { location: "/investidores/quero-investir?lang=" + lang } });
