@@ -292,7 +292,7 @@ async function whatsapp(req, env, url) {
       const media = m.image || m.document || m.audio || m.video || m.sticker || null;
       const rec = { id: m.id, de: m.from, nome: names[m.from] || "", tipo: m.type, texto: (m.text && m.text.body) || (media && media.caption) || (m.button && m.button.text) || (m.interactive && JSON.stringify(m.interactive)) || "",
         midia: media ? { id: media.id, mime: media.mime_type || "", arquivo: media.filename || "" } : null, numero: (v.metadata && v.metadata.display_phone_number) || "", quando: new Date(Number(m.timestamp) * 1000 || Date.now()).toISOString() };
-      await env.LEADS.put("wa:" + rec.quando + ":" + rec.id, JSON.stringify(rec));
+      await env.LEADS.put("wa:" + rec.quando + ":" + rec.id, JSON.stringify(rec), { metadata: { num: rec.de, nome: rec.nome.slice(0, 60), t: (rec.texto || (rec.midia ? "[anexo " + rec.tipo + "]" : "[" + rec.tipo + "]")).slice(0, 290), q: rec.quando } });
       rec.mail = await mail(env, { from: "contato@helpcure.com.py", to: "contato@helpcure.com.py", subject: `WhatsApp Help Cure — ${rec.nome || "+" + rec.de}`,
         text: `Mensagem recebida no WhatsApp da Help Cure (${rec.numero}).\n\nDe: ${rec.nome} (+${rec.de})\nTipo: ${rec.tipo}\n${rec.texto ? "Texto: " + rec.texto + "\n" : ""}${rec.midia ? "Anexo: " + (rec.midia.arquivo || rec.midia.mime) + " (id " + rec.midia.id + ")\n" : ""}Data: ${rec.quando}\n\nResponder: https://wa.me/${rec.de}` });
     }
@@ -300,6 +300,100 @@ async function whatsapp(req, env, url) {
   }
   return new Response("ok");
 }
+
+// Painel de atendimento do WhatsApp (Central de Entrada) — /painel
+// Login por código (segredo PAINEL_KEY); sessão assinada com COOKIE_KEY.
+// Lê as mensagens do KV ("wa:" recebidas, "wa-out:" enviadas, com metadata) e responde pela Cloud API (WA_TOKEN, WA_PHONE_ID).
+async function painelSessao(req, env) {
+  const c = cookie(req, "hc_painel"); if (!c || c.indexOf(".") < 0) return false;
+  const [v, s] = c.split(".");
+  if (!same(s, await hmac(env.COOKIE_KEY, "painel:" + v))) return false;
+  return Number(v) > Date.now();
+}
+async function waLista(env) {
+  const out = [];
+  for (const pre of ["wa:", "wa-out:"]) {
+    let cur; do {
+      const ls = await env.LEADS.list({ prefix: pre, cursor: cur }); cur = ls.list_complete ? null : ls.cursor;
+      for (const k of ls.keys) { const m = k.metadata || {}; out.push({ k: k.name, dir: pre === "wa:" ? "in" : "out", num: m.num || "", nome: m.nome || "", t: m.t || "", q: m.q || k.name.split(":").slice(1, 4).join(":") , st: m.st || "" }); }
+    } while (cur);
+  }
+  return out.sort((a, b) => (a.q < b.q ? -1 : 1));
+}
+async function painel(req, env, url) {
+  const H = { "content-type": "text/html; charset=utf-8", "cache-control": "no-store", "x-frame-options": "DENY", "x-robots-tag": "noindex" };
+  const J = (o, s = 200) => new Response(JSON.stringify(o), { status: s, headers: { "content-type": "application/json", "cache-control": "no-store" } });
+  const path = url.pathname.replace(/\/+$/, "") || "/painel";
+  if (path === "/painel/login" && req.method === "POST") {
+    const f = await req.formData();
+    if (env.PAINEL_KEY && same(String(f.get("codigo") || "").trim(), env.PAINEL_KEY)) {
+      const v = String(Date.now() + 30 * 86400000);
+      return new Response(null, { status: 303, headers: { location: "/painel", "set-cookie": `hc_painel=${v}.${await hmac(env.COOKIE_KEY, "painel:" + v)}; Path=/painel; Max-Age=2592000; Secure; HttpOnly; SameSite=Strict` } });
+    }
+    return new Response(null, { status: 303, headers: { location: "/painel?erro=1" } });
+  }
+  if (path === "/painel/sair") return new Response(null, { status: 303, headers: { location: "/painel", "set-cookie": "hc_painel=; Path=/painel; Max-Age=0; Secure; HttpOnly; SameSite=Strict" } });
+  const ok = await painelSessao(req, env);
+  if (!ok) {
+    if (path.startsWith("/painel/api/")) return J({ erro: "login" }, 401);
+    return new Response(`<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Help Cure — Central</title><link rel="icon" href="/img/icone.svg"><style>body{margin:0;min-height:100vh;display:grid;place-items:center;background:#06201C;color:#E9F3F0;font:16px/1.5 system-ui,sans-serif}form{background:#0B2E2A;border:1px solid #1E4A44;border-radius:16px;padding:28px;width:min(360px,92vw)}h1{font-size:22px;margin:0 0 6px}p{color:#BFD3CD;margin:0 0 16px;font-size:14px}input{width:100%;box-sizing:border-box;min-height:46px;border-radius:10px;border:1px solid #2C5A53;background:#06201C;color:#E9F3F0;font-size:17px;padding:0 12px}button{width:100%;margin-top:14px;min-height:46px;border:0;border-radius:999px;background:#17B877;color:#05241C;font-weight:700;font-size:15px}.e{color:#FFB4A8;font-size:14px;margin-top:10px}</style></head><body><form method="post" action="/painel/login"><h1>Central Help Cure</h1><p>Atendimento do WhatsApp. Digite o código de acesso.</p><input type="password" name="codigo" autocomplete="current-password" required autofocus>${url.searchParams.get("erro") ? '<div class="e">Código inválido.</div>' : ""}<button type="submit">Entrar</button></form></body></html>`, { headers: H });
+  }
+  if (path === "/painel/api/conversas") {
+    const all = await waLista(env); const conv = {};
+    for (const m of all) { const c = conv[m.num] || (conv[m.num] = { num: m.num, nome: "", ult: "", q: "", lastIn: "", n: 0 }); if (m.dir === "in") { c.nome = m.nome || c.nome; c.lastIn = m.q; c.n++; } c.ult = (m.dir === "out" ? "Você: " : "") + m.t; c.q = m.q; }
+    return J(Object.values(conv).filter((c) => c.num).sort((a, b) => (a.q < b.q ? 1 : -1)));
+  }
+  if (path === "/painel/api/conversa") {
+    const n = (url.searchParams.get("n") || "").replace(/\D/g, "");
+    const all = (await waLista(env)).filter((m) => m.num === n);
+    for (const m of all) { if (m.t.length >= 290) { const v = await env.LEADS.get(m.k, "json"); if (v) m.t = v.texto || m.t; } }
+    return J(all);
+  }
+  if (path === "/painel/api/enviar" && req.method === "POST") {
+    let d; try { d = await req.json(); } catch (e) { return J({ erro: "dados" }, 400); }
+    const para = String(d.para || "").replace(/\D/g, ""), texto = String(d.texto || "").trim().slice(0, 4000);
+    if (!para || !texto) return J({ erro: "Escreva a mensagem." }, 400);
+    if (!env.WA_TOKEN || !env.WA_PHONE_ID) return J({ erro: "O envio ainda não está ligado (falta o token permanente do WhatsApp)." }, 503);
+    const r = await fetch(`https://graph.facebook.com/v25.0/${env.WA_PHONE_ID}/messages`, { method: "POST", headers: { authorization: "Bearer " + env.WA_TOKEN, "content-type": "application/json" }, body: JSON.stringify({ messaging_product: "whatsapp", to: para, type: "text", text: { body: texto } }) });
+    const j = await r.json().catch(() => ({}));
+    if (!r.ok) return J({ erro: (j.error && (j.error.error_user_msg || j.error.message)) || "Falha no envio (" + r.status + ")" }, 502);
+    const id = (j.messages && j.messages[0] && j.messages[0].id) || crypto.randomUUID(), q = new Date().toISOString();
+    await env.LEADS.put("wa-out:" + q + ":" + id, JSON.stringify({ id, para, texto, quando: q, por: "painel" }), { metadata: { num: para, t: texto.slice(0, 290), q, st: "enviada" } });
+    return J({ ok: true });
+  }
+  return new Response(PAINEL_HTML, { headers: H });
+}
+const PAINEL_HTML = `<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Central Help Cure — WhatsApp</title><link rel="icon" href="/img/icone.svg">
+<style>:root{--bg:#06201C;--p:#0B2E2A;--l:#1E4A44;--ink:#E9F3F0;--mut:#9FBDB5;--led:#17B877;--in:#123B35;--out:#155E47}*{box-sizing:border-box}html,body{height:100%}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.45 system-ui,-apple-system,"Segoe UI",sans-serif;display:flex;flex-direction:column}
+header{display:flex;align-items:center;gap:12px;padding:10px 16px;border-bottom:1px solid var(--l)}header b{font-size:17px}header b i{font-style:normal;color:var(--led)}header span{color:var(--mut);font-size:13px}header a{margin-left:auto;color:var(--mut);font-size:13px}
+main{flex:1;display:grid;grid-template-columns:minmax(240px,320px) 1fr;min-height:0}#lista{border-right:1px solid var(--l);overflow:auto}#lista button{all:unset;display:block;box-sizing:border-box;width:100%;padding:12px 16px;border-bottom:1px solid var(--l);cursor:pointer}#lista button[aria-current=true]{background:var(--p)}#lista button:focus-visible{outline:2px solid var(--led);outline-offset:-2px}#lista b{display:block}#lista small{display:block;color:var(--mut);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#chat{display:flex;flex-direction:column;min-height:0}#topo{padding:12px 16px;border-bottom:1px solid var(--l);display:flex;gap:10px;align-items:center}#topo button{display:none;all:unset;cursor:pointer;color:var(--led);font-weight:700}#msgs{flex:1;overflow:auto;padding:16px;display:flex;flex-direction:column;gap:8px}.m{max-width:78%;padding:8px 12px;border-radius:12px;white-space:pre-wrap;word-wrap:break-word}.m.in{background:var(--in);align-self:flex-start;border-top-left-radius:4px}.m.out{background:var(--out);align-self:flex-end;border-top-right-radius:4px}.m time{display:block;font-size:11px;color:var(--mut);margin-top:3px;text-align:right}
+#aviso{padding:8px 16px;font-size:13px;color:#FFD9A0;background:#3A2D17;display:none}#form{display:flex;gap:8px;padding:10px 12px;border-top:1px solid var(--l)}#form textarea{flex:1;resize:none;min-height:44px;max-height:140px;border-radius:12px;border:1px solid #2C5A53;background:var(--bg);color:var(--ink);font:inherit;padding:10px 12px}#form button{border:0;border-radius:999px;background:var(--led);color:#05241C;font-weight:700;padding:0 18px;cursor:pointer}#form button:disabled{opacity:.5}
+.vazio{margin:auto;color:var(--mut);text-align:center;padding:24px}
+@media(max-width:720px){main{grid-template-columns:1fr}main.aberto #lista{display:none}main:not(.aberto) #chat{display:none}#topo button{display:inline}}</style></head><body>
+<header><b>Help<i>Cure</i></b><span>Central · WhatsApp</span><a href="/painel/sair">Sair</a></header>
+<main id="main"><nav id="lista" aria-label="Conversas"><div class="vazio">Carregando…</div></nav>
+<section id="chat"><div id="topo"><button type="button" id="voltar" aria-label="Voltar às conversas">←</button><strong id="quem">Escolha uma conversa</strong></div><div id="msgs" aria-live="polite"><div class="vazio">As mensagens aparecem aqui.</div></div><div id="aviso"></div>
+<form id="form"><textarea id="txt" rows="1" placeholder="Escreva a resposta…" aria-label="Mensagem"></textarea><button id="env" type="submit">Enviar</button></form></section></main>
+<script>
+var atual="",conv=[];function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+function hora(q){var d=new Date(q);return isNaN(d)?"":d.toLocaleString("pt-BR",{day:"2-digit",month:"2-digit",hour:"2-digit",minute:"2-digit"})}
+function fmt(n){return "+"+n}
+async function j(u,o){var r=await fetch(u,o);if(r.status===401){location.href="/painel";throw 0}return r.json()}
+async function lista(){conv=await j("/painel/api/conversas");var L=document.getElementById("lista");if(!conv.length){L.innerHTML='<div class="vazio">Nenhuma conversa ainda.</div>';return}
+L.innerHTML=conv.map(function(c){return '<button type="button" data-n="'+c.num+'" aria-current="'+(c.num===atual)+'"><b>'+esc(c.nome||fmt(c.num))+'</b><small>'+esc(c.ult)+'</small><small>'+hora(c.q)+'</small></button>'}).join("");
+L.querySelectorAll("button").forEach(function(b){b.onclick=function(){abrir(b.dataset.n)}})}
+async function abrir(n){atual=n;document.getElementById("main").classList.add("aberto");var c=conv.find(function(x){return x.num===n})||{};document.getElementById("quem").textContent=(c.nome?c.nome+" · ":"")+fmt(n);
+var ms=await j("/painel/api/conversa?n="+n),M=document.getElementById("msgs");M.innerHTML=ms.map(function(m){return '<div class="m '+m.dir+'">'+esc(m.t)+'<time>'+hora(m.q)+(m.dir==="out"?" · "+esc(m.st||""):"")+'</time></div>'}).join("")||'<div class="vazio">Sem mensagens.</div>';M.scrollTop=M.scrollHeight;
+var ins=ms.filter(function(m){return m.dir==="in"}),ult=ins.length?new Date(ins[ins.length-1].q):null,A=document.getElementById("aviso");
+if(!ult||Date.now()-ult>864e5){A.style.display="block";A.textContent="Fora da janela de 24 h: o WhatsApp só permite responder texto livre até 24 h depois da última mensagem do contato. Depois disso, é preciso um modelo aprovado."}else A.style.display="none";lista()}
+document.getElementById("voltar").onclick=function(){document.getElementById("main").classList.remove("aberto")};
+document.getElementById("form").onsubmit=async function(e){e.preventDefault();var t=document.getElementById("txt"),b=document.getElementById("env");if(!atual||!t.value.trim())return;b.disabled=true;
+try{var r=await j("/painel/api/enviar",{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify({para:atual,texto:t.value})});if(r.erro){alertar(r.erro)}else{t.value="";abrir(atual)}}finally{b.disabled=false}};
+function alertar(s){var A=document.getElementById("aviso");A.style.display="block";A.textContent=s}
+document.getElementById("txt").addEventListener("keydown",function(e){if(e.key==="Enter"&&!e.shiftKey){e.preventDefault();document.getElementById("form").requestSubmit()}});
+lista();setInterval(function(){atual?abrir(atual):lista()},15000);
+</script></body></html>`;
 
 async function interesse(req, env) {
   if (req.method !== "POST") return new Response("Method not allowed", { status: 405 });
@@ -325,6 +419,7 @@ export default {
     let p = url.pathname;
     if (p === "/api/interesse") return interesse(req, env);
     if (p === "/api/whatsapp") return whatsapp(req, env, url);
+    if (p === "/painel" || p.startsWith("/painel/")) return painel(req, env, url);
     if (p === "/investidores" || p.startsWith("/investidores/")) return investors(req, env, url);
     if (PRIV[p]) return privado(req, env, url, p);
     if (p.startsWith("/priv/")) return new Response("Not found", { status: 404 });
