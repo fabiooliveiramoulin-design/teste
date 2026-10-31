@@ -122,7 +122,8 @@ section:not(.dark) .step::before{color:var(--led-ink)}
 .gallery figure{margin:0}
 .gallery img{border-radius:14px;aspect-ratio:16/10;object-fit:cover;width:100%}
 .gallery figcaption{font-size:14px;color:var(--ink-3);margin-top:8px}
-@media (max-width:760px){.gallery{grid-template-columns:1fr}}
+.gallery.g2{grid-template-columns:repeat(2,1fr)}
+@media (max-width:760px){.gallery,.gallery.g2{grid-template-columns:1fr}}
 
 /* video */
 .video{max-width:980px;margin:32px auto 0}
