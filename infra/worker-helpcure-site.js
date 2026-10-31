@@ -345,7 +345,8 @@ async function painel(req, env, url) {
     out.me = await q("me?fields=id,name");
     out.permissoes = await q("me/permissions");
     out.numero = await q((env.WA_PHONE_ID || "x") + "?fields=id,display_phone_number,verified_name,quality_rating");
-    out.waba = await q("1122755736912374?fields=id,name,currency,account_review_status");
+    out.waba = await q("1123012283531892?fields=id,name,currency,account_review_status");
+    out.numero_teste_waba = await q("1122755736912374?fields=id,name");
     return new Response(JSON.stringify(out, null, 2), { headers: { "content-type": "application/json; charset=utf-8", "cache-control": "no-store" } });
   }
   if (path === "/painel/api/conversas") {
