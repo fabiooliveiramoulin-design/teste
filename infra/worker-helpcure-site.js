@@ -49,6 +49,12 @@ const L = {
     m_subj: "Help Cure — thank you for your interest", m_body: "Hello, {n},\n\nThank you for your interest in our innovation. We will contact you by the email or phone you registered.\n\nRegistered details:\nName: {n}\nEmail: {e}\nPhone: {t}\n\nHelp Cure team\ninvestidores@helpcure.com.py · helpcure.com.py" },
 };
 const NAMES = { pt: "Português", es: "Español", en: "English" };
+const CAMP_MAIL = "campanha@helpcure.com.py";
+const CAMP_MSG = {
+  pt: { s: "Help Cure Solidário — recebemos o seu pré-cadastro", b: "Olá, {n}!\n\nObrigado por se interessar pela campanha Help Cure Solidário. Recebemos o seu pré-cadastro e vamos avisar você assim que a campanha abrir oficialmente, com as metas, os níveis de apoio e a forma de contribuir.\n\nEnquanto isso, conheça a campanha em https://helpcure.com.py/solidario.html\n\nSe não foi você que fez este cadastro, basta responder este e-mail e removemos os seus dados.\n\nEquipe Help Cure\ncampanha@helpcure.com.py · helpcure.com.py" },
+  es: { s: "Help Cure Solidario — recibimos su preinscripción", b: "Hola, {n}:\n\nGracias por interesarse en la campaña Help Cure Solidario. Recibimos su preinscripción y le avisaremos cuando la campaña abra oficialmente, con las metas, los niveles de apoyo y la forma de contribuir.\n\nMientras tanto, conozca la campaña en https://helpcure.com.py/solidario.html\n\nSi usted no hizo esta inscripción, responda este correo y eliminaremos sus datos.\n\nEquipo Help Cure\ncampanha@helpcure.com.py · helpcure.com.py" },
+  en: { s: "Help Cure Solidarity — we received your pre-registration", b: "Hello, {n},\n\nThank you for your interest in the Help Cure Solidarity campaign. We received your pre-registration and will let you know when the campaign officially opens, with the goals, support levels and how to contribute.\n\nIn the meantime, see the campaign at https://helpcure.com.py/solidario.html\n\nIf you did not sign up, just reply to this email and we will delete your data.\n\nHelp Cure team\ncampanha@helpcure.com.py · helpcure.com.py" },
+};
 
 async function hmac(key, msg) {
   const k = await crypto.subtle.importKey("raw", new TextEncoder().encode(key), { name: "HMAC", hash: "SHA-256" }, false, ["sign"]);
@@ -269,6 +275,14 @@ async function interesse(req, env) {
   const cut = (v, n) => String(v || "").trim().slice(0, n);
   const rec = { nome: cut(d.nome, 120), email: cut(d.email, 160), whatsapp: cut(d.whatsapp, 40), pais: cut(d.pais, 10), tipo: cut(d.tipo, 20), nivel: cut(d.nivel, 20), idioma: cut(d.idioma, 5), consent: d.consent === true, quando: new Date().toISOString(), cf_pais: (req.cf && req.cf.country) || "" };
   if (!rec.nome || (!rec.email && !rec.whatsapp) || !rec.consent) return new Response("bad", { status: 400 });
+  const lg = ["pt", "es", "en"].includes(rec.idioma) ? rec.idioma : "pt";
+  rec.mailInterno = await mail(env, { to: CAMP_MAIL, replyTo: rec.email || CAMP_MAIL,
+    subject: `Help Cure Solidário — novo pré-cadastro (${rec.nome})`,
+    text: `Novo pré-cadastro na campanha Help Cure Solidário.\n\nNome: ${rec.nome}\nE-mail: ${rec.email || "-"}\nWhatsApp: ${rec.whatsapp || "-"}\nPaís informado: ${rec.pais || "-"}\nTipo: ${rec.tipo || "-"}\nNível de interesse: ${rec.nivel || "-"}\nIdioma: ${NAMES[lg]}\nPaís de acesso: ${rec.cf_pais || "-"}\nData: ${rec.quando}\n\nO apoiador autorizou o uso destes dados para contato sobre a campanha.` });
+  if (rec.email && /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(rec.email)) {
+    const m = CAMP_MSG[lg];
+    rec.mailApoiador = await mail(env, { to: rec.email, replyTo: CAMP_MAIL, subject: m.s, text: m.b.replace(/\{n\}/g, rec.nome.split(" ")[0]) });
+  }
   await env.LEADS.put("lead:" + rec.quando + ":" + crypto.randomUUID().slice(0, 8), JSON.stringify(rec));
   return new Response(JSON.stringify({ ok: true }), { headers: { "content-type": "application/json" } });
 }
