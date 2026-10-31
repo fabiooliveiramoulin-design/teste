@@ -338,6 +338,16 @@ async function painel(req, env, url) {
     if (path.startsWith("/painel/api/")) return J({ erro: "login" }, 401);
     return new Response(`<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Help Cure — Central</title><link rel="icon" href="/img/icone.svg"><style>body{margin:0;min-height:100vh;display:grid;place-items:center;background:#06201C;color:#E9F3F0;font:16px/1.5 system-ui,sans-serif}form{background:#0B2E2A;border:1px solid #1E4A44;border-radius:16px;padding:28px;width:min(360px,92vw)}h1{font-size:22px;margin:0 0 6px}p{color:#BFD3CD;margin:0 0 16px;font-size:14px}input{width:100%;box-sizing:border-box;min-height:46px;border-radius:10px;border:1px solid #2C5A53;background:#06201C;color:#E9F3F0;font-size:17px;padding:0 12px}button{width:100%;margin-top:14px;min-height:46px;border:0;border-radius:999px;background:#17B877;color:#05241C;font-weight:700;font-size:15px}.e{color:#FFB4A8;font-size:14px;margin-top:10px}</style></head><body><form method="post" action="/painel/login"><h1>Central Help Cure</h1><p>Atendimento do WhatsApp. Digite o código de acesso.</p><input type="password" name="codigo" autocomplete="current-password" required autofocus>${url.searchParams.get("erro") ? '<div class="e">Código inválido.</div>' : ""}<button type="submit">Entrar</button></form></body></html>`, { headers: H });
   }
+  if (path === "/painel/api/diag") {
+    const T = env.WA_TOKEN || env.wa_token; const G = "https://graph.facebook.com/v25.0/";
+    const q = async (u) => { try { const r = await fetch(G + u, { headers: { authorization: "Bearer " + T } }); return await r.json(); } catch (e) { return { erro: String(e) }; } };
+    const out = { tem_token: !!T, tamanho: T ? T.length : 0, phone_id: env.WA_PHONE_ID || null };
+    out.me = await q("me?fields=id,name");
+    out.permissoes = await q("me/permissions");
+    out.numero = await q((env.WA_PHONE_ID || "x") + "?fields=id,display_phone_number,verified_name,quality_rating");
+    out.waba = await q("1122755736912374?fields=id,name,currency,account_review_status");
+    return new Response(JSON.stringify(out, null, 2), { headers: { "content-type": "application/json; charset=utf-8", "cache-control": "no-store" } });
+  }
   if (path === "/painel/api/conversas") {
     const all = await waLista(env); const conv = {};
     for (const m of all) { const c = conv[m.num] || (conv[m.num] = { num: m.num, nome: "", ult: "", q: "", lastIn: "", n: 0 }); if (m.dir === "in") { c.nome = m.nome || c.nome; c.lastIn = m.q; c.n++; } c.ult = (m.dir === "out" ? "Você: " : "") + m.t; c.q = m.q; }
