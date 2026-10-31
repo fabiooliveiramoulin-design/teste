@@ -353,8 +353,8 @@ async function painel(req, env, url) {
     let d; try { d = await req.json(); } catch (e) { return J({ erro: "dados" }, 400); }
     const para = String(d.para || "").replace(/\D/g, ""), texto = String(d.texto || "").trim().slice(0, 4000);
     if (!para || !texto) return J({ erro: "Escreva a mensagem." }, 400);
-    if (!env.WA_TOKEN || !env.WA_PHONE_ID) return J({ erro: "O envio ainda não está ligado (falta o token permanente do WhatsApp)." }, 503);
-    const r = await fetch(`https://graph.facebook.com/v25.0/${env.WA_PHONE_ID}/messages`, { method: "POST", headers: { authorization: "Bearer " + env.WA_TOKEN, "content-type": "application/json" }, body: JSON.stringify({ messaging_product: "whatsapp", to: para, type: "text", text: { body: texto } }) });
+    if (!(env.WA_TOKEN || env.wa_token) || !env.WA_PHONE_ID) return J({ erro: "O envio ainda não está ligado (falta o token permanente do WhatsApp)." }, 503);
+    const r = await fetch(`https://graph.facebook.com/v25.0/${env.WA_PHONE_ID}/messages`, { method: "POST", headers: { authorization: "Bearer " + (env.WA_TOKEN || env.wa_token), "content-type": "application/json" }, body: JSON.stringify({ messaging_product: "whatsapp", to: para, type: "text", text: { body: texto } }) });
     const j = await r.json().catch(() => ({}));
     if (!r.ok) return J({ erro: (j.error && (j.error.error_user_msg || j.error.message)) || "Falha no envio (" + r.status + ")" }, 502);
     const id = (j.messages && j.messages[0] && j.messages[0].id) || crypto.randomUUID(), q = new Date().toISOString();
