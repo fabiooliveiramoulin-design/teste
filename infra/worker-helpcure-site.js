@@ -26,6 +26,10 @@ const L = {
     plan: "Ver o plano completo", soon: "Vídeo disponível em breve.", app: "Abrir o app do paciente", back: "Voltar ao site", out: "Sair", conf: "Material confidencial. Não compartilhe o código de acesso.",
     qt: "Gostou do que viu?", qs: "Clique abaixo e a nossa equipe entra em contato pelo e-mail ou telefone que você cadastrou.", quero: "Quero investir",
     obr: "Obrigado pelo interesse na nossa inovação!", obs: "Entraremos em contato pelo e-mail ou telefone cadastrado. Enviamos uma confirmação para {e}.", voltar: "Voltar ao conteúdo",
+    nocode: "Não tenho código", rt: "Solicitar acesso", rx: "A Área do Investidor dá acesso ao plano de negócios e de investimento de cada segmento da saúde em que a Help Cure atua. Se você tem interesse em investir, podemos enviar um código de acesso a um amplo material de análise. Preencha o cadastro: entraremos em contato e liberaremos o seu código. Muito obrigado!",
+    rconsent: "Autorizo a Help Cure a usar estes dados para contato sobre o investimento, conforme a LGPD (Brasil) e a Lei 6534/2020 (Paraguai).", rsend: "Enviar cadastro", rok: "Cadastro recebido. Muito obrigado!", roks: "Entraremos em contato e enviaremos o seu código de acesso. Mandamos uma confirmação para {e}.",
+    r_subj: "Help Cure — recebemos o seu pedido de acesso", r_body: "Olá, {n}!\n\nRecebemos o seu pedido de acesso à Área do Investidor da Help Cure. Entraremos em contato e, em seguida, enviaremos o seu código de acesso ao material de análise.\n\nDados cadastrados:\nNome: {n}\nE-mail: {e}\nWhatsApp: {t}\n\nMuito obrigado!\nEquipe Help Cure\ninvestidores@helpcure.com.py · helpcure.com.py",
+    c_subj: "Help Cure — seu código de acesso à Área do Investidor", c_body: "Olá, {n}!\n\nSeu acesso à Área do Investidor da Help Cure foi liberado.\n\nCódigo de acesso: {c}\nEntre em: {u}\n\nO material é confidencial. Por favor, não compartilhe o código.\n\nEquipe Help Cure\ninvestidores@helpcure.com.py · helpcure.com.py",
     m_subj: "Help Cure — obrigado pelo seu interesse", m_body: "Olá, {n}!\n\nObrigado pelo interesse na nossa inovação. Entraremos em contato pelo e-mail ou telefone cadastrado.\n\nDados cadastrados:\nNome: {n}\nE-mail: {e}\nWhatsApp: {t}\n\nEquipe Help Cure\ninvestidores@helpcure.com.py · helpcure.com.py" },
   es: { full: "Video completo", mods: "Por módulo", lg: { pt: "en portugués", es: "en español", en: "en inglés" }, t: "Área del inversionista",
     sub: "Ingrese el código de acceso que recibió de quien le recomendó Help Cure.", code: "Código de acceso", go: "Entrar", bad: "Código inválido. Verifique e intente de nuevo.",
@@ -36,6 +40,10 @@ const L = {
     plan: "Ver el plan completo", soon: "Video disponible pronto.", app: "Abrir la app del paciente", back: "Volver al sitio", out: "Salir", conf: "Material confidencial. No comparta el código de acceso.",
     qt: "¿Le gustó lo que vio?", qs: "Haga clic abajo y nuestro equipo se pondrá en contacto por el correo o el teléfono que registró.", quero: "Quiero invertir",
     obr: "¡Gracias por su interés en nuestra innovación!", obs: "Nos pondremos en contacto por el correo electrónico o el teléfono registrado. Enviamos una confirmación a {e}.", voltar: "Volver al contenido",
+    nocode: "No tengo código", rt: "Solicitar acceso", rx: "El Área del Inversionista da acceso al plan de negocios y de inversión de cada segmento de la salud en el que actúa Help Cure. Si le interesa invertir, podemos enviarle un código de acceso a un amplio material de análisis. Complete el registro: nos pondremos en contacto y liberaremos su código. ¡Muchas gracias!",
+    rconsent: "Autorizo a Help Cure a usar estos datos para contactarme sobre la inversión, conforme a la Ley 6534/2020 (Paraguay) y la LGPD (Brasil).", rsend: "Enviar registro", rok: "Registro recibido. ¡Muchas gracias!", roks: "Nos pondremos en contacto y le enviaremos su código de acceso. Enviamos una confirmación a {e}.",
+    r_subj: "Help Cure — recibimos su solicitud de acceso", r_body: "Hola, {n}:\n\nRecibimos su solicitud de acceso al Área del Inversionista de Help Cure. Nos pondremos en contacto y luego le enviaremos su código de acceso al material de análisis.\n\nDatos registrados:\nNombre: {n}\nCorreo: {e}\nWhatsApp: {t}\n\n¡Muchas gracias!\nEquipo Help Cure\ninvestidores@helpcure.com.py · helpcure.com.py",
+    c_subj: "Help Cure — su código de acceso al Área del Inversionista", c_body: "Hola, {n}:\n\nSu acceso al Área del Inversionista de Help Cure fue liberado.\n\nCódigo de acceso: {c}\nIngrese en: {u}\n\nEl material es confidencial. Por favor, no comparta el código.\n\nEquipo Help Cure\ninvestidores@helpcure.com.py · helpcure.com.py",
     m_subj: "Help Cure — gracias por su interés", m_body: "Hola, {n}:\n\nGracias por su interés en nuestra innovación. Nos pondremos en contacto por el correo electrónico o el teléfono registrado.\n\nDatos registrados:\nNombre: {n}\nCorreo: {e}\nWhatsApp: {t}\n\nEquipo Help Cure\ninvestidores@helpcure.com.py · helpcure.com.py" },
   en: { full: "Full video", mods: "By module", lg: { pt: "in Portuguese", es: "in Spanish", en: "in English" }, t: "Investor area",
     sub: "Enter the access code you received from whoever referred you to Help Cure.", code: "Access code", go: "Enter", bad: "Invalid code. Please check and try again.",
@@ -46,6 +54,10 @@ const L = {
     plan: "See the full plan", soon: "Video coming soon.", app: "Open the patient app", back: "Back to the site", out: "Sign out", conf: "Confidential material. Do not share the access code.",
     qt: "Liked what you saw?", qs: "Click below and our team will contact you by the email or phone you registered.", quero: "I want to invest",
     obr: "Thank you for your interest in our innovation!", obs: "We will contact you by the email or phone you registered. A confirmation was sent to {e}.", voltar: "Back to the content",
+    nocode: "I don't have a code", rt: "Request access", rx: "The Investor Area gives access to the business and investment plan for each healthcare segment Help Cure works in. If you are interested in investing, we can send you an access code to extensive analysis material. Fill in the form: we will get in touch and release your code. Thank you very much!",
+    rconsent: "I authorize Help Cure to use this data to contact me about the investment, under Paraguay's Law 6534/2020 and Brazil's LGPD.", rsend: "Send", rok: "Request received. Thank you very much!", roks: "We will get in touch and send you your access code. We sent a confirmation to {e}.",
+    r_subj: "Help Cure — we received your access request", r_body: "Hello {n},\n\nWe received your request to access the Help Cure Investor Area. We will get in touch and then send you your access code to the analysis material.\n\nYour details:\nName: {n}\nEmail: {e}\nWhatsApp: {t}\n\nThank you very much!\nHelp Cure team\ninvestidores@helpcure.com.py · helpcure.com.py",
+    c_subj: "Help Cure — your Investor Area access code", c_body: "Hello {n},\n\nYour access to the Help Cure Investor Area has been released.\n\nAccess code: {c}\nGo to: {u}\n\nThe material is confidential. Please do not share the code.\n\nHelp Cure team\ninvestidores@helpcure.com.py · helpcure.com.py",
     m_subj: "Help Cure — thank you for your interest", m_body: "Hello, {n},\n\nThank you for your interest in our innovation. We will contact you by the email or phone you registered.\n\nRegistered details:\nName: {n}\nEmail: {e}\nWhatsApp: {t}\n\nHelp Cure team\ninvestidores@helpcure.com.py · helpcure.com.py" },
 };
 const NAMES = { pt: "Português", es: "Español", en: "English" };
@@ -123,6 +135,11 @@ async function investors(req, env, url) {
   if (path === "/investidores/sair") return new Response(null, { status: 302, headers: { location: "/investidores/?lang=" + lang, "set-cookie": SC("", 0) } });
   if (path === "/investidores/admin") return admin(req, env, url);
 
+  // Origem de marketing (?c=CANAL ou utm_source) para quem chega sem código de prospect.
+  const oc = (url.searchParams.get("c") || url.searchParams.get("utm_source") || "").replace(/[^A-Za-z0-9_-]/g, "").slice(0, 30).toUpperCase();
+  if (path === "/investidores/solicitar") return solicitar(req, env, url, lang, H, oc);
+  if (path === "/investidores/liberar") return liberar(req, env, url);
+
   const s = await session(req, env);
 
   // 1) código do prospect
@@ -138,7 +155,7 @@ async function investors(req, env, url) {
       }
       error = t.bad;
     }
-    return new Response(page(lang, `<div class="gate"><h1>${t.t}</h1><p>${t.sub}</p><form method="post" action="/investidores/?lang=${lang}"><label for="code">${t.code}</label><input class="code" type="text" id="code" name="code" autocomplete="off" autocapitalize="characters" required placeholder="XXXX-XXXX">${error ? `<div class="err" role="alert">${error}</div>` : ""}<button class="btn w" type="submit">${t.go}</button></form><div class="row"><a class="btn g" href="/">${t.back}</a></div></div>`), { status: error ? 401 : 200, headers: H });
+    return new Response(page(lang, `<div class="gate"><h1>${t.t}</h1><p>${t.sub}</p><form method="post" action="/investidores/?lang=${lang}"><label for="code">${t.code}</label><input class="code" type="text" id="code" name="code" autocomplete="off" autocapitalize="characters" required placeholder="XXXX-XXXX">${error ? `<div class="err" role="alert">${error}</div>` : ""}<button class="btn w" type="submit">${t.go}</button></form><div class="row"><a class="btn g" href="/investidores/solicitar?lang=${lang}${oc ? "&c=" + oc : ""}">${t.nocode}</a><a class="btn g" href="/">${t.back}</a></div></div>`), { status: error ? 401 : 200, headers: H });
   }
 
   // 2) cadastro do investidor
@@ -229,6 +246,56 @@ ${queroBox(lang)}
 }
 
 // Lista de cadastros (CSV): /investidores/admin?key=ADMIN_KEY[&p=2SEA]
+// Investidor sem código (marketing): pede acesso; investidores@ recebe o pedido com um link para liberar.
+const RCH = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+function rnd(n) { const a = crypto.getRandomValues(new Uint8Array(n)); return Array.from(a, (x) => RCH[x % RCH.length]).join(""); }
+async function solicitar(req, env, url, lang, H, oc) {
+  const t = L[lang];
+  let error = "", v = { nome: "", email: "", tel: "" };
+  if (req.method === "POST") {
+    const f = await req.formData(); const cut = (x, n) => String(f.get(x) || "").trim().slice(0, n);
+    v = { nome: cut("nome", 120), email: cut("email", 160).toLowerCase(), tel: cut("tel", 40) };
+    const origem = cut("c", 30).replace(/[^A-Za-z0-9_-]/g, "").toUpperCase() || "DIRETO";
+    const ok = () => new Response(page(lang, `<div class="gate"><h1>${t.rok}</h1><p>${fill(t.roks, { e: esc(v.email) })}</p><div class="row"><a class="btn" href="/">${t.back}</a></div></div>`), { headers: H });
+    if (cut("site", 10)) return ok(); // armadilha para robôs
+    if (v.nome.length > 1 && /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v.email) && v.tel.replace(/\D/g, "").length >= 8 && f.get("consent")) {
+      const id = new Date().toISOString() + ":" + crypto.randomUUID().slice(0, 8);
+      const rec = { ...v, origem, ref: (req.headers.get("referer") || "").slice(0, 200), idioma: lang, consent: true, quando: new Date().toISOString(), pais: (req.cf && req.cf.country) || "", status: "pendente" };
+      const link = `${url.origin}/investidores/liberar?id=${encodeURIComponent(id)}&k=${await hmac(env.COOKIE_KEY, "lib:" + id)}`;
+      rec.mailInterno = await mail(env, { from: HC_MAIL, to: HC_MAIL, replyTo: v.email, subject: `Help Cure — pedido de acesso de investidor (${origem})`,
+        text: `Novo pedido de acesso à Área do Investidor, sem código de prospect.\n\nNome: ${v.nome}\nE-mail: ${v.email}\nWhatsApp: ${v.tel}\nConversar no WhatsApp: https://wa.me/${v.tel.replace(/\D/g, "")}\nOrigem: ${origem}\nIdioma: ${NAMES[lang]}\nPaís (pelo acesso): ${rec.pais || "-"}\nData: ${rec.quando}\n\nPara liberar o acesso (gera um código exclusivo e envia ao investidor), abra:\n${link}\n\nSe não quiser liberar, basta ignorar este e-mail.` });
+      rec.mailConf = await mail(env, { from: HC_MAIL, to: v.email, replyTo: HC_MAIL, subject: t.r_subj, text: fill(t.r_body, { n: v.nome, e: v.email, t: v.tel }) });
+      await env.LEADS.put("pedido:" + id, JSON.stringify(rec));
+      return ok();
+    }
+    error = t.need;
+  }
+  return new Response(page(lang, `<div class="gate"><h1>${t.rt}</h1><p>${t.rx}</p><form method="post" action="/investidores/solicitar?lang=${lang}"><input type="hidden" name="c" value="${esc(oc)}"><input type="text" name="site" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px">
+<label for="nome">${t.nome}</label><input type="text" id="nome" name="nome" autocomplete="name" required value="${esc(v.nome)}">
+<label for="email">${t.email}</label><input type="email" id="email" name="email" autocomplete="email" required value="${esc(v.email)}">
+<label for="tel">${t.tel}</label><input type="tel" id="tel" name="tel" autocomplete="tel" required value="${esc(v.tel)}">
+<label class="ck"><input type="checkbox" name="consent" value="1" required><span>${t.rconsent}</span></label>
+${error ? `<div class="err" role="alert">${error}</div>` : ""}<button class="btn w" type="submit">${t.rsend}</button></form><div class="row"><a class="btn g" href="/investidores/?lang=${lang}">${t.code}</a><a class="btn g" href="/">${t.back}</a></div></div>`), { status: error ? 400 : 200, headers: H });
+}
+async function liberar(req, env, url) {
+  const H = { "content-type": "text/html; charset=utf-8", "cache-control": "no-store", "x-frame-options": "DENY", "x-robots-tag": "noindex" };
+  const id = url.searchParams.get("id") || "", k = url.searchParams.get("k") || "";
+  if (!id || !k || !same(k, await hmac(env.COOKIE_KEY, "lib:" + id))) return new Response("Not found", { status: 404 });
+  const rec = await env.LEADS.get("pedido:" + id, "json"); if (!rec) return new Response("Not found", { status: 404 });
+  const P = (h) => new Response(page("pt", `<div class="gate">${h}</div>`), { headers: H });
+  const dados = `<p>${esc(rec.nome)}<br>${esc(rec.email)}<br>WhatsApp: ${esc(rec.tel)}<br>Origem: ${esc(rec.origem)} · ${esc(rec.pais || "-")} · ${esc(rec.quando.slice(0, 10))}</p>`;
+  if (rec.status === "liberado") return P(`<h1>Acesso já liberado</h1>${dados}<p>Código: <b>${esc(rec.codigo)}</b> (enviado em ${esc((rec.liberado || "").slice(0, 16).replace("T", " "))}).</p>`);
+  if (req.method !== "POST") return P(`<h1>Liberar acesso do investidor</h1>${dados}<form method="post"><button class="btn w" type="submit">Liberar acesso e enviar o código</button></form>`);
+  let pref; do { pref = "D" + rnd(4); } while (await env.LEADS.get("prospect:" + pref));
+  const codigo = pref + "-" + rnd(4);
+  await env.LEADS.put("prospect:" + pref, JSON.stringify({ nome: `Direto · ${rec.nome} (${rec.origem})`, codigo, emails: [HC_MAIL], ativo: true, criado: new Date().toISOString(), pedido: id }));
+  const tl = L[rec.idioma] || L.pt;
+  rec.status = "liberado"; rec.codigo = codigo; rec.liberado = new Date().toISOString();
+  rec.mailCodigo = await mail(env, { from: HC_MAIL, to: rec.email, replyTo: HC_MAIL, subject: tl.c_subj, text: fill(tl.c_body, { n: rec.nome, c: codigo, u: `${url.origin}/investidores/?lang=${rec.idioma}` }) });
+  await env.LEADS.put("pedido:" + id, JSON.stringify(rec));
+  return P(`<h1>Acesso liberado</h1>${dados}<p>Código: <b>${esc(codigo)}</b><br>E-mail ao investidor: ${esc(rec.mailCodigo)}</p>`);
+}
+
 async function admin(req, env, url) {
   if (!env.ADMIN_KEY || !same(url.searchParams.get("key") || "", env.ADMIN_KEY)) return new Response("Not found", { status: 404 });
   const pref = (url.searchParams.get("p") || "").toUpperCase();
