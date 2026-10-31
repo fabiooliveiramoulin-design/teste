@@ -2,7 +2,7 @@
 // Acesso: código do prospect (ex.: 2SEA-XXXX) → cadastro do investidor (nome, e-mail, telefone) → conteúdo completo
 // (vídeos + investir.html, cifrado no repositório) → botão "Quero investir".
 // Prospects no KV LEADS, chave "prospect:<PREFIXO>" = {nome, codigo, emails[], ativo}.
-// E-mails via Apps Script do Google Workspace (segredos MAIL_URL e MAIL_KEY); sem eles, fica só o registro no KV.
+// E-mails via Apps Script "HelpCure Mailer (site)" na conta fabio.moulin@helpcure.com.py (segredos MAIL_URL e MAIL_KEY), enviando como investidores@ ou campanha@; sem eles, fica só o registro no KV.
 const RAW = "https://raw.githubusercontent.com/fabiooliveiramoulin-design/teste/main";
 const TYPES = { html: "text/html; charset=utf-8", css: "text/css; charset=utf-8", js: "application/javascript; charset=utf-8", svg: "image/svg+xml", webp: "image/webp", jpg: "image/jpeg", jpeg: "image/jpeg", png: "image/png", webmanifest: "application/manifest+json", json: "application/json", ico: "image/x-icon", mp4: "video/mp4", webm: "video/webm" };
 const HC_MAIL = "investidores@helpcure.com.py";
@@ -150,7 +150,7 @@ async function investors(req, env, url) {
       if (v.nome.length > 1 && /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v.email) && v.tel.replace(/\D/g, "").length >= 8 && f.get("consent")) {
         const id = new Date().toISOString() + ":" + crypto.randomUUID().slice(0, 8);
         const rec = { ...v, prospect: s.p, prospectNome: s.pr.nome, idioma: lang, consent: true, quando: new Date().toISOString(), pais: (req.cf && req.cf.country) || "", eventos: [] };
-        rec.mailCadastro = await mail(env, { to: s.pr.emails.join(","), cc: HC_MAIL, replyTo: v.email,
+        rec.mailCadastro = await mail(env, { from: HC_MAIL, to: s.pr.emails.join(","), cc: HC_MAIL, replyTo: v.email,
           subject: `Help Cure — novo investidor cadastrado (${s.pr.nome})`,
           text: `Um investidor indicado por ${s.pr.nome} se cadastrou na área do investidor da Help Cure.\n\nNome: ${v.nome}\nE-mail: ${v.email}\nTelefone: ${v.tel}\nIdioma: ${NAMES[lang]}\nPaís de acesso: ${rec.pais}\nData: ${rec.quando}\n\nO investidor autorizou o uso destes dados pela Help Cure e por ${s.pr.nome} para contato sobre o investimento.` });
         await env.LEADS.put("inv:" + s.p + ":" + id, JSON.stringify(rec));
@@ -210,7 +210,7 @@ ${error ? `<div class="err" role="alert">${error}</div>` : ""}<button class="btn
     if (req.method === "POST") {
       const last = (rec.eventos || []).filter((e) => e.tipo === "quero-investir").pop();
       if (last && Date.now() - Date.parse(last.quando) < 600000) return new Response(null, { status: 303, headers: { location: "/investidores/quero-investir?lang=" + lang } }); // evita e-mails repetidos em 10 min
-      const st = await mail(env, { to: rec.email, cc: [...s.pr.emails, HC_MAIL].join(","), replyTo: HC_MAIL, subject: t.m_subj,
+      const st = await mail(env, { from: HC_MAIL, to: rec.email, cc: [...s.pr.emails, HC_MAIL].join(","), replyTo: HC_MAIL, subject: t.m_subj,
         text: fill(t.m_body, { n: rec.nome, e: rec.email, t: rec.tel }) + `\n\n— Indicação: ${s.pr.nome}` });
       rec.eventos.push({ tipo: "quero-investir", quando: new Date().toISOString(), mail: st });
       rec.queroInvestir = true; await env.LEADS.put(k, JSON.stringify(rec));
@@ -276,12 +276,12 @@ async function interesse(req, env) {
   const rec = { nome: cut(d.nome, 120), email: cut(d.email, 160), whatsapp: cut(d.whatsapp, 40), pais: cut(d.pais, 10), tipo: cut(d.tipo, 20), nivel: cut(d.nivel, 20), idioma: cut(d.idioma, 5), consent: d.consent === true, quando: new Date().toISOString(), cf_pais: (req.cf && req.cf.country) || "" };
   if (!rec.nome || (!rec.email && !rec.whatsapp) || !rec.consent) return new Response("bad", { status: 400 });
   const lg = ["pt", "es", "en"].includes(rec.idioma) ? rec.idioma : "pt";
-  rec.mailInterno = await mail(env, { to: CAMP_MAIL, replyTo: rec.email || CAMP_MAIL,
+  rec.mailInterno = await mail(env, { from: CAMP_MAIL, to: CAMP_MAIL, replyTo: rec.email || CAMP_MAIL,
     subject: `Help Cure Solidário — novo pré-cadastro (${rec.nome})`,
     text: `Novo pré-cadastro na campanha Help Cure Solidário.\n\nNome: ${rec.nome}\nE-mail: ${rec.email || "-"}\nWhatsApp: ${rec.whatsapp || "-"}\nPaís informado: ${rec.pais || "-"}\nTipo: ${rec.tipo || "-"}\nNível de interesse: ${rec.nivel || "-"}\nIdioma: ${NAMES[lg]}\nPaís de acesso: ${rec.cf_pais || "-"}\nData: ${rec.quando}\n\nO apoiador autorizou o uso destes dados para contato sobre a campanha.` });
   if (rec.email && /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(rec.email)) {
     const m = CAMP_MSG[lg];
-    rec.mailApoiador = await mail(env, { to: rec.email, replyTo: CAMP_MAIL, subject: m.s, text: m.b.replace(/\{n\}/g, rec.nome.split(" ")[0]) });
+    rec.mailApoiador = await mail(env, { from: CAMP_MAIL, to: rec.email, replyTo: CAMP_MAIL, subject: m.s, text: m.b.replace(/\{n\}/g, rec.nome.split(" ")[0]) });
   }
   await env.LEADS.put("lead:" + rec.quando + ":" + crypto.randomUUID().slice(0, 8), JSON.stringify(rec));
   return new Response(JSON.stringify({ ok: true }), { headers: { "content-type": "application/json" } });
