@@ -194,3 +194,5 @@ footer .legal{grid-column:1/-1;border-top:1px solid rgba(233,243,240,.12);paddin
 .vshort{max-width:980px;margin:32px auto 0}
 .vshort video{width:100%;display:block;border-radius:18px;background:#06201C;box-shadow:0 24px 64px rgba(0,0,0,.45),0 0 0 1px rgba(62,227,154,.14);aspect-ratio:16/9}
 .vshort .vnote:empty{display:none}
+
+.lx{display:none}html[lang^=pt] .lx-pt,html[lang=es] .lx-es,html[lang^=en] .lx-en{display:inline}
