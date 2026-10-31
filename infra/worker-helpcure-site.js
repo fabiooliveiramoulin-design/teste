@@ -269,6 +269,38 @@ async function privado(req, env, url, p) {
   return new Response(body, { headers: { "content-type": TYPES[ext], "cache-control": "private, no-store", "x-content-type-options": "nosniff" } });
 }
 
+// WhatsApp Cloud API (Meta) — webhook da Central de Entrada.
+// GET: verificação da Meta (segredo WA_VERIFY). POST: mensagens recebidas → KV "wa:" + aviso por e-mail para contato@.
+// Assinatura X-Hub-Signature-256 conferida quando o segredo WA_APP_SECRET existir.
+async function whatsapp(req, env, url) {
+  if (req.method === "GET") {
+    if (url.searchParams.get("hub.mode") === "subscribe" && env.WA_VERIFY && same(url.searchParams.get("hub.verify_token") || "", env.WA_VERIFY))
+      return new Response(url.searchParams.get("hub.challenge") || "", { headers: { "content-type": "text/plain" } });
+    return new Response("Forbidden", { status: 403 });
+  }
+  if (req.method !== "POST") return new Response("Method not allowed", { status: 405 });
+  const body = await req.text();
+  if (env.WA_APP_SECRET) {
+    const k = await crypto.subtle.importKey("raw", new TextEncoder().encode(env.WA_APP_SECRET), { name: "HMAC", hash: "SHA-256" }, false, ["sign"]);
+    const sig = "sha256=" + [...new Uint8Array(await crypto.subtle.sign("HMAC", k, new TextEncoder().encode(body)))].map((b) => b.toString(16).padStart(2, "0")).join("");
+    if (!same(req.headers.get("x-hub-signature-256") || "", sig)) return new Response("bad signature", { status: 401 });
+  }
+  let d; try { d = JSON.parse(body); } catch (e) { return new Response("ok"); }
+  for (const en of d.entry || []) for (const ch of en.changes || []) {
+    const v = ch.value || {}; const names = {}; (v.contacts || []).forEach((c) => { names[c.wa_id] = (c.profile && c.profile.name) || ""; });
+    for (const m of v.messages || []) {
+      const media = m.image || m.document || m.audio || m.video || m.sticker || null;
+      const rec = { id: m.id, de: m.from, nome: names[m.from] || "", tipo: m.type, texto: (m.text && m.text.body) || (media && media.caption) || (m.button && m.button.text) || (m.interactive && JSON.stringify(m.interactive)) || "",
+        midia: media ? { id: media.id, mime: media.mime_type || "", arquivo: media.filename || "" } : null, numero: (v.metadata && v.metadata.display_phone_number) || "", quando: new Date(Number(m.timestamp) * 1000 || Date.now()).toISOString() };
+      await env.LEADS.put("wa:" + rec.quando + ":" + rec.id, JSON.stringify(rec));
+      rec.mail = await mail(env, { from: "contato@helpcure.com.py", to: "contato@helpcure.com.py", subject: `WhatsApp Help Cure — ${rec.nome || "+" + rec.de}`,
+        text: `Mensagem recebida no WhatsApp da Help Cure (${rec.numero}).\n\nDe: ${rec.nome} (+${rec.de})\nTipo: ${rec.tipo}\n${rec.texto ? "Texto: " + rec.texto + "\n" : ""}${rec.midia ? "Anexo: " + (rec.midia.arquivo || rec.midia.mime) + " (id " + rec.midia.id + ")\n" : ""}Data: ${rec.quando}\n\nResponder: https://wa.me/${rec.de}` });
+    }
+    for (const st of v.statuses || []) { if (st.status === "failed") await env.LEADS.put("wa-erro:" + new Date().toISOString() + ":" + st.id, JSON.stringify(st)); }
+  }
+  return new Response("ok");
+}
+
 async function interesse(req, env) {
   if (req.method !== "POST") return new Response("Method not allowed", { status: 405 });
   let d; try { d = await req.json(); } catch (e) { return new Response("bad", { status: 400 }); }
@@ -292,6 +324,7 @@ export default {
     const url = new URL(req.url);
     let p = url.pathname;
     if (p === "/api/interesse") return interesse(req, env);
+    if (p === "/api/whatsapp") return whatsapp(req, env, url);
     if (p === "/investidores" || p.startsWith("/investidores/")) return investors(req, env, url);
     if (PRIV[p]) return privado(req, env, url, p);
     if (p.startsWith("/priv/")) return new Response("Not found", { status: 404 });
