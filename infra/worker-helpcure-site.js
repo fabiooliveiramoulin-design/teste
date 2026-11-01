@@ -333,6 +333,8 @@ async function privado(req, env, url, p) {
     h = h.replace(/<footer/i, box + "<footer");
     if (h.indexOf('id="quero-investir"') < 0) h = h.replace(/<\/body>/i, box + "</body>");
     h = h.replace("<head>", '<head><meta name="robots" content="noindex,nofollow">');
+    h = h.replace(/site\.css\?v=\d+/g, "site.css?v=8");
+    h = h.replace(/<\/head>/i, '<style>a[href*="solidario"]{display:none!important}.eyebrow{font-size:clamp(14px,1.4vw,17px)!important;line-height:1.3!important;letter-spacing:.1em!important}h2{font-size:clamp(24px,3vw,34px)}</style></head>');
     body = new TextEncoder().encode(h);
   }
   return new Response(body, { headers: { "content-type": TYPES[ext], "cache-control": "private, no-store", "x-content-type-options": "nosniff" } });
