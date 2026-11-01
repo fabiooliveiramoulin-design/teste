@@ -5,6 +5,7 @@
   --f-d:"Sora","Segoe UI",system-ui,sans-serif; --f-b:"Lexend","Segoe UI",system-ui,sans-serif;
   --r:18px; --max:1180px;
 }
+[hidden]{display:none!important}
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){ --bg:#0B1513; --surface:#12201D; --soft:#162824; --line:#22332F; --ink:#E8F1EE; --ink-2:#B4C6C1; --ink-3:#8BA09A; --led-ink:#3EE39A; }
 }

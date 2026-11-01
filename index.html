@@ -11,14 +11,14 @@
 <link rel="icon" href="img/icone.svg" type="image/svg+xml"><link rel="icon" href="img/logo/favicon-32.png" sizes="32x32"><link rel="apple-touch-icon" href="img/logo/helpcure-icone-app-180.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Lexend:wght@300;400;500;600&display=swap">
-<link rel="stylesheet" href="assets/site.css?v=5">
+<link rel="stylesheet" href="assets/site.css?v=6">
 </head>
 <body>
 <header class="top">
   <div class="wrap nav">
     <a class="logo" href="" aria-label="Help Cure"><img src="img/logo/helpcure-simbolo-animado-fundo-escuro.svg" alt="" aria-hidden="true"><span style="letter-spacing:-.02em">Help<b>Cure</b></span></a>
     <button class="burger" type="button" aria-label="Menu" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
-    <nav class="menu" aria-label="Menu"><a href="./" aria-current="page"><span data-i="k69">Início</span></a><a href="solucoes/"><span data-i="k70">Soluções</span></a><a href="para-quem.html"><span data-i="k71">Para quem</span></a><a href="tecnologia.html"><span data-i="k72">Tecnologia</span></a><a href="solidario.html"><span data-i="k73">Solidário</span></a><a href="investir.html"><span data-i="k74">Investidores</span></a></nav>
+    <nav class="menu" aria-label="Menu"><a href="./" aria-current="page"><span data-i="k69">Início</span></a><a href="solucoes/"><span data-i="k70">Soluções</span></a><a href="para-quem.html"><span data-i="k71">Para quem</span></a><a href="tecnologia.html"><span data-i="k72">Tecnologia</span></a><a hidden data-oculto="solidario" href="solidario.html"><span data-i="k73">Solidário</span></a><a href="investir.html"><span data-i="k74">Investidores</span></a></nav>
     <div class="lang" role="group" aria-label="Idioma / Language">
       <button type="button" data-l="pt" aria-pressed="true">PT</button><button type="button" data-l="es" aria-pressed="false">ES</button><button type="button" data-l="en" aria-pressed="false">EN</button>
     </div>
@@ -126,7 +126,7 @@
   </div>
 </section>
 
-<section class="tight">
+<section class="tight" hidden data-oculto="solidario">
   <div class="wrap">
     <div class="pilot camp">
       <img src="img/movel20_atendimento.webp" alt="" loading="lazy">
@@ -134,7 +134,7 @@
         <span data-i="k59" class="eyebrow">Help Cure Solidário</span>
         <h2 data-i="k60">Ajude a levar cuidado a quem mais precisa.</h2>
         <p data-i="k61">Nossa campanha financia unidades móveis com atendimento gratuito em comunidades carentes do Paraguai e do Brasil, e o desenvolvimento da plataforma. Quem apoia acompanha cada atendimento e pode receber o kit Help Cure em casa.</p>
-        <div class="cta"><a class="btn primary" href="solidario.html"><span data-i="k62">Conhecer a campanha</span></a><a class="btn ghost" href="solidario.html#apoiar"><span data-i="k63">Quero apoiar</span></a></div>
+        <div class="cta"><a hidden data-oculto="solidario" class="btn primary" href="solidario.html"><span data-i="k62">Conhecer a campanha</span></a><a hidden data-oculto="solidario" class="btn ghost" href="solidario.html#apoiar"><span data-i="k63">Quero apoiar</span></a></div>
       </div>
     </div>
   </div>
@@ -163,7 +163,7 @@
     <div><h4><span data-i="k84">Help Cure</span></h4>
       <a href="para-quem.html"><span data-i="k85">Para quem é</span></a>
       <a href="tecnologia.html"><span data-i="k86">Tecnologia e segurança</span></a>
-      <a href="solidario.html"><span data-i="k87">Help Cure Solidário</span></a>
+      <a hidden data-oculto="solidario" href="solidario.html"><span data-i="k87">Help Cure Solidário</span></a>
       <a href="app/"><span data-i="k88">App do paciente</span></a>
       <a href="investir.html"><span data-i="k89">Área do investidor</span></a></div>
     <div class="legal">© 2026 Help Cure · <span data-i="k90">Plataforma em fase de piloto. Imagens dos vídeos são simulações com personagens fictícios.</span> · <a href="privacidade.html" style="display:inline;color:inherit;text-decoration:underline"><span class="lx lx-pt">Política de privacidade</span><span class="lx lx-es">Política de privacidad</span><span class="lx lx-en">Privacy policy</span></a></div>

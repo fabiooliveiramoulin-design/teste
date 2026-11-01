@@ -497,7 +497,9 @@ export default {
   async fetch(req, env) {
     const url = new URL(req.url);
     let p = url.pathname;
-    if (p === "/api/interesse") return interesse(req, env);
+    // Help Cure Solidário fora do ar até a análise jurídica (01/11/2026): página redireciona para o início e o formulário não grava.
+    if (p === "/solidario.html" || p === "/solidario") return Response.redirect(url.origin + "/", 302);
+    if (p === "/api/interesse") return new Response(JSON.stringify({ ok: false, erro: "campanha indisponível" }), { status: 410, headers: { "content-type": "application/json" } });
     if (p === "/api/whatsapp") return whatsapp(req, env, url);
     if (p === "/painel" || p.startsWith("/painel/")) return painel(req, env, url);
     if (p === "/investidores" || p.startsWith("/investidores/")) return investors(req, env, url);
