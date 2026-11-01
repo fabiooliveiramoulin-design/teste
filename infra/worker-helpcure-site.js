@@ -18,7 +18,7 @@ const SHORTS = [
 
 const L = {
   pt: { full: "Vídeo completo", mods: "Por módulo", lg: { pt: "em português", es: "em espanhol", en: "em inglês" }, t: "Área do investidor",
-    sub: "Digite o código de acesso que você recebeu de quem indicou a Help Cure.", code: "Código de acesso", go: "Entrar", bad: "Código inválido. Confira e tente de novo.",
+    sub: "Digite o código de acesso que você recebeu de quem indicou a Help Cure.", ix: "A Área do Investidor reúne o material da primeira análise econômica da Help Cure: CAPEX, OPEX, estrutura de equity, rentabilidade projetada e o retorno esperado para quem investe. Por isso, o acesso é restrito a quem tem interesse em investir no projeto.", code: "Código de acesso", go: "Entrar", bad: "Código inválido. Confira e tente de novo.",
     ft: "Antes de começar", fs: "Para liberar o conteúdo completo, informe seus dados de contato.", nome: "Nome completo", email: "E-mail", tel: "WhatsApp (com código do país e DDD)",
     consent: "Autorizo a Help Cure e o parceiro que me indicou a usar estes dados para contato sobre o investimento, conforme a LGPD (Brasil) e a Lei 6534/2020 (Paraguai).",
     send: "Ver o conteúdo", need: "Preencha nome, e-mail válido e WhatsApp, e marque a autorização.",
@@ -32,7 +32,7 @@ const L = {
     c_subj: "Help Cure — seu código de acesso à Área do Investidor", c_body: "Olá, {n}!\n\nSeu acesso à Área do Investidor da Help Cure foi liberado.\n\nCódigo de acesso: {c}\nEntre em: {u}\n\nO material é confidencial. Por favor, não compartilhe o código.\n\nEquipe Help Cure\ninvestidores@helpcure.com.py · helpcure.com.py",
     m_subj: "Help Cure — obrigado pelo seu interesse", m_body: "Olá, {n}!\n\nObrigado pelo interesse na nossa inovação. Entraremos em contato pelo e-mail ou telefone cadastrado.\n\nDados cadastrados:\nNome: {n}\nE-mail: {e}\nWhatsApp: {t}\n\nEquipe Help Cure\ninvestidores@helpcure.com.py · helpcure.com.py" },
   es: { full: "Video completo", mods: "Por módulo", lg: { pt: "en portugués", es: "en español", en: "en inglés" }, t: "Área del inversionista",
-    sub: "Ingrese el código de acceso que recibió de quien le recomendó Help Cure.", code: "Código de acceso", go: "Entrar", bad: "Código inválido. Verifique e intente de nuevo.",
+    sub: "Ingrese el código de acceso que recibió de quien le recomendó Help Cure.", ix: "El Área del Inversionista reúne el material del primer análisis económico de Help Cure: CAPEX, OPEX, estructura de equity, rentabilidad proyectada y el retorno esperado para quien invierte. Por eso, el acceso está restringido a quienes tienen interés en invertir en el proyecto.", code: "Código de acceso", go: "Entrar", bad: "Código inválido. Verifique e intente de nuevo.",
     ft: "Antes de empezar", fs: "Para liberar el contenido completo, informe sus datos de contacto.", nome: "Nombre completo", email: "Correo electrónico", tel: "WhatsApp (con código de país)",
     consent: "Autorizo a Help Cure y al socio que me recomendó a usar estos datos para contactarme sobre la inversión, conforme a la Ley 6534/2020 (Paraguay) y la LGPD (Brasil).",
     send: "Ver el contenido", need: "Complete nombre, correo válido y WhatsApp, y marque la autorización.",
@@ -46,7 +46,7 @@ const L = {
     c_subj: "Help Cure — su código de acceso al Área del Inversionista", c_body: "Hola, {n}:\n\nSu acceso al Área del Inversionista de Help Cure fue liberado.\n\nCódigo de acceso: {c}\nIngrese en: {u}\n\nEl material es confidencial. Por favor, no comparta el código.\n\nEquipo Help Cure\ninvestidores@helpcure.com.py · helpcure.com.py",
     m_subj: "Help Cure — gracias por su interés", m_body: "Hola, {n}:\n\nGracias por su interés en nuestra innovación. Nos pondremos en contacto por el correo electrónico o el teléfono registrado.\n\nDatos registrados:\nNombre: {n}\nCorreo: {e}\nWhatsApp: {t}\n\nEquipo Help Cure\ninvestidores@helpcure.com.py · helpcure.com.py" },
   en: { full: "Full video", mods: "By module", lg: { pt: "in Portuguese", es: "in Spanish", en: "in English" }, t: "Investor area",
-    sub: "Enter the access code you received from whoever referred you to Help Cure.", code: "Access code", go: "Enter", bad: "Invalid code. Please check and try again.",
+    sub: "Enter the access code you received from whoever referred you to Help Cure.", ix: "The Investor Area holds the material for Help Cure's first economic analysis: CAPEX, OPEX, equity structure, projected profitability and the expected return for investors. That is why access is restricted to those interested in investing in the project.", code: "Access code", go: "Enter", bad: "Invalid code. Please check and try again.",
     ft: "Before you start", fs: "To unlock the full content, please share your contact details.", nome: "Full name", email: "Email", tel: "WhatsApp (with country code)",
     consent: "I authorize Help Cure and the partner who referred me to use this data to contact me about the investment, under Brazil’s LGPD and Paraguay’s Law 6534/2020.",
     send: "See the content", need: "Please fill in your name, a valid email and WhatsApp, and tick the authorization.",
@@ -108,7 +108,7 @@ function page(lang, body, opts = {}) {
 header{display:flex;align-items:center;gap:16px;max-width:1100px;margin:0 auto;padding:18px 20px}header a.logo{font:700 20px Sora,sans-serif;color:var(--ink);text-decoration:none}header a.logo b{color:var(--led)}
 nav{margin-left:auto;display:flex;gap:4px;background:rgba(255,255,255,.08);border-radius:999px;padding:3px}nav a{color:var(--ink2);text-decoration:none;font:600 12px Sora,sans-serif;padding:7px 10px;border-radius:999px}nav a[aria-current]{background:var(--led);color:#05241C}
 main{max-width:1100px;margin:0 auto;padding:24px 20px 64px}h1{font:700 clamp(28px,4vw,44px)/1.15 Sora,sans-serif;margin:8px 0 10px}p{margin:0;color:var(--ink2)}
-.gate{max-width:460px;margin:6vh auto 0;background:#0B2E2A;border:1px solid #1E4A44;border-radius:18px;padding:32px}.gate h1{font-size:26px}
+.gate{max-width:460px;margin:6vh auto 0;background:#0B2E2A;border:1px solid #1E4A44;border-radius:18px;padding:32px}.gate h1{font-size:26px}.gate .ix{color:#E9F3F0;border-left:3px solid #1FC07A;padding-left:12px;margin:12px 0 18px;line-height:1.55}
 label{display:block;font-size:14px;margin:18px 0 6px;color:var(--ink)}input[type=text],input[type=email],input[type=tel]{width:100%;min-height:48px;border-radius:12px;border:1px solid #2C5A53;background:#06201C;color:var(--ink);font:500 17px Lexend,sans-serif;padding:0 14px}input.code{letter-spacing:.08em;text-transform:uppercase}input:focus{outline:2px solid var(--led);outline-offset:1px}
 .ck{display:flex;gap:10px;align-items:flex-start;font-size:13px;color:var(--ink2);margin-top:18px}.ck input{margin-top:4px;width:18px;height:18px;accent-color:var(--led);flex:none}
 .btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 22px;border-radius:999px;border:0;background:var(--led);color:#05241C;font:600 15px Sora,sans-serif;text-decoration:none;cursor:pointer}.btn.w{width:100%;margin-top:18px}.btn.g{background:transparent;color:var(--ink);border:1.5px solid #3C6A63}.btn.big{min-height:58px;font-size:18px;padding:0 34px}
@@ -157,7 +157,7 @@ async function investors(req, env, url) {
       }
       error = t.bad;
     }
-    return new Response(page(lang, `<div class="gate"><h1>${t.t}</h1><p>${t.sub}</p><form method="post" action="/investidores/?lang=${lang}"><label for="code">${t.code}</label><input class="code" type="text" id="code" name="code" autocomplete="off" autocapitalize="characters" required placeholder="XXXX-XXXX">${error ? `<div class="err" role="alert">${error}</div>` : ""}<button class="btn w" type="submit">${t.go}</button></form><div class="row"><a class="btn g" href="/investidores/solicitar?lang=${lang}${oc ? "&c=" + oc : ""}">${t.nocode}</a><a class="btn g" href="/">${t.back}</a></div></div>`), { status: error ? 401 : 200, headers: H });
+    return new Response(page(lang, `<div class="gate"><h1>${t.t}</h1><p class="ix">${t.ix}</p><p>${t.sub}</p><form method="post" action="/investidores/?lang=${lang}"><label for="code">${t.code}</label><input class="code" type="text" id="code" name="code" autocomplete="off" autocapitalize="characters" required placeholder="XXXX-XXXX">${error ? `<div class="err" role="alert">${error}</div>` : ""}<button class="btn w" type="submit">${t.go}</button></form><div class="row"><a class="btn g" href="/investidores/solicitar?lang=${lang}${oc ? "&c=" + oc : ""}">${t.nocode}</a><a class="btn g" href="/">${t.back}</a></div></div>`), { status: error ? 401 : 200, headers: H });
   }
 
   // 2) cadastro do investidor
