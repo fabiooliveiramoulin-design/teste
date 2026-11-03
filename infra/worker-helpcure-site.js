@@ -8,7 +8,7 @@ const TYPES = { html: "text/html; charset=utf-8", css: "text/css; charset=utf-8"
 const HC_MAIL = "investidores@helpcure.com.py";
 // Páginas e scripts da área do investidor: só existem cifrados em /priv no repositório.
 const PRIV = { "/investir.html": "investir.html", "/assets/viabilidade-dados.js": "assets__viabilidade-dados.js", "/assets/modelo-motor.js": "assets__modelo-motor.js", "/assets/viabilidade.js": "assets__viabilidade.js", "/assets/rede.js": "assets__rede.js" };
-const VIDEOS = { pt: "/investidores/video/HelpCure_Video_Investidor_PT.mp4", es: "pTT-sQGMW0U", en: "2fYAVUm0ziI" };
+const VIDEOS = { pt: "tWPiFOwbaNw", es: "pTT-sQGMW0U", en: "2fYAVUm0ziI" };
 const SHORTS = [
   { id: { pt: "CR9zwnwG_Lg", es: "2hfLJ0W2Y1s", en: "" }, d: "2:48", n: { pt: "Paciente", es: "Paciente", en: "Patient" } },
   { id: { pt: "DGMd9nJyOEg", es: "zBIRuKMUgQo", en: "" }, d: "2:46", n: { pt: "Hospital", es: "Hospital", en: "Hospital" } },
@@ -100,6 +100,8 @@ async function mail(env, msg) {
   } catch (e) { return "erro:" + String(e).slice(0, 120); }
 }
 
+const WA_MSG = { pt: "Olá! Tenho interesse em investir na Help Cure.", es: "¡Hola! Tengo interés en invertir en Help Cure.", en: "Hi! I am interested in investing in Help Cure." };
+function waFab(lang) { const m = WA_MSG[lang] || WA_MSG.pt; return `<a href="https://wa.me/595982235441?text=${encodeURIComponent(m)}" target="_blank" rel="noopener" aria-label="WhatsApp Help Cure" title="WhatsApp Help Cure" style="position:fixed;right:calc(18px + env(safe-area-inset-right,0px));bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:50;width:56px;height:56px;border-radius:50%;background:#17B877;color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(0,0,0,.25)"><svg width="30" height="30" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.1 5.1 0 0 0 1.1 2.7 11.6 11.6 0 0 0 4.4 3.9c1.6.7 2.3.7 3.1.6a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.3-.2-.5-.3z"/></svg></a>`; }
 function page(lang, body, opts = {}) {
   const t = L[lang];
   const langs = ["pt", "es", "en"].map((l) => `<a href="?lang=${l}" ${l === lang ? 'aria-current="true"' : ""}>${l.toUpperCase()}</a>`).join("");
@@ -117,7 +119,7 @@ label{display:block;font-size:14px;margin:18px 0 6px;color:var(--ink)}input[type
 .player{aspect-ratio:16/9;border-radius:16px;overflow:hidden;background:#000 url(/img/hero.webp) center/cover;display:grid;place-items:center}.player iframe{width:100%;height:100%;border:0}.player span{background:rgba(6,32,28,.85);padding:12px 18px;border-radius:12px}
 .h2{font:700 22px Sora,sans-serif;margin:40px 0 4px;color:var(--ink)}.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px;margin-top:16px}.sv{background:#0B2E2A;border:1px solid #1E4A44;border-radius:14px;overflow:hidden}.sv .f{aspect-ratio:16/9}.sv iframe{width:100%;height:100%;border:0;display:block}.sv b{display:block;padding:12px 14px 2px;font:600 15px Sora,sans-serif}.sv small{display:block;padding:0 14px 12px;color:#7FA39B}
 .row{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}.conf{margin-top:32px;font-size:13px;color:#7FA39B}.quero{margin-top:48px;background:#0B2E2A;border:1px solid #1E4A44;border-radius:18px;padding:28px}</style></head>
-<body><header><a class="logo" href="/" style="display:flex;align-items:center;gap:10px"><img src="/img/logo/helpcure-simbolo-animado-fundo-escuro.svg" alt="" aria-hidden="true" style="height:34px"><span style="letter-spacing:-.02em">Help<b>Cure</b></span></a><nav aria-label="Idioma">${langs}</nav></header><main>${body}</main></body></html>`;
+<body><header><a class="logo" href="/" style="display:flex;align-items:center;gap:10px"><img src="/img/logo/helpcure-simbolo-animado-fundo-escuro.svg" alt="" aria-hidden="true" style="height:34px"><span style="letter-spacing:-.02em">Help<b>Cure</b></span></a><nav aria-label="Idioma">${langs}</nav></header><main>${body}</main>${waFab(lang)}</body></html>`;
 }
 
 function queroBox(lang) {
@@ -311,10 +313,17 @@ async function admin(req, env, url) {
   return new Response(csv, { headers: { "content-type": "text/csv; charset=utf-8", "content-disposition": "attachment; filename=investidores_helpcure.csv", "cache-control": "no-store" } });
 }
 
+// Arquivos cifrados com PRIV_KEY2 (a partir de 03/11/2026) ou com a chave original PRIV_KEY.
 async function decrypt(env, b64) {
   const raw = Uint8Array.from(atob(b64.trim()), (c) => c.charCodeAt(0));
-  const key = await crypto.subtle.importKey("raw", Uint8Array.from(atob(env.PRIV_KEY), (c) => c.charCodeAt(0)), { name: "AES-GCM" }, false, ["decrypt"]);
-  return new Uint8Array(await crypto.subtle.decrypt({ name: "AES-GCM", iv: raw.slice(0, 12) }, key, raw.slice(12)));
+  for (const kb of [env.PRIV_KEY2, env.PRIV_KEY]) {
+    if (!kb) continue;
+    try {
+      const key = await crypto.subtle.importKey("raw", Uint8Array.from(atob(kb), (c) => c.charCodeAt(0)), { name: "AES-GCM" }, false, ["decrypt"]);
+      return new Uint8Array(await crypto.subtle.decrypt({ name: "AES-GCM", iv: raw.slice(0, 12) }, key, raw.slice(12)));
+    } catch (e) {}
+  }
+  throw new Error("decrypt");
 }
 
 async function privado(req, env, url, p) {
@@ -332,6 +341,7 @@ async function privado(req, env, url, p) {
 <style>.lq{display:none}html[lang^=pt] .lq-pt,html[lang=es] .lq-es,html[lang^=en] .lq-en{display:inline}</style>`;
     h = h.replace(/<footer/i, box + "<footer");
     if (h.indexOf('id="quero-investir"') < 0) h = h.replace(/<\/body>/i, box + "</body>");
+    if (h.indexOf("wa.me/595982235441") < 0) h = h.replace(/<\/body>/i, waFab(lang) + "</body>");
     h = h.replace("<head>", '<head><meta name="robots" content="noindex,nofollow">');
     h = h.replace(/site\.css\?v=\d+/g, "site.css?v=8");
     h = h.replace(/<\/head>/i, '<style>a[href*="solidario"]{display:none!important}.eyebrow{font-size:clamp(14px,1.4vw,17px)!important;line-height:1.3!important;letter-spacing:.1em!important}h2{font-size:clamp(24px,3vw,34px)}</style></head>');
@@ -495,6 +505,61 @@ async function interesse(req, env) {
   return new Response(JSON.stringify({ ok: true }), { headers: { "content-type": "application/json" } });
 }
 
+// ===== Help Cure Gestão online (03/11/2026) =====
+// /gestao: app de gestão compartilhado. Login por código (segredo GESTAO_KEY), cookie hc_gestao (90 dias).
+// HTML do app cifrado em /priv/gestao.html.enc no repositório (segredo GESTAO_AES, AES-GCM, iv nos 12 primeiros bytes); estado em "gestao:state" = {rev, S, quando}.
+const GZ = { "content-type": "text/html; charset=utf-8", "cache-control": "no-store", "x-frame-options": "DENY", "x-robots-tag": "noindex" };
+async function gestaoSessao(req, env) {
+  const c = cookie(req, "hc_gestao"); if (!c || c.indexOf(".") < 0) return false;
+  const [v, s] = c.split(".");
+  if (!same(s, await hmac(env.COOKIE_KEY, "gestao:" + v))) return false;
+  return Number(v) > Date.now();
+}
+async function gestao(req, env, url) {
+  const J = (o, s = 200) => new Response(JSON.stringify(o), { status: s, headers: { "content-type": "application/json", "cache-control": "no-store" } });
+  const path = url.pathname.replace(/\/+$/, "") || "/gestao";
+  if (path === "/gestao/login" && req.method === "POST") {
+    const f = await req.formData();
+    if (env.GESTAO_KEY && same(String(f.get("codigo") || "").trim(), env.GESTAO_KEY)) {
+      const v = String(Date.now() + 90 * 86400000);
+      return new Response(null, { status: 303, headers: { location: "/gestao", "set-cookie": `hc_gestao=${v}.${await hmac(env.COOKIE_KEY, "gestao:" + v)}; Path=/gestao; Max-Age=7776000; Secure; HttpOnly; SameSite=Strict` } });
+    }
+    return new Response(null, { status: 303, headers: { location: "/gestao?erro=1" } });
+  }
+  if (path === "/gestao/sair") return new Response(null, { status: 303, headers: { location: "/gestao", "set-cookie": "hc_gestao=; Path=/gestao; Max-Age=0; Secure; HttpOnly; SameSite=Strict" } });
+  if (!(await gestaoSessao(req, env))) {
+    if (path.startsWith("/gestao/api/")) return J({ erro: "login" }, 401);
+    return new Response(`<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="HC Gestão"><title>Help Cure — Gestão</title><link rel="icon" href="/img/icone.svg"><link rel="apple-touch-icon" href="/img/icone.svg"><style>body{margin:0;min-height:100vh;display:grid;place-items:center;background:#06201C;color:#E9F3F0;font:16px/1.5 system-ui,sans-serif}form{background:#0B2E2A;border:1px solid #1E4A44;border-radius:16px;padding:28px;width:min(360px,92vw)}h1{font-size:22px;margin:0 0 6px}p{color:#BFD3CD;margin:0 0 16px;font-size:14px}input{width:100%;box-sizing:border-box;min-height:46px;border-radius:10px;border:1px solid #2C5A53;background:#06201C;color:#E9F3F0;font-size:17px;padding:0 12px}button{width:100%;margin-top:14px;min-height:46px;border:0;border-radius:999px;background:#17B877;color:#05241C;font-weight:700;font-size:15px}.e{color:#FFB4A8;font-size:14px;margin-top:10px}</style></head><body><form method="post" action="/gestao/login"><h1>Help Cure Gestão</h1><p>Código de acceso / Código de acesso</p><input type="password" name="codigo" autocomplete="current-password" required autofocus>${url.searchParams.get("erro") ? '<div class="e">Código inválido.</div>' : ""}<button type="submit">Entrar</button></form></body></html>`, { headers: GZ });
+  }
+  if (path === "/gestao/api/state") {
+    if (req.method === "GET") { const st = await env.LEADS.get("gestao:state", "json"); return J(st || { rev: 0, S: null }); }
+    if (req.method === "PUT") {
+      let b; try { b = await req.json(); } catch (e) { return J({ erro: "json" }, 400); }
+      if (!b || !b.S || !Array.isArray(b.S.tasks)) return J({ erro: "dados" }, 400);
+      const cur = (await env.LEADS.get("gestao:state", "json")) || { rev: 0, S: null };
+      if (Number(b.rev) !== Number(cur.rev)) return J({ erro: "conflito", ...cur }, 409);
+      const nx = { rev: Number(cur.rev) + 1, S: b.S, quando: new Date().toISOString() };
+      await env.LEADS.put("gestao:state", JSON.stringify(nx));
+      return J({ ok: true, rev: nx.rev });
+    }
+    return J({ erro: "método" }, 405);
+  }
+  if (path === "/gestao") {
+    let h = null;
+    try {
+      const r = await fetch(RAW + "/priv/gestao.html.enc", { cf: { cacheTtl: 60, cacheEverything: true } });
+      if (r.ok) { const raw = Uint8Array.from(atob((await r.text()).trim()), (c) => c.charCodeAt(0));
+        const key = await crypto.subtle.importKey("raw", Uint8Array.from(atob(env.GESTAO_AES), (c) => c.charCodeAt(0)), { name: "AES-GCM" }, false, ["decrypt"]);
+        h = new TextDecoder().decode(await crypto.subtle.decrypt({ name: "AES-GCM", iv: raw.slice(0, 12) }, key, raw.slice(12))); }
+    } catch (e) { h = null; }
+    if (!h) return new Response("App não publicado.", { status: 503, headers: { "content-type": "text/plain; charset=utf-8" } });
+    const st = (await env.LEADS.get("gestao:state", "json")) || { rev: 0, S: null };
+    const boot = `<script>window.HC_ONLINE=1;window.HC_STATE=${JSON.stringify(st).replace(/</g, "\\u003c")};</script>`;
+    return new Response(h.replace("<!--HC_BOOT-->", boot), { headers: GZ });
+  }
+  return new Response("Not found", { status: 404 });
+}
+
 export default {
   async fetch(req, env) {
     const url = new URL(req.url);
@@ -504,6 +569,7 @@ export default {
     if (p === "/api/interesse") return new Response(JSON.stringify({ ok: false, erro: "campanha indisponível" }), { status: 410, headers: { "content-type": "application/json" } });
     if (p === "/api/whatsapp") return whatsapp(req, env, url);
     if (p === "/painel" || p.startsWith("/painel/")) return painel(req, env, url);
+    if (p === "/gestao" || p.startsWith("/gestao/")) return gestao(req, env, url);
     if (p === "/investidores" || p.startsWith("/investidores/")) return investors(req, env, url);
     if (PRIV[p]) return privado(req, env, url, p);
     if (p.startsWith("/priv/")) return new Response("Not found", { status: 404 });
