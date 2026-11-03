@@ -7,7 +7,7 @@ const RAW = "https://raw.githubusercontent.com/fabiooliveiramoulin-design/teste/
 const TYPES = { html: "text/html; charset=utf-8", css: "text/css; charset=utf-8", js: "application/javascript; charset=utf-8", svg: "image/svg+xml", webp: "image/webp", jpg: "image/jpeg", jpeg: "image/jpeg", png: "image/png", webmanifest: "application/manifest+json", json: "application/json", ico: "image/x-icon", mp4: "video/mp4", webm: "video/webm" };
 const HC_MAIL = "investidores@helpcure.com.py";
 // Cópia dos avisos de investidores para a equipe (03/11/2026: Mara).
-const INV_COPIA = "gilmaratinoco@hotmail.com";
+const INV_COPIA = "gilmaratinoco@gmail.com";
 // Páginas e scripts da área do investidor: só existem cifrados em /priv no repositório.
 const PRIV = { "/investir.html": "investir.html", "/assets/viabilidade-dados.js": "assets__viabilidade-dados.js", "/assets/modelo-motor.js": "assets__modelo-motor.js", "/assets/viabilidade.js": "assets__viabilidade.js", "/assets/rede.js": "assets__rede.js" };
 const VIDEOS = { pt: "tWPiFOwbaNw", es: "pTT-sQGMW0U", en: "2fYAVUm0ziI" };
