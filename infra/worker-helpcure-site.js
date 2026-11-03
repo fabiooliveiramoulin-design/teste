@@ -6,6 +6,8 @@
 const RAW = "https://raw.githubusercontent.com/fabiooliveiramoulin-design/teste/main";
 const TYPES = { html: "text/html; charset=utf-8", css: "text/css; charset=utf-8", js: "application/javascript; charset=utf-8", svg: "image/svg+xml", webp: "image/webp", jpg: "image/jpeg", jpeg: "image/jpeg", png: "image/png", webmanifest: "application/manifest+json", json: "application/json", ico: "image/x-icon", mp4: "video/mp4", webm: "video/webm" };
 const HC_MAIL = "investidores@helpcure.com.py";
+// Cópia dos avisos de investidores para a equipe (03/11/2026: Mara).
+const INV_COPIA = "gilmaratinoco@hotmail.com";
 // Páginas e scripts da área do investidor: só existem cifrados em /priv no repositório.
 const PRIV = { "/investir.html": "investir.html", "/assets/viabilidade-dados.js": "assets__viabilidade-dados.js", "/assets/modelo-motor.js": "assets__modelo-motor.js", "/assets/viabilidade.js": "assets__viabilidade.js", "/assets/rede.js": "assets__rede.js" };
 const VIDEOS = { pt: "tWPiFOwbaNw", es: "pTT-sQGMW0U", en: "2fYAVUm0ziI" };
@@ -171,7 +173,7 @@ async function investors(req, env, url) {
       if (v.nome.length > 1 && /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v.email) && v.tel.replace(/\D/g, "").length >= 8 && f.get("consent")) {
         const id = new Date().toISOString() + ":" + crypto.randomUUID().slice(0, 8);
         const rec = { ...v, prospect: s.p, prospectNome: s.pr.nome, idioma: lang, consent: true, quando: new Date().toISOString(), pais: (req.cf && req.cf.country) || "", eventos: [] };
-        rec.mailCadastro = await mail(env, { from: HC_MAIL, to: s.pr.emails.join(","), cc: HC_MAIL, replyTo: v.email,
+        rec.mailCadastro = await mail(env, { from: HC_MAIL, to: s.pr.emails.join(","), cc: HC_MAIL + "," + INV_COPIA, replyTo: v.email,
           subject: `Help Cure — novo investidor cadastrado (${s.pr.nome})`,
           text: `Um investidor indicado por ${s.pr.nome} se cadastrou na área do investidor da Help Cure.\n\nNome: ${v.nome}\nE-mail: ${v.email}\nWhatsApp: ${v.tel}\nConversar no WhatsApp: https://wa.me/${v.tel.replace(/\D/g, "")}\nIdioma: ${NAMES[lang]}\nPaís de acesso: ${rec.pais}\nData: ${rec.quando}\n\nO investidor autorizou o uso destes dados pela Help Cure e por ${s.pr.nome} para contato sobre o investimento.` });
         await env.LEADS.put("inv:" + s.p + ":" + id, JSON.stringify(rec));
@@ -231,7 +233,7 @@ ${error ? `<div class="err" role="alert">${error}</div>` : ""}<button class="btn
     if (req.method === "POST") {
       const last = (rec.eventos || []).filter((e) => e.tipo === "quero-investir").pop();
       if (last && Date.now() - Date.parse(last.quando) < 600000) return new Response(null, { status: 303, headers: { location: "/investidores/quero-investir?lang=" + lang } }); // evita e-mails repetidos em 10 min
-      const st = await mail(env, { from: HC_MAIL, to: rec.email, cc: [...s.pr.emails, HC_MAIL].join(","), replyTo: HC_MAIL, subject: t.m_subj,
+      const st = await mail(env, { from: HC_MAIL, to: rec.email, cc: [...s.pr.emails, HC_MAIL, INV_COPIA].join(","), replyTo: HC_MAIL, subject: t.m_subj,
         text: fill(t.m_body, { n: rec.nome, e: rec.email, t: rec.tel }) + `\n\n— Indicação: ${s.pr.nome}\nWhatsApp do investidor: https://wa.me/${String(rec.tel).replace(/\D/g, "")}` });
       rec.eventos.push({ tipo: "quero-investir", quando: new Date().toISOString(), mail: st });
       rec.queroInvestir = true; await env.LEADS.put(k, JSON.stringify(rec));
@@ -266,7 +268,7 @@ async function solicitar(req, env, url, lang, H, oc) {
       const id = new Date().toISOString() + ":" + crypto.randomUUID().slice(0, 8);
       const rec = { ...v, origem, ref: (req.headers.get("referer") || "").slice(0, 200), idioma: lang, consent: true, quando: new Date().toISOString(), pais: (req.cf && req.cf.country) || "", status: "pendente" };
       const link = `${url.origin}/investidores/liberar?id=${encodeURIComponent(id)}&k=${await hmac(env.COOKIE_KEY, "lib:" + id)}`;
-      rec.mailInterno = await mail(env, { from: HC_MAIL, to: HC_MAIL, replyTo: v.email, subject: `Help Cure — pedido de acesso de investidor (${origem})`,
+      rec.mailInterno = await mail(env, { from: HC_MAIL, to: HC_MAIL, cc: INV_COPIA, replyTo: v.email, subject: `Help Cure — pedido de acesso de investidor (${origem})`,
         text: `Novo pedido de acesso à Área do Investidor, sem código de prospect.\n\nNome: ${v.nome}\nE-mail: ${v.email}\nWhatsApp: ${v.tel}\nConversar no WhatsApp: https://wa.me/${v.tel.replace(/\D/g, "")}\nOrigem: ${origem}\nIdioma: ${NAMES[lang]}\nPaís (pelo acesso): ${rec.pais || "-"}\nData: ${rec.quando}\n\nPara liberar o acesso (gera um código exclusivo e envia ao investidor), abra:\n${link}\n\nSe não quiser liberar, basta ignorar este e-mail.` });
       rec.mailConf = await mail(env, { from: HC_MAIL, to: v.email, replyTo: HC_MAIL, subject: t.r_subj, text: fill(t.r_body, { n: v.nome, e: v.email, t: v.tel }) });
       await env.LEADS.put("pedido:" + id, JSON.stringify(rec));
