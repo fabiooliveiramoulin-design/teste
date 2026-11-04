@@ -31,9 +31,9 @@ NAV = [("index.html", "Início", "Inicio", "Home"),
        ("tecnologia.html", "Tecnologia", "Tecnología", "Technology"),
        ("investidores.html", "Investidores", "Inversionistas", "Investors")]
 
-LOGO = '''<svg class="hf-mark" viewBox="0 0 40 40" aria-hidden="true"><rect x="1" y="1" width="38" height="38" rx="10" fill="#0E4A3F" stroke="#17B877" stroke-opacity=".35"/>
-<path d="M7 29c6-3 20-3 26 0M7 24c6-3 20-3 26 0" fill="none" stroke="#17B877" stroke-width="2" stroke-linecap="round" opacity=".55"/>
-<path d="M8 19l6-1 4-6 4 9 4-4 6 0" fill="none" stroke="#3EE39A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="32" cy="17" r="2.6" fill="#FFB500"/></svg>'''
+LOGO = '''<svg class="hf-mark" viewBox="0 0 40 40" aria-hidden="true"><rect x="1" y="1" width="38" height="38" rx="10" fill="#4A2F1B" stroke="#5E9F3A" stroke-opacity=".35"/>
+<path d="M7 29c6-3 20-3 26 0M7 24c6-3 20-3 26 0" fill="none" stroke="#C9A36B" stroke-width="2" stroke-linecap="round" opacity=".7"/>
+<path d="M8 19l6-1 4-6 4 9 4-4 6 0" fill="none" stroke="#8FCB5A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="32" cy="17" r="2.6" fill="#FFB500"/></svg>'''
 
 
 def shell(pg, path, title, body, desc):
@@ -56,7 +56,7 @@ def shell(pg, path, title, body, desc):
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Lexend:wght@300;400;500;600&display=swap">
 <link rel="stylesheet" href="../assets/site.css?v=8">
-<link rel="stylesheet" href="assets/hf.css?v=1">
+<link rel="stylesheet" href="assets/hf.css?v=2">
 </head>
 <body class="hf">
 <header class="top">
@@ -113,11 +113,11 @@ def stl(pg, x, y, pt, es, en, cls="lb", anchor="start"):
 # ------------------------------------------------------------------ ilustrações
 def svg_signature(pg):
     return f'''<svg class="sig" viewBox="0 0 560 300" role="img" aria-label="Assinatura basal e desvio">
-<defs><linearGradient id="band" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#17B877" stop-opacity=".22"/><stop offset="1" stop-color="#17B877" stop-opacity=".05"/></linearGradient></defs>
-<rect x="0" y="0" width="560" height="300" rx="20" fill="#06201C"/>
-<g stroke="#1F4A42" stroke-width="1">{"".join('<line x1="40" x2="530" y1="%d" y2="%d"/>' % (y, y) for y in (60, 110, 160, 210, 250))}</g>
+<defs><linearGradient id="band" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#5E9F3A" stop-opacity=".22"/><stop offset="1" stop-color="#5E9F3A" stop-opacity=".05"/></linearGradient></defs>
+<rect x="0" y="0" width="560" height="300" rx="20" fill="#2E1D10"/>
+<g stroke="#4E3520" stroke-width="1">{"".join('<line x1="40" x2="530" y1="%d" y2="%d"/>' % (y, y) for y in (60, 110, 160, 210, 250))}</g>
 <path d="M40 150 C110 120 150 175 220 150 S330 120 380 148" fill="none" stroke="url(#band)" stroke-width="46" stroke-linecap="round"/>
-<path d="M40 150 C110 120 150 175 220 150 S330 120 380 148" fill="none" stroke="#3EE39A" stroke-width="3"/>
+<path d="M40 150 C110 120 150 175 220 150 S330 120 380 148" fill="none" stroke="#8FCB5A" stroke-width="3"/>
 <path d="M380 148 C420 160 445 190 470 215 S510 245 528 252" fill="none" stroke="#FFB500" stroke-width="3" stroke-dasharray="7 5"/>
 <circle cx="430" cy="172" r="7" fill="#FFB500"/><circle cx="430" cy="172" r="15" fill="none" stroke="#FFB500" stroke-opacity=".5"/>
 {stl(pg, 46, 40, "Assinatura basal do talhão, do animal ou da máquina", "Firma basal del lote, del animal o de la máquina", "Baseline signature of the field, animal or machine", "lb lw")}
@@ -128,95 +128,104 @@ def svg_signature(pg):
 
 
 def svg_movel(pg):
-    # motorhome 4x4 em corte lateral
-    return f'''<svg class="draw" viewBox="0 0 1000 430" role="img" aria-label="Unidade móvel Help Farm em corte">
-<rect width="1000" height="430" rx="22" fill="#F1F6F4"/>
-<line x1="20" x2="980" y1="372" y2="372" stroke="#B9CBC5" stroke-width="2"/>
-<!-- painel solar e antena -->
-<g>{"".join('<rect x="%d" y="88" width="88" height="16" rx="2" fill="#123B6B" stroke="#0B2747"/>' % x for x in (262, 356, 450, 544, 638))}
-{"".join('<line x1="%d" x2="%d" y1="88" y2="104" stroke="#4E7BB0" stroke-width="1"/>' % (x, x) for x in range(284, 726, 22))}</g>
-<rect x="752" y="78" width="54" height="10" rx="3" fill="#E9EEF0" stroke="#7C8E89"/><rect x="775" y="88" width="8" height="18" fill="#7C8E89"/>
-<!-- cabine -->
-<path d="M60 330 L60 220 Q62 176 110 170 L205 166 L205 330 Z" fill="#0B3B36"/>
-<path d="M78 222 Q82 190 116 186 L190 184 L190 232 L78 236 Z" fill="#9FD9C6" opacity=".85"/>
-<!-- carroceria em corte -->
-<rect x="205" y="106" width="620" height="226" rx="14" fill="#FFFFFF" stroke="#0B3B36" stroke-width="4"/>
-<line x1="440" x2="440" y1="110" y2="330" stroke="#0B3B36" stroke-width="2"/>
-<line x1="540" x2="540" y1="110" y2="330" stroke="#0B3B36" stroke-width="2"/>
-<!-- bancada de instrumentos e drones -->
-<rect x="222" y="246" width="200" height="12" fill="#465A55"/>
-<rect x="232" y="210" width="44" height="34" rx="4" fill="#17B877"/><rect x="284" y="214" width="36" height="30" rx="4" fill="#FFB500"/><rect x="328" y="206" width="30" height="38" rx="4" fill="#465A55"/><rect x="366" y="216" width="46" height="28" rx="4" fill="#17B877" opacity=".7"/>
-<rect x="232" y="130" width="180" height="56" rx="6" fill="#E9F1EE" stroke="#465A55"/>
-<g fill="#0B3B36"><circle cx="262" cy="158" r="9"/><circle cx="300" cy="158" r="9"/><rect x="266" y="154" width="30" height="8"/>
-<circle cx="350" cy="158" r="9"/><circle cx="388" cy="158" r="9"/><rect x="354" y="154" width="30" height="8"/></g>
-<rect x="232" y="266" width="180" height="56" rx="6" fill="#E9F1EE" stroke="#465A55"/>
-<!-- banheiro -->
-<rect x="456" y="226" width="34" height="40" rx="8" fill="#D3DFDB" stroke="#465A55"/><rect x="500" y="130" width="28" height="180" rx="4" fill="#DCEEF7" stroke="#465A55"/>
-<path d="M514 140 l0 14" stroke="#465A55" stroke-width="3"/>
-<!-- dormitório com beliche -->
-<rect x="556" y="190" width="250" height="14" rx="3" fill="#0B3B36"/><rect x="556" y="292" width="250" height="14" rx="3" fill="#0B3B36"/>
-<rect x="562" y="174" width="238" height="16" rx="6" fill="#9FD9C6"/><rect x="562" y="276" width="238" height="16" rx="6" fill="#9FD9C6"/>
-<rect x="600" y="122" width="70" height="40" rx="6" fill="#DCEEF7" stroke="#465A55"/>
+    # motorhome classe C 7,5 m com capuchino sobre cabine de van 4x4, em corte lateral (frente à direita)
+    return f'''<svg class="draw" viewBox="0 0 1000 440" role="img" aria-label="Unidade móvel Help Farm em corte">
+<rect width="1000" height="440" rx="22" fill="#F7F1E7"/>
+<line x1="20" x2="980" y1="378" y2="378" stroke="#CDBB9F" stroke-width="2"/>
+<!-- teto: painel solar, antena e ar -->
+<g>{"".join('<rect x="%d" y="104" width="78" height="14" rx="2" fill="#123B6B" stroke="#0B2747"/>' % x for x in (176, 260, 344, 428, 512))}
+{"".join('<line x1="%d" x2="%d" y1="104" y2="118" stroke="#4E7BB0" stroke-width="1"/>' % (x, x) for x in range(196, 590, 20))}</g>
+<rect x="606" y="96" width="50" height="9" rx="3" fill="#E9EEF0" stroke="#9A8570"/><rect x="627" y="105" width="8" height="15" fill="#9A8570"/>
+<!-- toldo recolhido -->
+<rect x="170" y="126" width="470" height="8" rx="4" fill="#CDBB9F"/>
+<!-- carroceria + capuchino -->
+<path d="M150 120 L700 120 L700 120 L840 122 Q884 126 884 158 Q884 186 846 190 L700 190 L700 332 L150 332 Q136 332 136 318 L136 134 Q136 120 150 120 Z" fill="#FFFFFF" stroke="#4A2F1B" stroke-width="4"/>
+<!-- cabine da van -->
+<path d="M700 190 L800 190 Q838 194 862 246 L900 262 Q914 266 914 284 L914 320 Q914 332 900 332 L700 332 Z" fill="#F4EEE4" stroke="#4A2F1B" stroke-width="4"/>
+<path d="M712 204 L796 204 Q822 208 842 248 L712 250 Z" fill="#CFE3B4" opacity=".9"/>
+<rect x="890" y="286" width="22" height="10" rx="3" fill="#FFB500"/>
+<!-- divisórias internas -->
+<g stroke="#4A2F1B" stroke-width="2"><line x1="322" x2="322" y1="124" y2="330"/><line x1="410" x2="410" y1="124" y2="330"/><line x1="470" x2="470" y1="124" y2="330"/></g>
+<!-- dormitório traseiro com beliche -->
+<rect x="148" y="214" width="166" height="12" rx="3" fill="#4A2F1B"/><rect x="148" y="304" width="166" height="12" rx="3" fill="#4A2F1B"/>
+<rect x="152" y="199" width="158" height="15" rx="6" fill="#CFE3B4"/><rect x="152" y="289" width="158" height="15" rx="6" fill="#CFE3B4"/>
+<rect x="190" y="146" width="80" height="34" rx="6" fill="#DCEEF7" stroke="#6E5644"/>
+<!-- banheiro com box -->
+<rect x="332" y="262" width="30" height="40" rx="8" fill="#E4D7C4" stroke="#6E5644"/><rect x="370" y="140" width="32" height="170" rx="4" fill="#DCEEF7" stroke="#6E5644"/>
+<path d="M386 150 l0 14" stroke="#6E5644" stroke-width="3"/>
+<!-- porta de entrada -->
+<rect x="420" y="150" width="40" height="176" rx="6" fill="#F7F1E7" stroke="#6E5644" stroke-dasharray="5 4"/>
+<rect x="426" y="166" width="28" height="44" rx="4" fill="#DCEEF7"/>
+<!-- bancada de medição (antiga sala) -->
+<rect x="480" y="258" width="212" height="12" fill="#6E5644"/>
+<rect x="488" y="222" width="42" height="34" rx="4" fill="#5E9F3A"/><rect x="536" y="226" width="34" height="30" rx="4" fill="#FFB500"/><rect x="576" y="216" width="28" height="40" rx="4" fill="#6E5644"/><rect x="610" y="228" width="40" height="28" rx="4" fill="#5E9F3A" opacity=".7"/>
+<rect x="656" y="200" width="32" height="56" rx="4" fill="#EFE4D2" stroke="#6E5644"/>
+<rect x="488" y="276" width="200" height="48" rx="6" fill="#EFE4D2" stroke="#6E5644"/>
+<rect x="520" y="158" width="130" height="30" rx="6" fill="#DCEEF7" stroke="#6E5644"/>
+<!-- capuchino com drones -->
+<rect x="712" y="134" width="150" height="44" rx="8" fill="#EFE4D2" stroke="#6E5644"/>
+<g fill="#4A2F1B"><circle cx="738" cy="156" r="8"/><circle cx="772" cy="156" r="8"/><rect x="742" y="152" width="26" height="8"/>
+<circle cx="806" cy="156" r="8"/><circle cx="840" cy="156" r="8"/><rect x="810" y="152" width="26" height="8"/></g>
 <!-- rack traseiro com 2 motos trail -->
-<rect x="826" y="300" width="138" height="9" rx="2" fill="#465A55"/><rect x="826" y="262" width="8" height="46" fill="#465A55"/>
-<g opacity=".45" transform="translate(12,-10)">
-<g fill="none" stroke="#0E1F1C" stroke-width="7"><circle cx="852" cy="283" r="15"/><circle cx="936" cy="283" r="15"/></g>
-<path d="M852 283 L872 262 L912 262 L936 283" fill="none" stroke="#465A55" stroke-width="5"/>
-</g>
-<g fill="none" stroke="#0E1F1C" stroke-width="7"><circle cx="852" cy="283" r="15"/><circle cx="936" cy="283" r="15"/></g>
-<rect x="872" y="266" width="26" height="18" rx="3" fill="#465A55"/>
-<path d="M852 283 L874 262 L906 258 L936 283" fill="none" stroke="#0B3B36" stroke-width="5" stroke-linejoin="round"/>
-<path d="M878 258 Q890 246 908 250 L914 258 Z" fill="#FFB500"/>
-<path d="M862 256 L898 254" stroke="#0E1F1C" stroke-width="6" stroke-linecap="round"/>
-<path d="M922 262 L914 240 M908 238 L924 240" stroke="#0E1F1C" stroke-width="4" stroke-linecap="round"/>
-<path d="M914 240 L936 283" stroke="#7C8E89" stroke-width="4"/>
-<!-- rodas -->
-<g fill="#0E1F1C"><circle cx="140" cy="340" r="36"/><circle cx="640" cy="340" r="36"/><circle cx="742" cy="340" r="36"/></g>
-<g fill="#B9CBC5"><circle cx="140" cy="340" r="13"/><circle cx="640" cy="340" r="13"/><circle cx="742" cy="340" r="13"/></g>
+<rect x="18" y="306" width="122" height="9" rx="2" fill="#6E5644"/><rect x="128" y="290" width="12" height="24" fill="#6E5644"/>
+<g opacity=".45" transform="translate(10,-10)"><g fill="none" stroke="#2A1C10" stroke-width="7"><circle cx="40" cy="289" r="15"/><circle cx="120" cy="289" r="15"/></g><path d="M40 289 L60 268 L98 268 L120 289" fill="none" stroke="#6E5644" stroke-width="5"/></g>
+<g fill="none" stroke="#2A1C10" stroke-width="7"><circle cx="40" cy="289" r="15"/><circle cx="120" cy="289" r="15"/></g>
+<rect x="60" y="272" width="26" height="18" rx="3" fill="#6E5644"/>
+<path d="M40 289 L62 268 L94 264 L120 289" fill="none" stroke="#4A2F1B" stroke-width="5" stroke-linejoin="round"/>
+<path d="M66 264 Q78 252 96 256 L102 264 Z" fill="#FFB500"/>
+<path d="M50 262 L86 260" stroke="#2A1C10" stroke-width="6" stroke-linecap="round"/>
+<path d="M106 268 L98 246 M92 244 L108 246" stroke="#2A1C10" stroke-width="4" stroke-linecap="round"/>
+<path d="M98 246 L120 289" stroke="#9A8570" stroke-width="4"/>
+<!-- rodas: rodado duplo traseiro e dianteira -->
+<g fill="#2A1C10"><circle cx="262" cy="344" r="34"/><circle cx="812" cy="344" r="34"/></g>
+<g fill="#CDBB9F"><circle cx="262" cy="344" r="12"/><circle cx="812" cy="344" r="12"/></g>
+<circle cx="262" cy="344" r="24" fill="none" stroke="#6E5644" stroke-width="2"/>
 <!-- rótulos -->
-<line x1="306" y1="86" x2="306" y2="46" stroke="#17B877" stroke-width="1.5"/>
-{stl(pg, 262, 38, "Painel solar + baterias de lítio", "Panel solar + baterías de litio", "Solar panel + lithium batteries", "lb")}
-{stl(pg, 806, 66, "Antena satelital (internet em qualquer lugar)", "Antena satelital (internet en cualquier lugar)", "Satellite antenna (internet anywhere)", "lb", "end")}
-{stl(pg, 236, 124, "Drones em case", "Drones en estuche", "Drones in cases", "ls")}
-{stl(pg, 236, 202, "Instrumentos portáteis", "Instrumentos portátiles", "Portable instruments", "ls")}
-{stl(pg, 240, 300, "Sensores para instalar", "Sensores a instalar", "Sensors to install", "ls")}
-{stl(pg, 490, 324, "Banheiro", "Baño", "Bathroom", "ls", "middle")}
-{stl(pg, 680, 236, "Dormitório com beliche (2 profissionais)", "Dormitorio con litera (2 profesionales)", "Bunk-bed sleeping area (2 staff)", "ls", "middle")}
-{stl(pg, 895, 226, "2 motos trail", "2 motos trail", "2 trail bikes", "lb", "middle")}
-{stl(pg, 133, 404, "Chassi 4x4", "Chasis 4x4", "4x4 chassis", "lb", "middle")}
-{stl(pg, 690, 404, "Tração e altura para estrada de terra", "Tracción y altura para camino de tierra", "Traction and clearance for dirt roads", "lb", "middle")}
+<line x1="215" y1="102" x2="215" y2="62" stroke="#5E9F3A" stroke-width="1.5"/>
+{stl(pg, 176, 54, "Painel solar + baterias de lítio", "Panel solar + baterías de litio", "Solar panel + lithium batteries", "lb")}
+{stl(pg, 690, 82, "Antena satelital (internet em qualquer lugar)", "Antena satelital (internet en cualquier lugar)", "Satellite antenna (internet anywhere)", "lb", "end")}
+{stl(pg, 787, 175, "Capuchino: drones em case", "Capuchino: drones en estuche", "Cab-over: drones in cases", "ls", "middle")}
+{stl(pg, 586, 210, "Instrumentos portáteis", "Instrumentos portátiles", "Portable instruments", "ls", "middle")}
+{stl(pg, 588, 306, "Sensores para instalar", "Sensores a instalar", "Sensors to install", "ls", "middle")}
+{stl(pg, 440, 346, "Entrada", "Entrada", "Door", "ls", "middle")}
+{stl(pg, 366, 346, "Banheiro", "Baño", "Bathroom", "ls", "middle")}
+{stl(pg, 232, 252, "Dormitório com beliche", "Dormitorio con litera", "Bunk-bed sleeping area", "ls", "middle")}
+{stl(pg, 80, 236, "2 motos trail", "2 motos trail", "2 trail bikes", "lb", "middle")}
+{stl(pg, 262, 412, "Rodado duplo traseiro", "Rodado doble trasero", "Dual rear wheels", "lb", "middle")}
+{stl(pg, 812, 412, "Cabine de van 4x4", "Cabina de van 4x4", "4x4 van cab", "lb", "middle")}
+{stl(pg, 586, 146, "Bancada de medição (no lugar da sala)", "Mesada de medición (en lugar del living)", "Measuring bench (replaces the lounge)", "ls", "middle")}
 </svg>'''
 
 
 def svg_celula(pg):
     # contêiner 12 m em corte lateral
-    cor = "".join('<line x1="%d" x2="%d" y1="116" y2="300" stroke="#0B3B36" stroke-opacity=".08" stroke-width="6"/>' % (x, x) for x in range(70, 960, 26))
+    cor = "".join('<line x1="%d" x2="%d" y1="116" y2="300" stroke="#4A2F1B" stroke-opacity=".08" stroke-width="6"/>' % (x, x) for x in range(70, 960, 26))
     return f'''<svg class="draw" viewBox="0 0 1000 400" role="img" aria-label="Célula de campo Help Farm em corte">
-<rect width="1000" height="400" rx="22" fill="#F1F6F4"/>
-<line x1="20" x2="980" y1="338" y2="338" stroke="#B9CBC5" stroke-width="2"/>
+<rect width="1000" height="400" rx="22" fill="#F7F1E7"/>
+<line x1="20" x2="980" y1="338" y2="338" stroke="#CDBB9F" stroke-width="2"/>
 <g>{"".join('<rect x="%d" y="96" width="96" height="14" rx="2" fill="#123B6B" stroke="#0B2747"/>' % x for x in (90, 192, 294, 396, 498, 600))}</g>
-<rect x="760" y="84" width="54" height="10" rx="3" fill="#E9EEF0" stroke="#7C8E89"/><rect x="783" y="94" width="8" height="18" fill="#7C8E89"/>
-<rect x="50" y="112" width="900" height="192" rx="6" fill="#FFFFFF" stroke="#0B3B36" stroke-width="4"/>
-<g stroke="#0B3B36" stroke-width="2">{"".join('<line x1="%d" x2="%d" y1="114" y2="302"/>' % (x, x) for x in (270, 360, 480, 740))}</g>
+<rect x="760" y="84" width="54" height="10" rx="3" fill="#E9EEF0" stroke="#9A8570"/><rect x="783" y="94" width="8" height="18" fill="#9A8570"/>
+<rect x="50" y="112" width="900" height="192" rx="6" fill="#FFFFFF" stroke="#4A2F1B" stroke-width="4"/>
+<g stroke="#4A2F1B" stroke-width="2">{"".join('<line x1="%d" x2="%d" y1="114" y2="302"/>' % (x, x) for x in (270, 360, 480, 740))}</g>
 <!-- dormitório: 2 beliches -->
-<rect x="66" y="196" width="190" height="10" fill="#0B3B36"/><rect x="66" y="282" width="190" height="10" fill="#0B3B36"/>
-<rect x="70" y="182" width="182" height="14" rx="5" fill="#9FD9C6"/><rect x="70" y="268" width="182" height="14" rx="5" fill="#9FD9C6"/>
-<rect x="110" y="146" width="90" height="36" rx="5" fill="#DCEEF7" stroke="#465A55"/>
+<rect x="66" y="196" width="190" height="10" fill="#4A2F1B"/><rect x="66" y="282" width="190" height="10" fill="#4A2F1B"/>
+<rect x="70" y="182" width="182" height="14" rx="5" fill="#CFE3B4"/><rect x="70" y="268" width="182" height="14" rx="5" fill="#CFE3B4"/>
+<rect x="110" y="146" width="90" height="36" rx="5" fill="#DCEEF7" stroke="#6E5644"/>
 <!-- banheiro -->
-<rect x="282" y="248" width="30" height="36" rx="8" fill="#D3DFDB" stroke="#465A55"/><rect x="322" y="134" width="26" height="150" rx="4" fill="#DCEEF7" stroke="#465A55"/>
+<rect x="282" y="248" width="30" height="36" rx="8" fill="#E4D7C4" stroke="#6E5644"/><rect x="322" y="134" width="26" height="150" rx="4" fill="#DCEEF7" stroke="#6E5644"/>
 <!-- cozinha -->
-<rect x="372" y="230" width="96" height="54" fill="#E9F1EE" stroke="#465A55"/><rect x="384" y="146" width="70" height="36" rx="5" fill="#DCEEF7" stroke="#465A55"/>
+<rect x="372" y="230" width="96" height="54" fill="#EFE4D2" stroke="#6E5644"/><rect x="384" y="146" width="70" height="36" rx="5" fill="#DCEEF7" stroke="#6E5644"/>
 <!-- laboratório de campo -->
-<rect x="494" y="238" width="232" height="12" fill="#465A55"/>
-<rect x="504" y="204" width="40" height="32" rx="4" fill="#17B877"/><rect x="552" y="208" width="32" height="28" rx="4" fill="#FFB500"/><rect x="592" y="198" width="28" height="38" rx="4" fill="#465A55"/><rect x="628" y="210" width="44" height="26" rx="4" fill="#17B877" opacity=".7"/>
-<rect x="680" y="196" width="40" height="88" rx="4" fill="#E9F1EE" stroke="#465A55"/>
-<rect x="520" y="146" width="90" height="36" rx="5" fill="#DCEEF7" stroke="#465A55"/><rect x="626" y="146" width="90" height="36" rx="5" fill="#DCEEF7" stroke="#465A55"/>
+<rect x="494" y="238" width="232" height="12" fill="#6E5644"/>
+<rect x="504" y="204" width="40" height="32" rx="4" fill="#5E9F3A"/><rect x="552" y="208" width="32" height="28" rx="4" fill="#FFB500"/><rect x="592" y="198" width="28" height="38" rx="4" fill="#6E5644"/><rect x="628" y="210" width="44" height="26" rx="4" fill="#5E9F3A" opacity=".7"/>
+<rect x="680" y="196" width="40" height="88" rx="4" fill="#EFE4D2" stroke="#6E5644"/>
+<rect x="520" y="146" width="90" height="36" rx="5" fill="#DCEEF7" stroke="#6E5644"/><rect x="626" y="146" width="90" height="36" rx="5" fill="#DCEEF7" stroke="#6E5644"/>
 <!-- escritório / central -->
-<rect x="760" y="232" width="170" height="12" fill="#465A55"/><rect x="782" y="196" width="54" height="34" rx="3" fill="#0B3B36"/><rect x="848" y="196" width="54" height="34" rx="3" fill="#0B3B36"/>
-<path d="M792 222 l10 -8 8 6 10 -12 8 6" fill="none" stroke="#3EE39A" stroke-width="2"/>
-<rect x="792" y="146" width="110" height="36" rx="5" fill="#DCEEF7" stroke="#465A55"/>
+<rect x="760" y="232" width="170" height="12" fill="#6E5644"/><rect x="782" y="196" width="54" height="34" rx="3" fill="#4A2F1B"/><rect x="848" y="196" width="54" height="34" rx="3" fill="#4A2F1B"/>
+<path d="M792 222 l10 -8 8 6 10 -12 8 6" fill="none" stroke="#8FCB5A" stroke-width="2"/>
+<rect x="792" y="146" width="110" height="36" rx="5" fill="#DCEEF7" stroke="#6E5644"/>
 <!-- sapatas -->
-<g fill="#7C8E89">{"".join('<rect x="%d" y="304" width="34" height="34"/>' % x for x in (60, 330, 620, 906))}</g>
+<g fill="#9A8570">{"".join('<rect x="%d" y="304" width="34" height="34"/>' % x for x in (60, 330, 620, 906))}</g>
 <!-- rótulos -->
 {stl(pg, 395, 84, "Painel solar + baterias", "Panel solar + baterías", "Solar panel + batteries", "lb", "middle")}
 {stl(pg, 787, 72, "Antena satelital", "Antena satelital", "Satellite antenna", "lb", "middle")}
@@ -280,7 +289,7 @@ def home():
   <div class="wrap">
     <div class="head">{pg.t("Estrutura de campo", "Estructura de campo", "Field structure", "span", "eyebrow")}{pg.t("Duas formas de levar os profissionais até a fazenda.", "Dos formas de llevar a los profesionales hasta el establecimiento.", "Two ways to bring the professionals to the farm.", "h2")}</div>
     <div class="g g2">
-      <a class="card" href="unidade-movel.html"><div class="pic">{svg_movel(pg)}</div><div class="in">{pg.t("Unidade móvel de medição", "Unidad móvil de medición", "Mobile measuring unit", "h3")}{pg.t("Um motorhome 4x4 com instrumentos, drones, dormitório, banheiro, energia solar, antena satelital e duas motos trail. Vai, mede, instala os sensores e segue para a próxima fazenda.", "Un motorhome 4x4 con instrumentos, drones, dormitorio, baño, energía solar, antena satelital y dos motos trail. Va, mide, instala los sensores y sigue al próximo establecimiento.", "A 4x4 motorhome with instruments, drones, sleeping area, bathroom, solar power, satellite antenna and two trail bikes. It goes, measures, installs the sensors and moves on to the next farm.", "p")}<span class="more">{pg.t("Ver a unidade", "Ver la unidad", "See the unit")} →</span></div></a>
+      <a class="card" href="unidade-movel.html"><div class="pic">{svg_movel(pg)}</div><div class="in">{pg.t("Unidade móvel de medição", "Unidad móvil de medición", "Mobile measuring unit", "h3")}{pg.t("Um motorhome de 7,5 m com capuchino, sobre cabine de van 4x4, com instrumentos, drones, dormitório, banheiro, energia solar, antena satelital e duas motos trail. Vai, mede, instala os sensores e segue para a próxima fazenda.", "Un motorhome de 7,5 m con capuchino, sobre cabina de van 4x4, con instrumentos, drones, dormitorio, baño, energía solar, antena satelital y dos motos trail. Va, mide, instala los sensores y sigue al próximo establecimiento.", "A 7.5 m cab-over motorhome on a 4x4 van cab, with instruments, drones, sleeping area, bathroom, solar power, satellite antenna and two trail bikes. It goes, measures, installs the sensors and moves on to the next farm.", "p")}<span class="more">{pg.t("Ver a unidade", "Ver la unidad", "See the unit")} →</span></div></a>
       <a class="card" href="celula.html"><div class="pic">{svg_celula(pg)}</div><div class="in">{pg.t("Célula de campo", "Célula de campo", "Field cell", "h3")}{pg.t("Um contêiner de 12 m com dormitório, banheiro, janelas e laboratório, implantado nas fazendas e cooperativas que precisam de profissionais residentes.", "Un contenedor de 12 m con dormitorio, baño, ventanas y laboratorio, instalado en los establecimientos y cooperativas que necesitan profesionales residentes.", "A 12 m container with sleeping area, bathroom, windows and lab, set up on farms and cooperatives that need resident professionals.", "p")}<span class="more">{pg.t("Ver a célula", "Ver la célula", "See the cell")} →</span></div></a>
     </div>
   </div>
@@ -328,9 +337,19 @@ def movel():
          ("Posición", "receptor GNSS RTK para que cada punto medido vuelva al mismo lugar en la próxima visita"),
          ("Position", "GNSS RTK receiver so every measured point is revisited at exactly the same spot")),
     ]
+    ficha = [
+        (("Base", "motorhome de 7,5 m com capuchino, já fabricado em série no Brasil, na versão sobre cabine de van 4x4"), ("Base", "motorhome de 7,5 m con capuchino, ya fabricado en serie en Brasil, en versión sobre cabina de van 4x4"), ("Base", "7.5 m cab-over motorhome already built in series in Brazil, on the 4x4 van-cab version")),
+        (("Acomodação", "de 6 lugares de passeio para 2 profissionais em beliche; o espaço liberado vira laboratório"), ("Alojamiento", "de 6 plazas de paseo a 2 profesionales en litera; el espacio liberado se vuelve laboratorio"), ("Sleeping", "from 6 leisure berths to 2 staff in bunk beds; the space freed becomes the lab")),
+        (("Sala", "a sala e o slide-out dão lugar à bancada de medição, com instrumentos e geladeira de amostras"), ("Living", "el living y el slide-out dan lugar a la mesada de medición, con instrumentos y heladera de muestras"), ("Lounge", "the lounge and slide-out become the measuring bench, with instruments and a sample fridge")),
+        (("Capuchino", "a cama sobre a cabine vira compartimento de drones e cases de instrumentos"), ("Capuchino", "la cama sobre la cabina se vuelve compartimiento de drones y estuches de instrumentos"), ("Cab-over", "the bed over the cab becomes the drone and instrument-case bay")),
+        (("Banheiro e água", "banheiro com box separado; caixas de 320 L de água limpa, 100 L de servida e 95 L de esgoto (modelo de série)"), ("Baño y agua", "baño con box separado; tanques de 320 L de agua limpia, 100 L de grises y 95 L de negras (modelo de serie)"), ("Bathroom and water", "bathroom with separate shower; 320 L fresh, 100 L grey and 95 L black water tanks (series model)")),
+        (("Energia", "conversor, inversor e gerador de série, mais painel solar no teto e baterias de lítio na adaptação"), ("Energía", "conversor, inversor y generador de serie, más panel solar en el techo y baterías de litio en la adaptación"), ("Power", "series converter, inverter and generator, plus rooftop solar and lithium batteries added")),
+        (("Internet", "antena satelital no teto, para subir os dados no mesmo dia"), ("Internet", "antena satelital en el techo, para subir los datos el mismo día"), ("Internet", "rooftop satellite antenna to upload data the same day")),
+        (("Traseira", "engate reforçado e rack para 2 motos trail — a confirmar com o fabricante pela carga útil do chassi"), ("Trasera", "enganche reforzado y rack para 2 motos trail — a confirmar con el fabricante por la carga útil del chasis"), ("Rear", "reinforced hitch and rack for 2 trail bikes — to be confirmed with the builder against chassis payload")),
+    ]
     res = [
         (("Dois profissionais instalados", "Um agrônomo e um técnico (ou veterinário) ficam na fazenda durante a campanha de medição, sem depender de hotel na cidade."), ("Dos profesionales instalados", "Un agrónomo y un técnico (o veterinario) se quedan en el establecimiento durante la campaña de medición, sin depender de hotel en la ciudad."), ("Two professionals on site", "An agronomist and a technician (or vet) stay on the farm during the measuring campaign, with no need for a hotel in town.")),
-        (("Dormitório e banheiro", "Beliche para dois, banheiro com chuveiro, caixa d’água e climatização."), ("Dormitorio y baño", "Litera para dos, baño con ducha, tanque de agua y climatización."), ("Sleeping area and bathroom", "Bunk bed for two, bathroom with shower, water tank and climate control.")),
+        (("Dormitório e banheiro", "Beliche para dois, banheiro com box, caixa d’água e ar-condicionado."), ("Dormitorio y baño", "Litera para dos, baño con ducha, tanque de agua y climatización."), ("Sleeping area and bathroom", "Bunk bed for two, bathroom with shower, water tank and climate control.")),
         (("Energia própria", "Painel solar no teto com baterias de lítio para instrumentos, drones e a vida a bordo."), ("Energía propia", "Panel solar en el techo con baterías de litio para instrumentos, drones y la vida a bordo."), ("Own power", "Rooftop solar panel with lithium batteries for instruments, drones and life on board.")),
         (("Conectada em qualquer lugar", "Antena satelital no teto: os dados sobem para o motor RAPP no mesmo dia."), ("Conectada en cualquier lugar", "Antena satelital en el techo: los datos suben al motor RAPP el mismo día."), ("Connected anywhere", "Rooftop satellite antenna: data reaches the RAPP engine the same day.")),
         (("Duas motos trail", "No suporte traseiro, para chegar a talhões, pastos e aguadas onde o motorhome não entra."), ("Dos motos trail", "En el soporte trasero, para llegar a lotes, potreros y aguadas donde el motorhome no entra."), ("Two trail bikes", "On the rear rack, to reach fields, pastures and water points the motorhome cannot.")),
@@ -341,7 +360,7 @@ def movel():
   <div class="wrap">
     <p class="crumb"><a href="./">Help Farm</a> / {pg.t("Unidade móvel", "Unidad móvil", "Mobile unit")}</p>
     {pg.t("O laboratório de campo que dorme na fazenda.", "El laboratorio de campo que duerme en el establecimiento.", "The field lab that sleeps on the farm.", "h1")}
-    {pg.t("Um motorhome 4x4 leva dois profissionais, drones e instrumentos portáteis até a fazenda. Eles ficam instalados o tempo necessário para medir todas as variáveis, deixam os sensores fixos funcionando e criam a assinatura de referência de cada talhão, rebanho e máquina.", "Un motorhome 4x4 lleva dos profesionales, drones e instrumentos portátiles hasta el establecimiento. Se quedan el tiempo necesario para medir todas las variables, dejan los sensores fijos funcionando y crean la firma de referencia de cada lote, rodeo y máquina.", "A 4x4 motorhome takes two professionals, drones and portable instruments to the farm. They stay as long as needed to measure every variable, leave the fixed sensors running and build the reference signature of each field, herd and machine.", "p", "lead")}
+    {pg.t("Um motorhome de 7,5 m com capuchino, sobre cabine de van 4x4, leva dois profissionais, drones e instrumentos portáteis até a fazenda. Eles ficam instalados o tempo necessário para medir todas as variáveis, deixam os sensores fixos funcionando e criam a assinatura de referência de cada talhão, rebanho e máquina.", "Un motorhome de 7,5 m con capuchino, sobre cabina de van 4x4, lleva dos profesionales, drones e instrumentos portátiles hasta el establecimiento. Se quedan el tiempo necesario para medir todas las variables, dejan los sensores fijos funcionando y crean la firma de referencia de cada lote, rodeo y máquina.", "A 7.5 m cab-over motorhome on a 4x4 van cab takes two professionals, drones and portable instruments to the farm. They stay as long as needed to measure every variable, leave the fixed sensors running and build the reference signature of each field, herd and machine.", "p", "lead")}
   </div>
 </div>
 <section>
@@ -349,6 +368,13 @@ def movel():
     <div class="head">{pg.t("Em corte", "En corte", "Cutaway", "span", "eyebrow")}{pg.t("Tudo cabe num motorhome.", "Todo cabe en un motorhome.", "It all fits in a motorhome.", "h2")}</div>
     <div class="figure">{svg_movel(pg)}</div>
     {feats(pg, res)}
+  </div>
+</section>
+<section>
+  <div class="wrap">
+    <div class="head">{pg.t("Ficha da unidade", "Ficha de la unidad", "Unit specification", "span", "eyebrow")}{pg.t("Um motorhome de série, adaptado para medir.", "Un motorhome de serie, adaptado para medir.", "A series motorhome, adapted to measure.", "h2")}
+    {pg.t("Partir de um modelo que já é fabricado reduz prazo e custo: o veículo vem pronto para morar, e a adaptação fica só no que é de medição.", "Partir de un modelo que ya se fabrica reduce plazo y costo: el vehículo viene listo para vivir, y la adaptación queda solo en lo que es de medición.", "Starting from a model already in production cuts time and cost: the vehicle comes ready to live in, and the conversion covers only the measuring parts.", "p", "muted")}</div>
+    {feats(pg, ficha)}
   </div>
 </section>
 <section class="soft">
