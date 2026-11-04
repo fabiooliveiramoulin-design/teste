@@ -68,3 +68,11 @@ table.hft td:first-child{font-weight:600;color:var(--ink);white-space:nowrap}
 .note.darknote{background:rgba(255,255,255,.07);color:#DCE5C9;margin-top:28px}
 .hf .note{background:var(--soft);color:var(--ink-2)}
 .hf .cta + .note{margin-top:22px}
+.hf .hero.hfphoto{background:#2E1D10}
+.hf .hero.hfphoto>img{opacity:.62;object-position:center 40%}
+.hf .hero.hfphoto::after{display:block;background:linear-gradient(90deg,rgba(46,29,16,.95) 0%,rgba(46,29,16,.72) 50%,rgba(46,29,16,.15) 100%)}
+.hf .hero.hfphoto h1{max-width:20ch}
+.hf .hero.hfphoto p.lead{max-width:52ch}
+figure.photo{margin:32px 0 0}
+figure.photo img{width:100%;border-radius:22px;aspect-ratio:1568/875;object-fit:cover;box-shadow:0 24px 60px rgba(46,29,16,.25)}
+figure.photo figcaption{font-size:14px;color:var(--ink-3);margin-top:10px}

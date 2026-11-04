@@ -52,10 +52,11 @@ def shell(pg, path, title, body, desc):
 <meta property="og:title" content="{html.escape(title)}">
 <meta property="og:description" content="{html.escape(desc)}">
 <link rel="icon" href="assets/hf-icone.svg" type="image/svg+xml">
+<meta property="og:image" content="https://helpcure.com.py/helpfarm/img/movel-fazenda.webp">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Lexend:wght@300;400;500;600&display=swap">
 <link rel="stylesheet" href="../assets/site.css?v=8">
-<link rel="stylesheet" href="assets/hf.css?v=2">
+<link rel="stylesheet" href="assets/hf.css?v=3">
 </head>
 <body class="hf">
 <header class="top">
@@ -126,7 +127,7 @@ def svg_signature(pg):
 
 
 def svg_movel(pg):
-    # motorhome classe C 7,5 m com capuchino sobre cabine de van 4x4, em corte lateral (frente à direita)
+    # motorhome 4x4 de 7,75 m sobre chassi de caminhão leve, em corte lateral (frente à direita)
     return f'''<svg class="draw" viewBox="0 0 1000 440" role="img" aria-label="Unidade móvel Help Farm em corte">
 <rect width="1000" height="440" rx="22" fill="#F7F1E7"/>
 <line x1="20" x2="980" y1="378" y2="378" stroke="#CDBB9F" stroke-width="2"/>
@@ -137,11 +138,13 @@ def svg_movel(pg):
 <!-- toldo recolhido -->
 <rect x="170" y="126" width="470" height="8" rx="4" fill="#CDBB9F"/>
 <!-- carroceria + capuchino -->
-<path d="M150 120 L700 120 L700 120 L840 122 Q884 126 884 158 Q884 186 846 190 L700 190 L700 332 L150 332 Q136 332 136 318 L136 134 Q136 120 150 120 Z" fill="#FFFFFF" stroke="#4A2F1B" stroke-width="4"/>
-<!-- cabine da van -->
-<path d="M700 190 L800 190 Q838 194 862 246 L900 262 Q914 266 914 284 L914 320 Q914 332 900 332 L700 332 Z" fill="#F4EEE4" stroke="#4A2F1B" stroke-width="4"/>
-<path d="M712 204 L796 204 Q822 208 842 248 L712 250 Z" fill="#CFE3B4" opacity=".9"/>
-<rect x="890" y="286" width="22" height="10" rx="3" fill="#FFB500"/>
+<path d="M150 120 L690 120 Q704 120 704 134 L704 332 L150 332 Q136 332 136 318 L136 134 Q136 120 150 120 Z" fill="#FFFFFF" stroke="#4A2F1B" stroke-width="4"/>
+<!-- cabine de caminhão leve 4x4 -->
+<path d="M712 150 L858 150 Q878 150 882 170 L898 248 L912 260 L912 320 Q912 332 900 332 L712 332 Z" fill="#F4EEE4" stroke="#4A2F1B" stroke-width="4"/>
+<path d="M726 164 L852 164 L868 234 L726 234 Z" fill="#CFE3B4" opacity=".9"/>
+<rect x="712" y="132" width="150" height="10" rx="3" fill="#9A8570"/>
+<rect x="890" y="282" width="22" height="10" rx="3" fill="#FFB500"/>
+<rect x="896" y="298" width="18" height="30" rx="3" fill="#9A8570"/>
 <!-- divisórias internas -->
 <g stroke="#4A2F1B" stroke-width="2"><line x1="322" x2="322" y1="124" y2="330"/><line x1="410" x2="410" y1="124" y2="330"/><line x1="470" x2="470" y1="124" y2="330"/></g>
 <!-- dormitório traseiro com beliche -->
@@ -159,11 +162,9 @@ def svg_movel(pg):
 <rect x="488" y="222" width="42" height="34" rx="4" fill="#5E9F3A"/><rect x="536" y="226" width="34" height="30" rx="4" fill="#FFB500"/><rect x="576" y="216" width="28" height="40" rx="4" fill="#6E5644"/><rect x="610" y="228" width="40" height="28" rx="4" fill="#5E9F3A" opacity=".7"/>
 <rect x="656" y="200" width="32" height="56" rx="4" fill="#EFE4D2" stroke="#6E5644"/>
 <rect x="488" y="276" width="200" height="48" rx="6" fill="#EFE4D2" stroke="#6E5644"/>
-<rect x="520" y="158" width="130" height="30" rx="6" fill="#DCEEF7" stroke="#6E5644"/>
-<!-- capuchino com drones -->
-<rect x="712" y="134" width="150" height="44" rx="8" fill="#EFE4D2" stroke="#6E5644"/>
-<g fill="#4A2F1B"><circle cx="738" cy="156" r="8"/><circle cx="772" cy="156" r="8"/><rect x="742" y="152" width="26" height="8"/>
-<circle cx="806" cy="156" r="8"/><circle cx="840" cy="156" r="8"/><rect x="810" y="152" width="26" height="8"/></g>
+<rect x="490" y="150" width="200" height="40" rx="6" fill="#EFE4D2" stroke="#6E5644"/>
+<g fill="#4A2F1B"><circle cx="514" cy="170" r="8"/><circle cx="548" cy="170" r="8"/><rect x="518" y="166" width="26" height="8"/>
+<circle cx="582" cy="170" r="8"/><circle cx="616" cy="170" r="8"/><rect x="586" y="166" width="26" height="8"/></g>
 <!-- rack traseiro com 2 motos trail -->
 <rect x="18" y="306" width="122" height="9" rx="2" fill="#6E5644"/><rect x="128" y="290" width="12" height="24" fill="#6E5644"/>
 <g opacity=".45" transform="translate(10,-10)"><g fill="none" stroke="#2A1C10" stroke-width="7"><circle cx="40" cy="289" r="15"/><circle cx="120" cy="289" r="15"/></g><path d="M40 289 L60 268 L98 268 L120 289" fill="none" stroke="#6E5644" stroke-width="5"/></g>
@@ -175,23 +176,22 @@ def svg_movel(pg):
 <path d="M106 268 L98 246 M92 244 L108 246" stroke="#2A1C10" stroke-width="4" stroke-linecap="round"/>
 <path d="M98 246 L120 289" stroke="#9A8570" stroke-width="4"/>
 <!-- rodas: rodado duplo traseiro e dianteira -->
-<g fill="#2A1C10"><circle cx="262" cy="344" r="34"/><circle cx="812" cy="344" r="34"/></g>
-<g fill="#CDBB9F"><circle cx="262" cy="344" r="12"/><circle cx="812" cy="344" r="12"/></g>
-<circle cx="262" cy="344" r="24" fill="none" stroke="#6E5644" stroke-width="2"/>
+<g fill="#2A1C10"><circle cx="262" cy="340" r="40"/><circle cx="800" cy="340" r="40"/></g>
+<g fill="#CDBB9F"><circle cx="262" cy="340" r="15"/><circle cx="800" cy="340" r="15"/></g>
 <!-- rótulos -->
 <line x1="215" y1="102" x2="215" y2="62" stroke="#5E9F3A" stroke-width="1.5"/>
 {stl(pg, 176, 54, "Painel solar + baterias de lítio", "Panel solar + baterías de litio", "Solar panel + lithium batteries", "lb")}
 {stl(pg, 690, 82, "Antena satelital (internet em qualquer lugar)", "Antena satelital (internet en cualquier lugar)", "Satellite antenna (internet anywhere)", "lb", "end")}
-{stl(pg, 787, 175, "Capuchino: drones em case", "Capuchino: drones en estuche", "Cab-over: drones in cases", "ls", "middle")}
+{stl(pg, 655, 175, "Drones", "Drones", "Drones", "ls", "middle")}
 {stl(pg, 586, 210, "Instrumentos portáteis", "Instrumentos portátiles", "Portable instruments", "ls", "middle")}
 {stl(pg, 588, 306, "Sensores para instalar", "Sensores a instalar", "Sensors to install", "ls", "middle")}
 {stl(pg, 440, 346, "Entrada", "Entrada", "Door", "ls", "middle")}
 {stl(pg, 366, 346, "Banheiro", "Baño", "Bathroom", "ls", "middle")}
 {stl(pg, 232, 252, "Dormitório com beliche", "Dormitorio con litera", "Bunk-bed sleeping area", "ls", "middle")}
 {stl(pg, 80, 236, "2 motos trail", "2 motos trail", "2 trail bikes", "lb", "middle")}
-{stl(pg, 262, 412, "Rodado duplo traseiro", "Rodado doble trasero", "Dual rear wheels", "lb", "middle")}
-{stl(pg, 812, 412, "Cabine de van 4x4", "Cabina de van 4x4", "4x4 van cab", "lb", "middle")}
-{stl(pg, 586, 146, "Bancada de medição (no lugar da sala)", "Mesada de medición (en lugar del living)", "Measuring bench (replaces the lounge)", "ls", "middle")}
+{stl(pg, 262, 412, "Pneus de uso misto (terra e asfalto)", "Neumáticos de uso mixto (tierra y asfalto)", "All-terrain tyres", "lb", "middle")}
+{stl(pg, 806, 412, "Chassi de caminhão leve 4x4", "Chasis de camión liviano 4x4", "4x4 light-truck chassis", "lb", "middle")}
+{stl(pg, 590, 144, "Bancada de medição (no lugar da sala)", "Mesada de medición (en lugar del living)", "Measuring bench (replaces the lounge)", "ls", "middle")}
 </svg>'''
 
 
@@ -245,9 +245,9 @@ def home():
 <section>
   <div class="wrap">
     <div class="head">{pg.t("Estrutura de campo", "Estructura de campo", "Field structure", "span", "eyebrow")}{pg.t("Os profissionais vão até a fazenda — e ficam o tempo que for preciso.", "Los profesionales van hasta el establecimiento — y se quedan el tiempo que haga falta.", "The professionals go to the farm — and stay as long as needed.", "h2")}</div>
-    <div class="figure"><a href="unidade-movel.html" aria-label="Unidade móvel">{svg_movel(pg)}</a></div>
+    <figure class="photo"><a href="unidade-movel.html"><img src="img/movel-fazenda.webp" srcset="img/movel-fazenda-960.webp 960w, img/movel-fazenda.webp 1568w" sizes="(max-width:1180px) 100vw, 1140px" alt="Unidade móvel Help Farm numa fazenda" loading="lazy"></a><figcaption>{pg.t("Imagem conceitual da unidade móvel: motorhome 4x4 com painel solar, antena satelital, drone, bancada externa e duas motos trail.", "Imagen conceptual de la unidad móvil: motorhome 4x4 con panel solar, antena satelital, dron, mesada exterior y dos motos trail.", "Concept image of the mobile unit: 4x4 motorhome with solar panel, satellite antenna, drone, outdoor bench and two trail bikes.")}</figcaption></figure>
     <div class="split" style="margin-top:28px;align-items:start">
-      <div>{pg.t("Unidade móvel de medição", "Unidad móvil de medición", "Mobile measuring unit", "h3")}{pg.t("Um motorhome de 7,5 m com capuchino, sobre cabine de van 4x4, com instrumentos, drones, dormitório, banheiro, energia solar, antena satelital e duas motos trail.", "Un motorhome de 7,5 m con capuchino, sobre cabina de van 4x4, con instrumentos, drones, dormitorio, baño, energía solar, antena satelital y dos motos trail.", "A 7.5 m cab-over motorhome on a 4x4 van cab, with instruments, drones, sleeping area, bathroom, solar power, satellite antenna and two trail bikes.", "p", "muted", attrs=' style="margin-top:10px"')}</div>
+      <div>{pg.t("Unidade móvel de medição", "Unidad móvil de medición", "Mobile measuring unit", "h3")}{pg.t("Um motorhome 4x4 de 7,75 m sobre chassi de caminhão leve com instrumentos, drones, dormitório, banheiro, energia solar, antena satelital e duas motos trail.", "Un motorhome 4x4 de 7,75 m sobre chasis de camión liviano con instrumentos, drones, dormitorio, baño, energía solar, antena satelital y dos motos trail.", "A 7.75 m 4x4 motorhome on a light-truck chassis with instruments, drones, sleeping area, bathroom, solar power, satellite antenna and two trail bikes.", "p", "muted", attrs=' style="margin-top:10px"')}</div>
       <div>{pg.t("Visita ou temporada", "Visita o temporada", "Visit or season", "h3")}{pg.t("Numa visita, mede, instala os sensores e segue para a próxima fazenda. Nas fazendas que precisam de acompanhamento contínuo, fica estacionada por temporada — plantio, colheita ou estação de monta — com a dupla morando a bordo.", "En una visita, mide, instala los sensores y sigue al próximo establecimiento. En los que necesitan acompañamiento continuo, se queda estacionada por temporada — siembra, cosecha o servicio — con la dupla viviendo a bordo.", "On a visit, it measures, installs the sensors and moves on to the next farm. Where a farm needs continuous follow-up, it stays parked for a season — planting, harvest or breeding — with the pair living on board.", "p", "muted", attrs=' style="margin-top:10px"')}
       <div class="cta" style="margin-top:18px"><a class="btn dark" href="unidade-movel.html">{pg.t("Ver a unidade móvel", "Ver la unidad móvil", "See the mobile unit")} →</a></div></div>
     </div>
@@ -297,18 +297,18 @@ def movel():
          ("Position", "GNSS RTK receiver so every measured point is revisited at exactly the same spot")),
     ]
     ficha = [
-        (("Base", "motorhome de 7,5 m com capuchino, já fabricado em série no Brasil, na versão sobre cabine de van 4x4"), ("Base", "motorhome de 7,5 m con capuchino, ya fabricado en serie en Brasil, en versión sobre cabina de van 4x4"), ("Base", "7.5 m cab-over motorhome already built in series in Brazil, on the 4x4 van-cab version")),
+        (("Base", "motorhome 4x4 de 7,75 m sobre chassi de caminhão leve 4x4, já fabricado em série no Brasil, para estrada de terra"), ("Base", "motorhome 4x4 de 7,75 m sobre chasis de camión liviano 4x4, ya fabricado en serie en Brasil, para caminos de tierra"), ("Base", "7.75 m 4x4 motorhome on a 4x4 light-truck chassis, already built in series in Brazil, for dirt roads")),
         (("Acomodação", "de 6 lugares de passeio para 2 profissionais em beliche; o espaço liberado vira laboratório"), ("Alojamiento", "de 6 plazas de paseo a 2 profesionales en litera; el espacio liberado se vuelve laboratorio"), ("Sleeping", "from 6 leisure berths to 2 staff in bunk beds; the space freed becomes the lab")),
-        (("Sala", "a sala e o slide-out dão lugar à bancada de medição, com instrumentos e geladeira de amostras"), ("Living", "el living y el slide-out dan lugar a la mesada de medición, con instrumentos y heladera de muestras"), ("Lounge", "the lounge and slide-out become the measuring bench, with instruments and a sample fridge")),
-        (("Capuchino", "a cama sobre a cabine vira compartimento de drones e cases de instrumentos"), ("Capuchino", "la cama sobre la cabina se vuelve compartimiento de drones y estuches de instrumentos"), ("Cab-over", "the bed over the cab becomes the drone and instrument-case bay")),
-        (("Banheiro e água", "banheiro com box separado; caixas de 320 L de água limpa, 100 L de servida e 95 L de esgoto (modelo de série)"), ("Baño y agua", "baño con box separado; tanques de 320 L de agua limpia, 100 L de grises y 95 L de negras (modelo de serie)"), ("Bathroom and water", "bathroom with separate shower; 320 L fresh, 100 L grey and 95 L black water tanks (series model)")),
-        (("Energia", "conversor, inversor e gerador de série, mais painel solar no teto e baterias de lítio na adaptação"), ("Energía", "conversor, inversor y generador de serie, más panel solar en el techo y baterías de litio en la adaptación"), ("Power", "series converter, inverter and generator, plus rooftop solar and lithium batteries added")),
+        (("Sala", "a sala com mesa dá lugar à bancada de medição, com instrumentos, drones e geladeira de amostras"), ("Living", "el living con mesa da lugar a la mesada de medición, con instrumentos, drones y heladera de muestras"), ("Lounge", "the dinette becomes the measuring bench, with instruments, drones and a sample fridge")),
+        (("Banheiro e água", "banheiro com chuveiro; caixas de 500 L de água limpa, 200 L de servida e 100 L de detritos (modelo de série)"), ("Baño y agua", "baño con ducha; tanques de 500 L de agua limpia, 200 L de grises y 100 L de residuos (modelo de serie)"), ("Bathroom and water", "bathroom with shower; 500 L fresh, 200 L grey and 100 L waste tanks (series model)")),
+        (("Energia", "painel solar com controlador e bateria estacionária de série, mais baterias de lítio e inversor na adaptação"), ("Energía", "panel solar con controlador y batería estacionaria de serie, más baterías de litio e inversor en la adaptación"), ("Power", "series solar panel, charge controller and stationary battery, plus lithium batteries and inverter added")),
         (("Internet", "antena satelital no teto, para subir os dados no mesmo dia"), ("Internet", "antena satelital en el techo, para subir los datos el mismo día"), ("Internet", "rooftop satellite antenna to upload data the same day")),
-        (("Traseira", "engate reforçado e rack para 2 motos trail — a confirmar com o fabricante pela carga útil do chassi"), ("Trasera", "enganche reforzado y rack para 2 motos trail — a confirmar con el fabricante por la carga útil del chasis"), ("Rear", "reinforced hitch and rack for 2 trail bikes — to be confirmed with the builder against chassis payload")),
+        (("Traseira", "suporte de motos de série, reforçado para levar 2 motos trail simples"), ("Trasera", "soporte de motos de serie, reforzado para llevar 2 motos trail simples"), ("Rear", "series motorbike mount, reinforced to carry 2 simple trail bikes")),
+        (("Apoio externo", "cozinha e chuveiro externos de série e toldo para montar a bancada de campo ao lado do veículo"), ("Apoyo exterior", "cocina y ducha exteriores de serie y toldo para armar la mesada de campo junto al vehículo"), ("Outdoor support", "series outdoor kitchen and shower, plus awning to set up the field bench beside the vehicle")),
     ]
     res = [
         (("Dois profissionais instalados", "Um agrônomo e um técnico (ou veterinário) ficam na fazenda durante a campanha de medição, sem depender de hotel na cidade."), ("Dos profesionales instalados", "Un agrónomo y un técnico (o veterinario) se quedan en el establecimiento durante la campaña de medición, sin depender de hotel en la ciudad."), ("Two professionals on site", "An agronomist and a technician (or vet) stay on the farm during the measuring campaign, with no need for a hotel in town.")),
-        (("Dormitório e banheiro", "Beliche para dois, banheiro com box, caixa d’água e ar-condicionado."), ("Dormitorio y baño", "Litera para dos, baño con ducha, tanque de agua y climatización."), ("Sleeping area and bathroom", "Bunk bed for two, bathroom with shower, water tank and climate control.")),
+        (("Dormitório e banheiro", "Beliche para dois, banheiro com chuveiro, caixa d’água de 500 L e ar-condicionado."), ("Dormitorio y baño", "Litera para dos, baño con ducha, tanque de agua y climatización."), ("Sleeping area and bathroom", "Bunk bed for two, bathroom with shower, water tank and climate control.")),
         (("Energia própria", "Painel solar no teto com baterias de lítio para instrumentos, drones e a vida a bordo."), ("Energía propia", "Panel solar en el techo con baterías de litio para instrumentos, drones y la vida a bordo."), ("Own power", "Rooftop solar panel with lithium batteries for instruments, drones and life on board.")),
         (("Conectada em qualquer lugar", "Antena satelital no teto: os dados sobem para o motor RAPP no mesmo dia."), ("Conectada en cualquier lugar", "Antena satelital en el techo: los datos suben al motor RAPP el mismo día."), ("Connected anywhere", "Rooftop satellite antenna: data reaches the RAPP engine the same day.")),
         (("Duas motos trail", "No suporte traseiro, para chegar a talhões, pastos e aguadas onde o motorhome não entra."), ("Dos motos trail", "En el soporte trasero, para llegar a lotes, potreros y aguadas donde el motorhome no entra."), ("Two trail bikes", "On the rear rack, to reach fields, pastures and water points the motorhome cannot.")),
@@ -316,16 +316,17 @@ def movel():
         (("Drones a bordo", "Voos multiespectrais e de mapeamento no primeiro dia; a mesma rota se repete nas visitas seguintes."), ("Drones a bordo", "Vuelos multiespectrales y de mapeo el primer día; la misma ruta se repite en las visitas siguientes."), ("Drones on board", "Multispectral and mapping flights on day one; the same route is repeated on later visits.")),
     ]
     body = f'''
-<div class="hero sub hfsub">
+<div class="hero sub hfphoto">
+  <img src="img/movel-fazenda.webp" alt="" fetchpriority="high">
   <div class="wrap">
     <p class="crumb"><a href="./">Help Farm</a> / {pg.t("Unidade móvel", "Unidad móvil", "Mobile unit")}</p>
     {pg.t("O laboratório de campo que dorme na fazenda.", "El laboratorio de campo que duerme en el establecimiento.", "The field lab that sleeps on the farm.", "h1")}
-    {pg.t("Um motorhome de 7,5 m com capuchino, sobre cabine de van 4x4, leva dois profissionais, drones e instrumentos portáteis até a fazenda. Eles ficam instalados o tempo necessário para medir todas as variáveis, deixam os sensores fixos funcionando e criam a assinatura de referência de cada talhão, rebanho e máquina.", "Un motorhome de 7,5 m con capuchino, sobre cabina de van 4x4, lleva dos profesionales, drones e instrumentos portátiles hasta el establecimiento. Se quedan el tiempo necesario para medir todas las variables, dejan los sensores fijos funcionando y crean la firma de referencia de cada lote, rodeo y máquina.", "A 7.5 m cab-over motorhome on a 4x4 van cab takes two professionals, drones and portable instruments to the farm. They stay as long as needed to measure every variable, leave the fixed sensors running and build the reference signature of each field, herd and machine.", "p", "lead")}
+    {pg.t("Um motorhome 4x4 de 7,75 m sobre chassi de caminhão leve leva dois profissionais, drones e instrumentos portáteis até a fazenda. Eles ficam instalados o tempo necessário para medir todas as variáveis, deixam os sensores fixos funcionando e criam a assinatura de referência de cada talhão, rebanho e máquina.", "Un motorhome 4x4 de 7,75 m sobre chasis de camión liviano lleva dos profesionales, drones e instrumentos portátiles hasta el establecimiento. Se quedan el tiempo necesario para medir todas las variables, dejan los sensores fijos funcionando y crean la firma de referencia de cada lote, rodeo y máquina.", "A 7.75 m 4x4 motorhome on a light-truck chassis takes two professionals, drones and portable instruments to the farm. They stay as long as needed to measure every variable, leave the fixed sensors running and build the reference signature of each field, herd and machine.", "p", "lead")}
   </div>
 </div>
 <section>
   <div class="wrap">
-    <div class="head">{pg.t("Em corte", "En corte", "Cutaway", "span", "eyebrow")}{pg.t("Tudo cabe num motorhome.", "Todo cabe en un motorhome.", "It all fits in a motorhome.", "h2")}</div>
+    <div class="head">{pg.t("Em corte (esquema)", "En corte (esquema)", "Cutaway (schematic)", "span", "eyebrow")}{pg.t("Tudo cabe num motorhome.", "Todo cabe en un motorhome.", "It all fits in a motorhome.", "h2")}</div>
     <div class="figure">{svg_movel(pg)}</div>
     {feats(pg, res)}
   </div>
