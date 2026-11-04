@@ -1,0 +1,16 @@
+name: baixar-lista
+on:
+  push:
+    branches: [campanha]
+    paths: ['build/baixar.txt']
+permissions:
+  contents: write
+jobs:
+  get:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          while read -r u d; do [ -z "$u" ] && continue; mkdir -p "$(dirname "$d")"; curl -sSL -o "$d" "$u"; ls -la "$d"; done < build/baixar.txt
+          git config user.name "github-actions" && git config user.email "actions@github.com"
+          git add -A midia img video && git commit -m "Arquivos da lista" && git push || echo nada

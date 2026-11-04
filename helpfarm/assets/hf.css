@@ -1,0 +1,70 @@
+/* Help Farm — paleta terra + verde sobre ../assets/site.css (mesma estrutura do Help Cure) */
+body.hf{
+  --bg:#FAF6EF; --surface:#FFFFFF; --soft:#F1E7D6; --line:#E2D3BC;
+  --ink:#2A1C10; --ink-2:#5E4A38; --ink-3:#8A745F;
+  --brand:#4A2F1B; --deep:#2E1D10; --brand-ink:#F5EBDD; --led:#7DB547; --led-ink:#3F7A22; --amber:#FFB500;
+  background:var(--bg); color:var(--ink);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]) body.hf{ --bg:#1A120B; --surface:#241910; --soft:#2C1F14; --line:#3E2C1D; --ink:#F3E9DB; --ink-2:#D2C0A8; --ink-3:#A8927A; --led-ink:#9BD068; }
+}
+.hf header.top{background:color-mix(in srgb,#3A2414 95%,transparent)}
+.hf .menu{background:transparent}
+@media (max-width:900px){.hf .menu{background:#3A2414}}
+.hf .lang button[aria-pressed="true"]{background:var(--led);color:#1E2A0E}
+.hf .btn.primary{background:var(--led);color:#1E2A0E}
+.hf .btn.primary:hover{background:#8FC75A}
+.hf .btn.dark{background:var(--brand);color:var(--brand-ink)}
+.hf .hero{background:var(--deep)}
+.hf .hero.hv{background:radial-gradient(120% 90% at 75% 45%,#5A3A20 0%,#2E1D10 62%)}
+.hf .hfsub{background:radial-gradient(110% 120% at 85% 10%,#5E3E22 0%,#2E1D10 62%)}
+.hf .hfsub::after,.hf .hero.hv::after{display:none}
+.hf .hero p.lead{color:#EADBC6}
+.hf .crumb,.hf .crumb a{color:#D9C6AC}
+.hf section.dark{background:linear-gradient(180deg,#3D5A27 0%,#2F4A1E 100%);color:#F2EEDF}
+.hf section.dark .step{border-color:rgba(242,238,223,.2)}
+.hf section.dark .step p,.hf .dark .card p{color:#DCE5C9}
+.hf section.dark .step::before,.hf section.dark .eyebrow{color:#C9E89A}
+.hf section.soft{background:var(--soft)}
+.hf footer{background:#2E1D10;color:#D9C6AC}
+.hf footer a{color:#D9C6AC}
+.hf footer h4{color:#F5EBDD}
+.hf footer .legal{color:#A48C70;border-color:rgba(245,235,221,.12)}
+.hf .feat li::before{background:var(--led)}
+.hf .eyebrow{color:var(--led-ink)}
+.hf .hero .eyebrow{color:var(--led)}
+.hf-mark{width:34px;height:34px;flex:none}
+.hf .logo b{color:var(--led)}
+.hf .hero.hv .wrap{grid-template-columns:1fr 1.05fr}
+@media (max-width:900px){.hf .hero.hv .wrap{grid-template-columns:1fr}}
+.hf .hv-media{box-shadow:0 30px 80px rgba(0,0,0,.45),0 0 0 1px rgba(125,181,71,.18)}
+.hf .sigbox{aspect-ratio:560/300;background:#2E1D10}
+.hf .sigbox svg{width:100%;height:100%;display:block}
+.hf .hfsub h1{max-width:22ch}
+.hf .hero h1 em{color:var(--led)}
+svg text{font-family:var(--f-b)}
+svg .lb{font:500 15px var(--f-b);fill:#2A1C10}
+svg .ls{font:500 13px var(--f-b);fill:#4A2F1B}
+svg .lw{fill:#F5EBDD;font-size:16px}
+svg .lo{fill:#FFB500;font-weight:600}
+svg .lm{fill:#D9C6AC;font-size:14px}
+svg .lg{fill:#8FCB5A;font-size:14px}
+.figure{margin-top:32px;border-radius:22px;overflow:hidden;border:1px solid var(--line);background:#F7F1E7}
+.figure svg,.card .pic svg{width:100%;height:auto;display:block}
+.card .pic{background:#F7F1E7;border-bottom:1px solid var(--line)}
+.card span.more{margin-top:auto;padding-top:8px;font:600 14px var(--f-d);color:var(--led-ink)}
+.hf a.card:hover{box-shadow:0 10px 30px rgba(74,47,27,.14)}
+.kpis{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.kpis.k4{grid-template-columns:repeat(4,1fr);margin-top:36px}
+.kpi{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:20px 22px;display:flex;flex-direction:column;gap:6px;color:var(--ink-2);font-size:15px}
+.kpi b{font:700 clamp(24px,2.6vw,32px)/1.1 var(--f-d);color:var(--brand)}
+@media (max-width:960px){.kpis.k4{grid-template-columns:1fr 1fr}}
+@media (max-width:520px){.kpis,.kpis.k4{grid-template-columns:1fr}}
+.tablewrap{margin-top:32px;overflow-x:auto;border:1px solid var(--line);border-radius:var(--r);background:var(--surface)}
+table.hft{width:100%;border-collapse:collapse;font-size:15px;min-width:760px}
+table.hft th{text-align:left;font:600 14px var(--f-d);background:var(--brand);color:var(--brand-ink);padding:14px 16px}
+table.hft td{padding:14px 16px;border-top:1px solid var(--line);vertical-align:top;color:var(--ink-2)}
+table.hft td:first-child{font-weight:600;color:var(--ink);white-space:nowrap}
+.note.darknote{background:rgba(255,255,255,.07);color:#DCE5C9;margin-top:28px}
+.hf .note{background:var(--soft);color:var(--ink-2)}
+.hf .cta + .note{margin-top:22px}

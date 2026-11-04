@@ -1,0 +1,37 @@
+name: montar-animacao
+on:
+  workflow_dispatch:
+    inputs:
+      normal: {required: true}
+      alerta: {required: true}
+      volta: {required: true}
+permissions:
+  contents: write
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: ffmpeg
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+      - name: baixar e montar
+        run: |
+          set -e
+          mkdir -p /tmp/a && cd /tmp/a
+          curl -sSL -o 1.mp4 "${{ inputs.normal }}"
+          curl -sSL -o 2.mp4 "${{ inputs.alerta }}"
+          curl -sSL -o 3.mp4 "${{ inputs.volta }}"
+          for i in 1 2 3; do ffmpeg -v error -y -i $i.mp4 -an -vf "fps=30,scale=1920:1080:flags=lanczos,format=yuv420p" -c:v libx264 -crf 16 -preset slow n$i.mp4; done
+          # normal, normal, alerta, volta (20s)
+          printf "file n1.mp4\nfile n1.mp4\nfile n2.mp4\nfile n3.mp4\n" > l.txt
+          ffmpeg -v error -y -f concat -safe 0 -i l.txt -c copy loop.mp4
+          OUT=$GITHUB_WORKSPACE/video; mkdir -p $OUT
+          ffmpeg -v error -y -i loop.mp4 -c:v libx264 -crf 26 -preset slow -profile:v high -movflags +faststart -an $OUT/helpcure-anel-loop.mp4
+          ffmpeg -v error -y -i loop.mp4 -vf scale=1280:720 -c:v libvpx-vp9 -b:v 0 -crf 36 -row-mt 1 -an $OUT/helpcure-anel-loop.webm
+          ffmpeg -v error -y -i loop.mp4 -vf scale=1280:720 -c:v libx264 -crf 27 -preset slow -movflags +faststart -an $OUT/helpcure-anel-loop-720.mp4
+          ffmpeg -v error -y -ss 0 -i loop.mp4 -frames:v 1 -vf scale=1600:-2 -q:v 3 $OUT/helpcure-anel-poster.jpg
+          ls -la $OUT
+      - name: commit
+        run: |
+          git config user.name "github-actions" && git config user.email "actions@github.com"
+          git add video && git commit -m "Animação do anel em loop" && git push
