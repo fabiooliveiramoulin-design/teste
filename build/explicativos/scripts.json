@@ -1,0 +1,39 @@
+{
+"v1": {"title": "Como a Help Farm funciona", "scenes": [
+ "Toda fazenda negocia com a natureza. O clima, as pragas e o solo decidem se a safra dá lucro ou prejuízo.",
+ "Quase sempre, o problema só aparece quando já é tarde: a folha manchada, o animal parado, a máquina quebrada no meio da colheita.",
+ "A Help Farm começa diferente. A unidade móvel vai até a fazenda, mede o solo, a lavoura, a água, o rebanho e as máquinas, e deixa sensores trabalhando.",
+ "O motor RAPP aprende a assinatura normal de cada talhão, de cada animal e de cada máquina.",
+ "Quando algo começa a sair do padrão, o desvio aparece dias antes da perda e vira um alerta.",
+ "A central aciona a pessoa certa: o agrônomo, o veterinário ou o mecânico. E a ação acontece a tempo.",
+ "Help Farm. A sua fazenda avisa antes do problema."]},
+"v2": {"title": "Uma visita da unidade móvel", "scenes": [
+ "A unidade móvel da Help Farm é um motorhome quatro por quatro, preparado para a estrada de terra.",
+ "Ela chega com dois profissionais, drones, instrumentos portáteis e duas motos trail.",
+ "No primeiro dia, os drones sobrevoam a fazenda e mostram onde medir primeiro.",
+ "De moto, a dupla mede o solo, a planta, a água, o rebanho e as máquinas, e marca cada ponto com GPS de precisão.",
+ "Os sensores ficam instalados, e a primeira assinatura da fazenda sobe por satélite para o motor RAPP.",
+ "Numa visita, a unidade mede e segue viagem. Quando a fazenda precisa, ela fica a temporada inteira."]},
+"v3": {"title": "O que é a assinatura de condição", "scenes": [
+ "Cada talhão, cada animal e cada máquina tem um jeito normal de funcionar. Essa é a sua assinatura.",
+ "O RAPP desenha essa faixa normal a partir das medições de todos os dias.",
+ "Um desvio pequeno, que o olho ainda não vê, começa a sair da faixa.",
+ "O RAPP compara cada um com ele mesmo, e não com uma média. O que é normal numa fazenda pode ser problema na outra.",
+ "Por isso, o alerta chega antes do sintoma, já com a ação sugerida.",
+ "O RAPP nasceu vigiando turbinas e bombas na indústria. Agora, ele vigia a sua fazenda."]},
+"v4": {"title": "Do talhão ao QR code", "scenes": [
+ "Quem compra quer saber de onde vem o que compra. E a Europa já exige essa prova.",
+ "A Help Farm desenha a área no mapa e compara com imagens de satélite desde 2020, para provar que não houve desmatamento.",
+ "O RAPP dá nota a cada critério: solo, insumos, água, sanidade e rastreabilidade. E define o nível: ouro, prata ou bronze.",
+ "Cada lote ganha um certificado, e a impressão digital dos dados é gravada na blockchain, onde ninguém consegue alterar.",
+ "O comprador lê o QR code e confere tudo na hora: origem, práticas e nível.",
+ "Help Farm. Cada lote com certidão de nascimento."]},
+"v5": {"title": "Como a Help Farm gera receita", "scenes": [
+ "A Help Farm ganha dinheiro de dois lados.",
+ "Do produtor, vem a taxa de implantação e a assinatura por hectare, por cabeça ou por máquina.",
+ "Ao redor da fazenda vivem doze entidades que dependem da saúde dela: veterinários, fornecedores, bancos, seguradoras, compradores e governo.",
+ "Bancos e seguradoras pagam por um dado confiável da fazenda, para emprestar e segurar melhor.",
+ "Cooperativas e tradings levam a Help Farm aos associados, com uma licença anual.",
+ "E a certificação de origem gera receita por lote e por tonelada vendida.",
+ "Mais fontes de receita e menos dependência de um só cliente. E quem investe participa desse crescimento."]}
+}

@@ -91,7 +91,7 @@ def shell(pg, path, title, body, desc, extra=""):
   </div>
 </footer>
 <script>window.HC_T={json.dumps({"es": pg.es, "en": pg.en}, ensure_ascii=False)};</script>
-<script src="../assets/site.js?v=4"></script>
+<script src="../assets/site.js?v=5"></script>
 {extra}
 <script>(function(){{try{{var d=new Date(Date.now()-108e5).toISOString().slice(0,10),ls=window.localStorage,n=0,u=0;try{{if(!ls.getItem("hf_v")){{n=1;ls.setItem("hf_v",d)}}if(ls.getItem("hf_vd")!==d){{u=1;ls.setItem("hf_vd",d)}}}}catch(e){{u=1}}
 var q=new URLSearchParams(location.search).get("utm_source")||"";function s(o){{var b=JSON.stringify(o);if(navigator.sendBeacon)navigator.sendBeacon("/helpfarm/api/hit",new Blob([b],{{type:"text/plain"}}));else fetch("/helpfarm/api/hit",{{method:"POST",body:b,keepalive:true}})}}

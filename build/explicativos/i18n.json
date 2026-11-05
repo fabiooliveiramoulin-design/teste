@@ -1,0 +1,480 @@
+{
+ "voice": {
+  "es": [
+   "YWH2duBH9dDQ9GowwyB5",
+   "es"
+  ],
+  "en": [
+   "pVnrL6sighQX7hVz89cp",
+   "en"
+  ]
+ },
+ "scripts": {
+  "es": {
+   "v1": [
+    "Todo establecimiento negocia con la naturaleza. El clima, las plagas y el suelo deciden si la cosecha deja ganancia o pérdida.",
+    "Casi siempre, el problema aparece cuando ya es tarde: la hoja manchada, el animal quieto, la máquina rota en plena cosecha.",
+    "Help Farm empieza distinto. La unidad móvil llega al establecimiento, mide el suelo, el cultivo, el agua, el rodeo y las máquinas, y deja sensores trabajando.",
+    "El motor RAPP aprende la firma normal de cada lote, de cada animal y de cada máquina.",
+    "Cuando algo empieza a salirse del patrón, el desvío aparece días antes de la pérdida y se convierte en una alerta.",
+    "La central llama a la persona indicada: el agrónomo, el veterinario o el mecánico. Y la acción llega a tiempo.",
+    "Help Farm. Su establecimiento avisa antes del problema."
+   ],
+   "v2": [
+    "La unidad móvil de Help Farm es un motorhome cuatro por cuatro, preparado para caminos de tierra.",
+    "Llega con dos profesionales, drones, instrumentos portátiles y dos motos trail.",
+    "El primer día, los drones sobrevuelan el establecimiento y muestran dónde medir primero.",
+    "En moto, la dupla mide el suelo, la planta, el agua, el rodeo y las máquinas, y marca cada punto con GPS de precisión.",
+    "Los sensores quedan instalados, y la primera firma del establecimiento sube por satélite al motor RAPP.",
+    "En una visita, la unidad mide y sigue viaje. Cuando el establecimiento lo necesita, se queda toda la temporada."
+   ],
+   "v3": [
+    "Cada lote, cada animal y cada máquina tiene una forma normal de funcionar. Esa es su firma.",
+    "El RAPP dibuja ese rango normal a partir de las mediciones de todos los días.",
+    "Un desvío pequeño, que el ojo todavía no ve, empieza a salirse del rango.",
+    "El RAPP compara a cada uno consigo mismo, y no con un promedio. Lo que es normal en un establecimiento puede ser un problema en otro.",
+    "Por eso, la alerta llega antes del síntoma, ya con la acción sugerida.",
+    "El RAPP nació vigilando turbinas y bombas en la industria. Ahora, vigila su establecimiento."
+   ],
+   "v4": [
+    "Quien compra quiere saber de dónde viene lo que compra. Y Europa ya exige esa prueba.",
+    "Help Farm dibuja el área en el mapa y la compara con imágenes satelitales desde 2020, para probar que no hubo deforestación.",
+    "El RAPP pone nota a cada criterio: suelo, insumos, agua, sanidad y trazabilidad. Y define el nivel: oro, plata o bronce.",
+    "Cada lote recibe un certificado, y la huella digital de los datos queda grabada en la blockchain, donde nadie puede alterarla.",
+    "El comprador lee el código QR y verifica todo al instante: origen, prácticas y nivel.",
+    "Help Farm. Cada lote con partida de nacimiento."
+   ],
+   "v5": [
+    "Help Farm gana dinero por dos lados.",
+    "Del productor, viene la tasa de implantación y la suscripción por hectárea, por cabeza o por máquina.",
+    "Alrededor del establecimiento viven doce entidades que dependen de su salud: veterinarios, proveedores, bancos, aseguradoras, compradores y gobierno.",
+    "Bancos y aseguradoras pagan por un dato confiable del establecimiento, para prestar y asegurar mejor.",
+    "Cooperativas y tradings llevan Help Farm a sus asociados, con una licencia anual.",
+    "Y la certificación de origen genera ingresos por lote y por tonelada vendida.",
+    "Más fuentes de ingreso y menos dependencia de un solo cliente. Y quien invierte participa de ese crecimiento."
+   ]
+  },
+  "en": {
+   "v1": [
+    "Every farm negotiates with nature. Weather, pests and soil decide whether the harvest brings profit or loss.",
+    "Most of the time, the problem only shows up when it is already too late: the spotted leaf, the idle animal, the machine broken in the middle of harvest.",
+    "Help Farm starts differently. The mobile unit goes to the farm, measures the soil, the crop, the water, the herd and the machines, and leaves sensors working.",
+    "The RAPP engine learns the normal signature of every field, every animal and every machine.",
+    "When something starts to drift from the pattern, the deviation shows up days before the loss and becomes an alert.",
+    "The control centre calls the right person: the agronomist, the vet or the mechanic. And action happens in time.",
+    "Help Farm. Your farm warns before the problem."
+   ],
+   "v2": [
+    "The Help Farm mobile unit is a four by four motorhome, built for dirt roads.",
+    "It arrives with two professionals, drones, portable instruments and two trail bikes.",
+    "On day one, the drones fly over the farm and show where to measure first.",
+    "On the bikes, the pair measures the soil, the plants, the water, the herd and the machines, and marks every point with precision GPS.",
+    "The sensors stay in place, and the farm's first signature goes up by satellite to the RAPP engine.",
+    "On a visit, the unit measures and moves on. When the farm needs it, it stays for the whole season."
+   ],
+   "v3": [
+    "Every field, every animal and every machine has a normal way of working. That is its signature.",
+    "RAPP draws this normal range from measurements taken every day.",
+    "A small deviation, one the eye cannot see yet, starts to leave the range.",
+    "RAPP compares each one with itself, not with an average. What is normal on one farm can be a problem on another.",
+    "That is why the alert arrives before the symptom, already with a suggested action.",
+    "RAPP was born watching turbines and pumps in industry. Now, it watches your farm."
+   ],
+   "v4": [
+    "Buyers want to know where what they buy comes from. And Europe already demands that proof.",
+    "Help Farm draws the area on the map and compares it with satellite images since 2020, to prove there was no deforestation.",
+    "RAPP scores every criterion: soil, inputs, water, animal health and traceability. And it sets the level: gold, silver or bronze.",
+    "Every lot gets a certificate, and the fingerprint of its data is recorded on the blockchain, where no one can change it.",
+    "The buyer scans the QR code and checks everything on the spot: origin, practices and level.",
+    "Help Farm. Every lot with a birth certificate."
+   ],
+   "v5": [
+    "Help Farm earns money from two sides.",
+    "From the farmer comes the set-up fee and the subscription per hectare, per head or per machine.",
+    "Around the farm live twelve entities that depend on its health: vets, suppliers, banks, insurers, buyers and government.",
+    "Banks and insurers pay for reliable farm data, to lend and insure better.",
+    "Cooperatives and traders bring Help Farm to their members, with an annual licence.",
+    "And origin certification generates revenue per lot and per tonne sold.",
+    "More sources of revenue and less dependence on a single client. And those who invest share in that growth."
+   ]
+  }
+ },
+ "titles": {
+  "es": {
+   "v1": "Cómo funciona Help Farm",
+   "v2": "Una visita de la unidad móvil",
+   "v3": "Qué es la firma de condición",
+   "v4": "Del lote al código QR",
+   "v5": "Cómo genera ingresos Help Farm"
+  },
+  "en": {
+   "v1": "How Help Farm works",
+   "v2": "A mobile-unit visit",
+   "v3": "What a condition signature is",
+   "v4": "From field to QR code",
+   "v5": "How Help Farm makes money"
+  }
+ },
+ "labels": {
+  "A natureza decide o lucro": [
+   "La naturaleza decide la ganancia",
+   "Nature decides the profit"
+  ],
+  "lucro ou prejuízo?": [
+   "¿ganancia o pérdida?",
+   "profit or loss?"
+  ],
+  "O problema aparece tarde demais": [
+   "El problema aparece demasiado tarde",
+   "The problem shows up too late"
+  ],
+  "folha manchada": [
+   "hoja manchada",
+   "spotted leaf"
+  ],
+  "animal parado": [
+   "animal quieto",
+   "idle animal"
+  ],
+  "máquina quebrada": [
+   "máquina rota",
+   "broken machine"
+  ],
+  "A Help Farm vai até a fazenda": [
+   "Help Farm va al establecimiento",
+   "Help Farm goes to the farm"
+  ],
+  "solo · lavoura · água · rebanho · máquinas": [
+   "suelo · cultivo · agua · rodeo · máquinas",
+   "soil · crop · water · herd · machines"
+  ],
+  "O RAPP aprende o normal": [
+   "El RAPP aprende lo normal",
+   "RAPP learns what is normal"
+  ],
+  "assinatura normal": [
+   "firma normal",
+   "normal signature"
+  ],
+  "talhão": [
+   "lote",
+   "field"
+  ],
+  "animal": [
+   "animal",
+   "animal"
+  ],
+  "máquina": [
+   "máquina",
+   "machine"
+  ],
+  "O desvio vira alerta": [
+   "El desvío se vuelve alerta",
+   "The deviation becomes an alert"
+  ],
+  "dias antes": [
+   "días antes",
+   "days earlier"
+  ],
+  "A pessoa certa age a tempo": [
+   "La persona indicada actúa a tiempo",
+   "The right person acts in time"
+  ],
+  "central": [
+   "central",
+   "centre"
+  ],
+  "agrônomo": [
+   "agrónomo",
+   "agronomist"
+  ],
+  "mecânico": [
+   "mecánico",
+   "mechanic"
+  ],
+  "veterinário": [
+   "veterinario",
+   "vet"
+  ],
+  "A sua fazenda avisa antes do problema.": [
+   "Su establecimiento avisa antes del problema.",
+   "Your farm warns before the problem."
+  ],
+  "A unidade móvel": [
+   "La unidad móvil",
+   "The mobile unit"
+  ],
+  "motorhome 4x4 para estrada de terra": [
+   "motorhome 4x4 para caminos de tierra",
+   "4x4 motorhome for dirt roads"
+  ],
+  "Quem e o que vai a bordo": [
+   "Quién y qué va a bordo",
+   "Who and what is on board"
+  ],
+  "2 profissionais": [
+   "2 profesionales",
+   "2 professionals"
+  ],
+  "drones": [
+   "drones",
+   "drones"
+  ],
+  "instrumentos": [
+   "instrumentos",
+   "instruments"
+  ],
+  "2 motos trail": [
+   "2 motos trail",
+   "2 trail bikes"
+  ],
+  "Primeiro, os drones": [
+   "Primero, los drones",
+   "Drones first"
+  ],
+  "onde medir primeiro": [
+   "dónde medir primero",
+   "where to measure first"
+  ],
+  "Medição ponto a ponto": [
+   "Medición punto por punto",
+   "Point-by-point measuring"
+  ],
+  "GPS de precisão": [
+   "GPS de precisión",
+   "precision GPS"
+  ],
+  "A assinatura sobe por satélite": [
+   "La firma sube por satélite",
+   "The signature goes up by satellite"
+  ],
+  "motor RAPP": [
+   "motor RAPP",
+   "RAPP engine"
+  ],
+  "Visita ou temporada": [
+   "Visita o temporada",
+   "Visit or season"
+  ],
+  "mede e segue viagem": [
+   "mide y sigue viaje",
+   "measures and moves on"
+  ],
+  "fica a temporada inteira": [
+   "se queda toda la temporada",
+   "stays the whole season"
+  ],
+  "Cada um tem o seu normal": [
+   "Cada uno tiene su normal",
+   "Each one has its own normal"
+  ],
+  "essa é a assinatura": [
+   "esa es la firma",
+   "that is the signature"
+  ],
+  "A faixa normal": [
+   "El rango normal",
+   "The normal range"
+  ],
+  "medições de todos os dias": [
+   "mediciones de todos los días",
+   "measurements every day"
+  ],
+  "O desvio que o olho não vê": [
+   "El desvío que el ojo no ve",
+   "The deviation the eye can't see"
+  ],
+  "Comparado com ele mesmo": [
+   "Comparado consigo mismo",
+   "Compared with itself"
+  ],
+  "Fazenda A": [
+   "Establecimiento A",
+   "Farm A"
+  ],
+  "Fazenda B": [
+   "Establecimiento B",
+   "Farm B"
+  ],
+  "Alerta antes do sintoma": [
+   "Alerta antes del síntoma",
+   "Alert before the symptom"
+  ],
+  "ação sugerida": [
+   "acción sugerida",
+   "suggested action"
+  ],
+  "Da indústria para o campo": [
+   "De la industria al campo",
+   "From industry to the field"
+  ],
+  "turbinas e bombas": [
+   "turbinas y bombas",
+   "turbines and pumps"
+  ],
+  "a sua fazenda": [
+   "su establecimiento",
+   "your farm"
+  ],
+  "De onde vem o que eu compro?": [
+   "¿De dónde viene lo que compro?",
+   "Where does what I buy come from?"
+  ],
+  "a Europa exige a prova": [
+   "Europa exige la prueba",
+   "Europe demands proof"
+  ],
+  "Sem desmatamento desde 2020": [
+   "Sin deforestación desde 2020",
+   "No deforestation since 2020"
+  ],
+  "satélite desde 2020": [
+   "satélite desde 2020",
+   "satellite since 2020"
+  ],
+  "Nota por critério": [
+   "Nota por criterio",
+   "Score per criterion"
+  ],
+  "ouro": [
+   "oro",
+   "gold"
+  ],
+  "prata": [
+   "plata",
+   "silver"
+  ],
+  "bronze": [
+   "bronce",
+   "bronze"
+  ],
+  "Certificado gravado na blockchain": [
+   "Certificado grabado en la blockchain",
+   "Certificate recorded on the blockchain"
+  ],
+  "ninguém consegue alterar": [
+   "nadie puede alterarlo",
+   "no one can change it"
+  ],
+  "O comprador confere na hora": [
+   "El comprador verifica al instante",
+   "The buyer checks on the spot"
+  ],
+  "origem": [
+   "origen",
+   "origin"
+  ],
+  "práticas": [
+   "prácticas",
+   "practices"
+  ],
+  "nível": [
+   "nivel",
+   "level"
+  ],
+  "Cada lote com certidão de nascimento.": [
+   "Cada lote con partida de nacimiento.",
+   "Every lot with a birth certificate."
+  ],
+  "Receita dos dois lados": [
+   "Ingresos por dos lados",
+   "Revenue from two sides"
+  ],
+  "Do produtor": [
+   "Del productor",
+   "From the farmer"
+  ],
+  "taxa de implantação": [
+   "tasa de implantación",
+   "set-up fee"
+  ],
+  "assinatura por hectare,": [
+   "suscripción por hectárea,",
+   "subscription per hectare,"
+  ],
+  "por cabeça ou por máquina": [
+   "por cabeza o por máquina",
+   "per head or per machine"
+  ],
+  "12 entidades ao redor da fazenda": [
+   "12 entidades alrededor del establecimiento",
+   "12 entities around the farm"
+  ],
+  "vet": [
+   "vet",
+   "vet"
+  ],
+  "sementes": [
+   "semillas",
+   "seeds"
+  ],
+  "adubo": [
+   "fertilizante",
+   "fertilizer"
+  ],
+  "defensivos": [
+   "agroquímicos",
+   "crop protection"
+  ],
+  "transporte": [
+   "transporte",
+   "transport"
+  ],
+  "seguradora": [
+   "aseguradora",
+   "insurer"
+  ],
+  "governo": [
+   "gobierno",
+   "government"
+  ],
+  "banco": [
+   "banco",
+   "bank"
+  ],
+  "comprador": [
+   "comprador",
+   "buyer"
+  ],
+  "certificadora": [
+   "certificadora",
+   "certifier"
+  ],
+  "Bancos e seguradoras pagam por dado": [
+   "Bancos y aseguradoras pagan por dato",
+   "Banks and insurers pay for data"
+  ],
+  "dado confiável": [
+   "dato confiable",
+   "reliable data"
+  ],
+  "Cooperativas e tradings": [
+   "Cooperativas y tradings",
+   "Cooperatives and traders"
+  ],
+  "licença anual": [
+   "licencia anual",
+   "annual licence"
+  ],
+  "associados": [
+   "asociados",
+   "members"
+  ],
+  "Certificação de origem": [
+   "Certificación de origen",
+   "Origin certification"
+  ],
+  "receita por lote e por tonelada": [
+   "ingresos por lote y por tonelada",
+   "revenue per lot and per tonne"
+  ],
+  "Mais fontes, menos risco": [
+   "Más fuentes, menos riesgo",
+   "More sources, less risk"
+  ],
+  "quem investe participa desse crescimento": [
+   "quien invierte participa de ese crecimiento",
+   "investors share in that growth"
+  ]
+ }
+}

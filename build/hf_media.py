@@ -33,8 +33,8 @@ DOODLE = {
 def explainer(pg, key, title, dur, scenes):
     sc = "".join("<li>%s</li>" % pg.t(*s) for s in scenes)
     return f'''<div class="explain">
-  <div class="ex-paper ex-video"><video controls playsinline preload="none" poster="video/expl-{key}-poster.jpg"><source src="video/expl-{key}-pt.mp4" type="video/mp4"></video>
-    <span class="ex-badge">{pg.t("Narração em português", "Narración en portugués", "Narrated in Portuguese", "span")}</span></div>
+  <div class="ex-paper ex-video"><video controls playsinline preload="none" poster="video/expl-{key}-poster.jpg" src="video/expl-{key}-pt.mp4" data-vsrc="video/expl-{key}-{{l}}.mp4" data-vposter="video/expl-{key}-{{l}}-poster.jpg"></video>
+    <span class="ex-badge">{pg.t("Narração em português", "Narración en español", "Narrated in English", "span")}</span></div>
   <div class="ex-text">
     {pg.t("Vídeo explicativo", "Video explicativo", "Explainer video", "span", "eyebrow")}
     {pg.t(*title, "h3")}
