@@ -28,6 +28,7 @@ class Page:
 NAV = [("index.html", "Início", "Inicio", "Home"),
        ("unidade-movel.html", "Unidade móvel", "Unidad móvil", "Mobile unit"),
        ("tecnologia.html", "Tecnologia", "Tecnología", "Technology"),
+       ("certificacao.html", "Certificação", "Certificación", "Certification"),
        ("investidores.html", "Investidores", "Inversionistas", "Investors")]
 
 LOGO = '''<svg class="hf-mark" viewBox="0 0 40 40" aria-hidden="true"><rect x="1" y="1" width="38" height="38" rx="10" fill="#4A2F1B" stroke="#5E9F3A" stroke-opacity=".35"/>
@@ -35,7 +36,7 @@ LOGO = '''<svg class="hf-mark" viewBox="0 0 40 40" aria-hidden="true"><rect x="1
 <path d="M8 19l6-1 4-6 4 9 4-4 6 0" fill="none" stroke="#8FCB5A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="32" cy="17" r="2.6" fill="#FFB500"/></svg>'''
 
 
-def shell(pg, path, title, body, desc):
+def shell(pg, path, title, body, desc, extra=""):
     links = []
     for href, pt, es, en in NAV:
         cur = ' aria-current="page"' if path == href else ''
@@ -56,7 +57,7 @@ def shell(pg, path, title, body, desc):
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Lexend:wght@300;400;500;600&display=swap">
 <link rel="stylesheet" href="../assets/site.css?v=8">
-<link rel="stylesheet" href="assets/hf.css?v=3">
+<link rel="stylesheet" href="assets/hf.css?v=4">
 </head>
 <body class="hf">
 <header class="top">
@@ -80,6 +81,7 @@ def shell(pg, path, title, body, desc):
     <div><h4>Help Farm</h4>
       <a href="unidade-movel.html">{pg.t("Unidade móvel de medição", "Unidad móvil de medición", "Mobile measuring unit")}</a>
       <a href="tecnologia.html">{pg.t("Motor RAPP e o que medimos", "Motor RAPP y qué medimos", "RAPP engine and what we measure")}</a>
+      <a href="certificacao.html">{pg.t("Certificação de origem", "Certificación de origen", "Origin certification")}</a>
       <a href="investidores.html">{pg.t("Investidores", "Inversionistas", "Investors")}</a></div>
     <div><h4>{pg.t("Grupo", "Grupo", "Group")}</h4>
       <a href="../">{pg.t("Help Cure — saúde", "Help Cure — salud", "Help Cure — health")}</a></div>
@@ -88,6 +90,7 @@ def shell(pg, path, title, body, desc):
 </footer>
 <script>window.HC_T={json.dumps({"es": pg.es, "en": pg.en}, ensure_ascii=False)};</script>
 <script src="../assets/site.js?v=4"></script>
+{extra}
 </body>
 </html>
 '''
@@ -253,6 +256,8 @@ def home():
     </div>
   </div>
 </section>
+
+{cert_band(pg)}
 
 <section class="soft">
   <div class="wrap split">
@@ -455,6 +460,8 @@ def investidores():
     shell(pg, "investidores.html", title, body, "Help Farm para investidores: mercado, modelo de receita e sequência de entrada.")
 
 
+from hf_cert import cert_band, certificacao, lote_demo  # noqa: E402
+
 if __name__ == "__main__":
-    home(); movel(); tecnologia(); investidores()
+    home(); movel(); tecnologia(); investidores(); certificacao(); lote_demo()
     print("ok")
