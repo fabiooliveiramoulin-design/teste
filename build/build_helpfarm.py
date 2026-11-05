@@ -245,7 +245,7 @@ def home():
   <div class="wrap">
     <div class="head">{pg.t("Como funciona", "Cómo funciona", "How it works", "span", "eyebrow")}{pg.t("Do diagnóstico ao alerta, em quatro passos.", "Del diagnóstico a la alerta, en cuatro pasos.", "From diagnosis to alert, in four steps.", "h2")}</div>
     <div class="g g4 steps">{"".join('<div class="step">%s%s</div>' % (pg.t(a[0], b[0], c[0], "h3"), pg.t(a[1], b[1], c[1], "p")) for a, b, c in steps)}</div>
-    {explainer(pg, "home", ("Como a Help Farm funciona", "Cómo funciona Help Farm", "How Help Farm works"), "≈ 90 s", [
+    {explainer(pg, "home", ("Como a Help Farm funciona", "Cómo funciona Help Farm", "How Help Farm works"), "59 s", [
         ("A fazenda negocia com a natureza: clima, pragas e solo decidem o lucro", "El establecimiento negocia con la naturaleza: clima, plagas y suelo deciden la ganancia", "The farm bargains with nature: weather, pests and soil decide the profit"),
         ("A unidade móvel mede tudo e deixa sensores trabalhando", "La unidad móvil mide todo y deja sensores trabajando", "The mobile unit measures everything and leaves sensors working"),
         ("O RAPP aprende a assinatura normal de cada talhão, animal e máquina", "El RAPP aprende la firma normal de cada lote, animal y máquina", "RAPP learns the normal signature of each field, animal and machine"),
@@ -343,7 +343,7 @@ def movel():
     <div class="head">{pg.t("Em corte (esquema)", "En corte (esquema)", "Cutaway (schematic)", "span", "eyebrow")}{pg.t("Tudo cabe num motorhome.", "Todo cabe en un motorhome.", "It all fits in a motorhome.", "h2")}</div>
     <div class="figure">{svg_movel(pg)}</div>
     {feats(pg, res)}
-    {explainer(pg, "movel", ("Uma visita da unidade móvel", "Una visita de la unidad móvil", "A mobile-unit visit"), "≈ 60 s", [
+    {explainer(pg, "movel", ("Uma visita da unidade móvel", "Una visita de la unidad móvil", "A mobile-unit visit"), "46 s", [
         ("O motorhome chega pela estrada de terra com a dupla, drones e motos", "El motorhome llega por el camino de tierra con la dupla, drones y motos", "The motorhome arrives by dirt road with the pair, drones and bikes"),
         ("Drones voam a fazenda e marcam os pontos a medir", "Los drones vuelan el establecimiento y marcan los puntos a medir", "Drones fly the farm and mark the points to measure"),
         ("De moto, solo, planta, água, rebanho e máquinas são medidos", "En moto se miden suelo, planta, agua, rodeo y máquinas", "On the bikes, soil, plants, water, herd and machines are measured"),
@@ -416,7 +416,7 @@ def tecnologia():
   <div class="wrap">
     <div class="head">{pg.t("Assinatura de condição", "Firma de condición", "Condition signature", "span", "eyebrow")}{pg.t("Entradas, basal, desvio, ação.", "Entradas, basal, desvío, acción.", "Inputs, baseline, deviation, action.", "h2")}</div>
     <div class="tablewrap"><table class="hft"><thead><tr>{th}</tr></thead><tbody>{trs}</tbody></table></div>
-    {explainer(pg, "tec", ("O que é a assinatura de condição", "Qué es la firma de condición", "What a condition signature is"), "≈ 75 s", [
+    {explainer(pg, "tec", ("O que é a assinatura de condição", "Qué es la firma de condición", "What a condition signature is"), "42 s", [
         ("Cada talhão, animal e máquina tem um jeito normal de funcionar", "Cada lote, animal y máquina tiene una forma normal de funcionar", "Every field, animal and machine has a normal way of behaving"),
         ("O RAPP desenha essa faixa normal a partir das medições", "El RAPP dibuja ese rango normal a partir de las mediciones", "RAPP draws that normal band from the measurements"),
         ("Um desvio pequeno, que o olho não vê, sai da faixa", "Un desvío pequeño, que el ojo no ve, sale del rango", "A small deviation the eye cannot see leaves the band"),
@@ -487,7 +487,7 @@ def investidores():
 </section>
 <section>
   <div class="wrap">
-    {explainer(pg, "inv", ("Como a Help Farm gera receita", "Cómo genera ingresos Help Farm", "How Help Farm makes money"), "≈ 90 s", [
+    {explainer(pg, "inv", ("Como a Help Farm gera receita", "Cómo genera ingresos Help Farm", "How Help Farm makes money"), "51 s", [
         ("O produtor paga a implantação e a assinatura por hectare, cabeça ou máquina", "El productor paga la implantación y la suscripción por hectárea, cabeza o máquina", "The farmer pays onboarding and a subscription per hectare, head or machine"),
         ("Ao redor da fazenda vivem 12 entidades que dependem da saúde dela", "Alrededor del establecimiento viven 12 entidades que dependen de su salud", "Around the farm live 12 entities that depend on its health"),
         ("Bancos, seguradoras e compradores pagam por dado confiável da fazenda", "Bancos, aseguradoras y compradores pagan por datos confiables del establecimiento", "Banks, insurers and buyers pay for reliable farm data"),
