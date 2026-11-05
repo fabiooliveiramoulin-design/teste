@@ -68,6 +68,8 @@ def shell(pg, path, title, body, desc, extra_head=""):
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Lexend:wght@300;400;500;600&display=swap">
 <link rel="stylesheet" href="{p}assets/site.css?v=3">{extra_head}
+<!-- Metricool -->
+<script>function loadScript(a){{var b=document.getElementsByTagName("head")[0],c=document.createElement("script");c.type="text/javascript",c.src="https://tracker.metricool.com/resources/be.js",c.onreadystatechange=a,c.onload=a,b.appendChild(c)}}loadScript(function(){{beTracker.t({{hash:"6d6f6e8bcb4383213e70b8e8b20bdb9"}})}});</script>
 </head>
 <body>
 <header class="top">
