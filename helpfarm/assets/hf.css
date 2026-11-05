@@ -207,3 +207,44 @@ details.faq p{margin:0 0 18px;color:var(--ink-2)}
 .chain .btn.ghost:hover{border-color:#F2EEDF}
 .cscroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
 @media (max-width:760px){.cscroll svg{min-width:720px}}
+
+/* ---------- filme, fotos e vídeos explicativos ---------- */
+.filmsec{background:var(--deep);color:#F5EBDD;padding-top:clamp(40px,6vw,72px)}
+.filmsec h2{color:#F5EBDD}.filmsec .eyebrow{color:var(--led)}
+.filmbox{margin-top:24px;border-radius:24px;overflow:hidden;aspect-ratio:16/9;background:#000;box-shadow:0 30px 80px rgba(0,0,0,.5),0 0 0 1px rgba(125,181,71,.25)}
+.filmbox video{width:100%;height:100%;display:block;object-fit:cover;background:#000}
+.filmnote{margin-top:12px;font-size:14px;color:#BFA88A}
+.photocards .card{overflow:hidden;padding:0}
+.photocards .card .pic{aspect-ratio:4/3;overflow:hidden;border-bottom:1px solid var(--line)}
+.photocards .card .pic img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease}
+.photocards .card:hover .pic img{transform:scale(1.05)}
+.photocards .card .in{padding:18px 20px 20px}
+.explain{display:grid;grid-template-columns:1.1fr 1fr;gap:28px;align-items:center;margin-top:36px;padding:22px;border-radius:24px;background:rgba(255,255,255,.06);border:1px dashed rgba(201,163,107,.55)}
+section:not(.dark) .explain{background:var(--surface);border-color:#CDB48C}
+.ex-paper{position:relative;border-radius:16px;aspect-ratio:600/240;background:#FBF6EA;background-image:linear-gradient(#E9DFCB 1px,transparent 1px),linear-gradient(90deg,#E9DFCB 1px,transparent 1px);background-size:24px 24px;box-shadow:inset 0 0 0 1px #E2D3BC,0 10px 24px rgba(0,0,0,.18);overflow:hidden}
+.ex-paper svg{width:100%;height:100%;display:block}
+.ex-paper .ink *{fill:none;stroke:#3A2A1C;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:900;stroke-dashoffset:900;animation:draw 3.2s ease forwards}
+.ex-paper .ink .acc{stroke:#5E9F3A}.ex-paper .ink .band{stroke:#7DB547;stroke-opacity:.25;stroke-width:22}
+.ex-paper .pencil rect{fill:#F2C94C;stroke:#3A2A1C;stroke-width:2}.ex-paper .pencil path{fill:#E9C9A0;stroke:#3A2A1C;stroke-width:2}
+.ex-paper .pencil{animation:pen 3.2s ease-in-out infinite alternate}
+@keyframes draw{to{stroke-dashoffset:0}}
+@keyframes pen{from{transform:translate(470px,170px) rotate(-35deg)}to{transform:translate(380px,150px) rotate(-30deg)}}
+@media (prefers-reduced-motion:reduce){.ex-paper .ink *{animation:none;stroke-dashoffset:0}.ex-paper .pencil{animation:none}}
+.ex-badge{position:absolute;left:12px;bottom:12px;background:#2E1D10;color:#F5EBDD;font:600 12px var(--f-d);padding:6px 10px;border-radius:8px}
+.ex-text h3{font-size:22px}.ex-dur{font:600 13px var(--f-d);color:var(--led);margin:4px 0 10px}
+section:not(.dark) .ex-dur{color:var(--led-ink)}
+.ex-scenes{margin:0;padding-left:20px;font-size:15px}.ex-scenes li+li{margin-top:6px}
+.dark .ex-scenes{color:#DCE5C9}.dark .ex-text h3{color:#F2EEDF}
+@media (max-width:860px){.explain{grid-template-columns:1fr}}
+.gallery{display:grid;grid-template-columns:2fr 1fr;grid-template-rows:auto auto;gap:16px;margin-top:28px}
+.gallery figure{margin:0;border-radius:18px;overflow:hidden;position:relative;background:#2E1D10}
+.gallery .g-big{grid-row:span 3}
+.gallery img{width:100%;height:100%;object-fit:cover;display:block;aspect-ratio:16/9}
+.gallery .g-big img{aspect-ratio:auto}
+.gallery figcaption{position:absolute;left:0;right:0;bottom:0;padding:22px 14px 10px;font-size:13px;color:#F5EBDD;background:linear-gradient(transparent,rgba(46,29,16,.85))}
+@media (max-width:760px){.gallery{grid-template-columns:1fr}.gallery .g-big{grid-row:auto}.gallery .g-big img{aspect-ratio:16/9}}
+.duo{display:grid;grid-template-columns:1fr;gap:14px}
+.duo img{width:100%;border-radius:18px;aspect-ratio:16/9;object-fit:cover;box-shadow:0 18px 40px rgba(46,29,16,.2)}
+.duo img+img{width:62%;margin:-90px 0 0 auto;border:4px solid var(--bg)}
+.invarea{background:linear-gradient(135deg,#F6EBD7 0%,#EFE1C6 100%)}
+.invimg{border-radius:22px;aspect-ratio:16/10;object-fit:cover;width:100%;box-shadow:0 24px 60px rgba(46,29,16,.25)}

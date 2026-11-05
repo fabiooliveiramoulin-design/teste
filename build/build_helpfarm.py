@@ -57,7 +57,7 @@ def shell(pg, path, title, body, desc, extra=""):
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Lexend:wght@300;400;500;600&display=swap">
 <link rel="stylesheet" href="../assets/site.css?v=8">
-<link rel="stylesheet" href="assets/hf.css?v=4">
+<link rel="stylesheet" href="assets/hf.css?v=5">
 </head>
 <body class="hf">
 <header class="top">
@@ -102,8 +102,9 @@ def feats(pg, items):
     return '<ul class="feat">' + "".join('<li>%s</li>' % pg.t("<b>%s</b> — %s" % (a[0], a[1]), "<b>%s</b> — %s" % (b[0], b[1]), "<b>%s</b> — %s" % (c[0], c[1]), "span", raw=True) for a, b, c in items) + '</ul>'
 
 
-def card(pg, a, b, c, href=None, more=None):
-    inner = '<div class="in">%s%s%s</div>' % (pg.t(a[0], b[0], c[0], "h3"), pg.t(a[1], b[1], c[1], "p"),
+def card(pg, a, b, c, href=None, more=None, img=None):
+    pic = '<div class="pic"><img src="img/f/%s.webp" alt="" loading="lazy"></div>' % img if img else ""
+    inner = pic + '<div class="in">%s%s%s</div>' % (pg.t(a[0], b[0], c[0], "h3"), pg.t(a[1], b[1], c[1], "p"),
                                               ('<span class="more">%s →</span>' % pg.t(*more)) if more else "")
     return ('<a class="card" href="%s">%s</a>' % (href, inner)) if href else '<div class="card">%s</div>' % inner
 
@@ -217,6 +218,7 @@ def home():
         (("Medição completa", "Solo, planta, água, clima, rebanho e máquinas são medidos e georreferenciados; os sensores fixos ficam instalados."), ("Medición completa", "Suelo, planta, agua, clima, rodeo y máquinas se miden y georreferencian; los sensores fijos quedan instalados."), ("Full measurement", "Soil, plants, water, weather, herd and machines are measured and geo-referenced; fixed sensors stay in place.")),
         (("Assinatura e alertas", "O motor RAPP aprende o normal de cada talhão, animal e máquina e avisa quando algo começa a sair do padrão."), ("Firma y alertas", "El motor RAPP aprende lo normal de cada lote, animal y máquina y avisa cuando algo empieza a salir del patrón."), ("Signature and alerts", "The RAPP engine learns what is normal for each field, animal and machine and warns when something starts to drift.")),
     ]
+    imgs = ["solo", "pragas", "geada", "gado", "pivo"]
     body = f'''
 <div class="hero hv">
   <div class="wrap">
@@ -229,12 +231,13 @@ def home():
     <div class="hv-media sigbox">{svg_signature(pg)}</div>
   </div>
 </div>
+{film(pg)}
 
 <section>
   <div class="wrap">
     <div class="head">{pg.t("O que medimos", "Qué medimos", "What we measure", "span", "eyebrow")}{pg.t("Cinco frentes, um só histórico da fazenda.", "Cinco frentes, un solo historial del establecimiento.", "Five fronts, one farm history.", "h2")}
     {pg.t("Cada medição entra na mesma linha do tempo. É o cruzamento entre elas — chuva com solo, solo com planta, calor com rebanho, máquina com safra — que permite prever.", "Cada medición entra en la misma línea de tiempo. Es el cruce entre ellas — lluvia con suelo, suelo con planta, calor con rodeo, máquina con cosecha — lo que permite predecir.", "Every measurement goes on the same timeline. Crossing them — rain with soil, soil with plants, heat with herd, machines with harvest — is what makes prediction possible.", "p", "muted")}</div>
-    <div class="g g5">{"".join(card(pg, a, b, c) for a, b, c in domains)}</div>
+    <div class="g g5 photocards">{"".join(card(pg, a, b, c, img=imgs[i]) for i, (a, b, c) in enumerate(domains))}</div>
   </div>
 </section>
 
@@ -242,6 +245,12 @@ def home():
   <div class="wrap">
     <div class="head">{pg.t("Como funciona", "Cómo funciona", "How it works", "span", "eyebrow")}{pg.t("Do diagnóstico ao alerta, em quatro passos.", "Del diagnóstico a la alerta, en cuatro pasos.", "From diagnosis to alert, in four steps.", "h2")}</div>
     <div class="g g4 steps">{"".join('<div class="step">%s%s</div>' % (pg.t(a[0], b[0], c[0], "h3"), pg.t(a[1], b[1], c[1], "p")) for a, b, c in steps)}</div>
+    {explainer(pg, "home", ("Como a Help Farm funciona", "Cómo funciona Help Farm", "How Help Farm works"), "≈ 90 s", [
+        ("A fazenda negocia com a natureza: clima, pragas e solo decidem o lucro", "El establecimiento negocia con la naturaleza: clima, plagas y suelo deciden la ganancia", "The farm bargains with nature: weather, pests and soil decide the profit"),
+        ("A unidade móvel mede tudo e deixa sensores trabalhando", "La unidad móvil mide todo y deja sensores trabajando", "The mobile unit measures everything and leaves sensors working"),
+        ("O RAPP aprende a assinatura normal de cada talhão, animal e máquina", "El RAPP aprende la firma normal de cada lote, animal y máquina", "RAPP learns the normal signature of each field, animal and machine"),
+        ("O desvio aparece dias antes da perda e vira alerta", "El desvío aparece días antes de la pérdida y se vuelve alerta", "The deviation shows up days before the loss and becomes an alert"),
+        ("A equipe certa age a tempo: agrônomo, veterinário, mecânico", "El equipo correcto actúa a tiempo: agrónomo, veterinario, mecánico", "The right team acts in time: agronomist, vet, mechanic")])}
   </div>
 </section>
 
@@ -334,6 +343,23 @@ def movel():
     <div class="head">{pg.t("Em corte (esquema)", "En corte (esquema)", "Cutaway (schematic)", "span", "eyebrow")}{pg.t("Tudo cabe num motorhome.", "Todo cabe en un motorhome.", "It all fits in a motorhome.", "h2")}</div>
     <div class="figure">{svg_movel(pg)}</div>
     {feats(pg, res)}
+    {explainer(pg, "movel", ("Uma visita da unidade móvel", "Una visita de la unidad móvil", "A mobile-unit visit"), "≈ 60 s", [
+        ("O motorhome chega pela estrada de terra com a dupla, drones e motos", "El motorhome llega por el camino de tierra con la dupla, drones y motos", "The motorhome arrives by dirt road with the pair, drones and bikes"),
+        ("Drones voam a fazenda e marcam os pontos a medir", "Los drones vuelan el establecimiento y marcan los puntos a medir", "Drones fly the farm and mark the points to measure"),
+        ("De moto, solo, planta, água, rebanho e máquinas são medidos", "En moto se miden suelo, planta, agua, rodeo y máquinas", "On the bikes, soil, plants, water, herd and machines are measured"),
+        ("Sensores ficam instalados e a primeira assinatura sobe por satélite", "Los sensores quedan instalados y la primera firma sube por satélite", "Sensors stay in place and the first signature goes up via satellite")])}
+  </div>
+</section>
+<section class="soft">
+  <div class="wrap">
+    <div class="head">{pg.t("No campo", "En el campo", "In the field", "span", "eyebrow")}{pg.t("A unidade móvel em ação.", "La unidad móvil en acción.", "The mobile unit in action.", "h2")}</div>
+    <div class="gallery">
+      <figure class="g-big"><img src="img/f/movel-estrada.webp" alt="Unidade móvel Help Farm chegando à fazenda" loading="lazy"><figcaption>{pg.t("Chegada à fazenda, com drone em voo.", "Llegada al establecimiento, con dron en vuelo.", "Arriving at the farm, drone in flight.")}</figcaption></figure>
+      <figure><img src="img/f/tecnicos-2.webp" alt="" loading="lazy"><figcaption>{pg.t("Bancada de medição e drones a bordo.", "Mesada de medición y drones a bordo.", "Measuring bench and drones on board.")}</figcaption></figure>
+      <figure><img src="img/f/tecnicos.webp" alt="" loading="lazy"><figcaption>{pg.t("A dupla em contato com a central.", "La dupla en contacto con la central.", "The pair in touch with the control centre.")}</figcaption></figure>
+      <figure><img src="img/f/produtor.webp" alt="" loading="lazy"><figcaption>{pg.t("O produtor acompanha pelo tablet.", "El productor sigue todo en la tableta.", "The farmer follows on a tablet.")}</figcaption></figure>
+    </div>
+    {pg.t("Imagens conceituais geradas para o filme institucional.", "Imágenes conceptuales generadas para la película institucional.", "Concept images made for the corporate film.", "p", "note", attrs=' style="margin-top:18px"')}
   </div>
 </section>
 <section>
@@ -390,6 +416,21 @@ def tecnologia():
   <div class="wrap">
     <div class="head">{pg.t("Assinatura de condição", "Firma de condición", "Condition signature", "span", "eyebrow")}{pg.t("Entradas, basal, desvio, ação.", "Entradas, basal, desvío, acción.", "Inputs, baseline, deviation, action.", "h2")}</div>
     <div class="tablewrap"><table class="hft"><thead><tr>{th}</tr></thead><tbody>{trs}</tbody></table></div>
+    {explainer(pg, "tec", ("O que é a assinatura de condição", "Qué es la firma de condición", "What a condition signature is"), "≈ 75 s", [
+        ("Cada talhão, animal e máquina tem um jeito normal de funcionar", "Cada lote, animal y máquina tiene una forma normal de funcionar", "Every field, animal and machine has a normal way of behaving"),
+        ("O RAPP desenha essa faixa normal a partir das medições", "El RAPP dibuja ese rango normal a partir de las mediciones", "RAPP draws that normal band from the measurements"),
+        ("Um desvio pequeno, que o olho não vê, sai da faixa", "Un desvío pequeño, que el ojo no ve, sale del rango", "A small deviation the eye cannot see leaves the band"),
+        ("O alerta chega antes do sintoma, com a ação sugerida", "La alerta llega antes del síntoma, con la acción sugerida", "The alert arrives before the symptom, with the suggested action")])}
+  </div>
+</section>
+<section class="soft">
+  <div class="wrap split">
+    <div class="duo"><img src="img/f/centro-2.webp" alt="Central de monitoramento Help Farm" loading="lazy"><img src="img/f/tecnicos.webp" alt="" loading="lazy"></div>
+    <div>
+      {pg.t("Central de monitoramento", "Central de monitoreo", "Monitoring centre", "span", "eyebrow")}
+      {pg.t("Técnicos recebem os sinais da terra, dia e noite.", "Técnicos reciben las señales de la tierra, día y noche.", "Technicians receive the signals of the land, day and night.", "h2")}
+      {pg.t("No backoffice, especialistas acompanham os alertas do RAPP e falam com a dupla da unidade móvel e com o produtor. Quem decide é sempre uma pessoa: o RAPP recomenda, a central confirma e aciona quem precisa agir.", "En el backoffice, especialistas siguen las alertas del RAPP y hablan con la dupla de la unidad móvil y con el productor. Quien decide es siempre una persona: el RAPP recomienda, la central confirma y activa a quien debe actuar.", "In the back office, specialists follow RAPP alerts and talk to the mobile-unit pair and the farmer. A person always decides: RAPP recommends, the centre confirms and calls whoever needs to act.", "p", "muted", attrs=' style="margin-top:14px"')}
+    </div>
   </div>
 </section>
 <section class="dark">
@@ -444,6 +485,26 @@ def investidores():
     <div class="g g5">{"".join(card(pg, a, b, c) for a, b, c in layers)}</div>
   </div>
 </section>
+<section>
+  <div class="wrap">
+    {explainer(pg, "inv", ("Como a Help Farm gera receita", "Cómo genera ingresos Help Farm", "How Help Farm makes money"), "≈ 90 s", [
+        ("O produtor paga a implantação e a assinatura por hectare, cabeça ou máquina", "El productor paga la implantación y la suscripción por hectárea, cabeza o máquina", "The farmer pays onboarding and a subscription per hectare, head or machine"),
+        ("Ao redor da fazenda vivem 12 entidades que dependem da saúde dela", "Alrededor del establecimiento viven 12 entidades que dependen de su salud", "Around the farm live 12 entities that depend on its health"),
+        ("Bancos, seguradoras e compradores pagam por dado confiável da fazenda", "Bancos, aseguradoras y compradores pagan por datos confiables del establecimiento", "Banks, insurers and buyers pay for reliable farm data"),
+        ("A certificação de origem gera receita por lote e por tonelada", "La certificación de origen genera ingresos por lote y por tonelada", "Origin certification earns revenue per lot and per tonne")])}
+  </div>
+</section>
+<section class="invarea">
+  <div class="wrap split">
+    <div>
+      {pg.t("Área do investidor", "Área del inversionista", "Investor area", "span", "eyebrow")}
+      {pg.t("O material completo da rodada, com acesso por código.", "El material completo de la ronda, con acceso por código.", "The full round material, with code access.", "h2")}
+      {pg.t("Pesquisa de mercado em 16 países, modelo de rentabilidade por abrangência, kit da unidade móvel, o filme e os vídeos explicativos. O acesso é restrito a quem tem interesse em investir.", "Investigación de mercado en 16 países, modelo de rentabilidad por alcance, kit de la unidad móvil, la película y los videos explicativos. El acceso está restringido a quienes tienen interés en invertir.", "Market research across 16 countries, profitability model by scope, mobile-unit kit, the film and the explainer videos. Access is restricted to those interested in investing.", "p", "muted", attrs=' style="margin-top:14px"')}
+      <div class="cta"><a class="btn primary" href="/helpfarm/area-investidor/">{pg.t("Entrar com código", "Entrar con código", "Enter with code")}</a><a class="btn dark" href="/helpfarm/area-investidor/solicitar">{pg.t("Solicitar acesso", "Solicitar acceso", "Request access")}</a></div>
+    </div>
+    <img class="invimg" src="img/f/assinatura.webp" alt="" loading="lazy">
+  </div>
+</section>
 <section class="dark">
   <div class="wrap">
     <div class="head">{pg.t("Sequência de entrada", "Secuencia de entrada", "Go-to-market sequence", "span", "eyebrow")}{pg.t("Paraguai prova, Brasil escala.", "Paraguay prueba, Brasil escala.", "Paraguay proves, Brazil scales.", "h2")}</div>
@@ -452,7 +513,7 @@ def investidores():
       <div class="step">{pg.t("Brasil e Cone Sul", "Brasil y Cono Sur", "Brazil and Southern Cone", "h3")}{pg.t("Leite e gado de corte primeiro, com a rastreabilidade obrigatória; depois grãos. Seguradoras e bancos entram com o produto de risco.", "Leche y ganado de carne primero, con la trazabilidad obligatoria; después granos. Aseguradoras y bancos entran con el producto de riesgo.", "Dairy and beef first, riding mandatory traceability; then grains. Insurers and banks join with the risk product.", "p")}</div>
       <div class="step">{pg.t("Mercados maduros", "Mercados maduros", "Mature markets", "h3")}{pg.t("Estados Unidos, Oceania e Europa com parceiro local, como camada preditiva sobre dados de equipamentos já instalados.", "Estados Unidos, Oceanía y Europa con socio local, como capa predictiva sobre datos de equipos ya instalados.", "United States, Oceania and Europe with a local partner, as a predictive layer over data from equipment already in place.", "p")}</div>
     </div>
-    <div class="cta"><a class="btn primary" href="mailto:investidores@helpcure.com.py?subject=Help%20Farm%20-%20material%20do%20investidor">{pg.t("Pedir o material completo", "Pedir el material completo", "Request the full material")}</a></div>
+    <div class="cta"><a class="btn primary" href="/helpfarm/area-investidor/solicitar">{pg.t("Pedir o material completo", "Pedir el material completo", "Request the full material")}</a></div>
     {pg.t("Pesquisa de mercado em 16 países, modelo por abrangência e cenários de rodada disponíveis mediante solicitação. Números de preço e custo da Help Farm são premissas em validação.", "Investigación de mercado en 16 países, modelo por alcance y escenarios de ronda disponibles a pedido. Precios y costos de Help Farm son supuestos en validación.", "Market research across 16 countries, scope model and round scenarios available on request. Help Farm price and cost figures are assumptions under validation.", "p", "note darknote")}
   </div>
 </section>
@@ -461,6 +522,7 @@ def investidores():
 
 
 from hf_cert import cert_band, certificacao, lote_demo  # noqa: E402
+from hf_media import film, explainer  # noqa: E402
 
 if __name__ == "__main__":
     home(); movel(); tecnologia(); investidores(); certificacao(); lote_demo()
