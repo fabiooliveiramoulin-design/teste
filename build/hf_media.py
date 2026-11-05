@@ -14,8 +14,8 @@ def film(pg):
     return f'''<section class="filmsec" id="filme">
   <div class="wrap">
     <div class="head">{pg.t("O filme", "La película", "The film", "span", "eyebrow")}{pg.t("A sua fazenda é única. Veja em 3 minutos.", "Su establecimiento es único. Véalo en 3 minutos.", "Your farm is unique. See it in 3 minutes.", "h2")}</div>
-    <div class="filmbox"><video controls playsinline preload="none" poster="video/helpfarm-filme-pt-poster.jpg"><source src="video/helpfarm-filme-pt.mp4" type="video/mp4"></video></div>
-    {pg.t("Narração em português. Versões em espanhol e inglês em produção.", "Narración en portugués. Versiones en español e inglés en producción.", "Narrated in Portuguese. Spanish and English versions in production.", "p", "filmnote")}
+    <div class="filmbox"><video controls playsinline preload="none" poster="video/helpfarm-filme-pt-poster.jpg" src="video/helpfarm-filme-pt.mp4" data-vsrc="video/helpfarm-filme-{{l}}.mp4" data-vposter="video/helpfarm-filme-{{l}}-poster.jpg"></video></div>
+    {pg.t("Narração em português. O filme também está em espanhol e inglês: troque o idioma no topo da página.", "Narración en español. La película también está en portugués e inglés: cambie el idioma arriba.", "Narrated in English. The film is also available in Portuguese and Spanish: switch the language at the top.", "p", "filmnote")}
   </div>
 </section>'''
 
