@@ -38,6 +38,15 @@ module.exports = {
     [head("O comprador confere na hora", GD), [I.phone(600, 500, 1.6), 1.2], [I.check(1000, 420, 1.2), 0.4], note(1060, 520, "origem", 50, K, "start"), note(1060, 600, "práticas", 50, K, "start"), note(1060, 680, "nível", 50, K, "start")],
     [[T(800, 380, "Help Farm", 140, GD), 1.3], [I.medal(800, 560, 1, AM), 0.7], [T(800, 780, "Cada lote com certidão de nascimento.", 64), 1.3]],
   ],
+  v6: [
+    [head("A conta de luz das bombas", RD), [I.pump(420, 470, 1.6), 1], [I.bolt(700, 450, 1.3), 0.5], [I.coin(930, 430, 1.1), 0.4], [I.coin(1020, 500, 1.1), 0.4], [I.coin(1110, 430, 1.1), 0.4], note(800, 720, "pode passar de 1/3 do custo de produzir", 50, RD)],
+    [head("Primeiro, medir", GD), [I.pump(350, 480, 1.2), 0.8], [I.sensor(470, 430, 0.9), 0.5], note(380, 660, "kWh de cada bomba"), [I.field(1150, 470, 1.1), 0.9], [I.drop(1150, 330, 1), 0.4], note(1150, 660, "água que a lavoura pede"), [I.graph(760, 470, 0.7), 0.8]],
+    [head("De dia: sol direto na bomba", GD), [I.sun(300, 260, 1.2), 0.7], [I.panel(620, 470, 1.4), 1.2], [I.arrow(800, 480, 1000, 520), 0.3], [I.pump(1150, 520, 1.2), 0.7], [I.nobat(1300, 280, 1.2), 0.6], note(1300, 400, "sem bateria", 50, RD)],
+    [head("O recalque: do rio para o alto"), [I.hill(900, 560, 2), 0.8], [I.river(340, 690, 1.3), 0.7], [I.pump(470, 610, 0.9), 0.5], [`<path class="s" style="stroke:#7FB4C9" d="M520 600 C700 580 820 340 1130 330"/>`, 0.6], [I.tank(1200, 330, 1.2), 0.8], [I.sun(260, 260, 0.9), 0.4], note(820, 820, "a bomba trabalha enquanto há sol", 46, GD)],
+    [head("A água no alto é a bateria", GD), [I.tank(380, 400, 1.3), 0.8], [I.moon(300, 210, 1.3), 0.4], [I.cloud(520, 210, 1), 0.5], [I.arrow(520, 460, 900, 620), 0.4], note(700, 470, "gravidade", 44, GD), [I.pivot(1180, 660, 1.2), 1], note(1180, 800, "pivô irrigando à noite")],
+    [head("Pago pela economia", GD), [I.nobat(330, 420, 1.1), 0.5], note(330, 540, "sem bateria"), [I.tractor(620, 440, 0.7, true), 0.5], note(620, 560, "sem diesel"), [I.monitor(1060, 430, 1.2), 0.9], note(1060, 610, "RAPP confere todo mês:", 44, GD), note(1060, 670, "kWh gerado · m³ bombeado", 44)],
+    [[T(800, 380, "Help Farm", 140, GD), 1.3], [I.sun(560, 560, 0.8), 0.4], [I.tank(800, 560, 0.8), 0.4], [I.pivot(1060, 580, 0.6), 0.5], [T(800, 790, "O sol bombeia, a água espera, a conta cai.", 64), 1.4]],
+  ],
   v5: [
     [head("Receita dos dois lados"), [I.scale(800, 520, 1.8), 1.4], [I.person(560, 470, 0.8, G), 0.5], [I.bank(1040, 470, 0.7), 0.5]],
     [head("Do produtor", GD), [I.person(350, 520, 1.3, G), 0.8], [I.coin(620, 440, 1), 0.4], [I.coin(700, 520, 1), 0.4], note(1100, 400, "taxa de implantação", 50), note(1100, 500, "assinatura por hectare,", 50), note(1100, 580, "por cabeça ou por máquina", 50)],
