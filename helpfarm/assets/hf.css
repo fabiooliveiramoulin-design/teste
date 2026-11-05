@@ -250,3 +250,5 @@ section:not(.dark) .ex-dur{color:var(--led-ink)}
 .duo img+img{width:62%;margin:-90px 0 0 auto;border:4px solid var(--bg)}
 .invarea{background:linear-gradient(135deg,#F6EBD7 0%,#EFE1C6 100%)}
 .invimg{border-radius:22px;aspect-ratio:16/10;object-fit:cover;width:100%;box-shadow:0 24px 60px rgba(46,29,16,.25)}
+
+.hf section.dark .feat li{color:#D9E6C8}.hf section.dark .feat li b{color:#fff}

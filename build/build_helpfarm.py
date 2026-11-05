@@ -28,6 +28,7 @@ class Page:
 NAV = [("index.html", "Início", "Inicio", "Home"),
        ("unidade-movel.html", "Unidade móvel", "Unidad móvil", "Mobile unit"),
        ("tecnologia.html", "Tecnologia", "Tecnología", "Technology"),
+       ("energia.html", "Energia", "Energía", "Energy"),
        ("certificacao.html", "Certificação", "Certificación", "Certification"),
        ("investidores.html", "Investidores", "Inversionistas", "Investors")]
 
@@ -57,7 +58,7 @@ def shell(pg, path, title, body, desc, extra=""):
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Lexend:wght@300;400;500;600&display=swap">
 <link rel="stylesheet" href="../assets/site.css?v=8">
-<link rel="stylesheet" href="assets/hf.css?v=5">
+<link rel="stylesheet" href="assets/hf.css?v=6">
 <!-- Metricool -->
 <script>function loadScript(a){{var b=document.getElementsByTagName("head")[0],c=document.createElement("script");c.type="text/javascript",c.src="https://tracker.metricool.com/resources/be.js",c.onreadystatechange=a,c.onload=a,b.appendChild(c)}}loadScript(function(){{beTracker.t({{hash:"6d6f6e8bcb4383213e70b8e8b20bdb9"}})}});</script>
 </head>
@@ -83,6 +84,7 @@ def shell(pg, path, title, body, desc, extra=""):
     <div><h4>Help Farm</h4>
       <a href="unidade-movel.html">{pg.t("Unidade móvel de medição", "Unidad móvil de medición", "Mobile measuring unit")}</a>
       <a href="tecnologia.html">{pg.t("Motor RAPP e o que medimos", "Motor RAPP y qué medimos", "RAPP engine and what we measure")}</a>
+      <a href="energia.html">{pg.t("Economia de energia e solar", "Ahorro de energía y solar", "Energy savings and solar")}</a>
       <a href="certificacao.html">{pg.t("Certificação de origem", "Certificación de origen", "Origin certification")}</a>
       <a href="investidores.html">{pg.t("Investidores", "Inversionistas", "Investors")}</a></div>
     <div><h4>{pg.t("Tecnologia", "Tecnología", "Technology")}</h4>
@@ -273,6 +275,21 @@ def home():
 </section>
 
 {cert_band(pg)}
+
+<section>
+  <div class="wrap split">
+    <div>
+      {pg.t("Energia", "Energía", "Energy", "span", "eyebrow")}
+      {pg.t("Help Farm também ajuda a economizar energia.", "Help Farm también ayuda a ahorrar energía.", "Help Farm also helps you save energy.", "h2")}
+      {pg.t("Desde a implantação, medimos o consumo de bombas, pivôs, ordenha e câmaras frias, cruzamos com a produção e propomos eficiência e um projeto solar para cada atividade, inclusive off-grid para bombeamento e recalque.", "Desde la implantación, medimos el consumo de bombas, pivotes, ordeñe y cámaras de frío, lo cruzamos con la producción y proponemos eficiencia y un proyecto solar para cada actividad, incluso off-grid para bombeo y rebombeo.", "From onboarding, we measure the consumption of pumps, pivots, milking and cold rooms, cross it with production and propose efficiency and a solar project for each activity, including off-grid pumping and lifting.", "p", "muted", attrs=' style="margin-top:14px"')}
+      <div class="cta" style="margin-top:20px"><a class="btn dark" href="energia.html">{pg.t("Ver como economizar energia", "Ver cómo ahorrar energía", "See how to save energy")} →</a></div>
+    </div>
+    <div class="kpis">
+      <div class="kpi"><b>30–50%</b>{pg.t("do custo de quem irriga pode ser energia", "del costo de quien riega puede ser energía", "of an irrigator’s costs can be energy", "span")}</div>
+      <div class="kpi"><b>≈ −15%</b>{pg.t("na conta só com eficiência, sem obra (estimativa)", "en la factura solo con eficiencia, sin obra (estimación)", "on the bill from efficiency alone, no works (estimate)", "span")}</div>
+    </div>
+  </div>
+</section>
 
 <section class="soft">
   <div class="wrap split">
@@ -530,7 +547,8 @@ def investidores():
 
 from hf_cert import cert_band, certificacao, lote_demo  # noqa: E402
 from hf_media import film, explainer  # noqa: E402
+from hf_energia import energia  # noqa: E402
 
 if __name__ == "__main__":
-    home(); movel(); tecnologia(); investidores(); certificacao(); lote_demo()
+    home(); movel(); tecnologia(); energia(); investidores(); certificacao(); lote_demo()
     print("ok")
