@@ -1,0 +1,223 @@
+{
+ "precos": {
+  "diag": {
+   "C": 1500,
+   "B": 2500,
+   "A": 4000
+  },
+  "esco": 0.3,
+  "anos": 4,
+  "fixo": {
+   "C": 120,
+   "B": 200,
+   "A": 350
+  },
+  "orig": 0.04,
+  "mv": {
+   "C": 4,
+   "B": 6,
+   "A": 9
+  },
+  "perim_diag": 28000,
+  "perim_esco": 0.3
+ },
+ "fazenda": {
+  "C": {
+   "conta": 81000,
+   "gest": 12150,
+   "hf_gest": 3645,
+   "kwp": 245,
+   "capex": 171818,
+   "econ_solar": 21060,
+   "payback": 8.2,
+   "orig": 6873,
+   "mv": 982,
+   "diag": 1500,
+   "hf_ano": 6301,
+   "hf_mes": 525,
+   "prod_liq": 28583,
+   "pct_conta": 41
+  },
+  "B": {
+   "conta": 101250,
+   "gest": 15188,
+   "hf_gest": 4556,
+   "kwp": 238,
+   "capex": 178676,
+   "econ_solar": 31995,
+   "payback": 5.6,
+   "orig": 7147,
+   "mv": 1429,
+   "diag": 2500,
+   "hf_ano": 7915,
+   "hf_mes": 660,
+   "prod_liq": 41197,
+   "pct_conta": 47
+  },
+  "A": {
+   "conta": 175500,
+   "gest": 26325,
+   "hf_gest": 7898,
+   "kwp": 253,
+   "capex": 278438,
+   "econ_solar": 53460,
+   "payback": 5.2,
+   "orig": 11138,
+   "mv": 2278,
+   "diag": 4000,
+   "hf_ano": 13203,
+   "hf_mes": 1100,
+   "prod_liq": 69609,
+   "pct_conta": 45
+  }
+ },
+ "paises": [
+  {
+   "pais": "Paraguai",
+   "faixa": "C",
+   "receita": 1481,
+   "add_r": 55,
+   "pct": 3.7,
+   "eq0": 65,
+   "eq1": 63
+  },
+  {
+   "pais": "Argentina",
+   "faixa": "C",
+   "receita": 1481,
+   "add_r": 55,
+   "pct": 3.7,
+   "eq0": 63,
+   "eq1": 60
+  },
+  {
+   "pais": "Bolívia",
+   "faixa": "C",
+   "receita": 1481,
+   "add_r": 55,
+   "pct": 3.7,
+   "eq0": 63,
+   "eq1": 60
+  },
+  {
+   "pais": "Brasil",
+   "faixa": "B",
+   "receita": 2032,
+   "add_r": 155,
+   "pct": 7.6,
+   "eq0": 61,
+   "eq1": 57
+  },
+  {
+   "pais": "Uruguai",
+   "faixa": "B",
+   "receita": 2032,
+   "add_r": 155,
+   "pct": 7.6,
+   "eq0": 40,
+   "eq1": 37
+  },
+  {
+   "pais": "Chile",
+   "faixa": "B",
+   "receita": 2032,
+   "add_r": 155,
+   "pct": 7.6,
+   "eq0": 40,
+   "eq1": 37
+  },
+  {
+   "pais": "México",
+   "faixa": "B",
+   "receita": 2032,
+   "add_r": 155,
+   "pct": 7.6,
+   "eq0": 44,
+   "eq1": 41
+  },
+  {
+   "pais": "Colômbia",
+   "faixa": "B",
+   "receita": 2032,
+   "add_r": 155,
+   "pct": 7.6,
+   "eq0": 40,
+   "eq1": 37
+  },
+  {
+   "pais": "EUA",
+   "faixa": "A",
+   "receita": 4317,
+   "add_r": 306,
+   "pct": 7.1,
+   "eq0": 49,
+   "eq1": 46
+  },
+  {
+   "pais": "Portugal + Espanha",
+   "faixa": "A",
+   "receita": 4317,
+   "add_r": 306,
+   "pct": 7.1,
+   "eq0": 49,
+   "eq1": 46
+  },
+  {
+   "pais": "França",
+   "faixa": "A",
+   "receita": 4317,
+   "add_r": 306,
+   "pct": 7.1,
+   "eq0": 49,
+   "eq1": 46
+  },
+  {
+   "pais": "Austrália",
+   "faixa": "A",
+   "receita": 4317,
+   "add_r": 306,
+   "pct": 7.1,
+   "eq0": 49,
+   "eq1": 46
+  },
+  {
+   "pais": "Nova Zelândia",
+   "faixa": "A",
+   "receita": 4317,
+   "add_r": 306,
+   "pct": 7.1,
+   "eq0": 49,
+   "eq1": 46
+  }
+ ],
+ "ano5": {
+  "py": {
+   "fazendas": 48,
+   "gestao": 174960,
+   "diag": 18000,
+   "usinas": 2,
+   "orig": 16495,
+   "mv": 9427
+  },
+  "br": {
+   "fazendas": 180,
+   "gestao": 820080,
+   "diag": 112500,
+   "usinas": 18,
+   "orig": 128646,
+   "mv": 102888
+  },
+  "perimetros": 384619,
+  "total": 1767615,
+  "pct_receita": 8.4,
+  "ebitda": 1148950,
+  "ev_add": 6893699,
+  "pre_add": 859604,
+  "pre_novo": 8380467,
+  "mult": 6.0
+ },
+ "spe": {
+  "mwp": 19.6,
+  "capex": 14582852
+ }
+}
