@@ -13,11 +13,11 @@ const HF_DOCS = [
   { f: "HelpFarm_Equipamentos_Unidade_Movel.xlsx", n: { pt: "Equipamentos da unidade móvel", es: "Equipos de la unidad móvil", en: "Mobile-unit equipment" }, k: "Excel" },
 ];
 const HF_EXPL = [
-  { pt: "Como a Help Farm funciona", es: "Cómo funciona Help Farm", en: "How Help Farm works" },
-  { pt: "Uma visita da unidade móvel", es: "Una visita de la unidad móvil", en: "A mobile-unit visit" },
-  { pt: "O que é a assinatura de condição", es: "Qué es la firma de condición", en: "What a condition signature is" },
-  { pt: "Do talhão ao QR code", es: "Del lote al código QR", en: "From field to QR code" },
-  { pt: "Como a Help Farm gera receita", es: "Cómo genera ingresos Help Farm", en: "How Help Farm makes money" },
+  { k: "home", pt: "Como a Help Farm funciona", es: "Cómo funciona Help Farm", en: "How Help Farm works" },
+  { k: "movel", pt: "Uma visita da unidade móvel", es: "Una visita de la unidad móvil", en: "A mobile-unit visit" },
+  { k: "tec", pt: "O que é a assinatura de condição", es: "Qué es la firma de condición", en: "What a condition signature is" },
+  { k: "cert", pt: "Do talhão ao QR code", es: "Del lote al código QR", en: "From field to QR code" },
+  { k: "inv", pt: "Como a Help Farm gera receita", es: "Cómo genera ingresos Help Farm", en: "How Help Farm makes money" },
 ];
 const HL = {
   pt: { t: "Área do investidor", ix: "A Área do Investidor reúne o material da rodada da Help Farm: pesquisa de mercado em 16 países, modelo de rentabilidade, unidade móvel e os vídeos do projeto. O acesso é restrito a quem tem interesse em investir.", sub: "Digite o código de acesso que você recebeu.", code: "Código de acesso", go: "Entrar", bad: "Código inválido. Confira e tente de novo.",
@@ -222,7 +222,7 @@ async function hfArea(req, env, url, RAW) {
   }
 
   const docs = HF_DOCS.map((d) => `<a class="doc" href="${A}/docs/${encodeURIComponent(d.f)}"><i>${d.k}</i><span>${hfEsc(d.n[lang])}</span><em>${t.dl} ↓</em></a>`).join("");
-  const ex = HF_EXPL.map((e) => `<div class="ex"><b>${hfEsc(e[lang])}</b><small>${t.soon}</small></div>`).join("");
+  const ex = HF_EXPL.map((e) => `<div class="ex"><video controls playsinline preload="none" style="width:100%;aspect-ratio:16/9;border-radius:10px;display:block;margin-bottom:8px;background:#FBF8F1" poster="/helpfarm/video/expl-${e.k}-poster.jpg" src="/helpfarm/video/expl-${e.k}-pt.mp4"></video><b>${hfEsc(e[lang])}</b><small>PT</small></div>`).join("");
   return R(`<h1>${t.h}</h1><p>${t.p}</p>
 <h2 class="h2">${t.film}</h2><div class="film"><video controls playsinline preload="metadata" poster="/helpfarm/video/helpfarm-filme-pt-poster.jpg" src="/helpfarm/video/helpfarm-filme-pt.mp4"></video></div>
 <h2 class="h2">${t.docs}</h2><div class="docs">${docs}</div>

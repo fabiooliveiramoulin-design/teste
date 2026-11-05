@@ -175,7 +175,7 @@ def certificacao():
   <div class="wrap">
     <div class="head">{pg.t("Como funciona", "Cómo funciona", "How it works", "span", "eyebrow")}{pg.t("Da medição ao QR code em quatro passos.", "De la medición al código QR en cuatro pasos.", "From measurement to QR code in four steps.", "h2")}</div>
     <div class="g g4 steps">{"".join('<div class="step">%s%s</div>' % (pg.t(a[0], b[0], c[0], "h3"), pg.t(a[1], b[1], c[1], "p")) for a, b, c in steps)}</div>
-    {sys.modules["hf_media"].explainer(pg, "cert", ("Do talhão ao QR code", "Del lote al código QR", "From field to QR code"), "≈ 75 s", [
+    {sys.modules["hf_media"].explainer(pg, "cert", ("Do talhão ao QR code", "Del lote al código QR", "From field to QR code"), "47 s", [
         ("A área é desenhada no mapa e comparada com imagens desde 2020", "El área se dibuja en el mapa y se compara con imágenes desde 2020", "The area is drawn on the map and compared with imagery since 2020"),
         ("O RAPP dá nota a cada critério e define ouro, prata ou bronze", "El RAPP califica cada criterio y define oro, plata o bronce", "RAPP scores each criterion and sets gold, silver or bronze"),
         ("A impressão digital do lote é gravada na blockchain", "La huella digital del lote se graba en la blockchain", "The lot’s fingerprint is written to the blockchain"),
