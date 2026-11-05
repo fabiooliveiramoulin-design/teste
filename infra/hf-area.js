@@ -6,6 +6,7 @@
 const HFA = "/helpfarm/area-investidor";
 const HF_MAIL = "investidores@helpcure.com.py";
 const HF_DOCS = [
+  { f: "HelpFarm_Financiadores_Retorno_Valuation_previa.xlsx", n: { pt: "Financiadores, retorno e valuation (prévia)", es: "Financiadores, retorno y valuation (borrador)", en: "Funders, returns and valuation (draft)" }, k: "Excel" },
   { f: "HelpFarm_Pesquisa_Mercado_v2_16_paises.pdf", n: { pt: "Pesquisa de mercado v2 — 16 países", es: "Investigación de mercado v2 — 16 países", en: "Market research v2 — 16 countries" }, k: "PDF" },
   { f: "HelpFarm_Pesquisa_Mercado_v1_Cone_Sul.pdf", n: { pt: "Pesquisa de mercado v1 — Cone Sul", es: "Investigación de mercado v1 — Cono Sur", en: "Market research v1 — Southern Cone" }, k: "PDF" },
   { f: "HelpFarm_Modelo_Rentabilidade_v2.xlsx", n: { pt: "Modelo de rentabilidade por abrangência", es: "Modelo de rentabilidad por alcance", en: "Profitability model by scope" }, k: "Excel" },
