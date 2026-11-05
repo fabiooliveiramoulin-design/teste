@@ -1,7 +1,7 @@
 # Página "Help Farm ajuda a economizar energia" (energia.html)
 import sys
 _m = sys.modules["__main__"]
-Page, shell, stl, feats = _m.Page, _m.shell, _m.stl, _m.feats
+Page, shell, stl, feats, explainer = _m.Page, _m.shell, _m.stl, _m.feats, _m.explainer
 
 
 def svg_bombeamento(pg):
@@ -124,6 +124,13 @@ def energia():
     <div class="head">{pg.t("Como funciona", "Cómo funciona", "How it works", "span", "eyebrow")}{pg.t("Os mesmos sensores, uma pergunta a mais: quanto custa cada atividade em energia?", "Los mismos sensores, una pregunta más: ¿cuánto cuesta cada actividad en energía?", "The same sensors, one more question: what does each activity cost in energy?", "h2")}
     {pg.t("O motor RAPP já aprende a assinatura normal de cada bomba, pivô e máquina. Com a energia medida no mesmo histórico, ele sabe se a lavoura precisava daquela água, se a bomba está gastando mais do que deveria e em que horário a energia sai mais cara.", "El motor RAPP ya aprende la firma normal de cada bomba, pivote y máquina. Con la energía medida en el mismo historial, sabe si el cultivo necesitaba esa agua, si la bomba gasta más de lo que debería y en qué horario la energía sale más cara.", "The RAPP engine already learns the normal signature of each pump, pivot and machine. With energy measured on the same timeline, it knows whether the crop needed that water, whether the pump is using more than it should and when energy costs the most.", "p", "muted")}</div>
     <div class="g g4 steps">{"".join('<div class="step">%s%s</div>' % (pg.t(a[0], b[0], c[0], "h3"), pg.t(a[1], b[1], c[1], "p")) for a, b, c in passos)}</div>
+    {explainer(pg, "energia", ("Recalque solar sem bateria", "Rebombeo solar sin batería", "Solar water lifting with no battery"), "53 s", [
+        ("A energia das bombas pesa no custo de irrigar", "La energía de las bombas pesa en el costo de regar", "Pump energy weighs on the cost of irrigating"),
+        ("Primeiro, o Help Farm mede o consumo e a água que a lavoura pede", "Primero, Help Farm mide el consumo y el agua que pide el cultivo", "First, Help Farm measures consumption and the water the crop needs"),
+        ("De dia, os módulos solares ligam a bomba direto, sem bateria", "De día, los módulos solares encienden la bomba directamente, sin batería", "By day, solar modules run the pump directly, with no battery"),
+        ("A bomba recalca a água do rio até um reservatório no alto", "La bomba eleva el agua del río hasta un reservorio en altura", "The pump lifts river water to a reservoir on high ground"),
+        ("À noite, a água desce por gravidade até o pivô", "De noche, el agua baja por gravedad hasta el pivote", "At night, water flows down by gravity to the pivot"),
+        ("A usina se paga com a economia, conferida todo mês pelo RAPP", "La planta se paga con el ahorro, verificado cada mes por el RAPP", "The plant pays for itself with savings RAPP checks every month")])}
   </div>
 </section>
 

@@ -52,6 +52,15 @@
     "Cooperativas y tradings llevan Help Farm a sus asociados, con una licencia anual.",
     "Y la certificación de origen genera ingresos por lote y por tonelada vendida.",
     "Más fuentes de ingreso y menos dependencia de un solo cliente. Y quien invierte participa de ese crecimiento."
+   ],
+   "v6": [
+    "En el riego, la energía de las bombas puede superar un tercio del costo de producir.",
+    "Antes de proyectar, Help Farm mide cuánto consume cada bomba y cuánta agua necesita realmente el cultivo.",
+    "De día, los módulos solares encienden la bomba directamente, sin ninguna batería.",
+    "La bomba hace el rebombeo: lleva el agua del río hasta un reservorio en altura, mientras haya sol.",
+    "El agua guardada en altura es la batería. De noche, o con el cielo nublado, baja por gravedad hasta el pivote.",
+    "Sin batería y sin diésel, la planta se paga con el ahorro en la factura. Y el RAPP verifica, cada mes, cuánto se generó y cuánto se bombeó.",
+    "Help Farm. El sol bombea, el agua espera, y la factura baja."
    ]
   },
   "en": {
@@ -96,6 +105,15 @@
     "Cooperatives and traders bring Help Farm to their members, with an annual licence.",
     "And origin certification generates revenue per lot and per tonne sold.",
     "More sources of revenue and less dependence on a single client. And those who invest share in that growth."
+   ],
+   "v6": [
+    "In irrigation, the energy used by pumps can exceed a third of the cost of production.",
+    "Before designing anything, Help Farm measures how much each pump uses and how much water the crop really needs.",
+    "By day, the solar modules run the pump directly, with no battery at all.",
+    "The pump lifts water from the river up to a reservoir on high ground, for as long as the sun shines.",
+    "The water stored up high is the battery. At night, or under cloudy skies, it flows down by gravity to the pivot.",
+    "With no battery and no diesel, the plant pays for itself through savings on the bill. And every month, RAPP checks how much was generated and how much was pumped.",
+    "Help Farm. The sun pumps, the water waits, and the bill goes down."
    ]
   }
  },
@@ -475,6 +493,74 @@
   "quem investe participa desse crescimento": [
    "quien invierte participa de ese crecimiento",
    "investors share in that growth"
+  ],
+  "A conta de luz das bombas": [
+   "La factura de luz de las bombas",
+   "The pumps’ power bill"
+  ],
+  "pode passar de 1/3 do custo de produzir": [
+   "puede superar 1/3 del costo de producir",
+   "can exceed 1/3 of production cost"
+  ],
+  "Primeiro, medir": [
+   "Primero, medir",
+   "First, measure"
+  ],
+  "kWh de cada bomba": [
+   "kWh de cada bomba",
+   "kWh of each pump"
+  ],
+  "água que a lavoura pede": [
+   "agua que pide el cultivo",
+   "water the crop asks for"
+  ],
+  "De dia: sol direto na bomba": [
+   "De día: sol directo a la bomba",
+   "By day: sun straight to the pump"
+  ],
+  "sem bateria": [
+   "sin batería",
+   "no battery"
+  ],
+  "O recalque: do rio para o alto": [
+   "El rebombeo: del río a la altura",
+   "Lifting: from river to high ground"
+  ],
+  "a bomba trabalha enquanto há sol": [
+   "la bomba trabaja mientras hay sol",
+   "the pump works while the sun shines"
+  ],
+  "A água no alto é a bateria": [
+   "El agua en altura es la batería",
+   "Water up high is the battery"
+  ],
+  "gravidade": [
+   "gravedad",
+   "gravity"
+  ],
+  "pivô irrigando à noite": [
+   "pivote regando de noche",
+   "pivot irrigating at night"
+  ],
+  "Pago pela economia": [
+   "Pagado por el ahorro",
+   "Paid for by the savings"
+  ],
+  "sem diesel": [
+   "sin diésel",
+   "no diesel"
+  ],
+  "RAPP confere todo mês:": [
+   "RAPP verifica cada mes:",
+   "RAPP checks every month:"
+  ],
+  "kWh gerado · m³ bombeado": [
+   "kWh generado · m³ bombeado",
+   "kWh generated · m³ pumped"
+  ],
+  "O sol bombeia, a água espera, a conta cai.": [
+   "El sol bombea, el agua espera, la factura baja.",
+   "The sun pumps, the water waits, the bill goes down."
   ]
  }
 }
