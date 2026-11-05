@@ -75,6 +75,7 @@ table.hft td:first-child{font-weight:600;color:var(--ink);white-space:nowrap}
 .hf .hero.hfphoto p.lead{max-width:52ch}
 figure.photo{margin:32px 0 0}
 figure.photo img{width:100%;border-radius:22px;aspect-ratio:1568/875;object-fit:cover;box-shadow:0 24px 60px rgba(46,29,16,.25)}
+figure.photo video{width:100%;display:block;border-radius:22px;aspect-ratio:1280/714;object-fit:cover;background:#2E1D10;box-shadow:0 24px 60px rgba(46,29,16,.25)}
 figure.photo figcaption{font-size:14px;color:var(--ink-3);margin-top:10px}
 
 /* ---------- certificação ---------- */
