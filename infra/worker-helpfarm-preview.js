@@ -222,7 +222,7 @@ async function hfArea(req, env, url, RAW) {
   }
 
   const docs = HF_DOCS.map((d) => `<a class="doc" href="${A}/docs/${encodeURIComponent(d.f)}"><i>${d.k}</i><span>${hfEsc(d.n[lang])}</span><em>${t.dl} ↓</em></a>`).join("");
-  const ex = HF_EXPL.map((e) => `<div class="ex"><video controls playsinline preload="none" style="width:100%;aspect-ratio:16/9;border-radius:10px;display:block;margin-bottom:8px;background:#FBF8F1" poster="/helpfarm/video/expl-${e.k}-poster.jpg" src="/helpfarm/video/expl-${e.k}-pt.mp4"></video><b>${hfEsc(e[lang])}</b><small>PT</small></div>`).join("");
+  const ex = HF_EXPL.map((e) => `<div class="ex"><video controls playsinline preload="none" style="width:100%;aspect-ratio:16/9;border-radius:10px;display:block;margin-bottom:8px;background:#FBF8F1" poster="/helpfarm/video/expl-${e.k}-${lang}-poster.jpg" src="/helpfarm/video/expl-${e.k}-${lang}.mp4"></video><b>${hfEsc(e[lang])}</b><small>${lang.toUpperCase()}</small></div>`).join("");
   return R(`<h1>${t.h}</h1><p>${t.p}</p>
 <h2 class="h2">${t.film}</h2><div class="film"><video controls playsinline preload="metadata" poster="/helpfarm/video/helpfarm-filme-pt-poster.jpg" src="/helpfarm/video/helpfarm-filme-pt.mp4"></video></div>
 <h2 class="h2">${t.docs}</h2><div class="docs">${docs}</div>

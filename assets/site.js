@@ -21,6 +21,7 @@
     if (d._title) document.title = d._title; else if (PT._title) document.title = PT._title;
     document.querySelectorAll(".lang button").forEach(function (b) { b.setAttribute("aria-pressed", b.dataset.l === l ? "true" : "false"); });
     document.querySelectorAll("a[data-inv]").forEach(function (a) { a.href = a.dataset.inv + "?lang=" + l; });
+    document.querySelectorAll("video[data-vsrc]").forEach(function (v) { var src = v.dataset.vsrc.replace("{l}", l); if (v.getAttribute("src") === src) return; var was = !v.paused; v.setAttribute("src", src); if (v.dataset.vposter) v.poster = v.dataset.vposter.replace("{l}", l); v.load(); if (was) v.play(); });
     try { localStorage.setItem("hc_lang", l); } catch (e) {}
     document.querySelectorAll(".video[data-ids]").forEach(function (v) { initVideo(v, l); });
     document.querySelectorAll("video[data-vbase]").forEach(function (v) {
