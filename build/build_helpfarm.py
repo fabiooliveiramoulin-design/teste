@@ -1,6 +1,6 @@
 # Gera o site Help Farm em /helpfarm (PT no HTML + ES/EN embutidos para a troca de idioma).
 # Uso: python3 build/build_helpfarm.py   (a partir da raiz do repositório)
-# Reaproveita assets/site.css e assets/site.js do Help Cure; ajustes próprios em helpfarm/assets/hf.css.
+# Reaproveita assets/site.css e assets/site.js do repositório; ajustes próprios em helpfarm/assets/hf.css.
 import json, html, os
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -83,8 +83,8 @@ def shell(pg, path, title, body, desc, extra=""):
       <a href="tecnologia.html">{pg.t("Motor RAPP e o que medimos", "Motor RAPP y qué medimos", "RAPP engine and what we measure")}</a>
       <a href="certificacao.html">{pg.t("Certificação de origem", "Certificación de origen", "Origin certification")}</a>
       <a href="investidores.html">{pg.t("Investidores", "Inversionistas", "Investors")}</a></div>
-    <div><h4>{pg.t("Grupo", "Grupo", "Group")}</h4>
-      <a href="../">{pg.t("Help Cure — saúde", "Help Cure — salud", "Help Cure — health")}</a></div>
+    <div><h4>{pg.t("Tecnologia", "Tecnología", "Technology")}</h4>
+      {pg.t("Motor RAPP, desenvolvido pela Moulin", "Motor RAPP, desarrollado por Moulin", "RAPP engine, developed by Moulin", "p")}</div>
     <div class="legal">© 2026 Help Farm · {pg.t("Projeto em fase de desenvolvimento. Ilustrações esquemáticas; configuração final da unidade móvel e dos instrumentos a definir.", "Proyecto en fase de desarrollo. Ilustraciones esquemáticas; configuración final de la unidad móvil y de los instrumentos a definir.", "Project in development. Schematic illustrations; final configuration of the mobile unit and the instruments to be defined.")}</div>
   </div>
 </footer>
@@ -201,9 +201,9 @@ def svg_movel(pg):
 # ------------------------------------------------------------------ páginas
 def home():
     pg = Page()
-    title = pg.title("Help Farm — a fazenda que avisa antes do problema",
-                     "Help Farm — el establecimiento que avisa antes del problema",
-                     "Help Farm — the farm that warns before the problem")
+    title = pg.title("Help Farm — a sua fazenda avisa antes do problema",
+                     "Help Farm — su establecimiento avisa antes del problema",
+                     "Help Farm — your farm warns before the problem")
     domains = [
         (("Solo", "Umidade em perfil, compactação, pH, condutividade e nutrientes."), ("Suelo", "Humedad en perfil, compactación, pH, conductividad y nutrientes."), ("Soil", "Moisture by depth, compaction, pH, conductivity and nutrients.")),
         (("Lavoura", "Índices de vigor por satélite e drone, pragas e doenças."), ("Cultivo", "Índices de vigor por satélite y dron, plagas y enfermedades."), ("Crops", "Vigour indices from satellite and drone, pests and disease.")),
@@ -222,7 +222,7 @@ def home():
   <div class="wrap">
     <div>
       {pg.t("Help Farm · motor RAPP", "Help Farm · motor RAPP", "Help Farm · RAPP engine", "span", "eyebrow")}
-      {pg.t("A fazenda que <em>avisa antes</em> do problema.", "El establecimiento que <em>avisa antes</em> del problema.", "The farm that <em>warns before</em> the problem.", "h1", raw=True)}
+      {pg.t("A sua fazenda <em>avisa antes</em> do problema.", "Su establecimiento <em>avisa antes</em> del problema.", "Your farm <em>warns before</em> the problem.", "h1", raw=True)}
       {pg.t("Medimos solo, lavoura, clima, gado e máquinas, aprendemos a assinatura normal de cada um e disparamos a ação antes da perda — a mesma inteligência de manutenção preditiva usada em turbinas de plataforma de petróleo, agora no campo.", "Medimos suelo, cultivo, clima, ganado y máquinas, aprendemos la firma normal de cada uno y disparamos la acción antes de la pérdida — la misma inteligencia de mantenimiento predictivo usada en turbinas de plataformas petroleras, ahora en el campo.", "We measure soil, crops, weather, livestock and machines, learn each one’s normal signature and trigger action before the loss — the same predictive-maintenance intelligence used on offshore oil turbines, now in the field.", "p", "lead")}
       <div class="cta"><a class="btn primary" href="unidade-movel.html">{pg.t("Conheça a unidade móvel", "Conozca la unidad móvil", "See the mobile unit")}</a><a class="btn ghost" href="investidores.html">{pg.t("Para investidores", "Para inversionistas", "For investors")}</a></div>
     </div>
@@ -240,7 +240,7 @@ def home():
 
 <section class="dark">
   <div class="wrap">
-    <div class="head">{pg.t("Como funciona", "Cómo funciona", "How it works", "span", "eyebrow")}{pg.t("Do diagnóstico ao alerta, no mesmo método do Help Cure.", "Del diagnóstico a la alerta, con el mismo método de Help Cure.", "From diagnosis to alert, with the same method as Help Cure.", "h2")}</div>
+    <div class="head">{pg.t("Como funciona", "Cómo funciona", "How it works", "span", "eyebrow")}{pg.t("Do diagnóstico ao alerta, em quatro passos.", "Del diagnóstico a la alerta, en cuatro pasos.", "From diagnosis to alert, in four steps.", "h2")}</div>
     <div class="g g4 steps">{"".join('<div class="step">%s%s</div>' % (pg.t(a[0], b[0], c[0], "h3"), pg.t(a[1], b[1], c[1], "p")) for a, b, c in steps)}</div>
   </div>
 </section>
@@ -423,7 +423,7 @@ def investidores():
   <div class="wrap">
     <p class="crumb"><a href="./">Help Farm</a> / {pg.t("Investidores", "Inversionistas", "Investors")}</p>
     {pg.t("Um motor já desenhado, um mercado que já paga por animal e por hectare.", "Un motor ya diseñado, un mercado que ya paga por animal y por hectárea.", "An engine already designed, a market that already pays per animal and per hectare.", "h1")}
-    {pg.t("A Help Farm usa o mesmo motor RAPP e a mesma base de desenvolvimento do Help Cure. O primeiro mercado é o Paraguai, onde o grupo já tem empresa e operação; o Brasil vem em seguida, para escala.", "Help Farm usa el mismo motor RAPP y la misma base de desarrollo de Help Cure. El primer mercado es Paraguay, donde el grupo ya tiene empresa y operación; Brasil viene después, para escala.", "Help Farm runs on the same RAPP engine and development base as Help Cure. The first market is Paraguay, where the group already has a company and operations; Brazil follows for scale.", "p", "lead")}
+    {pg.t("A Help Farm roda sobre o motor RAPP, desenvolvido pela Moulin para manutenção preditiva industrial. O primeiro mercado é o Paraguai, onde o grupo já tem empresa e operação; o Brasil vem em seguida, para escala.", "Help Farm funciona con el motor RAPP, desarrollado por Moulin para mantenimiento predictivo industrial. El primer mercado es Paraguay, donde el grupo ya tiene empresa y operación; Brasil viene después, para escala.", "Help Farm runs on the RAPP engine, developed by Moulin for industrial predictive maintenance. The first market is Paraguay, where the group already has a company and operations; Brazil follows for scale.", "p", "lead")}
   </div>
 </div>
 <section>
@@ -452,7 +452,7 @@ def investidores():
       <div class="step">{pg.t("Brasil e Cone Sul", "Brasil y Cono Sur", "Brazil and Southern Cone", "h3")}{pg.t("Leite e gado de corte primeiro, com a rastreabilidade obrigatória; depois grãos. Seguradoras e bancos entram com o produto de risco.", "Leche y ganado de carne primero, con la trazabilidad obligatoria; después granos. Aseguradoras y bancos entran con el producto de riesgo.", "Dairy and beef first, riding mandatory traceability; then grains. Insurers and banks join with the risk product.", "p")}</div>
       <div class="step">{pg.t("Mercados maduros", "Mercados maduros", "Mature markets", "h3")}{pg.t("Estados Unidos, Oceania e Europa com parceiro local, como camada preditiva sobre dados de equipamentos já instalados.", "Estados Unidos, Oceanía y Europa con socio local, como capa predictiva sobre datos de equipos ya instalados.", "United States, Oceania and Europe with a local partner, as a predictive layer over data from equipment already in place.", "p")}</div>
     </div>
-    <div class="cta"><a class="btn primary" href="mailto:investidores@helpcure.com.py?subject=Help%20Farm%20-%20material%20do%20investidor">{pg.t("Pedir o material completo", "Pedir el material completo", "Request the full material")}</a><a class="btn ghost" href="../">{pg.t("Conhecer o Help Cure", "Conocer Help Cure", "See Help Cure")}</a></div>
+    <div class="cta"><a class="btn primary" href="mailto:investidores@helpcure.com.py?subject=Help%20Farm%20-%20material%20do%20investidor">{pg.t("Pedir o material completo", "Pedir el material completo", "Request the full material")}</a></div>
     {pg.t("Pesquisa de mercado em 16 países, modelo por abrangência e cenários de rodada disponíveis mediante solicitação. Números de preço e custo da Help Farm são premissas em validação.", "Investigación de mercado en 16 países, modelo por alcance y escenarios de ronda disponibles a pedido. Precios y costos de Help Farm son supuestos en validación.", "Market research across 16 countries, scope model and round scenarios available on request. Help Farm price and cost figures are assumptions under validation.", "p", "note darknote")}
   </div>
 </section>
