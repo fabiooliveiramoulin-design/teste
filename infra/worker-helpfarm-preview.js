@@ -23,7 +23,7 @@ const HL = {
   pt: { t: "Área do investidor", ix: "A Área do Investidor reúne o material da rodada da Help Farm: pesquisa de mercado em 16 países, modelo de rentabilidade, unidade móvel e os vídeos do projeto. O acesso é restrito a quem tem interesse em investir.", sub: "Digite o código de acesso que você recebeu.", code: "Código de acesso", go: "Entrar", bad: "Código inválido. Confira e tente de novo.",
     ft: "Antes de começar", fs: "Para liberar o conteúdo, informe seus dados de contato.", nome: "Nome completo", email: "E-mail", tel: "WhatsApp (com código do país e DDD)",
     consent: "Autorizo a Help Farm e quem me indicou a usar estes dados para contato sobre o investimento, conforme a LGPD (Brasil) e a Lei 6534/2020 (Paraguai).", send: "Ver o conteúdo", need: "Preencha nome, e-mail válido e WhatsApp, e marque a autorização.",
-    h: "Help Farm para investidores", p: "O filme, os vídeos explicativos e os documentos da rodada.", film: "O filme (português)", expl: "Vídeos explicativos em desenho", soon: "em produção", docs: "Documentos", dl: "Baixar",
+    h: "Help Farm para investidores", p: "O filme, os vídeos explicativos e os documentos da rodada.", film: "O filme", expl: "Vídeos explicativos em desenho", soon: "em produção", docs: "Documentos", dl: "Baixar",
     back: "Voltar ao site", out: "Sair", conf: "Material confidencial. Não compartilhe o código de acesso.",
     qt: "Gostou do que viu?", qs: "Clique abaixo e a nossa equipe entra em contato pelo e-mail ou telefone que você cadastrou.", quero: "Quero investir",
     obr: "Obrigado pelo interesse!", obs: "Entraremos em contato pelo e-mail ou telefone cadastrado.", voltar: "Voltar ao conteúdo",
@@ -33,7 +33,7 @@ const HL = {
   es: { t: "Área del inversionista", ix: "El Área del Inversionista reúne el material de la ronda de Help Farm: investigación de mercado en 16 países, modelo de rentabilidad, unidad móvil y los videos del proyecto. El acceso está restringido a quienes tienen interés en invertir.", sub: "Ingrese el código de acceso que recibió.", code: "Código de acceso", go: "Entrar", bad: "Código inválido. Verifique e intente de nuevo.",
     ft: "Antes de empezar", fs: "Para liberar el contenido, informe sus datos de contacto.", nome: "Nombre completo", email: "Correo electrónico", tel: "WhatsApp (con código de país)",
     consent: "Autorizo a Help Farm y a quien me recomendó a usar estos datos para contactarme sobre la inversión, conforme a la Ley 6534/2020 (Paraguay) y la LGPD (Brasil).", send: "Ver el contenido", need: "Complete nombre, correo válido y WhatsApp, y marque la autorización.",
-    h: "Help Farm para inversionistas", p: "La película, los videos explicativos y los documentos de la ronda.", film: "La película (portugués)", expl: "Videos explicativos en dibujo", soon: "en producción", docs: "Documentos", dl: "Descargar",
+    h: "Help Farm para inversionistas", p: "La película, los videos explicativos y los documentos de la ronda.", film: "La película", expl: "Videos explicativos en dibujo", soon: "en producción", docs: "Documentos", dl: "Descargar",
     back: "Volver al sitio", out: "Salir", conf: "Material confidencial. No comparta el código de acceso.",
     qt: "¿Le gustó lo que vio?", qs: "Haga clic abajo y nuestro equipo se pondrá en contacto por el correo o el teléfono que registró.", quero: "Quiero invertir",
     obr: "¡Gracias por su interés!", obs: "Nos pondremos en contacto por el correo o el teléfono registrado.", voltar: "Volver al contenido",
@@ -43,7 +43,7 @@ const HL = {
   en: { t: "Investor area", ix: "The Investor Area holds the Help Farm round material: market research across 16 countries, profitability model, mobile unit and the project videos. Access is restricted to those interested in investing.", sub: "Enter the access code you received.", code: "Access code", go: "Enter", bad: "Invalid code. Please check and try again.",
     ft: "Before you start", fs: "To unlock the content, please enter your contact details.", nome: "Full name", email: "Email", tel: "WhatsApp (with country code)",
     consent: "I authorize Help Farm and whoever referred me to use this data to contact me about the investment, under Paraguay's Law 6534/2020 and Brazil's LGPD.", send: "See the content", need: "Enter your name, a valid email and WhatsApp, and tick the authorization.",
-    h: "Help Farm for investors", p: "The film, the explainer videos and the round documents.", film: "The film (Portuguese)", expl: "Hand-drawn explainer videos", soon: "in production", docs: "Documents", dl: "Download",
+    h: "Help Farm for investors", p: "The film, the explainer videos and the round documents.", film: "The film", expl: "Hand-drawn explainer videos", soon: "in production", docs: "Documents", dl: "Download",
     back: "Back to the site", out: "Sign out", conf: "Confidential material. Do not share the access code.",
     qt: "Liked what you saw?", qs: "Click below and our team will contact you by the email or phone you registered.", quero: "I want to invest",
     obr: "Thank you for your interest!", obs: "We will contact you by the email or phone you registered.", voltar: "Back to the content",
@@ -224,7 +224,7 @@ async function hfArea(req, env, url, RAW) {
   const docs = HF_DOCS.map((d) => `<a class="doc" href="${A}/docs/${encodeURIComponent(d.f)}"><i>${d.k}</i><span>${hfEsc(d.n[lang])}</span><em>${t.dl} ↓</em></a>`).join("");
   const ex = HF_EXPL.map((e) => `<div class="ex"><video controls playsinline preload="none" style="width:100%;aspect-ratio:16/9;border-radius:10px;display:block;margin-bottom:8px;background:#FBF8F1" poster="/helpfarm/video/expl-${e.k}-${lang}-poster.jpg" src="/helpfarm/video/expl-${e.k}-${lang}.mp4"></video><b>${hfEsc(e[lang])}</b><small>${lang.toUpperCase()}</small></div>`).join("");
   return R(`<h1>${t.h}</h1><p>${t.p}</p>
-<h2 class="h2">${t.film}</h2><div class="film"><video controls playsinline preload="metadata" poster="/helpfarm/video/helpfarm-filme-pt-poster.jpg" src="/helpfarm/video/helpfarm-filme-pt.mp4"></video></div>
+<h2 class="h2">${t.film}</h2><div class="film"><video controls playsinline preload="metadata" poster="/helpfarm/video/helpfarm-filme-${lang}-poster.jpg" src="/helpfarm/video/helpfarm-filme-${lang}.mp4"></video></div>
 <h2 class="h2">${t.docs}</h2><div class="docs">${docs}</div>
 <h2 class="h2">${t.expl}</h2><div class="grid">${ex}</div>
 <div class="quero"><h2 class="h2" style="margin-top:0">${t.qt}</h2><p>${t.qs}</p><form method="post" action="${A}/quero-investir?lang=${lang}" style="margin-top:18px"><button class="btn big" type="submit">${t.quero}</button></form></div>
