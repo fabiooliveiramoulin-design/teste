@@ -1,0 +1,290 @@
+{
+ "perfil": {
+  "Mista": {
+   "C": {
+    "novo": 1266.7,
+    "antigo": 1316.7,
+    "var": 326.7
+   },
+   "B": {
+    "novo": 1760.0,
+    "antigo": 1580.0,
+    "var": 326.7
+   },
+   "A": {
+    "novo": 3700.0,
+    "antigo": 2633.3,
+    "var": 326.7
+   }
+  },
+  "Grãos": {
+   "C": {
+    "novo": 1836.7,
+    "antigo": 1301.7,
+    "var": 442.7
+   },
+   "B": {
+    "novo": 2710.0,
+    "antigo": 1562.0,
+    "var": 442.7
+   },
+   "A": {
+    "novo": 5340.0,
+    "antigo": 2603.3,
+    "var": 442.7
+   }
+  },
+  "Leite": {
+   "C": {
+    "novo": 1010.0,
+    "antigo": 1355.0,
+    "var": 348.0
+   },
+   "B": {
+    "novo": 1335.0,
+    "antigo": 1626.0,
+    "var": 348.0
+   },
+   "A": {
+    "novo": 1720.0,
+    "antigo": 2710.0,
+    "var": 348.0
+   }
+  },
+  "Corte": {
+   "C": {
+    "novo": 1860.0,
+    "antigo": 2655.0,
+    "var": 658.0
+   },
+   "B": {
+    "novo": 2385.0,
+    "antigo": 3186.0,
+    "var": 658.0
+   },
+   "A": {
+    "novo": 6220.0,
+    "antigo": 5310.0,
+    "var": 658.0
+   }
+  },
+  "Alto valor": {
+   "C": {
+    "novo": 506.7,
+    "antigo": 536.7,
+    "var": 157.0
+   },
+   "B": {
+    "novo": 610.0,
+    "antigo": 644.0,
+    "var": 157.0
+   },
+   "A": {
+    "novo": 1180.0,
+    "antigo": 1073.3,
+    "var": 157.0
+   }
+  }
+ },
+ "mix": {
+  "C": {
+   "novo": 1481.0,
+   "antigo": 1614.2,
+   "var": 433.2
+  },
+  "B": {
+   "novo": 2032.5,
+   "antigo": 1937.1,
+   "var": 433.2
+  },
+  "A": {
+   "novo": 4317.0,
+   "antigo": 3228.5,
+   "var": 433.2
+  }
+ },
+ "paises": [
+  {
+   "pais": "Paraguai",
+   "faixa": "C",
+   "fixo": 51150,
+   "var": 433,
+   "receita": 1481,
+   "margem": 781,
+   "margem_pct": 53,
+   "equilibrio": 65,
+   "base": 291497,
+   "fonte": "CAN 2022",
+   "adesao": 0.022,
+   "alvo": 3490
+  },
+  {
+   "pais": "Argentina",
+   "faixa": "C",
+   "fixo": 49000,
+   "var": 433,
+   "receita": 1481,
+   "margem": 781,
+   "margem_pct": 53,
+   "equilibrio": 63,
+   "base": 250881,
+   "fonte": "CNA 2018",
+   "adesao": 0.025,
+   "alvo": null
+  },
+  {
+   "pais": "Bolívia",
+   "faixa": "C",
+   "fixo": 49000,
+   "var": 433,
+   "receita": 1481,
+   "margem": 781,
+   "margem_pct": 53,
+   "equilibrio": 63,
+   "base": null,
+   "fonte": null,
+   "adesao": null,
+   "alvo": null
+  },
+  {
+   "pais": "Brasil",
+   "faixa": "B",
+   "fixo": 75000,
+   "var": 433,
+   "receita": 2032,
+   "margem": 1233,
+   "margem_pct": 61,
+   "equilibrio": 61,
+   "base": 5070000,
+   "fonte": "Censo Agro 2017",
+   "adesao": 0.001,
+   "alvo": null
+  },
+  {
+   "pais": "Uruguai",
+   "faixa": "B",
+   "fixo": 49000,
+   "var": 433,
+   "receita": 2032,
+   "margem": 1233,
+   "margem_pct": 61,
+   "equilibrio": 40,
+   "base": 41918,
+   "fonte": "CGA 2024",
+   "adesao": 0.095,
+   "alvo": null
+  },
+  {
+   "pais": "Chile",
+   "faixa": "B",
+   "fixo": 49000,
+   "var": 433,
+   "receita": 2032,
+   "margem": 1233,
+   "margem_pct": 61,
+   "equilibrio": 40,
+   "base": null,
+   "fonte": null,
+   "adesao": null,
+   "alvo": null
+  },
+  {
+   "pais": "México",
+   "faixa": "B",
+   "fixo": 54000,
+   "var": 433,
+   "receita": 2032,
+   "margem": 1233,
+   "margem_pct": 61,
+   "equilibrio": 44,
+   "base": 4600000,
+   "fonte": "Censo Agropecuario 2022",
+   "adesao": 0.001,
+   "alvo": null
+  },
+  {
+   "pais": "Colômbia",
+   "faixa": "B",
+   "fixo": 49000,
+   "var": 433,
+   "receita": 2032,
+   "margem": 1233,
+   "margem_pct": 61,
+   "equilibrio": 40,
+   "base": 2700000,
+   "fonte": "CNA 2014",
+   "adesao": 0.001,
+   "alvo": null
+  },
+  {
+   "pais": "EUA",
+   "faixa": "A",
+   "fixo": 120000,
+   "var": 1083,
+   "receita": 4317,
+   "margem": 2457,
+   "margem_pct": 57,
+   "equilibrio": 49,
+   "base": 1900000,
+   "fonte": "Census of Agriculture 2022",
+   "adesao": 0.003,
+   "alvo": null
+  },
+  {
+   "pais": "Portugal + Espanha",
+   "faixa": "A",
+   "fixo": 120000,
+   "var": 1083,
+   "receita": 4317,
+   "margem": 2457,
+   "margem_pct": 57,
+   "equilibrio": 49,
+   "base": 1045641,
+   "fonte": "INE PT 2023 + INE ES 2023",
+   "adesao": 0.005,
+   "alvo": null
+  },
+  {
+   "pais": "França",
+   "faixa": "A",
+   "fixo": 120000,
+   "var": 1083,
+   "receita": 4317,
+   "margem": 2457,
+   "margem_pct": 57,
+   "equilibrio": 49,
+   "base": 349600,
+   "fonte": "Agreste 2023",
+   "adesao": 0.014,
+   "alvo": null
+  },
+  {
+   "pais": "Austrália",
+   "faixa": "A",
+   "fixo": 120000,
+   "var": 1083,
+   "receita": 4317,
+   "margem": 2457,
+   "margem_pct": 57,
+   "equilibrio": 49,
+   "base": null,
+   "fonte": null,
+   "adesao": null,
+   "alvo": null
+  },
+  {
+   "pais": "Nova Zelândia",
+   "faixa": "A",
+   "fixo": 120000,
+   "var": 1083,
+   "receita": 4317,
+   "margem": 2457,
+   "margem_pct": 57,
+   "equilibrio": 49,
+   "base": null,
+   "fonte": null,
+   "adesao": null,
+   "alvo": null
+  }
+ ]
+}
