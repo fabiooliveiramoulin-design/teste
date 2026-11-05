@@ -4,7 +4,7 @@
 // Prospects no KV LEADS, chave "prospect:<PREFIXO>" = {nome, codigo, emails[], ativo}.
 // E-mails via Apps Script "HelpCure Mailer (site)" na conta fabio.moulin@helpcure.com.py (segredos MAIL_URL e MAIL_KEY), enviando como investidores@ ou campanha@; sem eles, fica só o registro no KV.
 const RAW = "https://raw.githubusercontent.com/fabiooliveiramoulin-design/teste/main";
-const TYPES = { html: "text/html; charset=utf-8", css: "text/css; charset=utf-8", js: "application/javascript; charset=utf-8", svg: "image/svg+xml", webp: "image/webp", jpg: "image/jpeg", jpeg: "image/jpeg", png: "image/png", webmanifest: "application/manifest+json", json: "application/json", ico: "image/x-icon", mp4: "video/mp4", webm: "video/webm" };
+const TYPES = { pdf: "application/pdf", html: "text/html; charset=utf-8", css: "text/css; charset=utf-8", js: "application/javascript; charset=utf-8", svg: "image/svg+xml", webp: "image/webp", jpg: "image/jpeg", jpeg: "image/jpeg", png: "image/png", webmanifest: "application/manifest+json", json: "application/json", ico: "image/x-icon", mp4: "video/mp4", webm: "video/webm" };
 const HC_MAIL = "investidores@helpcure.com.py";
 // Cópia dos avisos de investidores para a equipe (03/11/2026: Mara).
 const INV_COPIA = "gilmaratinoco@gmail.com";
