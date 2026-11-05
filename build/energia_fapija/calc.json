@@ -1,0 +1,145 @@
+{
+ "prod": {
+  "perenes": [
+   1444.52,
+   81525603.27
+  ],
+  "temporarias": [
+   4548.25,
+   52377150.84
+  ],
+  "adjacentes": [
+   616.5,
+   77690118.46
+  ],
+  "total": [
+   6609.27,
+   211592872.57
+  ]
+ },
+ "top": [
+  [
+   "Banana prata catarina",
+   1128.81,
+   42389749.21
+  ],
+  [
+   "Banana Del Monte (adjacente)",
+   309.5,
+   40401717
+  ],
+  [
+   "Banana Grand Nine Banesa (adjacente)",
+   307,
+   37288401.46
+  ],
+  [
+   "Capim (leite e animais)",
+   68,
+   21520351.72
+  ],
+  [
+   "Soja",
+   1800,
+   16226124.44
+  ],
+  [
+   "Milho silagem",
+   1612.5,
+   15917146.84
+  ],
+  [
+   "Pitaya",
+   54,
+   8613600
+  ],
+  [
+   "Banana pacovan",
+   100.25,
+   5958454.38
+  ],
+  [
+   "Milho verde",
+   422.5,
+   5938000
+  ],
+  [
+   "Milho semente",
+   268.75,
+   5288516
+  ],
+  [
+   "Feijão",
+   93.75,
+   4719749.56
+  ]
+ ],
+ "conta": {
+  "baixo": {
+   "mwh": 22632,
+   "energia": 7246766,
+   "demanda": 2935620,
+   "total": 10182386,
+   "rs_ha": 1800,
+   "pct_vbp": 4.8
+  },
+  "base": {
+   "mwh": 29987,
+   "energia": 9601965,
+   "demanda": 2935620,
+   "total": 12537585,
+   "rs_ha": 2216,
+   "pct_vbp": 5.9
+  },
+  "alto": {
+   "mwh": 37909,
+   "energia": 12138334,
+   "demanda": 2935620,
+   "total": 15073954,
+   "rs_ha": 2664,
+   "pct_vbp": 7.1
+  }
+ },
+ "alavancas": {
+  "Demanda contratada, reativos e motores (diagnóstico 2001: −13%)": 1629886,
+  "Manejo da irrigação com sensores Help Farm (energia de bombeamento −10%)": 835371,
+  "Mercado livre na estação principal (Cogerh: −17% a −24%; usado 18%)": 744316,
+  "Usina solar cobrindo 80% do consumo diurno restante": 3404619
+ },
+ "solar": {
+  "mwp": 5.2,
+  "capex": 23480134,
+  "economia_liq": 3404619,
+  "payback": 6.9,
+  "mwh": 9392
+ },
+ "economia_total": {
+  "rs": 6614192,
+  "pct": 53,
+  "sem_solar": 3209573,
+  "pct_sem_solar": 26
+ },
+ "hf_fapija": {
+  "diagnostico": 150000,
+  "esco_ano": 962872,
+  "ppa_margem_ano": 657440,
+  "epc_margem": 2817616,
+  "cliente_ppa_economia": 563520
+ },
+ "fazenda": {
+  "mwh": 1350.0,
+  "conta_rs": 510345,
+  "conta_us": 94508,
+  "economia_us": 18902,
+  "assinatura_us": 5520,
+  "esco_hf_us": 5670
+ },
+ "upside": {
+  "fazendas_irrigadas": 212,
+  "esco": 1202040,
+  "ppa": 742000,
+  "perimetros": 600116,
+  "diagnosticos": 373556,
+  "total": 2917711
+ }
+}
