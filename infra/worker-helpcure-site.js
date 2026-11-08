@@ -412,13 +412,18 @@ async function waLista(env) {
 const HFA = "/helpfarm/area-investidor";
 const HF_MAIL = "investidores@helpcure.com.py";
 const HF_DOCS = [
-  { f: "HelpFarm_Financiadores_Retorno_Valuation_previa.xlsx", n: { pt: "Financiadores, retorno e valuation (prévia)", es: "Financiadores, retorno y valuation (borrador)", en: "Funders, returns and valuation (draft)" }, k: "Excel" },
+  { f: "HelpFarm_Panorama_Mercado_Conceito_de_Valor_v3.pdf", n: { pt: "Panorama de mercado, RAPP e valuation (v3)", es: "Panorama de mercado, RAPP y valuation (v3)", en: "Market overview, RAPP and valuation (v3)" }, k: "PDF" },
+  { f: "HelpFarm_Diferenciais_Competitivos_v3.pdf", n: { pt: "Diferenciais competitivos e o motor RAPP (v3)", es: "Diferenciales competitivos y el motor RAPP (v3)", en: "Competitive edge and the RAPP engine (v3)" }, k: "PDF" },
+  { f: "HelpFarm_Financiadores_Retorno_Valuation_v3.xlsx", n: { pt: "Financiadores, retorno e valuation (v3)", es: "Financiadores, retorno y valuation (v3)", en: "Funders, returns and valuation (v3)" }, k: "Excel" },
+  { f: "HelpFarm_Modelo_por_Abrangencia_v3_Rentabilidade.xlsx", n: { pt: "Modelo de rentabilidade, preços e cenários (v3)", es: "Modelo de rentabilidad, precios y escenarios (v3)", en: "Profitability model, pricing and scenarios (v3)" }, k: "Excel" },
+  { f: "HelpFarm_Analisador_de_Nuvens_Caderno_de_Montagem.pdf", n: { pt: "Analisador de Nuvens — caderno de montagem", es: "Analizador de Nubes — cuaderno de montaje", en: "Cloud Analyser — assembly booklet" }, k: "PDF" },
+  { f: "HelpFarm_Avaliador_Trabalho_Campo_Caderno_Testes.pdf", n: { pt: "Avaliador de Trabalho em Campo — caderno de testes", es: "Evaluador de Trabajo en Campo — cuaderno de pruebas", en: "Field Work Assessor — test booklet" }, k: "PDF" },
   { f: "HelpFarm_Pesquisa_Mercado_v2_16_paises.pdf", n: { pt: "Pesquisa de mercado v2 — 16 países", es: "Investigación de mercado v2 — 16 países", en: "Market research v2 — 16 countries" }, k: "PDF" },
   { f: "HelpFarm_Pesquisa_Mercado_v1_Cone_Sul.pdf", n: { pt: "Pesquisa de mercado v1 — Cone Sul", es: "Investigación de mercado v1 — Cono Sur", en: "Market research v1 — Southern Cone" }, k: "PDF" },
-  { f: "HelpFarm_Modelo_Rentabilidade_v2.xlsx", n: { pt: "Modelo de rentabilidade por abrangência", es: "Modelo de rentabilidad por alcance", en: "Profitability model by scope" }, k: "Excel" },
   { f: "HelpFarm_Equipamentos_Unidade_Movel.xlsx", n: { pt: "Equipamentos da unidade móvel", es: "Equipos de la unidad móvil", en: "Mobile-unit equipment" }, k: "Excel" },
 ];
 const HF_EXPL = [
+  { k: "valor", langs: ["pt"], pt: "Help Farm para investidores (2 min)", es: "Help Farm para inversionistas (2 min)", en: "Help Farm for investors (2 min)" },
   { k: "home", pt: "Como a Help Farm funciona", es: "Cómo funciona Help Farm", en: "How Help Farm works" },
   { k: "movel", pt: "Uma visita da unidade móvel", es: "Una visita de la unidad móvil", en: "A mobile-unit visit" },
   { k: "tec", pt: "O que é a assinatura de condição", es: "Qué es la firma de condición", en: "What a condition signature is" },
@@ -426,7 +431,7 @@ const HF_EXPL = [
   { k: "inv", pt: "Como a Help Farm gera receita", es: "Cómo genera ingresos Help Farm", en: "How Help Farm makes money" },
 ];
 const HL = {
-  pt: { t: "Área do investidor", ix: "A Área do Investidor reúne o material da rodada da Help Farm: pesquisa de mercado em 16 países, modelo de rentabilidade, unidade móvel e os vídeos do projeto. O acesso é restrito a quem tem interesse em investir.", sub: "Digite o código de acesso que você recebeu.", code: "Código de acesso", go: "Entrar", bad: "Código inválido. Confira e tente de novo.",
+  pt: { t: "Área do investidor", ix: "A Área do Investidor reúne o material da rodada da Help Farm: panorama de mercado com o motor RAPP, modelo de rentabilidade e valuation, cadernos dos dispositivos, pesquisa em 16 países e os vídeos do projeto. O acesso é restrito a quem tem interesse em investir.", sub: "Digite o código de acesso que você recebeu.", code: "Código de acesso", go: "Entrar", bad: "Código inválido. Confira e tente de novo.",
     ft: "Antes de começar", fs: "Para liberar o conteúdo, informe seus dados de contato.", nome: "Nome completo", email: "E-mail", tel: "WhatsApp (com código do país e DDD)",
     consent: "Autorizo a Help Farm e quem me indicou a usar estes dados para contato sobre o investimento, conforme a LGPD (Brasil) e a Lei 6534/2020 (Paraguai).", send: "Ver o conteúdo", need: "Preencha nome, e-mail válido e WhatsApp, e marque a autorização.",
     h: "Help Farm para investidores", p: "O filme, os vídeos explicativos e os documentos da rodada.", film: "O filme", expl: "Vídeos explicativos em desenho", soon: "em produção", docs: "Documentos", dl: "Baixar",
@@ -436,7 +441,7 @@ const HL = {
     nocode: "Não tenho código", rt: "Solicitar acesso", rx: "Preencha o cadastro: entraremos em contato e enviaremos o seu código de acesso ao material da Help Farm.", rconsent: "Autorizo a Help Farm a usar estes dados para contato sobre o investimento, conforme a LGPD (Brasil) e a Lei 6534/2020 (Paraguai).", rsend: "Enviar cadastro", rok: "Cadastro recebido. Muito obrigado!", roks: "Entraremos em contato e enviaremos o seu código de acesso.",
     c_subj: "Help Farm — seu código de acesso à Área do Investidor", c_body: "Olá, {n}!\n\nSeu acesso à Área do Investidor da Help Farm foi liberado.\n\nCódigo de acesso: {c}\nEntre em: {u}\n\nO material é confidencial. Por favor, não compartilhe o código.\n\nEquipe Help Farm",
     m_subj: "Help Farm — obrigado pelo seu interesse", m_body: "Olá, {n}!\n\nObrigado pelo interesse na Help Farm. Entraremos em contato pelo e-mail ou telefone cadastrado.\n\nEquipe Help Farm" },
-  es: { t: "Área del inversionista", ix: "El Área del Inversionista reúne el material de la ronda de Help Farm: investigación de mercado en 16 países, modelo de rentabilidad, unidad móvil y los videos del proyecto. El acceso está restringido a quienes tienen interés en invertir.", sub: "Ingrese el código de acceso que recibió.", code: "Código de acceso", go: "Entrar", bad: "Código inválido. Verifique e intente de nuevo.",
+  es: { t: "Área del inversionista", ix: "El Área del Inversionista reúne el material de la ronda de Help Farm: panorama de mercado con el motor RAPP, modelo de rentabilidad y valuation, cuadernos de los dispositivos, investigación en 16 países y los videos del proyecto. El acceso está restringido a quienes tienen interés en invertir.", sub: "Ingrese el código de acceso que recibió.", code: "Código de acceso", go: "Entrar", bad: "Código inválido. Verifique e intente de nuevo.",
     ft: "Antes de empezar", fs: "Para liberar el contenido, informe sus datos de contacto.", nome: "Nombre completo", email: "Correo electrónico", tel: "WhatsApp (con código de país)",
     consent: "Autorizo a Help Farm y a quien me recomendó a usar estos datos para contactarme sobre la inversión, conforme a la Ley 6534/2020 (Paraguay) y la LGPD (Brasil).", send: "Ver el contenido", need: "Complete nombre, correo válido y WhatsApp, y marque la autorización.",
     h: "Help Farm para inversionistas", p: "La película, los videos explicativos y los documentos de la ronda.", film: "La película", expl: "Videos explicativos en dibujo", soon: "en producción", docs: "Documentos", dl: "Descargar",
@@ -446,7 +451,7 @@ const HL = {
     nocode: "No tengo código", rt: "Solicitar acceso", rx: "Complete el registro: nos pondremos en contacto y le enviaremos su código de acceso al material de Help Farm.", rconsent: "Autorizo a Help Farm a usar estos datos para contactarme sobre la inversión, conforme a la Ley 6534/2020 (Paraguay) y la LGPD (Brasil).", rsend: "Enviar registro", rok: "Registro recibido. ¡Muchas gracias!", roks: "Nos pondremos en contacto y le enviaremos su código de acceso.",
     c_subj: "Help Farm — su código de acceso al Área del Inversionista", c_body: "Hola, {n}:\n\nSu acceso al Área del Inversionista de Help Farm fue liberado.\n\nCódigo de acceso: {c}\nIngrese en: {u}\n\nEl material es confidencial. Por favor, no comparta el código.\n\nEquipo Help Farm",
     m_subj: "Help Farm — gracias por su interés", m_body: "Hola, {n}:\n\nGracias por su interés en Help Farm. Nos pondremos en contacto por el correo o el teléfono registrado.\n\nEquipo Help Farm" },
-  en: { t: "Investor area", ix: "The Investor Area holds the Help Farm round material: market research across 16 countries, profitability model, mobile unit and the project videos. Access is restricted to those interested in investing.", sub: "Enter the access code you received.", code: "Access code", go: "Enter", bad: "Invalid code. Please check and try again.",
+  en: { t: "Investor area", ix: "The Investor Area holds the Help Farm round material: market overview with the RAPP engine, profitability and valuation model, device booklets, research across 16 countries and the project videos. Access is restricted to those interested in investing.", sub: "Enter the access code you received.", code: "Access code", go: "Enter", bad: "Invalid code. Please check and try again.",
     ft: "Before you start", fs: "To unlock the content, please enter your contact details.", nome: "Full name", email: "Email", tel: "WhatsApp (with country code)",
     consent: "I authorize Help Farm and whoever referred me to use this data to contact me about the investment, under Paraguay's Law 6534/2020 and Brazil's LGPD.", send: "See the content", need: "Enter your name, a valid email and WhatsApp, and tick the authorization.",
     h: "Help Farm for investors", p: "The film, the explainer videos and the round documents.", film: "The film", expl: "Hand-drawn explainer videos", soon: "in production", docs: "Documents", dl: "Download",
@@ -628,7 +633,7 @@ async function hfArea(req, env, url, RAW) {
   }
 
   const docs = HF_DOCS.map((d) => `<a class="doc" href="${A}/docs/${encodeURIComponent(d.f)}"><i>${d.k}</i><span>${hfEsc(d.n[lang])}</span><em>${t.dl} ↓</em></a>`).join("");
-  const ex = HF_EXPL.map((e) => `<div class="ex"><video controls playsinline preload="none" style="width:100%;aspect-ratio:16/9;border-radius:10px;display:block;margin-bottom:8px;background:#FBF8F1" poster="/helpfarm/video/expl-${e.k}-${lang}-poster.jpg" src="/helpfarm/video/expl-${e.k}-${lang}.mp4"></video><b>${hfEsc(e[lang])}</b><small>${lang.toUpperCase()}</small></div>`).join("");
+  const ex = HF_EXPL.map((e) => { const vl = e.langs && !e.langs.includes(lang) ? e.langs[0] : lang; return `<div class="ex"><video controls playsinline preload="none" style="width:100%;aspect-ratio:16/9;border-radius:10px;display:block;margin-bottom:8px;background:#FBF8F1" poster="/helpfarm/video/expl-${e.k}-${vl}-poster.jpg" src="/helpfarm/video/expl-${e.k}-${vl}.mp4"></video><b>${hfEsc(e[lang])}</b><small>${vl.toUpperCase()}</small></div>`; }).join("");
   return R(`<h1>${t.h}</h1><p>${t.p}</p>
 <h2 class="h2">${t.film}</h2><div class="film"><video controls playsinline preload="metadata" poster="/helpfarm/video/helpfarm-filme-${lang}-poster.jpg" src="/helpfarm/video/helpfarm-filme-${lang}.mp4"></video></div>
 <h2 class="h2">${t.docs}</h2><div class="docs">${docs}</div>
