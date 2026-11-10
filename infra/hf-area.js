@@ -216,7 +216,7 @@ async function hfArea(req, env, url, RAW) {
     if (req.method === "POST") {
       const last = (rec.eventos || []).filter((e) => e.tipo === "quero-investir").pop();
       if (!last || Date.now() - Date.parse(last.quando) > 600000) {
-        const st = await hfMail(env, { from: HF_MAIL, to: rec.email, cc: [...s.pr.emails, HF_MAIL].join(","), replyTo: HF_MAIL, subject: t.m_subj, text: hfFill(t.m_body, { n: rec.nome }) + `\n\n— Indicação: ${s.pr.nome}\nWhatsApp do investidor: https://wa.me/${String(rec.tel).replace(/\D/g, "")}` });
+        const st = await hfMail(env, { from: HF_MAIL, to: rec.email, cc: [...s.pr.emails, HF_MAIL, "fabio.moulin@helpcure.com.py"].join(","), replyTo: HF_MAIL, subject: t.m_subj, text: hfFill(t.m_body, { n: rec.nome }) + `\n\n— Indicação: ${s.pr.nome}\nWhatsApp do investidor: https://wa.me/${String(rec.tel).replace(/\D/g, "")}` });
         rec.eventos.push({ tipo: "quero-investir", quando: new Date().toISOString(), mail: st }); await env.LEADS.put(ik, JSON.stringify(rec));
       }
       return go(A + "/quero-investir?lang=" + lang);
