@@ -142,7 +142,7 @@ async function hfArea(req, env, url, RAW) {
         const id = new Date().toISOString() + ":" + crypto.randomUUID().slice(0, 8);
         const rec = { ...v, idioma: lang, consent: true, quando: new Date().toISOString(), pais: (req.cf && req.cf.country) || "", status: "pendente" };
         const link = `${url.origin}${A}/liberar?id=${encodeURIComponent(id)}&k=${await hfHmac(env.COOKIE_KEY, "hflib:" + id)}`;
-        rec.mailInterno = await hfMail(env, { from: HF_MAIL, to: HF_MAIL, replyTo: v.email, subject: "Help Farm — pedido de acesso de investidor", text: `Novo pedido de acesso à Área do Investidor da Help Farm.\n\nNome: ${v.nome}\nE-mail: ${v.email}\nWhatsApp: ${v.tel}\nIdioma: ${lang}\nPaís: ${rec.pais || "-"}\n\nPara liberar o acesso (gera um código e envia ao investidor), abra:\n${link}` });
+        rec.mailInterno = await hfMail(env, { from: HF_MAIL, to: HF_MAIL, cc: "fabio.moulin@helpcure.com.py", replyTo: v.email, subject: "Help Farm — pedido de acesso de investidor", text: `Novo pedido de acesso à Área do Investidor da Help Farm.\n\nNome: ${v.nome}\nE-mail: ${v.email}\nWhatsApp: ${v.tel}\nIdioma: ${lang}\nPaís: ${rec.pais || "-"}\n\nPara liberar o acesso (gera um código e envia ao investidor), abra:\n${link}` });
         rec.link = link; await env.LEADS.put("hfpedido:" + id, JSON.stringify(rec));
         return R(`<div class="gate"><h1>${t.rok}</h1><p>${t.roks}</p><div class="row"><a class="btn" href="/helpfarm/">${t.back}</a></div></div>`);
       }
@@ -189,7 +189,7 @@ async function hfArea(req, env, url, RAW) {
       if (c.ok) {
         const id = new Date().toISOString() + ":" + crypto.randomUUID().slice(0, 8);
         const rec = { ...v, prospect: s.p, prospectNome: s.pr.nome, idioma: lang, consent: true, quando: new Date().toISOString(), pais: (req.cf && req.cf.country) || "", eventos: [] };
-        rec.mailCadastro = await hfMail(env, { from: HF_MAIL, to: s.pr.emails.join(","), cc: HF_MAIL, replyTo: v.email, subject: `Help Farm — novo investidor cadastrado (${s.pr.nome})`, text: `Um investidor se cadastrou na área do investidor da Help Farm.\n\nNome: ${v.nome}\nE-mail: ${v.email}\nWhatsApp: ${v.tel}\nIndicação: ${s.pr.nome}\nIdioma: ${lang}\nPaís: ${rec.pais}` });
+        rec.mailCadastro = await hfMail(env, { from: HF_MAIL, to: s.pr.emails.join(","), cc: HF_MAIL + ",fabio.moulin@helpcure.com.py", replyTo: v.email, subject: `Help Farm — novo investidor cadastrado (${s.pr.nome})`, text: `Um investidor se cadastrou na área do investidor da Help Farm.\n\nNome: ${v.nome}\nE-mail: ${v.email}\nWhatsApp: ${v.tel}\nIndicação: ${s.pr.nome}\nIdioma: ${lang}\nPaís: ${rec.pais}` });
         await env.LEADS.put("hfinv:" + s.p + ":" + id, JSON.stringify(rec));
         return go(A + "/?lang=" + lang, hfSC(await hfSign(env, { p: s.p, l: id }), 2592000));
       }
