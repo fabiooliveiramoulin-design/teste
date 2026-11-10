@@ -61,6 +61,24 @@
     "El agua guardada en altura es la batería. De noche, o con el cielo nublado, baja por gravedad hasta el pivote.",
     "Sin batería y sin diésel, la planta se paga con el ahorro en la factura. Y el RAPP verifica, cada mes, cuánto se generó y cuánto se bombeó.",
     "Help Farm. El sol bombea, el agua espera, y la factura baja."
+   ],
+   "v7": [
+    "Para que el alimento llegue a la mesa, el campo negocia todos los días con el clima, las plagas, el suelo y las máquinas.",
+    "Hoy, la mayor parte de las pérdidas aparece cuando ya es tarde. Y cada cosecha perdida encarece el alimento de todos.",
+    "Help Farm cambia eso. Sensores, satélite y drones miden todo el campo. El Analizador de Nubes vigila el cielo en tiempo real, y el analizador de cosecha y siembra sobrevuela el lote seis veces por hora.",
+    "Todo está controlado por RAPP, un motor de inteligencia artificial construido desde 2010, que nació vigilando turbinas y bombas en la industria del petróleo.",
+    "RAPP cruza todas las mediciones, aprende lo normal de cada lote, de cada animal y de cada máquina, y avisa días antes del problema.",
+    "En el agronegocio, la licencia de RAPP es exclusiva de Help Farm. Y aprende en cada cosecha: cuantos más campos, mejor funciona.",
+    "¿Cómo genera ingresos Help Farm? El productor paga la implantación y una suscripción por hectárea, por cabeza o por máquina.",
+    "En un campo de granos en Brasil, una sola alerta en la cosecha puede pagar doce meses de uso de Help Farm.",
+    "La capa de energía de RAPP mide bombas y pivotes, proyecta la generación solar y se queda con el treinta por ciento del ahorro verificado en la factura de luz.",
+    "Cooperativas, bancos, aseguradoras y compradores también pagan por el mismo dato confiable. Y la certificación de origen puede generar ingresos por tonelada.",
+    "Con Paraguay y Brasil, los ingresos y el resultado crecen año a año, y el resultado ya descuenta la regalía de RAPP.",
+    "En el quinto año, la empresa puede valer cerca de cinco veces lo que vale justo después de esta ronda.",
+    "El modelo llegó a una expectativa de desempeño del veintisiete por ciento al año para el inversionista, con el capital multiplicado por cuatro veces y media.",
+    "Paraguay prueba, Brasil escala. El piloto empieza con cinco campos y una cooperativa socia.",
+    "Lo invitamos a participar de una innovación en el desempeño de la producción de alimentos.",
+    "Help Farm. Su campo avisa antes del problema. Entre en el área del inversionista y hable con nosotros."
    ]
   },
   "en": {
@@ -114,6 +132,24 @@
     "The water stored up high is the battery. At night, or under cloudy skies, it flows down by gravity to the pivot.",
     "With no battery and no diesel, the plant pays for itself through savings on the bill. And every month, RAPP checks how much was generated and how much was pumped.",
     "Help Farm. The sun pumps, the water waits, and the bill goes down."
+   ],
+   "v7": [
+    "For food to reach the table, the farm bargains every day with the weather, pests, the soil and the machines.",
+    "Today, most losses only show up when it is already too late. And every lost harvest makes food dearer for everyone.",
+    "Help Farm changes that. Sensors, satellites and drones measure the whole farm. The Cloud Analyser watches the sky in real time, and the harvest and planting analyser flies over the field six times an hour.",
+    "Everything is controlled by RAPP, an artificial intelligence engine built since 2010, born watching turbines and pumps in the oil industry.",
+    "RAPP cross-checks every measurement, learns what is normal for each field, each animal and each machine, and warns days before the problem.",
+    "In agribusiness, the RAPP licence is exclusive to Help Farm. And it learns every season: the more farms, the better it gets.",
+    "How does Help Farm make money? The grower pays for setup and a subscription per hectare, per head or per machine.",
+    "On a grain farm in Brazil, a single alert during the harvest can pay for twelve months of Help Farm.",
+    "The RAPP energy layer measures pumps and pivots, designs the solar generation and keeps thirty percent of the verified savings on the power bill.",
+    "Co-ops, banks, insurers and buyers also pay for the same trusted data. And origin certification can bring revenue per tonne.",
+    "With Paraguay and Brazil, revenue and profit grow year after year, and profit is already net of the RAPP royalty.",
+    "In year five, the company could be worth about five times what it is worth right after this round.",
+    "The model points to an expected performance of twenty-seven percent a year for the investor, with capital multiplied four and a half times.",
+    "Paraguay proves, Brazil scales. The pilot starts with five farms and one partner co-op.",
+    "We invite you to take part in an innovation in the performance of food production.",
+    "Help Farm. Your farm warns you before the problem. Visit the investor area and talk to us."
    ]
   }
  },
@@ -123,14 +159,16 @@
    "v2": "Una visita de la unidad móvil",
    "v3": "Qué es la firma de condición",
    "v4": "Del lote al código QR",
-   "v5": "Cómo genera ingresos Help Farm"
+   "v5": "Cómo genera ingresos Help Farm",
+   "v7": "Help Farm para inversionistas (2 min)"
   },
   "en": {
    "v1": "How Help Farm works",
    "v2": "A mobile-unit visit",
    "v3": "What a condition signature is",
    "v4": "From field to QR code",
-   "v5": "How Help Farm makes money"
+   "v5": "How Help Farm makes money",
+   "v7": "Help Farm for investors (2 min)"
   }
  },
  "labels": {
@@ -192,7 +230,7 @@
   ],
   "dias antes": [
    "días antes",
-   "days earlier"
+   "days ahead"
   ],
   "A pessoa certa age a tempo": [
    "La persona indicada actúa a tiempo",
@@ -215,8 +253,8 @@
    "vet"
   ],
   "A sua fazenda avisa antes do problema.": [
-   "Su establecimiento avisa antes del problema.",
-   "Your farm warns before the problem."
+   "Su campo avisa antes del problema.",
+   "Your farm warns you before the problem."
   ],
   "A unidade móvel": [
    "La unidad móvil",
@@ -561,6 +599,218 @@
   "O sol bombeia, a água espera, a conta cai.": [
    "El sol bombea, el agua espera, la factura baja.",
    "The sun pumps, the water waits, the bill goes down."
+  ],
+  "A fazenda negocia com a natureza": [
+   "El campo negocia con la naturaleza",
+   "The farm bargains with nature"
+  ],
+  "todos os dias, até o alimento chegar à mesa": [
+   "todos los días, hasta que el alimento llega a la mesa",
+   "every day, until the food reaches the table"
+  ],
+  "A perda aparece tarde demais": [
+   "La pérdida aparece demasiado tarde",
+   "The loss shows up too late"
+  ],
+  "alimento": [
+   "alimento",
+   "food"
+  ],
+  "mais caro": [
+   "más caro",
+   "costs more"
+  ],
+  "safra perdida encarece a mesa de todos": [
+   "la cosecha perdida encarece la mesa de todos",
+   "a lost harvest makes everyone's food dearer"
+  ],
+  "A Help Farm mede a fazenda inteira": [
+   "Help Farm mide todo el campo",
+   "Help Farm measures the whole farm"
+  ],
+  "sensores e satélite": [
+   "sensores y satélite",
+   "sensors and satellite"
+  ],
+  "Analisador de Nuvens": [
+   "Analizador de Nubes",
+   "Cloud Analyser"
+  ],
+  "em tempo real": [
+   "en tiempo real",
+   "in real time"
+  ],
+  "Colheita e plantio": [
+   "Cosecha y siembra",
+   "Harvest and planting"
+  ],
+  "6 vezes por hora": [
+   "6 veces por hora",
+   "6 times an hour"
+  ],
+  "O motor: RAPP, desde 2010": [
+   "El motor: RAPP, desde 2010",
+   "The engine: RAPP, since 2010"
+  ],
+  "2010 · turbinas e bombas": [
+   "2010 · turbinas y bombas",
+   "2010 · turbines and pumps"
+  ],
+  "do petróleo": [
+   "del petróleo",
+   "in oil & gas"
+  ],
+  "2026 · a fazenda": [
+   "2026 · el campo",
+   "2026 · the farm"
+  ],
+  "Cruza tudo e avisa antes": [
+   "Cruza todo y avisa antes",
+   "Cross-checks everything, warns early"
+  ],
+  "talhão · animal · máquina": [
+   "lote · animal · máquina",
+   "field · animal · machine"
+  ],
+  "Exclusivo no agronegócio": [
+   "Exclusivo en el agronegocio",
+   "Exclusive in agribusiness"
+  ],
+  "licença só da Help Farm": [
+   "licencia solo de Help Farm",
+   "licence only for Help Farm"
+  ],
+  "aprende a cada safra": [
+   "aprende en cada cosecha",
+   "learns every season"
+  ],
+  "Receita: o produtor paga": [
+   "Ingresos: paga el productor",
+   "Revenue: the grower pays"
+  ],
+  "implantação": [
+   "implantación",
+   "setup"
+  ],
+  "+ assinatura por hectare,": [
+   "+ suscripción por hectárea,",
+   "+ subscription per hectare,"
+  ],
+  "Um alerta paga o ano": [
+   "Una alerta paga el año",
+   "One alert pays for the year"
+  ],
+  "fazenda de grãos · Brasil": [
+   "campo de granos · Brasil",
+   "grain farm · Brazil"
+  ],
+  "1 alerta": [
+   "1 alerta",
+   "1 alert"
+  ],
+  "=": [
+   "=",
+   "="
+  ],
+  "12 meses de Help Farm": [
+   "12 meses de Help Farm",
+   "12 months of Help Farm"
+  ],
+  "Camada de energia do RAPP": [
+   "Capa de energía de RAPP",
+   "RAPP energy layer"
+  ],
+  "30% da economia verificada na conta": [
+   "30% del ahorro verificado en la factura",
+   "30% of the verified bill savings"
+  ],
+  "Vários pagadores, o mesmo dado": [
+   "Varios pagadores, el mismo dato",
+   "Many payers, the same data"
+  ],
+  "cooperativa": [
+   "cooperativa",
+   "co-op"
+  ],
+  "certificação": [
+   "certificación",
+   "certification"
+  ],
+  "Paraguai + Brasil": [
+   "Paraguay + Brasil",
+   "Paraguay + Brazil"
+  ],
+  "receita e resultado": [
+   "ingresos y resultado",
+   "revenue and profit"
+  ],
+  "crescendo ano a ano": [
+   "creciendo año a año",
+   "growing year after year"
+  ],
+  "já descontado o royalty do RAPP": [
+   "ya descontada la regalía de RAPP",
+   "net of the RAPP royalty"
+  ],
+  "Quanto vale no quinto ano": [
+   "Cuánto vale en el quinto año",
+   "What it is worth in year five"
+  ],
+  "logo após a rodada": [
+   "justo después de la ronda",
+   "right after the round"
+  ],
+  "≈ 5× o valor de hoje": [
+   "≈ 5× el valor de hoy",
+   "≈ 5× today's value"
+  ],
+  "A performance esperada": [
+   "El desempeño esperado",
+   "The expected performance"
+  ],
+  "TIR esperada ≈ 27% ao ano": [
+   "TIR esperada ≈ 27% al año",
+   "expected IRR ≈ 27% a year"
+  ],
+  "4,5× o capital": [
+   "4,5× el capital",
+   "4.5× capital"
+  ],
+  "Paraguai prova, Brasil escala": [
+   "Paraguay prueba, Brasil escala",
+   "Paraguay proves, Brazil scales"
+  ],
+  "5 fazendas-piloto": [
+   "5 campos piloto",
+   "5 pilot farms"
+  ],
+  "+ 1 cooperativa parceira": [
+   "+ 1 cooperativa socia",
+   "+ 1 partner co-op"
+  ],
+  "Um convite": [
+   "Una invitación",
+   "An invitation"
+  ],
+  "você": [
+   "usted",
+   "you"
+  ],
+  "inovação na performance": [
+   "innovación en el desempeño",
+   "innovation in the performance"
+  ],
+  "da produção de alimentos": [
+   "de la producción de alimentos",
+   "of food production"
+  ],
+  "Help Farm": [
+   "Help Farm",
+   "Help Farm"
+  ],
+  "Área do investidor · fale com a gente": [
+   "Área del inversionista · hable con nosotros",
+   "Investor area · talk to us"
   ]
  }
 }

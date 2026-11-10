@@ -424,7 +424,7 @@ const HF_DOCS = [
   { f: "HelpFarm_Equipamentos_Unidade_Movel.xlsx", g: "d", d: {"pt": "Instrumentos, drones e itens da unidade móvel, com preços.", "es": "Instrumentos, drones e ítems de la unidad móvil, con precios.", "en": "Instruments, drones and mobile-unit items, with prices."}, n: { pt: "Equipamentos da unidade móvel", es: "Equipos de la unidad móvil", en: "Mobile-unit equipment" }, k: "Excel" },
 ];
 const HF_EXPL = [
-  { k: "valor", langs: ["pt"], pt: "Help Farm para investidores (2 min)", es: "Help Farm para inversionistas (2 min)", en: "Help Farm for investors (2 min)" },
+  { k: "valor", pt: "Help Farm para investidores (2 min)", es: "Help Farm para inversionistas (2 min)", en: "Help Farm for investors (2 min)" },
   { k: "home", pt: "Como a Help Farm funciona", es: "Cómo funciona Help Farm", en: "How Help Farm works" },
   { k: "movel", pt: "Uma visita da unidade móvel", es: "Una visita de la unidad móvil", en: "A mobile-unit visit" },
   { k: "tec", pt: "O que é a assinatura de condição", es: "Qué es la firma de condición", en: "What a condition signature is" },
