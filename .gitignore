@@ -15,3 +15,10 @@ docs_inv/
 
 # chave dos documentos da área do investidor Help Farm (vai só como segredo HF_KEY no worker)
 build/hf_key.txt
+
+# material técnico confidencial: fica fora do repositório público
+build/analisador_nuvens/
+build/avaliador_trabalho/
+build/energia_fapija/
+build/precos_agro*/
+*.stl
