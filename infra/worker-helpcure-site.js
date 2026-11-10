@@ -649,8 +649,8 @@ async function hfArea(req, env, url, RAW) {
 // no KV LEADS em "hfst:AAAA-MM-DD" = {v, u, nv, p:{}, c:{}, r:{}, d:{}, l:{}, play:{}}. Robôs sem JavaScript não contam.
 // Acesso ao gerencial: código no segredo HF_GER; sessão assinada com COOKIE_KEY (90 dias).
 const HFG = "/helpfarm/gerencial";
-const HFG_PAGES = { "/helpfarm/": "Início", "/helpfarm/index.html": "Início", "/helpfarm/unidade-movel.html": "Unidade móvel", "/helpfarm/tecnologia.html": "Tecnologia", "/helpfarm/certificacao.html": "Certificação", "/helpfarm/investidores.html": "Investidores", "/helpfarm/lote-demo.html": "Lote demonstrativo" };
-const HFG_VIDS = { "helpfarm-filme-pt": "Filme (3 min)", "expl-home-pt": "Como a Help Farm funciona", "expl-movel-pt": "Visita da unidade móvel", "expl-tec-pt": "Assinatura de condição", "expl-cert-pt": "Do talhão ao QR code", "expl-inv-pt": "Como gera receita", "movel-corte": "Unidade móvel em corte" };
+const HFG_PAGES = { "/helpfarm/": "Início", "/helpfarm/index.html": "Início", "/helpfarm/unidade-movel.html": "Unidade móvel", "/helpfarm/tecnologia.html": "Tecnologia", "/helpfarm/certificacao.html": "Certificação", "/helpfarm/investidores.html": "Investidores", "/helpfarm/lote-demo.html": "Lote demonstrativo", "/helpfarm/energia.html": "Energia" };
+const HFG_VIDS = { "helpfarm-filme-pt": "Filme (3 min)", "expl-home-pt": "Como a Help Farm funciona", "expl-movel-pt": "Visita da unidade móvel", "expl-tec-pt": "Assinatura de condição", "expl-cert-pt": "Do talhão ao QR code", "expl-inv-pt": "Como gera receita", "expl-energia-pt": "Recalque solar sem bateria", "movel-corte": "Unidade móvel em corte" };
 const HFG_CO = { BR: "Brasil", PY: "Paraguai", AR: "Argentina", UY: "Uruguai", US: "EUA", PT: "Portugal", ES: "Espanha", BO: "Bolívia", CL: "Chile", MX: "México", CO: "Colômbia", PE: "Peru", DE: "Alemanha", FR: "França", GB: "Reino Unido", CA: "Canadá", AU: "Austrália", NL: "Holanda", IT: "Itália", CN: "China", JP: "Japão" };
 function hfgDay(ms) { return new Date(ms - 3 * 3600e3).toISOString().slice(0, 10); }
 function hfgInc(o, k, n = 1) { if (!k) return; k = String(k).slice(0, 80); o[k] = (o[k] || 0) + n; }

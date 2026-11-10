@@ -54,7 +54,7 @@ def shell(pg, path, title, body, desc, extra=""):
 <meta property="og:title" content="{html.escape(title)}">
 <meta property="og:description" content="{html.escape(desc)}">
 <link rel="icon" href="assets/hf-icone.svg" type="image/svg+xml">
-<meta property="og:image" content="https://helpcure.com.py/helpfarm/img/movel-fazenda.webp">
+<meta property="og:image" content="https://helpcure.com.py/helpfarm/img/og-helpfarm.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Lexend:wght@300;400;500;600&display=swap">
 <link rel="stylesheet" href="../assets/site.css?v=8">
@@ -524,7 +524,7 @@ def investidores():
     <div>
       {pg.t("Área do investidor", "Área del inversionista", "Investor area", "span", "eyebrow")}
       {pg.t("O material completo da rodada, com acesso por código.", "El material completo de la ronda, con acceso por código.", "The full round material, with code access.", "h2")}
-      {pg.t("Panorama de mercado com a história do RAPP, modelo de rentabilidade e valuation, cadernos do Analisador de Nuvens e do Avaliador de Trabalho em Campo, o filme e um vídeo de 2 minutos para investidores. O acesso é restrito a quem tem interesse em investir.", "Panorama de mercado con la historia de RAPP, modelo de rentabilidad y valuation, cuadernos del Analizador de Nubes y del Evaluador de Trabajo en Campo, la película y un video de 2 minutos para inversionistas. El acceso está restringido a quienes tienen interés en invertir.", "Market overview with the RAPP story, profitability and valuation model, Cloud Analyser and Field Work Assessor booklets, the film and a 2-minute investor video. Access is restricted to those interested in investing.", "p", "muted", attrs=' style="margin-top:14px"')}
+      {pg.t("Panorama de mercado com a história do RAPP, modelo de rentabilidade e valuation, apresentações dos dispositivos exclusivos e o mapa do RAPP, o filme e um vídeo de 2 minutos para investidores. O acesso é restrito a quem tem interesse em investir.", "Panorama de mercado con la historia de RAPP, modelo de rentabilidad y valuation, presentaciones de los dispositivos exclusivos y el mapa de RAPP, la película y un video de 2 minutos para inversionistas. El acceso está restringido a quienes tienen interés en invertir.", "Market overview with the RAPP story, profitability and valuation model, presentations of the exclusive devices and the RAPP map, the film and a 2-minute investor video. Access is restricted to those interested in investing.", "p", "muted", attrs=' style="margin-top:14px"')}
       <div class="cta"><a class="btn primary" href="/helpfarm/area-investidor/">{pg.t("Entrar com código", "Entrar con código", "Enter with code")}</a><a class="btn dark" href="/helpfarm/area-investidor/solicitar">{pg.t("Solicitar acesso", "Solicitar acceso", "Request access")}</a></div>
     </div>
     <img class="invimg" src="img/f/assinatura.webp" alt="" loading="lazy">
