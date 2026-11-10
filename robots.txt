@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+Disallow: /investidores/
+Disallow: /investir.html
+Disallow: /painel
+Disallow: /gestao
+Disallow: /app/
+Disallow: /api/
+Disallow: /priv/
+Disallow: /solidario.html
+
+Sitemap: https://helpcure.com.py/sitemap.xml
