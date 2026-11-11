@@ -669,7 +669,7 @@ async function hfgHit(req, env) {
     st.v++; if (b.u) st.u++; if (b.n) st.nv++;
     hfgInc(st.p, HFG_PAGES[path] || path.replace("/helpfarm/", ""));
     hfgInc(st.c, (req.cf && req.cf.country) || "??");
-    let ref = "Direto"; try { if (b.r) { const h = new URL(b.r).hostname.replace(/^www\./, ""); if (!/helpcure\.com\.py$|workers\.dev$/.test(h)) ref = h; else ref = ""; } } catch (e) {}
+    let ref = "Direto"; try { if (b.r) { const h = new URL(b.r).hostname.replace(/^www\./, ""); if (!/helpcure\.com\.py$|helpfarm\.com\.py$|workers\.dev$/.test(h)) ref = h; else ref = ""; } } catch (e) {}
     if (b.q) ref = "Campanha: " + String(b.q).slice(0, 40);
     hfgInc(st.r, ref);
     hfgInc(st.d, /mobi|android|iphone/i.test(ua) ? "Celular" : /ipad|tablet/i.test(ua) ? "Tablet" : "Computador");
@@ -938,6 +938,9 @@ export default {
   async fetch(req, env) {
     const url = new URL(req.url);
     let p = url.pathname;
+    // helpfarm.com.py: domínio próprio da Help Farm. Serve o mesmo conteúdo de /helpfarm/ na raiz; www vai para o domínio sem www.
+    if (url.hostname === "www.helpfarm.com.py") return Response.redirect("https://helpfarm.com.py" + p + url.search, 301);
+    if (url.hostname === "helpfarm.com.py" && !p.startsWith("/helpfarm/")) p = p === "/helpfarm" ? "/helpfarm/" : "/helpfarm" + p;
     // Help Cure Solidário fora do ar até a análise jurídica (01/11/2026): página redireciona para o início e o formulário não grava.
     if (p === "/solidario.html" || p === "/solidario") return Response.redirect(url.origin + "/", 302);
     if (p === "/api/interesse") return new Response(JSON.stringify({ ok: false, erro: "campanha indisponível" }), { status: 410, headers: { "content-type": "application/json" } });
