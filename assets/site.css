@@ -55,7 +55,7 @@ header.top{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--b
 .hv-media{border-radius:22px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.45),0 0 0 1px rgba(62,227,154,.12);aspect-ratio:16/9;background:#06201C}
 .hv-media video{width:100%;height:100%;object-fit:cover;display:block}
 @media (max-width:900px){.hero.hv .wrap{grid-template-columns:1fr;gap:28px}}
-@media (prefers-reduced-motion:reduce){.hv-media video{display:none}.hv-media{background:url(../video/helpcure-anel-poster.jpg) center/cover}}
+@media (prefers-reduced-motion:reduce){.hv-media video{display:none}.hv-media{background:url(../img/f/fazenda-viva.webp) center/cover}}
 .hero{position:relative;color:#fff;background:var(--deep);overflow:hidden}
 .hero>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.6}
 .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(4,24,21,.94) 0%,rgba(4,24,21,.6) 55%,rgba(4,24,21,.2) 100%)}
@@ -160,7 +160,7 @@ footer a:hover{color:#fff}
 footer .legal{grid-column:1/-1;border-top:1px solid rgba(233,243,240,.12);padding-top:18px;font-size:13px;color:#7FA39B}
 @media (max-width:760px){footer .wrap{grid-template-columns:1fr}}
 
-/* campanha Help Cure Solidário */
+/* campanha */
 .hero .status{margin-top:22px;display:inline-block;background:rgba(23,184,119,.16);border:1px solid rgba(62,227,154,.35);color:#D7F5E8;border-radius:999px;padding:8px 16px;font-size:14px}
 .g5{grid-template-columns:repeat(5,1fr)}
 @media (max-width:1100px){.g5{grid-template-columns:repeat(3,1fr)}}

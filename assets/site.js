@@ -1,4 +1,4 @@
-// Help Cure — idioma (PT/ES/EN), menu móvel e player de vídeo
+// Help Farm — idioma (PT/ES/EN), menu móvel e player de vídeo
 (function () {
   // O site já tem PT/ES/EN: evita que o tradutor do navegador estrague marca, números e botões de idioma
   // O site tem PT/ES/EN próprios: o tradutor do navegador não deve reescrever textos e números.
@@ -41,7 +41,7 @@
       var id = ids[vl];
       pl.innerHTML = '<button type="button" class="poster" style="background-image:url(https://i.ytimg.com/vi/' + id + '/hqdefault.jpg)" aria-label="Play"><span><svg viewBox="0 0 24 24" fill="#05241C" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span></button>';
       pl.querySelector(".poster").onclick = function () {
-        pl.innerHTML = '<iframe src="https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1&rel=0&modestbranding=1" title="Help Cure" allow="autoplay; fullscreen; picture-in-picture; encrypted-media" allowfullscreen></iframe>';
+        pl.innerHTML = '<iframe src="https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1&rel=0&modestbranding=1" title="Help Farm" allow="autoplay; fullscreen; picture-in-picture; encrypted-media" allowfullscreen></iframe>';
       };
       if (note) note.textContent = NOTE[lang][vl] || "";
       if (tabs) tabs.querySelectorAll("button").forEach(function (b) { b.setAttribute("aria-selected", b.dataset.v === vl ? "true" : "false"); });
