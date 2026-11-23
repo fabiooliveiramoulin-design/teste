@@ -410,7 +410,7 @@ async function waLista(env) {
 // KV LEADS com prefixos próprios: hfprospect:<PREF> = {nome, codigo, emails[], ativo}; hfinv:<PREF>:<id>; hfpedido:<id>.
 // Segredos: COOKIE_KEY, HF_KEY (AES-256-GCM dos documentos em /priv/helpfarm), ADMIN_KEY; MAIL_URL/MAIL_KEY opcionais.
 const HFA = "/helpfarm/area-investidor";
-const HF_MAIL = "investidores@helpcure.com.py";
+const HF_MAIL = "investidores@helpfarm.cloud"; const HF_FROM = "investidores@helpcure.com.py";
 const HF_DOCS = [
   { f: "HelpFarm_Panorama_Mercado_Conceito_de_Valor_v3.pdf", g: "a", d: {"pt": "Mercado, conceito de valor, o motor RAPP desde 2010 e os cenários de valuation.", "es": "Mercado, concepto de valor, el motor RAPP desde 2010 y los escenarios de valuation.", "en": "Market, value concept, the RAPP engine since 2010 and valuation scenarios."}, n: { pt: "Panorama de mercado, RAPP e valuation (v3)", es: "Panorama de mercado, RAPP y valuation (v3)", en: "Market overview, RAPP and valuation (v3)" }, k: "PDF" },
   { f: "HelpFarm_Diferenciais_Competitivos_v3.pdf", g: "a", d: {"pt": "Por que a Help Farm não se copia: RAPP exclusivo no agro, unidade móvel e dispositivos.", "es": "Por qué Help Farm no se copia: RAPP exclusivo en el agro, unidad móvil y dispositivos.", "en": "Why Help Farm can't be copied: RAPP exclusive in agribusiness, mobile unit and devices."}, n: { pt: "Diferenciais competitivos e o motor RAPP (v3)", es: "Diferenciales competitivos y el motor RAPP (v3)", en: "Competitive edge and the RAPP engine (v3)" }, k: "PDF" },
@@ -548,7 +548,7 @@ async function hfArea(req, env, url, RAW) {
         const id = new Date().toISOString() + ":" + crypto.randomUUID().slice(0, 8);
         const rec = { ...v, idioma: lang, consent: true, quando: new Date().toISOString(), pais: (req.cf && req.cf.country) || "", status: "pendente" };
         const link = `${url.origin}${A}/liberar?id=${encodeURIComponent(id)}&k=${await hfHmac(env.COOKIE_KEY, "hflib:" + id)}`;
-        rec.mailInterno = await hfMail(env, { from: HF_MAIL, to: HF_MAIL, cc: "fabio.moulin@helpcure.com.py", replyTo: v.email, subject: "Help Farm — pedido de acesso de investidor", text: `Novo pedido de acesso à Área do Investidor da Help Farm.\n\nNome: ${v.nome}\nE-mail: ${v.email}\nWhatsApp: ${v.tel}\nIdioma: ${lang}\nPaís: ${rec.pais || "-"}\n\nPara liberar o acesso (gera um código e envia ao investidor), abra:\n${link}` });
+        rec.mailInterno = await hfMail(env, { from: HF_FROM, to: HF_MAIL, cc: "fabio.moulin@helpcure.com.py", replyTo: v.email, subject: "Help Farm — pedido de acesso de investidor", text: `Novo pedido de acesso à Área do Investidor da Help Farm.\n\nNome: ${v.nome}\nE-mail: ${v.email}\nWhatsApp: ${v.tel}\nIdioma: ${lang}\nPaís: ${rec.pais || "-"}\n\nPara liberar o acesso (gera um código e envia ao investidor), abra:\n${link}` });
         rec.link = link; await env.LEADS.put("hfpedido:" + id, JSON.stringify(rec));
         return R(`<div class="gate"><h1>${t.rok}</h1><p>${t.roks}</p><div class="row"><a class="btn" href="/helpfarm/">${t.back}</a></div></div>`);
       }
@@ -567,7 +567,7 @@ async function hfArea(req, env, url, RAW) {
     let pref; do { pref = "F" + hfRnd(4); } while (await env.LEADS.get("hfprospect:" + pref));
     const codigo = pref + "-" + hfRnd(4), tl = HL[rec.idioma] || HL.pt;
     await env.LEADS.put("hfprospect:" + pref, JSON.stringify({ nome: "Direto · " + rec.nome, codigo, emails: [HF_MAIL], ativo: true, criado: new Date().toISOString(), pedido: id }));
-    rec.status = "liberado"; rec.codigo = codigo; rec.mailCodigo = await hfMail(env, { from: HF_MAIL, to: rec.email, replyTo: HF_MAIL, subject: tl.c_subj, text: hfFill(tl.c_body, { n: rec.nome, c: codigo, u: `${url.origin}${A}/?lang=${rec.idioma}` }) });
+    rec.status = "liberado"; rec.codigo = codigo; rec.mailCodigo = await hfMail(env, { from: HF_FROM, to: rec.email, replyTo: HF_MAIL, subject: tl.c_subj, text: hfFill(tl.c_body, { n: rec.nome, c: codigo, u: `${url.origin}${A}/?lang=${rec.idioma}` }) });
     await env.LEADS.put("hfpedido:" + id, JSON.stringify(rec));
     return R(`<div class="gate"><h1>Acesso liberado</h1>${dados}<p>Código: <b>${hfEsc(codigo)}</b><br>E-mail ao investidor: ${hfEsc(rec.mailCodigo)}</p></div>`);
   }
@@ -595,7 +595,7 @@ async function hfArea(req, env, url, RAW) {
       if (c.ok) {
         const id = new Date().toISOString() + ":" + crypto.randomUUID().slice(0, 8);
         const rec = { ...v, prospect: s.p, prospectNome: s.pr.nome, idioma: lang, consent: true, quando: new Date().toISOString(), pais: (req.cf && req.cf.country) || "", eventos: [] };
-        rec.mailCadastro = await hfMail(env, { from: HF_MAIL, to: s.pr.emails.join(","), cc: HF_MAIL + ",fabio.moulin@helpcure.com.py", replyTo: v.email, subject: `Help Farm — novo investidor cadastrado (${s.pr.nome})`, text: `Um investidor se cadastrou na área do investidor da Help Farm.\n\nNome: ${v.nome}\nE-mail: ${v.email}\nWhatsApp: ${v.tel}\nIndicação: ${s.pr.nome}\nIdioma: ${lang}\nPaís: ${rec.pais}` });
+        rec.mailCadastro = await hfMail(env, { from: HF_FROM, to: s.pr.emails.join(","), cc: HF_MAIL + ",fabio.moulin@helpcure.com.py", replyTo: v.email, subject: `Help Farm — novo investidor cadastrado (${s.pr.nome})`, text: `Um investidor se cadastrou na área do investidor da Help Farm.\n\nNome: ${v.nome}\nE-mail: ${v.email}\nWhatsApp: ${v.tel}\nIndicação: ${s.pr.nome}\nIdioma: ${lang}\nPaís: ${rec.pais}` });
         await env.LEADS.put("hfinv:" + s.p + ":" + id, JSON.stringify(rec));
         return go(A + "/?lang=" + lang, hfSC(await hfSign(env, { p: s.p, l: id }), 2592000));
       }
@@ -622,7 +622,7 @@ async function hfArea(req, env, url, RAW) {
     if (req.method === "POST") {
       const last = (rec.eventos || []).filter((e) => e.tipo === "quero-investir").pop();
       if (!last || Date.now() - Date.parse(last.quando) > 600000) {
-        const st = await hfMail(env, { from: HF_MAIL, to: rec.email, cc: [...s.pr.emails, HF_MAIL, "fabio.moulin@helpcure.com.py"].join(","), replyTo: HF_MAIL, subject: t.m_subj, text: hfFill(t.m_body, { n: rec.nome }) + `\n\n— Indicação: ${s.pr.nome}\nWhatsApp do investidor: https://wa.me/${String(rec.tel).replace(/\D/g, "")}` });
+        const st = await hfMail(env, { from: HF_FROM, to: rec.email, cc: [...s.pr.emails, HF_MAIL, "fabio.moulin@helpcure.com.py"].join(","), replyTo: HF_MAIL, subject: t.m_subj, text: hfFill(t.m_body, { n: rec.nome }) + `\n\n— Indicação: ${s.pr.nome}\nWhatsApp do investidor: https://wa.me/${String(rec.tel).replace(/\D/g, "")}` });
         rec.eventos.push({ tipo: "quero-investir", quando: new Date().toISOString(), mail: st }); await env.LEADS.put(ik, JSON.stringify(rec));
       }
       return go(A + "/quero-investir?lang=" + lang);
@@ -669,7 +669,7 @@ async function hfgHit(req, env) {
     st.v++; if (b.u) st.u++; if (b.n) st.nv++;
     hfgInc(st.p, HFG_PAGES[path] || path.replace("/helpfarm/", ""));
     hfgInc(st.c, (req.cf && req.cf.country) || "??");
-    let ref = "Direto"; try { if (b.r) { const h = new URL(b.r).hostname.replace(/^www\./, ""); if (!/helpcure\.com\.py$|helpfarm\.com\.py$|workers\.dev$/.test(h)) ref = h; else ref = ""; } } catch (e) {}
+    let ref = "Direto"; try { if (b.r) { const h = new URL(b.r).hostname.replace(/^www\./, ""); if (!/helpcure\.com\.py$|helpfarm\.com\.py$|helpfarm\.cloud$|workers\.dev$/.test(h)) ref = h; else ref = ""; } } catch (e) {}
     if (b.q) ref = "Campanha: " + String(b.q).slice(0, 40);
     hfgInc(st.r, ref);
     hfgInc(st.d, /mobi|android|iphone/i.test(ua) ? "Celular" : /ipad|tablet/i.test(ua) ? "Tablet" : "Computador");
