@@ -2,7 +2,7 @@
 // Chamado pelo worker "helpcure-site" do Cloudflare (segredos MAIL_URL e MAIL_KEY).
 // Corpo JSON: {key, from, to, cc, replyTo, subject, text}
 var KEY = "<MAIL_KEY — mesmo valor do segredo MAIL_KEY do worker>";
-var REMETENTES = ["investidores@helpcure.com.py", "campanha@helpcure.com.py", "contato@helpcure.com.py", "privacidade@helpcure.com.py"];
+var REMETENTES = ["investidores@helpcure.com.py", "campanha@helpcure.com.py", "contato@helpcure.com.py", "privacidade@helpcure.com.py", "investidores@helpfarm.cloud"];
 
 function doPost(e) {
   try {
@@ -11,7 +11,7 @@ function doPost(e) {
     if (!d.to || !d.subject || !d.text) return saida({ ok: false, erro: "campos" });
     var de = REMETENTES.indexOf(d.from) >= 0 ? d.from : "contato@helpcure.com.py";
     var aliases = GmailApp.getAliases();
-    var opt = { name: "Help Cure", replyTo: d.replyTo || de };
+    var opt = { name: d.name || (de.indexOf("@helpfarm.") > 0 ? "Help Farm" : "Help Cure"), replyTo: d.replyTo || de };
     if (aliases.indexOf(de) >= 0) opt.from = de;
     if (d.cc) opt.cc = d.cc;
     GmailApp.sendEmail(d.to, d.subject, d.text, opt);

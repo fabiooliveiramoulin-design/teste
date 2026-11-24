@@ -410,7 +410,7 @@ async function waLista(env) {
 // KV LEADS com prefixos próprios: hfprospect:<PREF> = {nome, codigo, emails[], ativo}; hfinv:<PREF>:<id>; hfpedido:<id>.
 // Segredos: COOKIE_KEY, HF_KEY (AES-256-GCM dos documentos em /priv/helpfarm), ADMIN_KEY; MAIL_URL/MAIL_KEY opcionais.
 const HFA = "/helpfarm/area-investidor";
-const HF_MAIL = "investidores@helpfarm.cloud"; const HF_FROM = "investidores@helpcure.com.py";
+const HF_MAIL = "investidores@helpfarm.cloud"; const HF_FROM = "investidores@helpfarm.cloud";
 const HF_DOCS = [
   { f: "HelpFarm_Panorama_Mercado_Conceito_de_Valor_v3.pdf", g: "a", d: {"pt": "Mercado, conceito de valor, o motor RAPP desde 2010 e os cenários de valuation.", "es": "Mercado, concepto de valor, el motor RAPP desde 2010 y los escenarios de valuation.", "en": "Market, value concept, the RAPP engine since 2010 and valuation scenarios."}, n: { pt: "Panorama de mercado, RAPP e valuation (v3)", es: "Panorama de mercado, RAPP y valuation (v3)", en: "Market overview, RAPP and valuation (v3)" }, k: "PDF" },
   { f: "HelpFarm_Diferenciais_Competitivos_v3.pdf", g: "a", d: {"pt": "Por que a Help Farm não se copia: RAPP exclusivo no agro, unidade móvel e dispositivos.", "es": "Por qué Help Farm no se copia: RAPP exclusivo en el agro, unidad móvil y dispositivos.", "en": "Why Help Farm can't be copied: RAPP exclusive in agribusiness, mobile unit and devices."}, n: { pt: "Diferenciais competitivos e o motor RAPP (v3)", es: "Diferenciales competitivos y el motor RAPP (v3)", en: "Competitive edge and the RAPP engine (v3)" }, k: "PDF" },
